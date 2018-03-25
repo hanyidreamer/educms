@@ -1,0 +1,29 @@
+{include file="$public_header"}
+
+<form action="/admin/wechat_applet/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data.id}" />
+    <input type="hidden" name="site_id" value="{$site_id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td class="tableleft">名称</td>
+            <td ><input type="text" name="title" value="{$data.title}"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

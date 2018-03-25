@@ -1,0 +1,32 @@
+{include file="$public_header"}
+<form class="form-inline definewidth m20" action="/admin/admin_log/index" method="post">
+    用户名：
+    <input type="text" name="username" id="username" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>用户名</th>
+        <th>操作</th>
+        <th>路径</th>
+        <th>时间</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+	     <tr>
+            <td>{$data.id}</td>
+             <td>
+                 {$data.username}</td>
+            <td>
+                {$data.action}</td>
+             <td>{$data.url}</td>
+             <td>{$data.update_time}</td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+{include file="$public_footer"}

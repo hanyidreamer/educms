@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>我的卡包 - 账户中心 - 百份百在线教育 - 一线丰富经验精品课程 - Powered By EduSoho</title>
+    <meta name="keywords" content="网络课堂,在线教育,在线教学,开源教学软件" />
+    <meta name="description" content="百分百在线教育是面向个人、学校、培训机构" />
+    <meta content="a811d99153c2f9d88548f8dd00df7c253c3ed27a" name="csrf-token" />
+    <meta content="1" name="is-login" />
+    <meta content="1" name="is-open" />
+
+
+
+    <link href="/assets/v2/bootstrap/css/bootstrap.css?7.0.2" rel="stylesheet" />
+
+    <link rel="stylesheet" media="screen" href="/assets/css/common.css?7.0.2" />
+    <link rel="stylesheet" media="screen" href="/assets/css/font-awesome.min.css?7.0.2" />
+    <link rel="stylesheet" media="screen" href="/assets/v2/css/es-icon.css?7.0.2" />
+
+    <link href="/assets/v2/css/main.css?7.0.2" rel="stylesheet" />
+
+
+
+
+    <!--[if lt IE 9]>
+    <script src="/assets/libs/html5shiv.js?7.0.2"></script>
+    <script src="/assets/libs/respond.min.js?7.0.2"></script>
+    <![endif]-->
+
+
+</head>
+<body >
+
+<div class="es-wrap">
+
+    <div class="alert alert-warning alert-notice announcements-alert hidden-xs" role="alert">
+        <div class="container swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <i class="es-icon es-icon-infooutline mrm"></i>
+                    网站公告
+                </div>
+
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    </div>
+    <header class="es-header navbar">
+        <div class="navbar-header">
+            <div class="visible-xs  navbar-mobile">
+                <a href="javascript:;" class="navbar-more js-navbar-more">
+                    <i class="es-icon es-icon-menu"></i>
+                </a>
+                <div class="html-mask"></div>
+                <div class="nav-mobile">
+                    <form class="navbar-form" action="/search" method="get">
+                        <div class="form-group">
+                            <input class="form-control" placeholder="搜索" name="q">
+                            <button class="button es-icon es-icon-search"></button>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav">
+
+                        <li class="nav-hover">
+                            <a href="/course/explore" >课程  <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/course/explore"  >全部课程</a></li>
+                                <li><a href="/course/explore/intro"  >产品介绍</a></li>
+                                <li><a href="/course/explore/fuction"  >使用帮助</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="/classroom/explore" >班级 </a>
+                        </li>
+                        <li class="nav-hover">
+                            <a href="/article" >资讯  <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/article"  >全部资讯</a></li>
+                                <li><a href="/article/category/news"  >行业资讯</a></li>
+                                <li><a href="/article/category/default"  >默认分类</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="/page/aboutus" >关于我们 </a>
+                        </li>          </ul>
+                </div>
+            </div>
+            <a href="/" class="navbar-brand">
+                <img src="/files/system/2016/11-09/175243be8fe4079476.jpg?7.0.2">
+            </a>
+        </div>
+        <nav class="collapse navbar-collapse">
+            <ul class="nav navbar-nav clearfix hidden-xs " id="nav">
+
+                <li class="nav-hover">
+                    <a href="/course/explore" >课程  <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/course/explore"  >全部课程</a></li>
+                        <li><a href="/course/explore/intro"  >产品介绍</a></li>
+                        <li><a href="/course/explore/fuction"  >使用帮助</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="/classroom/explore" >班级 </a>
+                </li>
+                <li class="nav-hover">
+                    <a href="/article" >资讯  <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/article"  >全部资讯</a></li>
+                        <li><a href="/article/category/news"  >行业资讯</a></li>
+                        <li><a href="/article/category/default"  >默认分类</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="/page/aboutus" >关于我们 </a>
+                </li>      </ul>
+            <div class="navbar-user  left ">
+                <ul class="nav user-nav">
+                    <li class="user-avatar-li nav-hover">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <img class="avatar-xs" src="/assets/img/default/avatar.png?7.0.2">
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation" class="dropdown-header">tanzhenxing</li>
+                            <li><a href="/user/28"><i class="es-icon es-icon-person"></i>个人主页</a></li>
+                            <li><a href="/settings/"><i class="es-icon es-icon-setting"></i>个人设置</a></li>
+                            <li class="hidden-lg">
+                                <a href="/my">
+                                    <i class="es-icon es-icon-eventnote"></i>我的学习              </a>
+                            </li>
+                            <li><a href="/my/bill"><i class="es-icon es-icon-accountwallet"></i>账户中心</a></li>
+
+                            <li class="hidden-lg"><a href="/notification"><span class="pull-right num"></span><i class="es-icon es-icon-notificationson"></i>通知</a></li>
+                            <li class="hidden-lg"><a href="/message/"><span class="pull-right num"></span><i class="es-icon es-icon-mail"></i>私信</a></li>
+                            <li><a href="/logout"><i class="es-icon es-icon-power"></i>退出登录</a></li>
+                        </ul>
+                    </li>
+                    <li class="visible-lg">
+                        <a href="/my">
+                            我的学习
+                        </a>
+                    </li>
+                    <li class="visible-lg nav-hover">
+
+                        <a><i class="es-icon es-icon-mail"></i></a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/message/">
+                                    <span class="pull-right num"></span>
+                                    <i class="es-icon es-icon-mail"></i>私信
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right hidden-xs hidden-sm" action="/search" method="get">
+                    <div class="form-group">
+                        <input class="form-control js-search" name="q" placeholder="搜索">
+                        <button class="button es-icon es-icon-search"></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <div id="content-container" class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="sidenav">
+                    <ul class="list-group">
+                        <li class="list-group-heading">账户中心</li>
+                        <li class="list-group-item ">
+                            <a href="
+                              /my/bill
+                            ">我的账户
+                            </a>
+                        </li>
+                        <li class="list-group-item ">
+                            <a href="/my/orders">我的订单</a>
+                        </li>
+                        <li class="list-group-item  active ">
+                            <a href="/my/cards">我的卡包</a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="es-section h400">
+                    <div class="section-header"><h3>我的卡包</h3></div>
+
+
+                    <div class="clearfix mbl">
+                        <ul class="nav nav-pills inline-block">
+                            <li role="presentation"  class="active"><a href="/my/cards?cardType=">优惠券</a></li>
+                        </ul>
+
+                        <div class="pull-right btn-group">
+
+                        </div>
+                    </div>
+                    <div class="card-pack-list">
+                        <div class="row">
+                            <div class="empty">没有搜索到符合条件的优惠券</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="es-footer-link">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 footer-main clearfix">
+                    <div class="link-item ">
+                        <h3>我是学生</h3>
+                        <ul>
+                            <li>
+                                <a href="" target="_blank">如何注册</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">如何学习</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">如何互动</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="link-item ">
+                        <h3>我是老师</h3>
+                        <ul>
+                            <li>
+                                <a href="" target="_blank">发布课程</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">使用题库</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">教学资料库</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="link-item ">
+                        <h3>我是管理员</h3>
+                        <ul>
+                            <li>
+                                <a href="" target="_self">修改底部链接</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">系统设置</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">课程设置</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="link-item hidden-xs">
+                        <h3>在线课程</h3>
+                        <ul>
+                            <li>
+                                <a href="" target="_blank">会员专区</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">题库增强版</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">用户导入导出</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="link-item hidden-xs">
+                        <h3>关于我们</h3>
+                        <ul>
+                            <li>
+                                <a href="http://edu.ddtui.com/" target="_blank">百分百教育官网</a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">联系我们</a>
+                            </li>
+                            <li>
+                                <a href="http://edu.ddtui.com/" target="_blank">公司简介</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 footer-logo hidden-sm hidden-xs">
+                    <a class="" href="http://www.edusoho.com" target="_blank"><img src="/assets/v2/img/bottom_logo.png?7.0.2" alt="建议图片大小为233*64"></a>
+                    <div class="footer-sns">
+                        <a class="qrcode-popover top">
+                            <i class="es-icon es-icon-weixin"></i>
+                            <div class="qrcode-content">
+                                <img src="/files/system/block_picture_1471258676.jpg?7.0.2" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <footer class="es-footer">
+        <div class="copyright">
+            <div class="container">
+
+
+                <a class="mlm" href="/archive/course">课程存档</a>
+                <div class="mts">
+                    课程内容版权均归
+                    <a href="/">
+                        百份百教育
+                    </a>
+                    所有
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- 侧边栏快捷操作 -->
+<div class="es-bar hidden-xs">
+
+    <!-- 左侧列表 -->
+    <div class="es-bar-menu">
+        <ul class="bar-menu-top">
+            <li data-id="#bar-user-center" class="bar-user">
+                <a href="javascript:;" data-url="/esbar/my/study_center">学<br>习<br>中<br>心
+                </a>
+            </li>
+            <li data-id="#bar-homework" data-toggle="tooltip" data-placement="left" title="我的考试/作业"><a href="javascript:;" data-url="/esbar/my/practice/reviewing"><i class="es-icon es-icon-edit"></i></a></li>    <li data-id="#bar-course-list" data-toggle="tooltip" data-placement="left" title="我的课程/班级"><a href="javascript:;" data-url="/esbar/my/course"><i class="es-icon es-icon-book"></i></a></li>      <li data-id="#bar-message" data-toggle="tooltip" data-placement="left" title="通知">
+            <a href="javascript:;" data-url="/esbar/my/notify">
+                <i class="es-icon es-icon-notifications"></i>
+            </a>
+        </li>
+        </ul>
+        <ul class="bar-menu-sns">
+            <li class="popover-btn bar-qq-btn" data-container=".bar-qq-btn" data-title="QQ客服及QQ群" data-content-element="#bar-qq-content">
+                <a><i class="es-icon es-icon-qq"></i></a>
+            </li>
+            <li class="popover-btn bar-phone-btn" data-container=".bar-phone-btn" data-title="电话客服" data-content-element="#bar-phone-content">
+                <a><i class="es-icon es-icon-phone"></i></a>
+            </li>
+            <li class="popover-btn bar-weixin-btn" data-container=".bar-weixin-btn" data-content-element="#bar-weixin-content">
+                <a><i class="es-icon es-icon-weixin"></i></a>
+            </li>
+
+            <li class="go-top" style="margin:-10px auto 0 auto;" data-toggle="tooltip" data-placement="left" title="回到顶端">
+                <a href="javascript:;">
+                    <i class="es-icon es-icon-keyboardarrowup" style="margin-bottom:-8px"></i>
+                    <span class="text-sm">TOP</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 列表内容 -->
+    <!-- 通知 -->
+    <div class="es-bar-main" id="bar-message">
+        <div class="bar-main-header">
+            <a href="javascript:;" class="js-bar-shrink link-light"><i class="es-icon es-icon-arrowforward"></i></a>
+            通知
+        </div>
+
+        <div class="bar-main-body">
+            <ul class="bar-message">
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 考试/作业 -->
+    <div class="es-bar-main" id="bar-homework">
+        <div class="bar-main-header">
+            <a href="javascript:;" class="js-bar-shrink link-light"><i class="es-icon es-icon-arrowforward"></i></a>
+            我的考试/作业
+        </div>
+
+        <div class="bar-main-body">
+            <div class="text-center">
+                <div class="btn-group btn-action">
+                    <a href="javascript:;" data-url="/esbar/my/practice/reviewing" class="btn btn-primary active" id="bar-practice-review">已提交</a>
+                    <a href="javascript:;" data-url="/esbar/my/practice/finished" class="btn btn-primary " id="bar-practice-finish"><span>已批阅</span></a>
+                </div>
+            </div>
+            <div class="bar-homework">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程/班级 -->
+    <div class="es-bar-main" id="bar-course-list">
+        <div class="bar-main-header">
+            <a href="javascript:;" class="js-bar-shrink link-light"><i class="es-icon es-icon-arrowforward"></i></a>
+            我的课程/班级
+        </div>
+
+        <div class="bar-main-body">
+            <div class="text-center">
+                <div class="btn-group btn-action">
+                    <a href="javascript:;" data-url="/esbar/my/course" class="btn btn-primary active"
+                       id="bar-course-btn">课程</a>
+                    <a href="javascript:;" data-url="/esbar/my/classroom" class="btn btn-primary "
+                       id="bar-classroom-btn">班级</a>
+                </div>
+            </div>
+
+            <div id="bar-my-course">
+            </div>
+        </div>
+    </div>
+
+    <!-- 学习中心 -->
+    <div class="es-bar-main" id="bar-user-center">
+    </div>
+
+    <!-- 学习历史 -->
+
+
+    <div class="bar-popover-content" style="display:none;">
+        <div id="bar-qq-content">
+
+            <div class="row mtm">
+                <div class="col-xs-6 mbm text-overflow">
+                    <a class="link-light" href="http://wpa.qq.com/msgrd?v=3&uin=610125278&site=qq&menu=yes" target="_blank"><img class="mrs" src="/assets/v2/img/bar_qq.png?7.0.2" alt="" title="点击这里给我发消息" alt="">
+                        百份百教育
+                    </a>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-xs-6 mbm">
+                    <p class="text-overflow">
+                        <img class="mrs" src="/assets/v2/img/bar_qq_group.png?7.0.2" alt="">
+                        百份百教育
+                    </p>
+
+                    <p class="text-overflow">
+                        100597934
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="bar-phone-content">
+            <p class="mtm"><i class="es-icon es-icon-accesstime mrm"></i>工作时间： 9:00 - 18:00</p>
+            <p class="mtm"><i class="es-icon es-icon-phone mrm"></i>百份百教育： 0769-33341000</p>
+            <p class="mtm"><i class="es-icon es-icon-mail mrm"></i>邮箱： <a class="link-light" href="mailto:610125278@qq.com">610125278@qq.com</a></p>
+        </div>
+
+        <div id="bar-weixin-content">
+            <img width="110" class="img-responsive" src="/files/system/2016/08-04/142949d39315480554.jpg?time=1470292197?time=1478687376?7.0.2" alt="">
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div id="login-modal" class="modal" data-url="/login/ajax"></div>
+<div id="modal" class="modal"></div>
+
+
+<script>
+    var app = {};
+    app.debug = false;
+    app.version = '7.0.2';
+    app.httpHost = 'http://edu.ddtui.com';
+    app.basePath = '';
+    app.theme = 'jianmo';
+    app.themeGlobalScript = 'theme/global-script';
+    app.jsPaths = {"common":"common","theme":"\/themes\/jianmo\/js","customwebbundle":"\/bundles\/customweb\/js","customadminbundle":"\/bundles\/customadmin\/js","topxiawebbundle":"\/bundles\/topxiaweb\/js","topxiaadminbundle":"\/bundles\/topxiaadmin\/js","classroombundle":"\/bundles\/classroom\/js","materiallibbundle":"\/bundles\/materiallib\/js","sensitivewordbundle":"\/bundles\/sensitiveword\/js","orgbundle":"\/bundles\/org\/js"};
+
+    app.crontab = '/common/crontab';
+
+    var CKEDITOR_BASEPATH = app.basePath + '/assets/libs/ckeditor/4.6.7/';
+    var CLOUD_FILE_SERVER = "";
+
+    app.config = {"api":{"weibo":{"key":""},"qq":{"key":""},"douban":{"key":""},"renren":{"key":""}},"cloud":{"video_player":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/GrindPlayer.swf","video_player_watermark_plugin":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/Watermake-1.0.3.swf","video_player_fingerprint_plugin":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/Fingerprint-1.0.1.swf"},"loading_img_path":"\/assets\/img\/default\/loading.gif?7.0.2"};
+
+    app.arguments = {};
+    app.controller = 'topxiawebbundle/controller/card/index';
+
+    app.scripts = ["es-bar\/index","notification\/notification"];
+
+    app.uploadUrl = '/file/upload';
+    app.imgCropUrl = '/file/img/crop';
+    app.lessonCopyEnabled = '0';
+    app.cloudSdkCdn = '';
+    app.mainScript = '/bundles/topxiaweb/js/app.js?7.0.2';
+</script>
+<script src="/assets/libs/seajs/seajs/2.2.1/sea.js?7.0.2"></script>
+<script src="/assets/libs/seajs/seajs-style/1.0.2/seajs-style.js?7.0.2"></script>
+<script src="/assets/libs/seajs/seajs-text/1.1.1/seajs-text.min.js?7.0.2"></script>
+<script src="/assets/libs/seajs-global-config.js?7.0.2"></script>
+<script>
+    seajs.use(app.mainScript);
+</script>
+</body>
+</html>

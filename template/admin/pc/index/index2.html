@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/manage//assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/manage//assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/manage//assets/css/main-min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="header">
+
+    <div class="dl-title">
+        <img src="/static/member/images/topsize_min.png">
+    </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{$data.username}</span><a href="/admin/login/logout" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+</div>
+<div class="content">
+    <div class="dl-main-nav">
+        <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+        <ul id="J_Nav"  class="nav-list ks-clear">
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-member">文章管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">会员管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">交易管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">代理平台</div></li>
+        </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+
+    </ul>
+</div>
+<script type="text/javascript" src="/manage/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/manage/assets/js/bui-min.js"></script>
+<script type="text/javascript" src="/manage/assets/js/common/main-min.js"></script>
+<script type="text/javascript" src="/manage/assets/js/config-min.js"></script>
+<script>
+    BUI.use('common/main',function(){
+        var config = [
+            {id:'1',homePage : '10',menu:[
+                {text:'系统管理',items:[
+                    {id:'10',text:'网站管理',href:'../site_info/index'},
+                    {id:'104',text:'基本信息',href:'../site_config/info'},
+                    {id:'105',text:'联系方式',href:'../site_config/contact_info'},
+                    {id:'11',text:'幻灯片管理',href:'../site_slide/index'},
+                    {id:'12',text:'系统管理员',href:'../site_admin/index'},
+                    {id:'13',text:'友情链接',href:'../site_admin/index'},
+                    {id:'106',text:'模板管理',href:'../templet/index'}
+                ]
+                },
+                {text:'第三方授权接口',items:[
+                    {id:'14',text:'短信接口',href:'../sms/index'},
+                    {id:'15',text:'腾讯云存储',href:'../qcloud_cos/index'},
+                    {id:'16',text:'QQ登陆',href:'../qq/index'},
+                    {id:'17',text:'微博登陆',href:'../weibo/index'},
+                    {id:'18',text:'微信登陆',href:'../weixin/index'},
+                    {id:'19',text:'微信支付',href:'../wxpay/index'},
+                    {id:'100',text:'支付宝支付',href:'../alipay/index'}
+                ]
+                },
+                {text:'APP管理',items:[
+                    {id:'101',text:'APP版本管理',href:'../app_version/index'},
+                    {id:'102',text:'api接口管理',href:'../app_api/index'},
+                    {id:'103',text:'会员Api授权管理',href:'../authentication/index'}
+                ]
+                }
+            ]
+            },
+            {id:'2',homePage : '20',menu:[
+                {text:'文章管理',items:[
+                    {id:'20',text:'分类管理',href:'../article_category/index'},
+                    {id:'21',text:'文章列表',href:'../article/index'},
+                    {id:'22',text:'文章回收站',href:'../article/recycle'}
+                ]
+                },
+                {text:'关键词管理',items:[
+                    {id:'20',text:'关键词分类',href:'../keywords_category/index'},
+                    {id:'21',text:'关键词列表',href:'../keywords/index'},
+                    {id:'22',text:'关键词回收站',href:'../keywords/recycle'}
+                ]
+                },
+                {text:'采集管理',items:[
+                    {id:'23',text:'文章采集',href:'../spider/index'},
+                    {id:'24',text:'采集规则管理',href:'../article_spider/index'}
+                ]
+                },
+                {text:'网站静态页生成',items:[
+                    {id:'23',text:'生成首页',href:'../spider/index'},
+                    {id:'24',text:'生成列表页',href:'../article_spider/index'},
+                    {id:'24',text:'生成文章页',href:'../article_spider/index'}
+                ]
+                }
+            ]
+            },
+            {id:'3',homePage : '30',menu:[
+                {text:'会员管理',items:[
+                    {id:'30',text:'会员列表',href:'../member/index'},
+                    {id:'32',text:'会员套餐',href:'../member_package/index'},
+                    {id:'33',text:'套餐订单',href:'../member_order/index'},
+                    {id:'34',text:'会员服务器',href:'../member_server/index'},
+                    {id:'35',text:'会员交易服务',href:'../member_service/index'}
+                ]
+                },
+                {text:'产品管理',items:[
+                    {id:'36',text:'产品列表',href:'../product/index'},
+                    {id:'37',text:'产品订单',href:'../product_order/index'}
+                ]
+                }
+            ]
+            },
+            {id:'4',homePage : '40',menu:[
+                {text:'交易管理',items:[
+                    {id:'40',text:'交易帐户',href:'../trade_account/index'},
+                    {id:'41',text:'演示帐户',href:'../trade_account_show/index'},
+                    {id:'42',text:'交易订单',href:'../trade_order/index'},
+                    {id:'43',text:'交易服务器',href:'../trade_server/index'},
+                    {id:'44',text:'EA授权KEY管理',href:'../user_key/index'}
+                ]
+                }
+
+            ]
+            },
+            {id:'5',homePage : '50',menu:[
+                {text:'代理管理',items:[
+                    {id:'50',text:'代理管理',href:'../agent/index'},
+                    {id:'51',text:'会员套餐',href:'../member_package/index'},
+                    {id:'52',text:'套餐订单',href:'../member_order/index'},
+                    {id:'53',text:'会员服务器提供商',href:'../member_server/index'},
+                    {id:'53',text:'会员服务器管理',href:'../member_server/index'},
+                    {id:'54',text:'会员交易服务',href:'../member_service/index'}
+                ]
+                },
+                {text:'产品管理',items:[
+                    {id:'55',text:'产品列表',href:'../product/index'},
+                    {id:'56',text:'产品订单',href:'../product_order/index'}
+                ]
+                }
+            ]
+            }
+        ];
+
+        new PageUtil.MainPage({
+            modulesConfig : config
+        });
+    });
+</script>
+
+</body>
+</html>

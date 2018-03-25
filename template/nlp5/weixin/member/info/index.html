@@ -1,0 +1,29 @@
+{include file="$public_header"}
+
+<header class="header vg-bg-white vg-margin-bottom-sm row">
+    <div class="small-1 columns vg-padding-right-0 vg-padding-left-xs"><a
+            class="vg-block vg-wfull vg-hfull vg-text-black" href="/"><i class="icon iconfont  vg-text-default">
+        &#xe600;</i></a></div>
+    <div class="small-10 columns text-center vg-text-sm">个人信息</div>
+    <div class="small-1 columns"></div>
+</header>
+<section class="vg-bg-white vg-margin-bottom-xl">
+    <a href="#"  onclick="return false;" >
+        <div class="row vg-padding-vertical-smm vg-bdb-default">
+            <div class="small-4 columns text-left vg-text-black vg-text-sm">昵称</div>
+            <div class="small-8 columns text-right vg-text-gray vg-padding-vertical-xxs vg-text-xs">
+                <span class="vg-padding-right-xs">{$member_data.name}</span> <i class="icon iconfont vg-text-xs">&#xe603;</i></div>
+        </div>
+    </a>
+    <a href="#">
+        <div class="row vg-padding-vertical-smm vg-bdb-default">
+            <div class="small-4 columns text-left vg-text-black vg-text-sm">手机号</div>
+            <div class="small-8 columns text-right vg-text-gray vg-text-xs vg-padding-vertical-xxs">
+                <span class="vg-padding-right-xs">{$member_data.tel}</span> <i class="icon iconfont vg-text-xs">
+                &#xe603;</i></div>
+        </div>
+    </a>
+
+</section>
+
+{include file="$public_footer"}

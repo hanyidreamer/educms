@@ -1,0 +1,203 @@
+{include file="$public_header"}
+
+
+
+    <section class="course-detail-header before">
+        <div class="container">
+
+            <ol class="breadcrumb breadcrumb-o">
+                <li><a href="/">首页</a></li>
+                <li><a href="/index/course/category/id/{$course_category.unique_code}">{$course_category.title}</a></li>
+                <li class="active">{$course.title}</li>
+            </ol>
+
+            <div class="es-section clearfix">
+
+                <div class="course-img">
+
+                    <img class="img-responsive" src="{$course.thumb}" alt="{$course.title}">
+                    <div class="tags">
+                    </div>
+                </div>
+
+
+                <div class="course-info">
+                    <h2 class="title">
+                        {$course.title}
+                        <span class="es-qrcode top" data-url="/course/12/qrcode">
+        <i class="es-icon es-icon-qrcode"></i>
+        <span class="qrcode-popover">
+          <img src="" alt="">
+          扫二维码继续学习
+        </span>
+      </span>
+                    </h2>
+                    <div class="subtitle">{$course_category.title}</div>
+                    <div class="metas">
+                        <div class="score">
+
+                            <i class="es-icon es-icon-star color-warning"></i>
+                            <i class="es-icon es-icon-star color-warning"></i>
+                            <i class="es-icon es-icon-star color-warning"></i>
+                            <i class="es-icon es-icon-star color-warning"></i>
+                            <i class="es-icon es-icon-star color-warning"></i>
+
+
+
+                            <span>(1人)</span>
+                        </div>
+
+
+
+                        <p class="discount-price">
+                            <label>价格</label>
+
+
+                            <span class="course-price-widget">
+
+  
+          <span class="price">
+                  0.10元 
+              </span>
+    
+    
+  </span>        </p>
+                    </div>
+
+
+                </div>
+
+                <div class="course-operation clearfix">
+                    <div class="student-num hidden-xs">
+                        <i class="es-icon es-icon-people"></i>2人
+                    </div>
+
+                    <ul class="course-data clearfix ">
+                        <li id="unfavorite-btn" data-url="/course/12/unfavorite" style="display:none;">
+                            <a href="javascript:;" class="color-primary">
+                                <p><i class="es-icon es-icon-bookmark"></i></p>
+                                <p>已收藏</p>
+                            </a>
+                        </li>
+
+                        <li id="favorite-btn" data-url="/course/12/favorite" >
+                            <a href="javascript:;">
+                                <p><i class="es-icon es-icon-bookmarkoutline"></i></p>
+                                <p>收藏</p>
+                            </a>
+                        </li>
+
+                        <li>
+    <span class="es-share top">
+      <a class="dropdown-toggle" href="" data-toggle="dropdown">
+        <p><i class="es-icon es-icon-share"></i></p>
+        <p>分享</p>
+      </a>
+                  
+<div class="dropdown-menu  js-social-share-params" data-title="初三英语同步系统梳理班" data-summary="本课程通过对英语作文的类型，常用英语写作句子，经典范文，真题练习等训练，全面提高学员的英语定作能力。..." data-message="我正在学习《初三英语同步系统梳理班》，收获巨大哦，一起来学习吧！" data-url="http://edu.ddtui.com/course/12" data-picture="/files/course/2016/08-04/1500011344fe871899.jpg?7.0.2">
+  
+  <a href="javascript:;" class="js-social-share" data-cmd="weixin" title="分享到微信" data-share="weixin" data-qrcode-url="/common/qrcode?text=http%3A%2F%2Fedu.ddtui.com%2Fcourse%2F12"><i class="es-icon es-icon-weixin"></i></a>
+  <a href="javascript:;" class="js-social-share" data-cmd="tsina" title="分享到新浪微博" data-share="weibo"><i class="es-icon es-icon-weibo"></i></a>
+  <a href="javascript:;" class="js-social-share" data-cmd="qq" title="分享到QQ好友" data-share="qq"><i class="es-icon es-icon-qq"></i></a>
+  <a href="javascript:;" class="js-social-share" data-cmd="qzone" title="分享到QQ空间" data-share="qzone"><i class="es-icon es-icon-qzone"></i></a>
+
+</div>
+
+
+    </span>
+                        </li>
+
+                    </ul>
+                    <div class="buy">
+                        <a class="btn btn-primary btn-lg"
+                           href="#modal"
+                           data-toggle="modal"
+                           data-url="/course/12/buy?targetType=course"
+                        >
+                            购买课程</a>
+                        </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <div id="content-container" class="container">
+
+        <div class="course-detail row">
+            <div class="col-lg-9 col-md-8  course-detail-main">
+
+
+
+                <section class="es-section">
+
+                    <div class="course-detail-content">
+
+                        <div class="es-piece">
+                            <div class="piece-header">
+                                {$course.title}
+                            </div>
+                            <div class="piece-body p-lg clearfix">
+                                {$course.body|raw}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4  course-sidebar">
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> <i class="es-icon es-icon-assignmentind"></i>
+                            授课教师
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media media-default">
+                            <div class="media-left">
+                                <a class=" js-user-card" href="/user/1" data-card-url="/user/1/card/show" data-user-id="1">
+                                    <img class="avatar-md" src="/assets/img/default/avatar.png?7.0.2">
+
+                                </a>
+
+                            </div>
+                            <div class="media-body">
+                                <div class="title">
+                                    <a class="link-dark link-light" href="/user/1">cofan</a>
+
+                                </div>
+                                <div class="content">校长</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    {include file="$public_footer"}

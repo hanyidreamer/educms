@@ -1,0 +1,64 @@
+{include file="public/header" /}
+<form class="form-inline definewidth m20" action="/admin/article_category/index" method="post">
+    分类名称：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增文章分类</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>分类ID</th>
+        <th>分类名称</th>
+        <th>分类别名</th>
+        <th>唯一识别码</th>
+        <th>关键词</th>
+        <th>描述</th>
+        <th>图标</th>
+        <th>封面图</th>
+        <th>Banner</th>
+        <th>跳转链接</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+	     <tr>
+            <td>{$data.id}</td>
+            <td>{$data.title}</td>
+             <td>{$data.short_title}</td>
+             <td>{$data.indentification}</td>
+             <td>{$data.keywords}</td>
+             <td>{$data.description}</td>
+             <td><img src="{$data.icon}" height="45" /> </td>
+             <td><img src="{$data.thumb}" height="45" /> </td>
+             <td><img src="{$data.banner}" height="45" /> </td>
+             <td>
+                 {eq name="data.redirect_url" value="" }
+                 查看
+                 {else}
+                 <a href="{$data.redirect_url}">查看</a>
+                 {/eq}
+             </td>
+
+             <td>
+                 {eq name="data.status" value="1" }
+                 显示
+                 {else}
+                 隐藏
+                 {/eq}
+             </td>
+             <td>{$data.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/category/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>预览</a>
+                <a class="btn btn-sm btn-primary" href="/admin/article_category/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/article_category/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+{include file="public/footer" /}

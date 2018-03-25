@@ -1,0 +1,64 @@
+{include file="$public_header"}
+
+<form class="form-inline definewidth m20" action="/admin/wechat_official_accounts/index" method="post">
+    标题：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a class="btn btn-success" href="/admin/wechat_official_accounts/create">新增</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>名称</th>
+        <th>简介</th>
+        <th>账号</th>
+        <th>Key</th>
+        <th>商户号</th>
+        <th>微信支付API密钥</th>
+        <th>Token</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+    <tr align="center">
+        <td width="50">{$data.id}</td>
+        <td width="100">
+            <img src="{$data.icon}" width="50" /><br />
+            {$data.title}<br/>
+            <img src="{$data.qrcode}" width="50" />
+        </td>
+        <td width="300">{$data.desc}</td>
+        <td width="200">
+            微信号:{$data.wechat_id}<br />
+            用户名:{$data.username} <br />
+            原始id:{$data.original_id}
+        </td>
+        <td width="180">
+            AppID：{$data.app_id}<br />
+            AppSecret:{$data.app_secret}
+        </td>
+        <td width="180">{$data.merchant_id}</td>
+        <td width="180">{$data.api_key}</td>
+        <td width="180">
+            授权token：{$data.access_token}<br />
+            刷新token：{$data.refresh_token}<br />
+            token过期时间：{$data.expires_time_token}
+        </td>
+        <td width="50">{eq name="data.status" value="1" }
+            启用
+            {else}
+            禁用
+            {/eq}</td>
+
+        <td>
+            <a class="btn btn-sm btn-primary" href="/admin/wechat_official_accounts/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+        </td>
+    </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+    共{$data_count} 条记录
+</div>
+{include file="$public_footer"}

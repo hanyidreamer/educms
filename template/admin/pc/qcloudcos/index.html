@@ -1,0 +1,51 @@
+{include file="$public_header" /}
+
+<form class="form-inline definewidth m20" action="/admin/qcloud_cos/index" method="post">
+    存储用途：
+    <input type="text" name="name" id="name" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增存储配置</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>存储用途</th>
+        <th>bucket_name</th>
+        <th>app_id</th>
+        <th>secret_id</th>
+        <th>secret_key</th>
+        <th>访问网址</th>
+        <th>存储文件夹</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+	     <tr>
+            <td>{$data.id}</td>
+            <td>{$data.name}</td>
+             <td>{$data.bucket_name}</td>
+             <td>{$data.app_id}</td>
+             <td>{$data.secret_id}</td>
+             <td>{$data.secret_key}</td>
+             <td>{$data.url}</td>
+             <td>{$data.folder}</td>
+             <td>{eq name="data.status" value="1" }
+                 启用
+                 {else}
+                 禁用
+                 {/eq}</td>
+             <td>{$data.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/qcloud_cos/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/qcloud_cos/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+{include file="$public_footer" /}

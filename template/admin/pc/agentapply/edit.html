@@ -1,0 +1,105 @@
+{include file="$public_header"}
+
+<form action="/admin/agent/update" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="15%" class="tableleft">类型</td>
+            <td>
+                <select name="category_id">
+                    <option value="{$my_category_id}">{$my_categorg_title}</option>
+                    {volist name="category" id="list" }
+                    <option value="{$list.id}">{$list.title}</option>
+                    {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">用户名</td>
+            <td><input type="text" name="username" value="{$data.username}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">密码</td>
+            <td><input type="text" name="password" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">昵称</td>
+            <td><input type="text" name="nickname" value="{$data.nickname}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">头像</td>
+            <td>
+                <img src="{$data.icon}" width="100" /><br />
+                <input type="file" name="icon"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">Logo</td>
+            <td>
+                <img src="{$data.logo}" width="100" /><br />
+                <input type="file" name="logo"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">二维码</td>
+            <td>
+                <img src="{$data.qrcode}" width="100" /><br />
+                <input type="file" name="qrcode"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">联系人</td>
+            <td><input type="text" name="contact_person" value="{$data.contact_person}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">手机</td>
+            <td><input type="text" name="tel" value="{$data.tel}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">固话</td>
+            <td><input type="text" name="phone" value="{$data.phone}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">微信号</td>
+            <td><input type="text" name="weixinhao"  value="{$data.weixinhao}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">QQ号码</td>
+            <td><input type="text" name="qq"  value="{$data.qq}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">公司名称</td>
+            <td><input type="text" name="company_name"  value="{$data.company_name}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">城市</td>
+            <td><input type="text" name="city"  value="{$data.city}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">地址</td>
+            <td><input type="text" name="address"  value="{$data.address}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站名称</td>
+            <td><input type="text" name="site_name"  value="{$data.site_name}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">网址</td>
+            <td><input type="text" name="url"  value="{$data.url}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td>
+                <input type="radio" name="status" value="1" checked /> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

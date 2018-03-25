@@ -1,0 +1,57 @@
+{include file="public/header" /}
+
+<form action="/admin/site_slide/insert" enctype="multipart/form-data" method="post">
+<table class="table table-bordered table-hover definewidth m10">
+    <input type="hidden" name="site_id" value="{$site_id}"/>
+    <tr>
+        <td width="10%" class="tableleft">幻灯片标题</td>
+        <td><input type="text" name="title"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">幻灯片描述</td>
+        <td>
+            <textarea type="text" name="description" rows="3" cols="40"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">幻灯片</td>
+        <td>
+            <input type="file" name="thumb"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">略缩图</td>
+        <td>
+            <input type="file" name="small_thumb"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">按钮文字</td>
+        <td><input type="text" name="button_text"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">链接地址</td>
+        <td><input type="text" name="url"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 显示
+            <input type="radio" name="status" value="0"/> 不显示
+        </td>
+    </tr>
+
+    <tr>
+        <td class="tableleft">幻灯片排序</td>
+        <td><input type="text" name="sort"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+{include file="public/footer" /}

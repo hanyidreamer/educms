@@ -1,0 +1,53 @@
+{include file="$public_header"}
+
+<form action="/admin/area_province/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data.id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="10%" class="tableleft">国家</td>
+            <td>
+                <select name="state_id">
+                    <option value="{$my_state_id}">{$my_state_title}</option>
+                    {volist name="state_category" id="data_list" }
+                    <option value="{$data_list.id}">{$data_list.short_title}</option>
+                    {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">地区</td>
+            <td>
+                <select name="unit_id">
+                    <option value="{$my_unit_id}">{$my_unit_title}</option>
+                    {volist name="unit_category" id="data_list" }
+                    <option value="{$data_list.id}">{$data_list.title}</option>
+                    {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value="{$data.sort}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">名称</td>
+            <td ><input type="text" name="title" value="{$data.title}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

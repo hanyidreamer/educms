@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="baidu-site-verification" content="4QiXkUp3Fq" />
+    <title>{dede:global.cfg_webname/}</title>
+    <meta name="description" content="{dede:global.cfg_description/}" />
+    <meta name="keywords" content="{dede:global.cfg_keywords/}" />
+    <link rel="stylesheet"  type="text/css" href="/css/css.css" />
+    <script src="/js/check_mobile.js" type="text/javascript"></script>
+    <script type="text/javascript">uaredirect("http://www.jiliangjiance.com/mobile/");</script>
+</head>
+<body>
+{dede:include filename="head.htm"/}
+<div class="slideBox">
+    <div class="bd">
+        <ul>
+            <li style="background:url(/uploads/allimg/150512/1_1429159801.jpg) no-repeat center"></li>
+            <li style="background:url(/uploads/allimg/150512/1_1442437831.jpg) no-repeat center"></li>
+            <li style="background:url(/uploads/allimg/150512/1_1443145371.jpg) no-repeat center"></li>
+        </ul>
+    </div>
+</div>
+<!--效果1：淡入淡出切换-->
+<script type="text/javascript">
+    jQuery(".slideBox").slide({mainCell:".bd ul",effect:"fold",autoPlay:true,easing:"swing",delayTime:1500,interTime:3000});
+</script>
+<!--效果2：普通切换-->
+<!--<script type="text/javascript">
+jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true});
+</script>-->
+<div class="clear m7"></div>
+<div class="wrapper clearfix">
+    <div class="c_left">
+        <div class="p_ca">
+            <div class="c_bg">服务直通车</div>
+            <ul>
+                <li><h2><a href="/yiqixiaozhun/" target="_blank">仪器校准</a></h2>
+                    <ul class="item">
+                        {dede:arclist typeid=3 row=7 titlelen=30}
+                        <li><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></li>
+                        {/dede:arclist}
+                    </ul>
+                </li>
+                <li><h2><a href="/yiqijianding/" target="_blank">仪器检定</a></h2>
+                    <ul class="item">
+                        {dede:arclist typeid=4 row=5 titlelen=30}
+                        <li><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></li>
+                        {/dede:arclist}
+                    </ul>
+                </li>
+                <li><h2><a href="/jiliangxiaozhun/" target="_blank">计量校准</a></h2>
+                    <ul class="item">
+                        {dede:arclist typeid=5 row=6 titlelen=30}
+                        <li><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></li>
+                        {/dede:arclist}
+                    </ul>
+                </li>
+                <li><h2><a href="/yiqiweixiu/" target="_blank">仪器维修</a></h2>
+                    <ul class="item">
+                        {dede:arclist typeid=6 row=2 titlelen=30}
+                        <li><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></li>
+                        {/dede:arclist}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="c_right">
+        <div class="c_bg">
+            <div class="ti14">中国计量</div>
+            <div class="more"><a href="/products/">更多>></a></div>
+        </div>
+        <div class="pro-list">
+            <ul>
+                {dede:arclist typeid="3,4,5,6" row=9 titlelen=30 infolen=40 flag=c }
+                <li>
+                    <div class="pic "><a href="[field:arcurl/]"> <img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                    <div class="tit">项目：[field:title/]</div>
+                </li>
+                {/dede:arclist}
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="banner"><img src="/upload/ad.jpg" alt="18年仪器校准服务经验"/></div>
+    <div class="shiyanshi">
+        <div class="tx24">实验室实力展示 / SHOW</div>
+        <div class="box-zzsc">
+            <UL>
+                <LI><SPAN class=current><CODE class=djt>▼</CODE>长度计量校准实验室</SPAN><A href="http://www.jiliangjiance.com/jiliangxiaozhun/13.html"><IMG src="upload/1.jpg"></A> </LI>
+                <LI><SPAN><CODE class=djt>▼</CODE>理化仪器校准实验室</SPAN><A href="http://www.jiliangjiance.com/jiliangxiaozhun/6.html"><IMG src="upload/2.jpg"></A> </LI>
+                <LI><SPAN><CODE class=djt>▼</CODE>无线电仪器校准实验室</SPAN><A href="http://www.jiliangjiance.com/yiqixiaozhun/1.html"><IMG src="upload/3.jpg"></A> </LI>
+                <LI><SPAN><CODE class=djt>▼</CODE>电磁仪器校准实验室</SPAN><A href="http://www.jiliangjiance.com/jiliangxiaozhun/14.html"><IMG src="upload/4.jpg"></A> </LI>
+                <LI><SPAN><CODE class=djt>▼</CODE>力学仪器校准实验室</SPAN><A href="http://www.jiliangjiance.com/yiqixiaozhun/3.html"><IMG src="upload/5.jpg"></A> </LI>
+                <LI><SPAN><CODE class=djt>▼</CODE>量具校准实验室</SPAN><A href="http://www.jiliangjiance.com/jiliangxiaozhun/17.html"><IMG src="upload/6.jpg"></A> </LI>
+                <LI class=last><SPAN><CODE class=djt>▼</CODE>蒸汽流量计检测实验室</SPAN><A href="http://www.jiliangjiance.com/yiqijianding/10.html"><IMG src="upload/7.jpg"></A> </LI>
+            </UL>
+        </div>
+    </div>
+    <SCRIPT src="/js/jquery.menupic.js" type=text/javascript></SCRIPT>
+    <div class="shiyanshi">
+        <div class="tx24">国家法定权威资质证书 / CERTIFICATE</div>
+        <div class="cert_pic">
+            <div class="hd">
+                <a class="next"><img src="/images/left.jpg" /></a> <a class="prev"><img src="/images/right.jpg" /></a></div>
+            <div class="bd">
+                <ul class="clearfix">
+                    {dede:arclist typeid=14 row=15 titlelen=30 infolen=40}
+                    <li>
+                        <div class="pic"><a href="[field:arcurl/]"><img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                        <div class="ts"><a href="[field:arcurl/]">[field:title/]</a></div>
+                    </li>
+                    {/dede:arclist}
+
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(".cert_pic").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5});
+        </script>
+    </div>
+
+    <div class="shiyanshi">
+        <div class="tx24">博罗计量 / <span>为您提供国际权威计量校正服务技术证书方案</span></div>
+        <div class="film_focus">
+            <div class="film_focus_desc">
+                <h3>电学仪器校准权威证书系统</h3>
+                <ul class="film_focus_nav">
+                    <li class="cur"><b>电学仪器校准权威证书系统</b><span>电学仪器校准权威证书系统</span></li>
+                    <li><b>力学仪器校准权威证书系统</b><span>力学仪器校准权威证书系统</span> </li>
+                    <li><b>流量计检定权威证书系统</b><span>流量计检定权威证书系统</span> </li>
+                    <li><b>工地实验室标定权威证书系统</b><span>工地实验室标定权威证书系统</span> </li>
+                    <li><b>热工计量校准权威证书系统</b><span>热工计量校准权威证书系统</span> </li>
+                    <li><b>长度计量校准权威证书系统</b><span>长度计量校准权威证书系统</span> </li>
+                </ul>
+            </div>
+            <div class="film_focus_imgs_wrap">
+                <ul class="film_focus_imgs">
+                    <li><a href="http://www.jiliangjiance.com/yiqixiaozhun/1.html"><img  src="/upload/a1.jpg" alt="电学仪器校准权威证书系统" /></a></li>
+                    <li><a href="http://www.jiliangjiance.com/yiqixiaozhun/3.html"><img  src="/upload/a2.jpg" alt="力学仪器校准权威证书系统" /></a></li>
+                    <li><a href="http://www.jiliangjiance.com/yiqijianding/10.html"><img src="/upload/a3.jpg" alt="流量计检定权威证书系统" /></a></li>
+                    <li><a href="http://www.jiliangjiance.com/yiqijianding/11.html"><img  src="/upload/a4.jpg" alt="工地实验室标定权威证书系统" /></a></li>
+                    <li><a href="http://www.jiliangjiance.com/yiqixiaozhun/2.html"><img  src="/upload/a5.jpg" alt="热工计量校准权威证书系统" /></a></li>
+                    <li><a href="http://www.jiliangjiance.com/jiliangxiaozhun/13.html"><img  src="/upload/a6.jpg" alt="长度计量校准权威证书系统" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner"><img src="/images/ad2.jpg" alt="众多百强企业选择博罗计量的6大优势"/></div>
+
+    <div class="youshi">
+        <div class="ys1">
+            <div class="w470 left">
+                <div class="yx1">
+                    <div class="tx"><span>1</span>经验丰富</div>
+                    <div class="mx">服务过众多的客户和行业，对各行业的仪器校准技术服务有深刻贯通，对不同行业不同仪器精度，质量体系要求有熟练深刻的案例。</div>
+                </div>
+                <div class="yx2">
+                    <div class="tx"><span>2</span>检测校准能力范围</div>
+                    <div class="mx">通过ISO17025国计量准则要求，认可校准检测项目共245项，认可范围涵盖广。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ys2">
+            <div class="w470 right">
+                <div class="yx1">
+                    <div class="tx"><span>3</span>技术团队</div>
+                    <div class="mx">涵盖长度、力学、温度、电磁、无线电、光学、时间频率、理化、声学、电离辐射十大计量专业。</div>
+                </div>
+                <div class="yx2">
+                    <div class="tx"><span>4</span>以合理的价格取胜</div>
+                    <div class="mx">博罗计量以高端服务、中端价位的理念为核心，坚持做到从技术服务细节，出具国际权威证书的质量心核新，为客户提供优质合理的价格，以价值超越价格。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ys3">
+            <div class="w470 left">
+                <div class="yx1">
+                    <div class="tx"><span>5</span>国家资质</div>
+                    <div class="mx">
+                        <p>获中国合格评定国家认可委员会校准实验室编号</p>
+                        <p style="padding-left:20px;">No：CNASL3672</p>
+                        <p>获广东省质量技术监督局认可计量授权证书</p>
+                        <p style="padding-left:20px;">（粤）法计（2010）01033号</p>
+                        <p>获广东省质量技术监督局认可证书编号</p>
+                        <p style="padding-left:20px;">No：2007190429Z</div>
+                </div>
+                <div class="yx2">
+                    <div class="tx"><span>6</span>优质服务</div>
+                    <div class="mx">博罗计量以高端服务、中端价位的理念为核心，坚持做到从技术服务细节，出具国际权威证书的质量心核新，为客户提供优质合理的价格，以价值超越价格。</div>
+                </div>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="index_slider">
+    <div class="slider">
+        <div class="bd">
+            <ul>
+                <li><a href="#"><img src="/upload/01.jpg" /></a></li>
+                <li><a href="#"><img src="/upload/02.jpg" /></a></li>
+                <li><a href="#"><img src="/upload/03.jpg" /></a></li>
+                <li><a href="#"><img src="/upload/04.jpg" /></a></li>
+            </ul>
+        </div>
+        <div class="hd"><ul></ul></div><!-- 自动分页 -->
+        <div class="pnBtn prev">
+            <span class="blackBg"></span>
+            <a class="arrow" href="javascript:void(0)"></a>
+        </div>
+        <div class="pnBtn next">
+            <span class="blackBg"></span>
+            <a class="arrow" href="javascript:void(0)"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        /* 把最后一个放到第一个前面，然后通过外层ul{margin-left:-980px !important; }来显示第一个 */
+        jQuery(".slider .bd li").first().before( jQuery(".slider .bd li").last() );
+        /* 控制左右按钮显示 */
+        jQuery(".slider").hover(function(){ jQuery(this).find(".arrow").stop(true,true).fadeIn(300) },function(){ jQuery(this).find(".arrow").fadeOut(300) });
+        /* 调用SuperSlide */
+        jQuery(".slider").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"leftLoop",  autoPlay:true, vis:1, autoPage:true, trigger:"click"});
+    </script>
+</div>
+<div class="wrapper clearfix">
+    <div class="wrapper">
+        <div class="qq_online">
+            <div class="qqr">
+                <ul>
+                    <li>
+                        <a href="tencent://message/?uin=3253264482&Site=http://www.jiliangjiance.com&Menu=yes" target="blank">金牌客服计计<br />
+                            <img src="/images/qqnv.jpg" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tencent://message/?uin=2659472812&Site=http://www.jiliangjiance.com&Menu=yes" target="blank">金牌顾问量量<br />
+                            <img src="/images/qqn.jpg" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tencent://message/?uin=1455914156&Site=http://www.jiliangjiance.com&Menu=yes" target="blank">销售冠军琼姐<br />
+                            <img src="/images/qqnv.jpg" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tencent://message/?uin=3264969474&Site=http://www.jiliangjiance.com&Menu=yes" target="blank">计量顾问准哥<br />
+                            <img src="/images/qqn.jpg" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="banner"><img src="/images/ad3.jpg" alt="在中国，享受博罗计量提供的专业校准技术服务的客户，已达98668家"/></div>
+    </div>
+    <div class="wrapper clearfix">
+        <div class="case_menu">
+            <div class="tit">
+                <h3>客户案例</h3>
+                <div class="more"><a href="/cases/">更多>></a></div>
+            </div>
+
+            <ul class="anls">
+                <li class="curtu"></li>
+                <li class="li">
+                    <div class="dis_pi"><a href="/cases/guangdianchanye/"><img src="/upload/m1.jpg" alt="光电产业" /></a> </div>
+                    <p><a href="/cases/guangdianchanye/">光电产业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/jixieshebeishengchan/"><img src="/upload/m2.jpg" alt="机械设备生产" /></a> </div>
+                    <p><a href="/cases/jixieshebeishengchan/">机械设备生产</a></p>
+                </li>
+                <li class="curtu"></li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/wujinzhipinxingye/"><img src="/upload/m3.jpg" alt="五金制品行业" /></a> </div>
+                    <p><a href="/cases/wujinzhipinxingye/">五金制品行业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/taiyangnenzhipinye/"><img src="/upload/m4.jpg" alt="太阳能制品业" /></a> </div>
+                    <p><a href="/cases/taiyangnenzhipinye/">太阳能制品业</a></p>
+                </li>
+                <li class="curtu"></li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/dianzikejiye/"><img src="/upload/m5.jpg" alt="电子科技业" /></a> </div>
+                    <p><a href="/cases/dianzikejiye/">电子科技业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/jiajushengchanxingye/"><img src="/upload/m6.jpg" alt="家具生产行业" /></a> </div>
+                    <p><a href="/cases/jiajushengchanxingye/">家具生产行业</a></p>
+                </li>
+                <li class="curtu"></li>
+
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/jiancejishuye/"><img src="/upload/m7.jpg" alt="检测技术业" /></a> </div>
+                    <p><a href="/cases/jiancejishuye/">检测技术业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/wanjuzhizaoye/"><img src="/upload/m8.jpg" alt="玩具制造业" /></a> </div>
+                    <p><a href="/cases/wanjuzhizaoye/">玩具制造业</a></p>
+                </li>
+                <li class="curtu"></li>
+
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/dianjizhizaoye/"><img src="/upload/m9.jpg" alt="电机制造业" /></a> </div>
+                    <p><a href="/cases/dianjizhizaoye/">电机制造业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/diancizhipinye/"><img src="/upload/m10.jpg" alt="电磁制品业" /></a> </div>
+                    <p><a href="/cases/diancizhipinye/">电磁制品业</a></p>
+                </li>
+                <li class="curtu"></li>
+
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/zhidianxingye/"><img src="/upload/m11.jpg" alt="执电行业" /></a> </div>
+                    <p><a href="/cases/zhidianxingye/">执电行业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/nenyuankejiye/"><img src="/upload/m12.jpg" alt="能源科技业" /></a> </div>
+                    <p><a href="/cases/nenyuankejiye/">能源科技业</a></p>
+                </li>
+                <li class="curtu"></li>
+
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/huazhuangpinchanye/"><img src="/upload/m13.jpg" alt="化妆品产业" /></a> </div>
+                    <p><a href="/cases/huazhuangpinchanye/">化妆品产业</a></p>
+                </li>
+                <li class="li">
+                    <div class="dis_pi"> <a href="/cases/sujiaozhipinye/"><img src="/upload/m14.jpg" alt="塑胶制品业" /></a> </div>
+                    <p><a href="/cases/sujiaozhipinye/">塑胶制品业</a></p>
+                </li>
+                <li class="curtu"></li>
+
+            </ul>
+        </div>
+        <script type="text/javascript">
+            $(function(){
+                $(".anls .li").hover(function(){
+                    $(this).parent().children(".curtu").hide()
+                    $(this).parent().children("li").removeClass("cur");
+                    $(this).addClass("cur");
+                    if ($(this).prev(".curtu").length > 0) {
+                        $(this).prev(".curtu").html($(this).children(".dis_pi").html());
+                        $(this).prev(".curtu").show();
+                    }else
+                    {
+                        $(this).prev("li").prev(".curtu").html($(this).children(".dis_pi").html());
+                        $(this).prev("li").prev(".curtu").show();
+                    }
+                });
+                $(".anls .li:first").mouseover();
+            });
+        </script>
+
+        <div class="ht_news">
+            <div class="hd"><ul><li>媒体报道</li><li>行业新闻</li><li>计量校准知识</li><li>CNAS相关资讯</li></ul></div>
+            <div class="clear"></div>
+            <div class="bd">
+                <div class="ht_news_list">
+                    <ul>
+                        {dede:arclist typeid=8 row=2 titlelen=30 infolen=40 flag='p' }
+                        <li class="L_top clearfix">
+                            <div class="pic"><a href="[field:arcurl/]"> <img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                            <dl>
+                                <dt><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></dt>
+                                <dd>[field:description function='cn_substr(@me,200)'/].....</dd>
+                                <p><a href="[field:arcurl/]" title="[field:title/]"><font color="#FF0000">[详情]</font></a></p>
+                            </dl>
+                        </li>
+                        {/dede:arclist}
+                        {dede:arclist typeid=8 row=16 titlelen=30 infolen=40}
+                        <li class="L_li s1"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a><span>[field:pubdate function=MyDate('m-d',@me)/]</span></li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+
+                <div class="ht_news_list">
+                    <ul>
+                        {dede:arclist typeid=9 row=2 titlelen=30 infolen=40 flag='p' }
+                        <li class="L_top clearfix">
+                            <div class="pic"><a href="[field:arcurl/]"> <img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                            <dl>
+                                <dt><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></dt>
+                                <dd>[field:description function='cn_substr(@me,200)'/].....</dd>
+                                <p><a href="[field:arcurl/]" title="[field:title/]"><font color="#FF0000">[详情]</font></a></p>
+                            </dl>
+                        </li>
+                        {/dede:arclist}
+                        {dede:arclist typeid=9 row=16 titlelen=30 infolen=40 flag='c'}
+                        <li class="L_li s1"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a><span>[field:pubdate function=MyDate('m-d',@me)/]</span></li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+
+                <div class="ht_news_list">
+                    <ul>
+                        {dede:arclist typeid=10 row=2 titlelen=30 infolen=40 flag='p' }
+                        <li class="L_top clearfix">
+                            <div class="pic"><a href="[field:arcurl/]"> <img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                            <dl>
+                                <dt><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></dt>
+                                <dd>[field:description function='cn_substr(@me,200)'/].....</dd>
+                                <p><a href="[field:arcurl/]" title="[field:title/]"><font color="#FF0000">[详情]</font></a></p>
+                            </dl>
+                        </li>
+                        {/dede:arclist}
+                        {dede:arclist typeid=10 row=16 titlelen=30 infolen=40 flag='c'}
+                        <li class="L_li s1"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a><span>[field:pubdate function=MyDate('m-d',@me)/]</span></li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+
+                <div class="ht_news_list">
+                    <ul>
+                        {dede:arclist typeid=11 row=2 titlelen=30 infolen=40 flag='p' }
+                        <li class="L_top clearfix">
+                            <div class="pic"><a href="[field:arcurl/]"> <img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                            <dl>
+                                <dt><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></dt>
+                                <dd>[field:description function='cn_substr(@me,200)'/].....</dd>
+                                <p><a href="[field:arcurl/]" title="[field:title/]"><font color="#FF0000">[详情]</font></a></p>
+                            </dl>
+                        </li>
+                        {/dede:arclist}
+                        {dede:arclist typeid=11 row=16 titlelen=30 infolen=40 flag='c'}
+                        <li class="L_li s1"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a><span>[field:pubdate function=MyDate('m-d',@me)/]</span></li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    jQuery(".ht_news").slide();
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper clearfix">
+        <div class="clear p7"></div>
+        <div class="about">
+            <div class="c_bg"><div class="fl">走进博罗计量<span> / Bolo went into the metering</span></div><div class="more"><a href="/about/">更多>></a></div></div>
+            <div class="contxt">
+                <img src="/images/about.jpg" align="left" width="220" height="150" style="margin-right:10px;" alt="东莞博准电子科技有限公司(简称BLM)仪器校准服务"/>
+                东莞博准电子科技有限公司(简称BLM)仪器校准服务，是广东省博罗县质量技术监督检测所的主要部门，计量仪器校准是本所的核心业务，也是最具优势的业务，本中心依托于强有力的专业化服务团队与法定授权认可，发展至今，深得客户的青睐。BLM经中国合格评定国家认可委员会(CNAS)认可，国际实验室互认组织（ILAC-MRA）授权，通过ISO17025国际计量校准准则要求，授予在长度仪器校准、温度仪器校准、力学仪器校准、电磁计量校准、无线电仪器校准、时间频率仪器校验、物理化学仪器校验正等十大类计量校准专业中的127个项目开展仪器校准工作...<a href="/about/"><font color="#FF0000">更多>></font></a>
+            </div>
+            <div class="clear"></div>
+            <div class="about_pic">
+                <div class="hd">
+                    <a class="next"><img src="/images/lefts.jpg" /></a> <a class="prev"><img src="/images/rights.jpg" /></a></div>
+                <div class="bd">
+                    <ul class="clearfix">
+                        {dede:arclist typeid="3,4,5,6" row=15 titlelen=30 infolen=40 }
+                        <li>
+                            <div class="pic"><a href="[field:arcurl/]"> <img src="[field:litpic/]" alt="[field:title/]"/></a></div>
+                            <div class="ts"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></div>
+                        </li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+                jQuery(".about_pic").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:4});
+            </script>
+        </div>
+        <div class="r_about">
+            <div class="c_bg"><div class="fl">工程师在线解答</div><div class="more"><a href="/news/faq/"><font color="#333333">更多>></font></a></div></div>
+            <div class="jl_news">
+                <div class="hd"></div>
+                <div class="bd">
+                    <ul>
+                        {dede:arclist typeid=12 row=30 titlelen=40 infolen=40}
+                        <li><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a><span>已解决</span></li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    jQuery(".jl_news").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,vis:9});
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper clearfix">
+        <div class="clear p7"></div>
+        <div class="hp_news">
+            <div class="c_bg">
+                <div class="hd"><ul><li>现场进行时</li><li>计量技术方案</li><li>团队建设</li><li>计量网站群</li></ul></div>
+            </div>
+            <div class="clear"></div>
+            <div class="bd">
+                <div class="hp_news_list">
+                    <ul>
+                        {dede:arclist typeid=35 row=4 titlelen=30 infolen=40 flag='p' }
+                        <li>
+                            <div class="pic "><a href="[field:arcurl/]"><img src="[field:litpic/]"/></a></div>
+                            <div class="tit"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></div>
+                        </li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+                <div class="hp_news_list">
+                    <ul>
+                        {dede:arclist typeid=36 row=4 titlelen=30 infolen=40 flag='p' }
+                        <li>
+                            <div class="pic "><a href="[field:arcurl/]"><img src="[field:litpic/]"/></a></div>
+                            <div class="tit"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></div>
+                        </li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+                <div class="hp_news_list">
+                    <ul>
+                        {dede:arclist typeid=37 row=4 titlelen=30 infolen=40 flag='p' }
+                        <li>
+                            <div class="pic "><a href="[field:arcurl/]"><img src="[field:litpic/]"/></a></div>
+                            <div class="tit"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></div>
+                        </li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+                <div class="hp_news_list">
+                    <ul>
+                        {dede:arclist typeid=38 row=4 titlelen=30 infolen=40 flag='p' }
+                        <li>
+                            <div class="pic "><a href="[field:arcurl/]"><img src="[field:litpic/]"/></a></div>
+                            <div class="tit"><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></div>
+                        </li>
+                        {/dede:arclist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(".hp_news").slide();
+        </script>
+    </div>
+    <div class="flink clearfix">
+        <div class="tls">
+            <div class="title left">友情链接 <span>/ LINKS</span></div>
+            <div class="more"></div>
+        </div>
+        <ul>
+            <li><a href='http://www.hao2068.com' target='_blank'>NLP</a> </li>
+            <li><a href='http://www.gonglujiance.com' target='_blank'>隧道检测</a> </li>
+            <li><a href='http://www.blzjsf.com' target='_blank'>计量校准</a> </li>
+        </ul>
+    </div>
+</div>
+<SCRIPT src="/js/film_focus.js" type=text/javascript></SCRIPT>
+{dede:include filename="footer.htm"/}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{include file="public/header" /}
+
+<form action="/admin/qcloud_cos/insert"  method="post">
+<table class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td width="10%" class="tableleft">存储用途</td>
+        <td><input type="text" name="name"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">bucket_name</td>
+        <td><input type="text" name="bucket_name"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">app_id</td>
+        <td><input type="text" name="app_id"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">secret_id</td>
+        <td><input type="text" name="secret_id"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">secret_key</td>
+        <td><input type="text" name="secret_key"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">访问网址</td>
+        <td><input type="text" name="url"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">存储文件夹</td>
+        <td><input type="text" name="folder"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 启用
+            <input type="radio" name="status" value="0"/> 禁用
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+{include file="public/footer" /}

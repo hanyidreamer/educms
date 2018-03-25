@@ -1,0 +1,59 @@
+{include file="public/header" /}
+
+<form class="form-inline definewidth m20" action="/admin/trade_account/index" method="post">
+    账户名称：
+    <input type="text" name="account" id="account" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增账户</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>会员用户名</th>
+        <th>会员服务器</th>
+        <th>交易平台</th>
+        <th>交易服务器</th>
+        <th>交易账户号</th>
+        <th>交易密码</th>
+        <th>账户类型</th>
+        <th>状态</th>
+        <th>数据同步</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    {volist name="data_list" id="data" }
+    <tr>
+            <td>{$data.id}</td>
+            <td>{$data.username}</td>
+        <td>{$data.member_server_name}</td>
+        <td>{$data.trade_platform}</td>
+        <td>{$data.trade_server_name}</td>
+            <td>{$data.account}</td>
+            <td>{$data.password}</td>
+             <td>
+                 {eq name="data.account_type" value="0" }未知类型{/eq}
+                 {eq name="data.account_type" value="1" }demo演示帐户{/eq}
+                 {eq name="data.account_type" value="2" }live实盘帐户{/eq}
+             </td>
+             <td>
+                 {eq name="data.status" value="0" }不可登陆{/eq}
+                 {eq name="data.status" value="1" }可登陆{/eq}
+                 {eq name="data.status" value="2" }未登陆{/eq}
+             </td>
+             <td>
+                 <a class="btn btn-sm btn-primary" href="/trade/order/index/id/{$data.account}" target="_blank"><i class="glyphicon glyphicon-pencil"></i>更新订单记录</a>&nbsp;
+                 <a class="btn btn-sm btn-primary" href="/trade/order/day_data/account/{$data.account}/days/0" target="_blank"><i class="glyphicon glyphicon-pencil"></i>更新统计数据</a>
+                 <a class="btn btn-sm btn-primary" href="/index/account/index/id/{$data.account}/page/1" target="_blank"><i class="glyphicon glyphicon-pencil"></i>预览</a>
+             </td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/trade_account/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>&nbsp;
+                <a class="btn btn-danger btn-sm" href="/admin/trade_account/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+    </tr>
+    {/volist}
+
+</table>
+
+{include file="public/footer" /}

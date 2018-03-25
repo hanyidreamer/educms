@@ -1,0 +1,51 @@
+{include file="$public_header"}
+<br />
+&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp <a href="/admin/site/create" class="btn btn-success">新增网站</a>
+
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>网站</th>
+        <th>Logo</th>
+        <th>宣传语</th>
+        <th>简介</th>
+        <th>关键词</th>
+        <th>站长</th>
+        <th>状态</th>
+        <th>最后更新时间</th>
+    </tr>
+    </thead>
+    {volist name="site_info" id="user" }
+    <tr align="center">
+        <td width="50">{$user.id}</td>
+        <td width="180"><img src="{$user.icon}" width="16" height="16">  {$user.domain}
+            <br /> {$user.title}
+        </td>
+        <td width="150"><img src="{$user.logo}" width="145"></td>
+        <td width="180">{$user.home_title}</td>
+        <td width="350">{$user.desc}</td>
+        <td width="180">{$user.keywords}</td>
+        <td width="80"></td>
+        <td width="50">{eq name="user.status" value="1" }
+            启用
+            {else}
+            禁用
+            {/eq}</td>
+        <td width="150">{$user.update_time}</td>
+    </tr>
+    {/volist}
+</table>
+
+<div class="definewidth m10">
+    <nav>
+        {$site_info->render()}
+    </nav>
+</div>
+
+<div class="inline pull-right page">
+    共{$site_count} 条记录
+</div>
+
+
+{include file="$public_footer"}

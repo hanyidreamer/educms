@@ -1,0 +1,51 @@
+{include file="$public_header"}
+
+<form class="form-inline definewidth m20" action="/admin/agent/index" method="post">
+    名称：
+    <input type="text" name="contact_person" id="contact_person" class="abc input-default" placeholder="" value="">
+    <button type="submit" class="btn btn-primary">查询</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>申请时间</th>
+        <th>申请代理类型</th>
+        <th>申请代理城市</th>
+        <th>申请人姓名</th>
+        <th>手机号码</th>
+        <th>微信号</th>
+        <th>QQ</th>
+        <th>公司名称</th>
+        <th>申请备注</th>
+        <th>审核人</th>
+        <th>审核意见</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    {volist name="data_list" id="data" }
+    <tr>
+        <td>{$data.id}</td>
+        <td>{$data.update_time}</td>
+        <td>{$data.category_title}</td>
+        <td> {$data.city}</td>
+        <td>{$data.contact_person}</td>
+        <td>{$data.tel}</td>
+        <td>{$data.weixinhao}</td>
+        <td>{$data.qq}</td>
+        <td>{$data.company_name}</td>
+        <td>{$data.comment}</td>
+        <td>{$data.admin_username}</td>
+        <td>{$data.admin_opinion}</td>
+        <td>{eq name="data.status" value="1" }通过{/eq}</td>
+        <td>
+                <a class="btn btn-sm btn-primary" href="/admin/agent/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>审核</a>
+        </td>
+    </tr>
+    {/volist}
+
+</table>
+
+{include file="$public_footer"}

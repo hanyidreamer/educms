@@ -1,0 +1,82 @@
+{include file="$public_header"}
+
+    <div class="course-banner es-banner">
+        <div class="container">
+            <div class="title">
+                <span>搜索</span>SEARCH
+            </div>
+        </div>
+    </div>
+
+    <div id="content-container" class="container">
+
+        <div class="course-filter search-filter" id="course-filter">
+            <div class="result-declare">
+                共找到<span>2</span>门<span>“数”</span>相关课程
+            </div>
+            <ul class="nav nav-pills hidden-xs" role="tablist">
+                <li role="presentation" class="active"><a href="/search">全部课程</a></li>
+                <li role="presentation" class="">
+                    <a href="/search?filter=free">免费课程</a>
+                </li>
+                <li role="presentation" class="">
+                    <a href="/search?filter=live">直播课程</a>
+                </li>
+            </ul>
+            <div class="btn-group visible-xs">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">全部课程
+                    <span class="caret"></span></button>
+
+                <ul class="dropdown-menu" role="menu">
+                    <li role="presentation" class="active"><a href="/index/search/all">全部课程</a></li>
+                    <li role="presentation" class="">
+                        <a href="/index/search/free">免费课程</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="/index/search/live">直播课程</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- 课程列表 -->
+        <div class="course-list">
+            <div class="row">
+
+                {volist name="data_list" id="data" }
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="course-item">
+                        <div class="course-img">
+                            <a href="/index/course/{$data.unique_code}" target="_blank">
+                                <span class="tags"><span class="tag-finished"></span></span>
+                                <img src="/assets/img/default/lazyload_course.png?7.0.2" alt="{$data.title}" class="img-responsive" data-echo="{$data.thumb}" />
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <div class="title">
+                                <a class="link-dark" href="/index/course/{$data.unique_code}" target="_blank">{$data.title}</a>
+                            </div>
+                            <div class="metas clearfix">
+                                <span class="num"><i class="es-icon es-icon-people"></i>{$data.buy_number}</span>
+                                <span class="comment"><i class="es-icon es-icon-textsms"></i>{$data.comment}</span>
+                                <span class="course-price-widget">
+                                    <span class="price">{$data.price}元</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/volist}
+
+
+            </div>
+        </div>
+
+        <nav class="text-center">
+
+        </nav>
+
+    </div>
+
+{include file="$public_footer"}

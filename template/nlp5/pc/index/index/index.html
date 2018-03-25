@@ -1,0 +1,200 @@
+{include file="$public_header"}
+
+    <section class="es-poster swiper-container">
+        <div class="swiper-wrapper">
+            {volist name="slide" id="list" }
+            <div class="swiper-slide swiper-hidden" style="background: #e5e5e5;">
+                <div >
+                    <a href="{$list.url}" target="_blank" ><img class="img-responsive" src="{$list.thumb}"></a>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <div class="swiper-pager"></div>
+    </section>
+
+    <section class="course-list-section " id="course-list-section">
+
+        <div class="container">
+            <div class="text-line">
+                <h5><span>学NLP智慧，赢幸福人生</span><div class="line"></div></h5>
+                <div class="subtitle">认识人，了解人，精彩无处不在。中国NLP培训学院官方网站，指定报名热线：13512769995</div>
+            </div>
+            <div class="course-filter" id="course-filter">
+                <ul class="nav nav-pills hidden-xs" role="tablist">
+                    <li role="presentation" class="active  js-course-filter" ><a href="/index/course/all">全部课程</a></li>
+                    {volist name="nav" id="list" }
+                    <li role="presentation" class=" js-course-filter" ><a href="/index/course/category/id/{$list.unique_code}">{$list.title}</a></li>
+                    {/volist}
+                </ul>
+
+                <div class="course-sort btn-group">
+                    <a href="" class="btn btn-default  active js-course-filter">
+                        最新
+                    </a>
+                    <a href="" class="btn btn-default js-course-filter">
+                        最热
+                    </a>
+                    <a href="" class="btn btn-default js-course-filter">
+                        推荐
+                    </a>
+                </div>
+            </div>
+            <div class="course-list">
+                <div class="row">
+                    {volist name="course" id="list" }
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="course-item">
+                            <div class="course-img">
+                                <a href="/course/{$list.unique_code}" target="_blank"><img src="{$list.thumb}" class="img-responsive"  /></a>
+                            </div>
+                            <div class="course-info">
+                                <div class="title">
+                                    <a class="link-dark" href="/course/{$list.unique_code}" target="_blank">{$list.title}</a>
+                                </div>
+                                <div class="metas clearfix">
+                                    <span class="num"><i class="es-icon es-icon-people"></i>{$list.buy_number}</span>
+                                    <span class="comment"><i class="es-icon es-icon-textsms"></i>{$list.click}</span>
+                                    <span class="course-price-widget">
+                                        <span class="price">{$list.price}元</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+
+                </div>
+            </div>
+            <div class="section-more-btn">
+                <a href="#" class="btn btn-default btn-lg">
+                    更多课程 <i class="mrs-o es-icon es-icon-chevronright"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 特性 -->
+    <section class="introduction-section">
+        <div class="container hidden-xs">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 introduction-item">
+                    <img class="img-responsive" src="/assets/v2/img/icon_introduction_1.png">
+                    <h4>一次投资 终生复训</h4>
+                    <h5>不忽悠 保证课程质量</h5>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 introduction-item">
+                    <img class="img-responsive" src="/assets/v2/img/icon_introduction_2.png">
+                    <h4>国际顶尖级  NLP资深导师</h4>
+                    <h5>18年专注NLP智慧传播</h5>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 introduction-item">
+                    <img class="img-responsive" src="/assets/v2/img/icon_introduction_3.png">
+                    <h4>每月2~3次 总裁落地服务</h4>
+                    <h5>课程不满意 100%无条件退款</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 推荐班级 -->
+    <section class="class-section ">
+        <div class="container">
+            <div class="text-line">
+                <h5>
+                    <span>NPL顶级名师</span>
+                    <div class="line"></div>
+                </h5>
+                <div class="subtitle">与高人相会，与智者为伍！</div>
+            </div>
+            <div class="recommend-class-list row">
+
+                {volist name="teacher" id="list" }
+                <div class="col-md-3 col-xs-6">
+                    <div class="class-item">
+                        <div class="class-img-wrap">
+                            <a class="class-img" href="">
+                                <img src="{$list.icon}" class="img-responsive" />
+                            </a>
+                            <div class="mask">
+                                <a href="/teacher/{$list.unique_code}" class="btn btn-warning">立即报读</a>
+                            </div>
+                        </div>
+                        <h3><a class="link-dark" href="">{$list.nickname}</a></h3>
+                        <div class="metas">{$list.title}</div>
+                    </div>          </div>
+                {/volist}
+
+            </div>
+            <div class="section-more-btn">
+                <a href="/teacher/index" class="btn btn-default btn-lg">
+                    更多名师 <i class="mrs-o es-icon es-icon-chevronright"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 小组动态 -->
+    <section class="dynamic-section ">
+        <div class="container">
+            <div class="text-line gray">
+                <h5><span>中国NLP培训学院</span><div class="line"></div></h5>
+                <div class="subtitle">18年如一，专注于NLP实战传播，这里只培养最TOP、企业家领袖。</div>
+            </div>
+            <div class="dynamic-section-main row">
+                <div class="col-md-6">
+                    <div class="panel panel-default index-group">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="es-icon es-icon-whatshot pull-left"></i>学员风采</h3>
+                        </div>
+                        <div class="panel-body row">
+                            <div class="media-group-list">
+
+                                {volist name="student" id="list" }
+                                <div class="media media-group col-md-6 col-sm-4">
+                                    <div class="media-left">
+                                            <img class="avatar-square-md" src="{$list.icon}" >
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="title">
+                                                {$list.real_name}
+                                        </div>
+                                        <div class="metas">
+                                            <span>{$list.category_title}学员</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/volist}
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default index-article">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                最新资讯
+                                <a class="more" href="/index/article/category/id/nlpkecheng"><i class="es-icon es-icon-morehoriz"></i></a>
+                            </h3>
+                        </div>
+                        <div class="panel-body clearfix">
+                            <ul class="index-new-article full">
+                                {volist name="article" id="list" }
+                                <li><a href="/article/{$list.unique_code}" style="margin-left: 20px">{$list.title}</a> <span style="float: right">{$list.update_time}</span></li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{include file="$public_footer"}

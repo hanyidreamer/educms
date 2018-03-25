@@ -1,0 +1,66 @@
+{include file="$public_header"}
+
+<form action="/admin/ad/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data.id}" />
+    <input type="hidden" name="site_id" value="{$site_id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="15%" class="tableleft">广告分类</td>
+            <td>
+                <select name="category_id">
+                    <option value="{$my_category_id}">{$my_categorg_title}</option>
+                    {volist name="category" id="list" }
+                    <option value="{$list.id}">{$list.title}</option>
+                    {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value="{$data.sort}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">标题</td>
+            <td ><input type="text" name="title" value="{$data.title}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">描述</td>
+            <td ><input type="text" name="desc" value="{$data.desc}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">链接网址</td>
+            <td>
+                <input type="text" name="url" value="{$data.url}"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">广告图片</td>
+            <td>
+                <img src="{$data.thumb}" width="100" /><br />
+                <input type="file" name="thumb" value="{$data.thumb}"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">背景颜色</td>
+            <td>
+                <input type="text" name="background" value="{$data.background}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

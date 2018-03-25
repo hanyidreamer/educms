@@ -1,0 +1,22 @@
+{include file="$public_header"}
+
+<div class="am-g am-margin-top">
+    <div class="am-u-sm-centered">
+        <form method="post" class="am-form am-form-horizontal am-cf am-padding-horizontal-0" action="/member/login/check">
+            <input type="hidden" name="site_id" value="{$site_id}">
+            <input type="text" class="am-text-middle ht46  bded am-radius" name="username" placeholder="请输入手机号码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <div class="am-margin-top-xs">
+                <input type="password" class="am-form-field ht46 am-radius am-margin-top-xs bded" name="password" placeholder="请输入密码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div id="rem" class="am-cf am-margin-top-sm am-margin-bottom-0  ">
+                <label1 class="am-fl ">
+                    <a href="/member/forget/index" class="am-link-muted am-text-sm ht25 lh25 bdbad pdb2">忘记密码？</a></label1>
+                <label1 class="am-fr ">
+                    <a style="border-bottom:1pt solid #ff6e00; color:#ff6e00;" href="/member/register/index" class="am-link-muted am-text-sm ht25 lh25 bdbff6e00 pdb2 clff6e00">快速注册</a></label1>
+            </div>
+            <div style="margin-top: 20px;"></div>
+            <input type="submit" id="btnLoginAction" name="btnLoginAction" value="登录" class="am-btn  am-margin-top-xs ht46 am-btn-block login-btn">
+        </form>
+    </div>
+</div>
+{include file="$public_footer"}

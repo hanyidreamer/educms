@@ -1,0 +1,99 @@
+{include file="$public_header"}
+
+<article class="vg-bg-white tabBox">
+    <section class="text-center vg-margin-vertical-phone">
+        <p class="vg-text-xsx vg-text-xblack">
+            为了您的账户安全，请绑定手机号
+        </p>
+    </section>
+    <form method="post" class="am-form am-form-horizontal am-cf am-padding-horizontal-0" action="/member/login/check_wx" onsubmit="return checkmobile()">
+    <div class="vg-wfull vg-padding-horizontal-lg">
+        <div class="vg-bdb-default3 vg-wfull vg-parent-box">
+            <input type="text" placeholder="请输入手机号" id="mobile" name="mobile" class="bindPhone vg-w50 vg-margin-bottom-0 vg-text-gray vg-text-sm vg-hfull"/>
+            <input type="text" id="sms_code" name="sms_code" class="verificationCode vg-radius vg-bg-sgray" placeholder="验证码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        <div id="tip" class="vg-wfull warn vg-padding-left-xs vg-text-xs vg-main-font-color vg-margin-top-xs">
+        </div>
+    </div>
+
+    <div class="vg-wfull vg-padding-horizontal-lg">
+        <div class="vg-bdb-default3 vg-wfull vg-text-gray vg-text-sm">
+            <input type="text" id="code" name="code" placeholder="请输入验证码" class="bindPhone vg-margin-bottom-0 vg-text-gray vg-text-sm vg-hfull"/>
+        </div>
+        <div class="vg-wfull warn vg-padding-left-xs vg-text-xs vg-main-font-color vg-margin-top-xs">
+
+        </div>
+    </div>
+
+    <div class="vg-wfull vg-padding-horizontal-lg vg-margin-top-xxl">
+        <button type="submit" onclick="sendPhone()" class="button vg-wfull vg-text-sm vg-center vg-bg-llgreen vg-text-white vg-radius"><span id="count"></span>确定绑定</button>
+    </div>
+    </form>
+</article>
+<script type="text/javascript" id="jss"></script>
+<script type="text/javascript">
+    function Trim(str){
+        str=str.replace(/^ {1,}/g,"");
+        str=str.replace(/ {1,}$/g,"");
+        return str;
+    }
+    function checkmobile()
+    {
+        o('mobile').value = Trim(o('mobile').value);
+        if(/^[0-9]+$/.test(o('mobile').value)==false)
+        {
+            alert("手机号码格式不对，请填写数字格式的手机号码");
+            o('mobile').focus();
+            return false;
+        }
+        o('code').value = Trim(o('code').value);
+        if(o('code').value=="")
+        {
+            alert("您需要点击“发送验证码”获取手机验证码，请将手机收到的验证码填入输入框！");
+            o('code').focus();
+            return false;
+        }
+        return true;
+    }
+
+    function sendTrial(mobile)
+    {
+        if(  ! /1[0-9]{10,11}/.test(o('mobile').value) ){
+            alert('手机号码不正确!');o('mobile').focus();return false;
+        }
+        setSendResp("已经发送到您手机")
+    }
+    var timer;
+    var nums = 60;
+    var num = nums;
+    function setSendResp(resp){
+
+        var mobile = document.getElementById("mobile").value;
+
+        o('jss').src='/member/register/index?tel=='+mobile+'&m='+spass()+'&'+Math.random();
+        var btn = o("send");
+        if(resp.indexOf("已经发送到您手机")<0){
+            btn.value = " 发送验证码";
+            btn.disabled = false;
+        }else{
+            btn.value = "验证码发送，"+nums;
+            btn.disabled = true;
+            num = nums;
+            timer = setInterval("countTime()", 1000);
+        }
+    }
+    function countTime()
+    {
+        num--;
+        if(num<0) {
+            clearInterval(timer);
+            o("send").value = "发送验证码";
+            o("send").disabled = false;
+        }else{
+            o("send").value = "验证码发送，"+num;
+        }
+    }
+
+</script>
+
+{include file="$public_footer"}

@@ -1,0 +1,65 @@
+{include file="$public_header"}
+
+<form action="/admin/member/save" enctype="multipart/form-data"  method="post">
+    <input type="hidden" name="site_id" id="site_id" value="{$site_id}">
+<table class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td class="tableleft">头像</td>
+        <td>
+            <input type="file" name="icon"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" class="tableleft">用户名</td>
+        <td><input type="text" name="username"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">密码</td>
+        <td><input type="password" name="password"/></td>
+    </tr>
+    <tr>
+    <td class="tableleft">昵称</td>
+    <td><input type="text" name="nickname"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">性别</td>
+        <td>
+            <input type="radio" name="sex" value="1" checked/>男
+            <input type="radio" name="sex" value="2" />女
+            <input type="radio" name="sex" value="0" />未知
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">手机</td>
+        <td><input type="text" name="tel"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">微信号</td>
+        <td ><input type="text" name="weixinhao" value=""/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">QQ号码</td>
+        <td ><input type="text" name="qq" value=""/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">Email</td>
+        <td ><input type="text" name="email" value=""/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 启用
+            <input type="radio" name="status" value="0"/> 禁用
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary">增加</button>
+            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+
+{include file="$public_footer"}
