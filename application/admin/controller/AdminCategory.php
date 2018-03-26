@@ -15,15 +15,24 @@ use app\base\controller\SiteId;
 
 class AdminCategory extends Base
 {
-    public function index(Request $request)
+    /**
+     * 管理员分类
+     * @param Request $request
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function index()
     {
         // 给当页面标题赋值
         $title = '管理员类型';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -33,13 +42,13 @@ class AdminCategory extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
 
         // 找出列表数据
-        $post_title = $request->param('title');
+        $post_title = $this->request->param('title');
         $data = new AdminCategoryModel;
         if(!empty($post_title)){
             $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
@@ -54,6 +63,12 @@ class AdminCategory extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 新增管理员类型
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
         // 新增
@@ -61,8 +76,8 @@ class AdminCategory extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -72,7 +87,7 @@ class AdminCategory extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
@@ -81,6 +96,10 @@ class AdminCategory extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 保存数据
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         $post_site_id = $request->param('site_id');
@@ -103,14 +122,21 @@ class AdminCategory extends Base
 
     }
 
+    /**
+     * 编辑管理员类型
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title = '编辑广告分类';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -120,7 +146,7 @@ class AdminCategory extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
@@ -133,6 +159,11 @@ class AdminCategory extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 更新数据
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         $post_id = $request->post('id');
@@ -156,6 +187,11 @@ class AdminCategory extends Base
         }
     }
 
+    /**
+     * 删除数据
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = AdminCategoryModel::get($id);
