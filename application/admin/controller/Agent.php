@@ -16,15 +16,23 @@ use app\base\controller\Upload;
 
 class Agent extends Base
 {
-    public function index(Request $request)
+    /**
+     * 代理列表
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function index()
     {
         // 给当页面标题赋值
         $title = '代理列表';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -34,7 +42,7 @@ class Agent extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 找出列表数据
-        $post_username = $request->param('username');
+        $post_username = $this->request->param('username');
         $data = new AgentModel;
         if(!empty($post_username)){
             $data_list = $data->where(['status' => 1, 'username' => ['like','%'.$post_username.'%']])->select();
@@ -56,14 +64,21 @@ class Agent extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 新增代理商
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
         $title = '添加';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -80,6 +95,10 @@ class Agent extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 保存代理商数据
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // 获取 略缩图 thumb文件
@@ -162,14 +181,23 @@ class Agent extends Base
         }
     }
 
+    /**
+     * 编辑代理商信息
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title = '编辑';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -199,6 +227,11 @@ class Agent extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 更新代理商信息
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取 略缩图 thumb文件
@@ -275,6 +308,11 @@ class Agent extends Base
         }
     }
 
+    /**
+     * 删除代理商
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = AgentModel::get($id);
