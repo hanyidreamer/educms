@@ -7,8 +7,6 @@
  */
 namespace app\admin\controller;
 
-use think\Request;
-use think\Session;
 use app\base\model\AdminLog as AdminLogModel;
 use app\base\model\Admin;
 use app\base\controller\TemplatePath;
@@ -17,14 +15,21 @@ use app\base\controller\SiteId;
 
 class AdminLog extends Base
 {
-    public function index(Request $request)
+    /**
+     * 日志列表
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function index()
     {
         $title = '日志列表';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -34,13 +39,13 @@ class AdminLog extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
 
         // 找出广告列表数据
-        $post_title = $request->param('title');
+        $post_title = $this->request->param('title');
         $data = new AdminLogModel;
         if(!empty($post_title)){
             $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
