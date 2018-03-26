@@ -1,5 +1,4 @@
 <?php
-
 namespace app\admin\controller;
 
 use think\Request;
@@ -13,6 +12,7 @@ use app\base\controller\Upload;
 class Ad extends Base
 {
     /**
+     * 广告列表
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -65,6 +65,7 @@ class Ad extends Base
     }
 
     /**
+     * 添加广告
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -72,7 +73,6 @@ class Ad extends Base
      */
     public function create()
     {
-        // 新增
         $title = '广告列表';
         $this->assign('title',$title);
 
@@ -103,6 +103,7 @@ class Ad extends Base
     }
 
     /**
+     * 保存广告数据
      * @param Request $request
      */
     public function save(Request $request)
@@ -148,6 +149,7 @@ class Ad extends Base
     }
 
     /**
+     * 编辑广告
      * @param $id
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
@@ -198,6 +200,7 @@ class Ad extends Base
     }
 
     /**
+     * 更新广告
      * @param Request $request
      * @throws \think\exception\DbException
      */
@@ -249,6 +252,7 @@ class Ad extends Base
     }
 
     /**
+     * 删除广告
      * @param $id
      * @throws \think\exception\DbException
      */

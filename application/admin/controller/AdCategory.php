@@ -16,6 +16,7 @@ use app\base\controller\SiteId;
 class AdCategory extends Base
 {
     /**
+     * 广告分类
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -65,6 +66,7 @@ class AdCategory extends Base
     }
 
     /**
+     * 新增分类
      * @return mixed
      * @throws \think\Exception
      * @throws \think\exception\DbException
@@ -97,6 +99,7 @@ class AdCategory extends Base
     }
 
     /**
+     * 保存分类
      * @throws \think\exception\DbException
      */
     public function save()
@@ -126,6 +129,7 @@ class AdCategory extends Base
     }
 
     /**
+     *  编辑分类
      * @param $id
      * @return mixed
      * @throws \think\Exception
@@ -162,6 +166,7 @@ class AdCategory extends Base
     }
 
     /**
+     * 更新分类
      * @param Request $request
      * @throws \think\exception\DbException
      */
@@ -187,6 +192,7 @@ class AdCategory extends Base
     }
 
     /**
+     * 删除广告分类
      * @param $id
      * @throws \think\exception\DbException
      */

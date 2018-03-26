@@ -17,14 +17,21 @@ use app\base\controller\Upload;
 
 class Admin extends Base
 {
-    public function index(Request $request)
+    /**
+     * 管理员列表
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function index()
     {
         $title = '管理员列表';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -34,13 +41,13 @@ class Admin extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
 
         // 找出列表数据
-        $post_username = $request->param('username');
+        $post_username = $this->request->param('username');
         $data = new AdminModel;
         if(!empty($post_username)){
             $data_list = $data->where([
@@ -68,6 +75,14 @@ class Admin extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 新增管理员
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
         // 新增
@@ -75,8 +90,8 @@ class Admin extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -86,7 +101,7 @@ class Admin extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
@@ -100,6 +115,11 @@ class Admin extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 保存管理员数据
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         // 获取 略缩图 icon文件
@@ -160,14 +180,23 @@ class Admin extends Base
         }
     }
 
+    /**
+     * 编辑管理员
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title = '编辑管理员';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -177,7 +206,7 @@ class Admin extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
         $site_id_data = new SiteId();
         $site_id = $site_id_data->info($get_domain);
@@ -204,6 +233,11 @@ class Admin extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * 更新管理员
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取 分类略缩图 thumb文件
@@ -260,6 +294,11 @@ class Admin extends Base
 
     }
 
+    /**
+     * 删除管理员数据
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = AdminModel::get($id);
