@@ -8,7 +8,6 @@
 namespace app\base\controller;
 
 use think\controller;
-use think\Request;
 
 class BrowserCheck extends Controller
 {
