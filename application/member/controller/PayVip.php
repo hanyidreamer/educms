@@ -15,6 +15,12 @@ use app\base\model\Member;
 
 class PayVip extends Base
 {
+    /**
+     * @param string $mid
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function index($mid='')
     {
         $username = $this->username ;
@@ -51,6 +57,10 @@ class PayVip extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param string $mid
+     * @return mixed
+     */
     public function buy($mid='')
     {
         $username = $this->username ;

@@ -11,6 +11,9 @@ use think\Controller;
 
 class UserAgent extends Controller
 {
+    /**
+     *
+     */
     public function index()
     {
         $user_agent = $_SERVER['HTTP_USER_AGENT'];

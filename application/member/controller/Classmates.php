@@ -15,6 +15,11 @@ use app\base\model\Member;
 
 class Classmates extends Base
 {
+    /**
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function index()
     {
         $username = $this->username ;

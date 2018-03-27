@@ -8,12 +8,16 @@
 namespace app\member\controller;
 
 use think\Request;
-use think\Session;
 use app\base\model\Member;
 use app\index\controller\Base;
 
 class Binding extends Base
 {
+    /**
+     * @param string $mid
+     * @param string $openid
+     * @return mixed
+     */
     public function Tel($mid = '',$openid = '')
     {
         $site_id = $this->site_id;
@@ -30,6 +34,9 @@ class Binding extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         $site_id = $this->site_id;
@@ -44,7 +51,7 @@ class Binding extends Base
             $post_mid = '0';
         }
 
-        $sms_code = Session::get('sms_code');
+        $sms_code = session('sms_code');
         if($post_sms_code != $sms_code){
             $this->error('短信验证码不正确','/member/binding/tel');
         }

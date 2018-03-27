@@ -8,8 +8,8 @@
 namespace app\member\controller;
 
 use think\Controller;
-use think\Session;
-use think\Cookie;
+use think\facade\Session;
+use think\facade\Cookie;
 
 class Logout extends Controller
 {

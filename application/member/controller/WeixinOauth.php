@@ -12,8 +12,14 @@ use app\base\model\Curl;
 
 class WeixinOauth extends Controller
 {
-
-    //生成OAuth2的URL （基本信息，不需要点击登录）
+    /**
+     * 生成OAuth2的URL （基本信息，不需要点击登录）
+     * @param $app_id
+     * @param $redirect_url
+     * @param $scope
+     * @param $state
+     * @return string
+     */
     public function oauth2_authorize($app_id,$redirect_url,$scope,$state)
     {
         $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$app_id."&redirect_uri=".$redirect_url."&response_type=code&scope=".$scope."&state=".$state."#wechat_redirect";

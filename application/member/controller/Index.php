@@ -7,14 +7,16 @@
  */
 namespace app\member\controller;
 
-use think\Request;
-use think\Session;
-use think\Cookie;
+use think\facade\Session;
+use think\facade\Cookie;
 use app\index\controller\Base;
 
 class Index extends Base
 {
     // 会员中心
+    /**
+     * @return mixed
+     */
     public function index(){
         $username = $this->username ;
         $this->assign('username',$username);
@@ -29,6 +31,10 @@ class Index extends Base
         return $this->fetch($template_path);
     }
     // 注销登录
+
+    /**
+     *
+     */
     public function logout(){
         Session::delete('username');
         Session::delete('password');

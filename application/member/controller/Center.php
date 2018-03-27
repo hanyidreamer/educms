@@ -15,6 +15,12 @@ use app\base\model\Member;
 
 class Center extends Base
 {
+    /**
+     * @param string $mid
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function index($mid = '')
     {
         $username = $this->username ;

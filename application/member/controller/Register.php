@@ -18,6 +18,12 @@ use app\base\controller\BrowserCheck;
 
 class Register extends Base
 {
+    /**
+     * @param string $mid
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function index($mid = '')
     {
         $site_id = $this->site_id;
@@ -55,6 +61,9 @@ class Register extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         $site_id = $this->site_id;

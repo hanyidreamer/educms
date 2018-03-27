@@ -8,11 +8,8 @@
 namespace app\member\controller;
 
 use think\Controller;
-use think\Request;
-use think\Session;
-use app\member\controller\WeixinOauth;
-use app\base\model\Member;
-use app\base\model\Membership;
+use think\facade\Request;
+use think\facade\Session;
 use app\base\model\MemberWeixin;
 use app\base\model\WechatOfficialAccounts;
 use app\base\model\Curl;
@@ -20,6 +17,13 @@ use app\base\model\Curl;
 class WeixinUser extends Controller
 {
     // 获取微信用户openid
+    /**
+     * @param $site_id
+     * @param $mid
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function login($site_id,$mid)
     {
             $official_accounts_info = WechatOfficialAccounts::get(['site_id'=>$site_id]);

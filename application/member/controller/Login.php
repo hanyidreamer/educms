@@ -7,17 +7,19 @@
  */
 namespace app\member\controller;
 
-use think\Session;
-use think\Cookie;
+use think\facade\Session;
+use think\facade\Cookie;
 use think\Request;
 use app\index\controller\Base;
 use app\base\model\Member;
 use app\base\controller\BrowserCheck;
-use app\member\controller\WeixinUser;
 
 
 class Login extends Base
 {
+    /**
+     * @return mixed
+     */
     public function index(){
         $username = $this->username ;
         $this->assign('username',$username);
@@ -37,6 +39,10 @@ class Login extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function check(Request $request)
     {
         $post_site_id = $request->param('site_id');
@@ -94,6 +100,9 @@ class Login extends Base
         $this->success('登录成功', '/member/index/index');
     }
 
+    /**
+     * @return mixed
+     */
     public function index_wx(){
         $username = $this->username ;
         $this->assign('username',$username);
@@ -115,6 +124,9 @@ class Login extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function check_wx(Request $request){
         $post_site_id = $request->param('site_id');
         // 验证用户名和密码是否正确
