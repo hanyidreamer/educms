@@ -8,26 +8,32 @@
 namespace app\base\controller;
 
 use think\Controller;
-use think\Request;
 use app\base\model\MemberWeixin;
 use app\base\model\WechatOfficialAccounts;
 use app\base\model\Curl;
 
 class Weixin extends Controller
 {
+    /**
+     * @param $site_id
+     * @param $mid
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function info($site_id,$mid)
     {
         // 微信公众号配置信息
         $official_accounts_info = WechatOfficialAccounts::get(['site_id'=>$site_id]);
         $app_id = $official_accounts_info['app_id'];
         $app_secret = $official_accounts_info['app_secret'];
-        $get_token = Request::instance()->param('token');
-        $code = Request::instance()->param('code');
-        $state = Request::instance()->param('state');
+        $get_token = $this->request->param('token');
+        $code = $this->request->param('code');
+        $state = $this->request->param('state');
         $timeout = 30;
         $user_agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 MicroMessenger/6.5.9 NetType/4G Language/zh_CN';
 
-        $redirect_url = Request::instance()->url(true);
+        $redirect_url = $this->request->url(true);
 
         if(empty($code) and empty($state)) {
             $question_mark = '?';

@@ -12,6 +12,11 @@ use app\base\model\Site;
 
 class SiteId extends Controller
 {
+    /**
+     * @param $domain
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function info($domain)
     {
         $domain = preg_replace('/www./', '', $domain);

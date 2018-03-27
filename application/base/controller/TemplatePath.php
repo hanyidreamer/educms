@@ -78,6 +78,11 @@ class TemplatePath extends Controller
         return $template_path;
     }
 
+    /**
+     * @param $controller_name
+     * @param $action_name
+     * @return string
+     */
     public function admin_path($controller_name,$action_name)
     {
         // 判断是否为微信浏览器

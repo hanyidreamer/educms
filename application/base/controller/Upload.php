@@ -12,12 +12,14 @@ use Qcloud_cos\Cosapi;
 
 class Upload extends Base
 {
-    // 上传默认界面
+    /**
+     * 上传默认界面
+     * @return mixed
+     */
     public function index()
     {
         return $this->fetch();
     }
-
 
     // 上传程序服务器文件
     public function upload_file($file)
@@ -43,7 +45,12 @@ class Upload extends Base
         return $filename;
     }
 
-    // 上传文件到腾讯云
+    /**
+     * 上传文件到腾讯云
+     * @param $local_file_name
+     * @param $filename
+     * @return string
+     */
     public function qcloud_file($local_file_name,$filename)
     {
         $web_url = 'https://waihui-10080712.file.myqcloud.com';
