@@ -20,7 +20,8 @@
         "topthink/framework": "5.1.*",
         "topthink/think-captcha": "^2.0",
         "topthink/think-image": "^1.0",
-        "overtrue/wechat": "^4.0"
+        "overtrue/wechat": "^4.0",
+        "tencentyun/cos-php-sdk": "^3.3"
     },
     "autoload": {
         "psr-4": {
