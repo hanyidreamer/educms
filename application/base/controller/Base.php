@@ -8,8 +8,6 @@
 namespace app\base\controller;
 
 use think\Controller;
-use think\Request;
-use think\Session;
 use app\base\model\Site;
 use app\base\model\Admin;
 
@@ -45,7 +43,7 @@ class Base extends Controller
         }
 
         // 当前方法不同终端的模板路径
-        $module_name = $this->request->module();
+        // $module_name = $this->request->module();
         $controller_name = $this->request->controller();
         $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
@@ -56,10 +54,6 @@ class Base extends Controller
         $this->assign('public_header',$template_public_header);
         $this->assign('public_footer',$template_public_footer);
 
-
         $this->template_path = $template_path;
-
-
     }
-
 }
