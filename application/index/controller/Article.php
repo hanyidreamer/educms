@@ -8,16 +8,19 @@
 
 namespace app\index\controller;
 
-use think\Request;
-use app\base\controller\TemplatePath;
-use app\base\controller\SiteId;
-use app\base\model\Site;
-use app\base\model\CourseCategory;
 use app\base\model\ArticleCategory;
 use app\base\model\Article as ArticleModel;
 
 class Article extends Base
 {
+    /**
+     * @param string $mid
+     * @param string $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function category($mid='',$id='')
     {
         $username = $this->username ;
@@ -73,6 +76,12 @@ class Article extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param string $mid
+     * @param string $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function view($mid='',$id='')
     {
         $username = $this->username ;

@@ -3,7 +3,6 @@ namespace app\index\controller;
 
 use app\base\model\Member;
 use app\base\model\MemberWeixin;
-use think\Request;
 use app\base\controller\BrowserCheck;
 use app\base\controller\Weixin;
 use app\base\model\SlideCategory;
@@ -17,31 +16,24 @@ use app\base\model\StudentCategory;
 class Index extends Base
 {
     /**
+     * 首页
      * @return mixed
+     * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
     public function index()
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-        $mid = $this->mid;
-        $this->assign('mid',$mid);
-
         // 首页幻灯片
-        $slide_category_info = SlideCategory::get(['site_id'=>$site_id,'unique_code'=>'home_top']);
-        $slide_category_id = $slide_category_info['id'];
+        $slide_category_info = SlideCategory::get(['site_id'=>$this->site_id,'unique_code'=>'home_top']);
         $slide_info = new Slide();
-        $slide_data = $slide_info->where(['site_id'=>$site_id,'category_id'=>$slide_category_id]) -> select();
+        $slide_data = $slide_info->where(['site_id'=>$this->site_id,'category_id'=>$slide_category_info['id']]) -> select();
         $this->assign('slide',$slide_data);
 
         // 所有课程
         $course_info = new Course();
-        $course_data = $course_info->where(['site_id'=>$site_id,'status'=>1])-> order('sort asc') ->limit(12) ->select();
+        $course_data = $course_info->where(['site_id'=>$this->site_id,'status'=>1])-> order('sort asc') ->limit(12) ->select();
         $this->assign('course',$course_data);
 
         // 判断是否为微信浏览器
@@ -49,7 +41,10 @@ class Index extends Base
         $user_browser_info = $user_browser->info();
         if($user_browser_info=='wechat_browser'){
             $weixin_user_info = new Weixin();
-            $openid = $weixin_user_info->info($site_id,$mid);
+            $username = session('username');
+            $member_data = Member::get(['username' => $username]);
+
+            $openid = $weixin_user_info->info($this->site_id,$member_data['id']);
             $this->assign('openid',$openid);
             // 获取会员信息
             $member_weixin_info = MemberWeixin::get(['openid'=>$openid]);
@@ -64,7 +59,7 @@ class Index extends Base
                 $member_weixin_info['name'] = $member_weixin_info['nickname'];
                 $this->assign('member_data',$member_weixin_info);
             }
-            return $this->fetch($template_path);
+            return $this->fetch($this->template_path);
         }
 
 
@@ -78,12 +73,12 @@ class Index extends Base
 
         //  老师列表
         $teacher_info = new Teacher();
-        $teacher_data = $teacher_info->where(['site_id'=>$site_id,'status'=>1])-> order('sort asc') ->limit(4) ->select();
+        $teacher_data = $teacher_info->where(['site_id'=>$this->site_id,'status'=>1])-> order('sort asc') ->limit(4) ->select();
         $this->assign('teacher',$teacher_data);
 
         // 学员点评列表
         $student_info = new Student();
-        $student_data = $student_info->where(['site_id'=>$site_id,'status'=>1])-> order('sort asc') ->limit(6) ->select();
+        $student_data = $student_info->where(['site_id'=>$this->site_id,'status'=>1])-> order('sort asc') ->limit(6) ->select();
         foreach ($student_data as $student_list) {
             $student_category_id = $student_list['category_id'];
             $student_category_data = StudentCategory::get($student_category_id);
@@ -94,7 +89,7 @@ class Index extends Base
 
         // 资讯列表
         $article_info = new Article();
-        $article_data = $article_info->where(['site_id'=>$site_id,'status'=>1])-> order('sort asc') ->limit(5) ->select();
+        $article_data = $article_info->where(['site_id'=>$this->site_id,'status'=>1])-> order('sort asc') ->limit(5) ->select();
         $this->assign('article',$article_data);
 
         // 底部链接
@@ -104,7 +99,8 @@ class Index extends Base
         // 底部版权
 
 
-        return $this->fetch($template_path);
+
+        return $this->fetch($this->template_path);
     }
 
 }

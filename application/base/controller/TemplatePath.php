@@ -8,7 +8,6 @@
 namespace app\base\controller;
 
 use think\Controller;
-use think\Request;
 use app\base\model\Site;
 use app\base\model\Template;
 

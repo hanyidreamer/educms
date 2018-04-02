@@ -10,18 +10,16 @@ namespace app\base\controller;
 use think\Controller;
 use app\base\model\Site;
 
-class SiteId extends Controller
+class SiteData extends Controller
 {
     /**
-     * @param $domain
-     * @return mixed
      * @throws \think\exception\DbException
      */
-    public function info($domain)
+    public function info()
     {
+        $domain = $this->request->host();
         $domain = preg_replace('/www./', '', $domain);
         $site_data = Site::get(['domain'=>$domain]);
-        $site_id = $site_data['id'];
-        return $site_id;
+        return $site_data;
     }
 }

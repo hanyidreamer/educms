@@ -10,12 +10,14 @@ namespace app\index\controller;
 use app\base\model\CourseCategory;
 use app\base\model\Course as CourseModel;
 use app\base\controller\BrowserCheck;
-use app\base\controller\Weixin;
-use app\base\model\MemberWeixin;
-use app\base\model\Member;
 
 class Course extends Base
 {
+    /**
+     * @param string $mid
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index($mid = '')
     {
         $username = $this->username ;
@@ -58,6 +60,14 @@ class Course extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param string $id
+     * @param string $mid
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function category($id='',$mid='')
     {
         $username = $this->username ;
