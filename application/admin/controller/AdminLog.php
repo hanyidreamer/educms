@@ -11,7 +11,7 @@ use app\base\model\AdminLog as AdminLogModel;
 use app\base\model\Admin;
 use app\base\controller\TemplatePath;
 use app\base\controller\Base;
-use app\base\controller\SiteId;
+use app\base\controller\Site;
 
 class AdminLog extends Base
 {
@@ -41,8 +41,8 @@ class AdminLog extends Base
         // 获取网站id
         $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id_data = new Site();
+        $site_id = $site_id_data->info();
 
         // 找出广告列表数据
         $post_title = $this->request->param('title');

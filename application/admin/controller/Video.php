@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class Video extends Base
+class Video extends AdminBase
 {
     public function index()
     {

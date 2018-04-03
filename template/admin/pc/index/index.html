@@ -1,11 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>{$title}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="/manage//assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="/manage//assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="/manage//assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <title>后台管理首页 - {$site.title}</title>
+    <meta charset="UTF-8">
+    {load file="/manage//assets/css/dpl-min.css,/manage//assets/css/bui-min.css,/manage//assets/css/main-min.css" /}
 </head>
 <body>
 
@@ -33,10 +31,7 @@
 
     </ul>
 </div>
-<script type="text/javascript" src="/manage/assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/manage/assets/js/bui-min.js"></script>
-<script type="text/javascript" src="/manage/assets/js/common/main-min.js"></script>
-<script type="text/javascript" src="/manage/assets/js/config-min.js"></script>
+{load file="/manage/assets/js/jquery-1.8.1.min.js,/manage/assets/js/bui-min.js,/manage/assets/js/common/main-min.js,/manage/assets/js/config-min.js" /}
 <script>
     BUI.use('common/main',function(){
         var config = [

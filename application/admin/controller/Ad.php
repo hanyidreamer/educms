@@ -4,12 +4,9 @@ namespace app\admin\controller;
 use think\Request;
 use app\base\model\Ad as AdModel;
 use app\base\model\AdCategory;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\SiteId;
 use app\base\controller\Upload;
 
-class Ad extends Base
+class Ad extends AdminBase
 {
     /**
      * 广告列表
@@ -20,26 +17,7 @@ class Ad extends Base
      */
     public function index()
     {
-        // 给当页面标题赋值
-        $title = '广告列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id = $this->site_id;
 
         // 找出广告列表数据
         $post_title = $this->request->param('title');
@@ -61,7 +39,7 @@ class Ad extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -73,33 +51,14 @@ class Ad extends Base
      */
     public function create()
     {
-        $title = '广告列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
+        $site_id = $this->site_id;
 
         // 获取网站分类列表
         $category_data = new AdCategory();
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -158,26 +117,8 @@ class Ad extends Base
      */
     public function edit($id)
     {
-        $title = '编辑广告';
-        $this->assign('title',$title);
+        $site_id = $this->site_id;
 
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
         // 获取当前分类id
         $categorg_id_info = AdModel::get($id);
         $categorg_id = $categorg_id_info['category_id'];
@@ -196,7 +137,7 @@ class Ad extends Base
         $this->assign('my_category_id',$categorg_id);
         $this->assign('my_categorg_title',$my_categorg_title);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**

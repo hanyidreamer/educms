@@ -13,6 +13,8 @@ use app\base\model\Admin;
 
 class Base extends Controller
 {
+    protected $site_id;
+    protected $template_path;
     /**
      * 检查客户端信息
      * @throws \think\exception\DbException

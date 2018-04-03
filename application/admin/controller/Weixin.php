@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class Weixin extends Base
+class Weixin extends AdminBase
 {
     public function index()
     {

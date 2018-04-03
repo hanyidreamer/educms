@@ -11,15 +11,12 @@ use think\Request;
 use app\base\model\AdminCategory as AdminCategoryModel;
 use app\base\controller\TemplatePath;
 use app\base\controller\Base;
-use app\base\controller\SiteId;
+use app\base\controller\Site;
 
 class AdminCategory extends Base
 {
     /**
-     * 管理员分类
-     * @param Request $request
      * @return mixed
-     * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
@@ -148,8 +145,8 @@ class AdminCategory extends Base
         // 获取网站id
         $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id_data = new Site();
+        $site_id = $site_id_data->info();
         $this->assign('site_id',$site_id);
 
         // 获取网站信息

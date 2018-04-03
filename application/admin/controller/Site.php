@@ -8,7 +8,6 @@
 namespace app\admin\controller;
 
 use think\Request;
-use think\Session;
 use app\base\controller\Base;
 use app\base\controller\TemplatePath;
 use app\base\model\Site as SiteModel;
@@ -17,6 +16,14 @@ use app\base\controller\Upload;
 
 class Site extends Base
 {
+    /**
+     * 网站管理
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index()
     {
         // 给当页面标题赋值
@@ -24,8 +31,8 @@ class Site extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -35,12 +42,12 @@ class Site extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取admin_id
-        $admin_username = Session::get('username');
+        $admin_username = session('username');
         $site_admin_data = Admin::get(['username'=>$admin_username]);
         $admin_id = $site_admin_data['id'];
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
+        $get_domain = $this->request->server('HTTP_HOST');
         $this->assign('domain',$get_domain);
 
 
@@ -72,8 +79,8 @@ class Site extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -194,6 +201,11 @@ class Site extends Base
     }
 
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         // 编辑网站
@@ -201,8 +213,8 @@ class Site extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -219,6 +231,11 @@ class Site extends Base
     }
 
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request, $id)
     {
         // 获取icon文件
@@ -323,6 +340,10 @@ class Site extends Base
     }
 
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = SiteModel::get($id);

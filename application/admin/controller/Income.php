@@ -5,3 +5,9 @@
  * Date: 2017/6/26
  * Time: 15:23
  */
+namespace app\admin\controller;
+
+class Income extends AdminBase
+{
+
+}

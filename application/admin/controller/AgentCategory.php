@@ -14,6 +14,14 @@ use app\base\controller\Base;
 
 class AgentCategory extends Base
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         // 给当页面标题赋值
@@ -21,8 +29,8 @@ class AgentCategory extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $request->controller();
+        $action_name = $request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -47,6 +55,13 @@ class AgentCategory extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
         // 新增
@@ -54,8 +69,8 @@ class AgentCategory extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -72,6 +87,9 @@ class AgentCategory extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         $post_level = $request->param('level');
@@ -93,14 +111,20 @@ class AgentCategory extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title = '编辑';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -116,6 +140,10 @@ class AgentCategory extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         $post_id = $request->post('id');
@@ -141,6 +169,10 @@ class AgentCategory extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = AgentCategoryModel::get($id);

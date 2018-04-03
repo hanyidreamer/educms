@@ -13,11 +13,19 @@ use app\base\model\Ad as AdModel;
 use app\base\model\AdCategory;
 use app\base\controller\TemplatePath;
 use app\base\controller\Base;
-use app\base\controller\SiteId;
+use app\base\controller\Site;
 use app\base\controller\Upload;
 
 class AliyunOss extends Base
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         // 给当页面标题赋值
@@ -25,8 +33,8 @@ class AliyunOss extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $request->controller();
+        $action_name = $request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -36,10 +44,8 @@ class AliyunOss extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id_data = new Site();
+        $site_id = $site_id_data->info();
 
         // 找出广告列表数据
         $post_title = $request->param('title');
@@ -64,6 +70,13 @@ class AliyunOss extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
         // 新增
@@ -71,8 +84,8 @@ class AliyunOss extends Base
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -82,10 +95,8 @@ class AliyunOss extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id_data = new Site();
+        $site_id = $site_id_data->info();
         $this->assign('site_id',$site_id);
 
         // 获取网站分类列表
@@ -96,6 +107,9 @@ class AliyunOss extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // 获取 略缩图 thumb文件
@@ -138,14 +152,22 @@ class AliyunOss extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title = '编辑广告';
         $this->assign('title',$title);
 
         // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
+        $controller_name = $this->request->controller();
+        $action_name = $this->request->action();
         $template_path_info = new TemplatePath();
         $template_path = $template_path_info->admin_path($controller_name,$action_name);
         $template_public = $template_path_info->admin_public_path();
@@ -155,10 +177,8 @@ class AliyunOss extends Base
         $this->assign('public_footer',$template_public_footer);
 
         // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id_data = new Site();
+        $site_id = $site_id_data->info();
         $this->assign('site_id',$site_id);
         // 获取当前分类id
         $categorg_id_info = AdModel::get($id);
@@ -181,6 +201,10 @@ class AliyunOss extends Base
         return $this->fetch($template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取 分类略缩图 thumb文件
@@ -228,6 +252,10 @@ class AliyunOss extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = AdModel::get($id);

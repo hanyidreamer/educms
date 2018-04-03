@@ -1,7 +1,7 @@
-{include file="$public_header"}
+{include file="$public_header" title="添加广告" site_title="$site.title" /}
 
 <form action="/admin/ad/save" enctype="multipart/form-data" method="post" class="definewidth m20">
-    <input type="hidden" name="site_id" value="{$site_id}" />
+    <input type="hidden" name="site_id" value="{$site.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
             <td width="15%" class="tableleft">广告分类</td>

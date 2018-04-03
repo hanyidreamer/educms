@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class Weibo extends Base
+class Weibo extends AdminBase
 {
     public function index()
     {
