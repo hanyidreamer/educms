@@ -9,11 +9,8 @@ namespace app\admin\controller;
 
 use app\base\model\AdminLog as AdminLogModel;
 use app\base\model\Admin;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\Site;
 
-class AdminLog extends Base
+class AdminLog extends AdminBase
 {
     /**
      * 日志列表
@@ -24,25 +21,7 @@ class AdminLog extends Base
      */
     public function index()
     {
-        $title = '日志列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new Site();
-        $site_id = $site_id_data->info();
+        $site_id = $this->site_id;
 
         // 找出广告列表数据
         $post_title = $this->request->param('title');
@@ -64,6 +43,6 @@ class AdminLog extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 }

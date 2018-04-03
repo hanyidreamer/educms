@@ -11,14 +11,13 @@ use think\Request;
 use app\base\model\AgentApply as AgentApplyModel;
 use app\base\model\AgentCategory;
 use app\base\model\Admin;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
 use app\base\controller\Upload;
 use app\base\model\Ad as AdModel;
 
-class AgentApply extends Base
+class AgentApply extends AdminBase
 {
     /**
+     * 代理申请
      * @param Request $request
      * @return mixed
      * @throws \think\Exception
@@ -28,22 +27,6 @@ class AgentApply extends Base
      */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $request->controller();
-        $action_name = $request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-
         // 找出广告列表数据
         $post_title = $request->param('title');
         $data = new AgentApplyModel;
@@ -69,7 +52,7 @@ class AgentApply extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -81,23 +64,9 @@ class AgentApply extends Base
      */
     public function edit($id)
     {
-        $title = '审核';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取当前分类id
-        $categorg_id_info = AgentApplyModel::get($id);
-        $categorg_id = $categorg_id_info['category_id'];
+        $category_id_info = AgentApplyModel::get($id);
+        $category_id = $category_id_info['category_id'];
 
         // 获取信息
         $data_list = AgentApplyModel::get($id);
@@ -108,12 +77,12 @@ class AgentApply extends Base
         $category = $category_data->where(['status'=>1])->select();
         $this->assign('category',$category);
 
-        $my_categorg_data = AgentCategory::get($categorg_id);
-        $my_categorg_title = $my_categorg_data['title'];
-        $this->assign('my_category_id',$categorg_id);
-        $this->assign('my_categorg_title',$my_categorg_title);
+        $my_category_data = AgentCategory::get($category_id);
+        $my_category_title = $my_category_data['title'];
+        $this->assign('my_category_id',$category_id);
+        $this->assign('my_category_title',$my_category_title);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**

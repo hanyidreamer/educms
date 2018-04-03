@@ -9,10 +9,8 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\AgentCategory as AgentCategoryModel;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
 
-class AgentCategory extends Base
+class AgentCategory extends AdminBase
 {
     /**
      * @param Request $request
@@ -24,21 +22,6 @@ class AgentCategory extends Base
      */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '代理分类';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $request->controller();
-        $action_name = $request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new AgentCategoryModel;
@@ -52,7 +35,7 @@ class AgentCategory extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -64,27 +47,12 @@ class AgentCategory extends Base
      */
     public function create()
     {
-        // 新增
-        $title = '新增';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取网站分类列表
         $category_data = new AgentCategoryModel();
         $category = $category_data->where(['status'=>1])->select();
         $this->assign('category',$category);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -119,25 +87,11 @@ class AgentCategory extends Base
      */
     public function edit($id)
     {
-        $title = '编辑';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取当前分类
         $category_data = AgentCategoryModel::get($id);
         $this->assign('data',$category_data);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**

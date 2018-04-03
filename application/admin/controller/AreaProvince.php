@@ -11,29 +11,16 @@ use think\Request;
 use app\base\model\AreaProvince as AreaProvinceModel;
 use app\base\model\AreaState;
 use app\base\model\AreaUnit;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
 
-class AreaProvince extends Base
+class AreaProvince extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-
         // 找出列表数据
         $pages=15;
         $post_title = $request->param('title');
@@ -59,26 +46,17 @@ class AreaProvince extends Base
         $this->assign('data_count',$data_count);
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
-        // 新增
-        $title = '类目';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取分类列表
         $category_data = new AreaState();
         $category = $category_data->where(['status'=>1])->select();
@@ -88,9 +66,12 @@ class AreaProvince extends Base
         $unit_category = $unit_data->where(['status'=>1])->select();
         $this->assign('unit_category',$unit_category);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         $post_state_id = $request->param('state_id');
@@ -114,22 +95,15 @@ class AreaProvince extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title = '编辑类目';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取信息
         $data_list = AreaProvinceModel::get($id);
         $this->assign('data',$data_list);
@@ -154,9 +128,13 @@ class AreaProvince extends Base
         $this->assign('my_unit_id',$data_list['unit_id']);
         $this->assign('my_unit_title',$my_unit_title);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         $post_id = $request->post('id');
@@ -186,6 +164,10 @@ class AreaProvince extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = AreaProvinceModel::get($id);

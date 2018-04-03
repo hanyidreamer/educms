@@ -9,11 +9,8 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\AdCategory as AdCategoryModel;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\SiteId;
 
-class AdCategory extends Base
+class AdCategory extends AdminBase
 {
     /**
      * 广告分类
@@ -24,25 +21,7 @@ class AdCategory extends Base
      */
     public function index()
     {
-        $title = '广告分类列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id = $this->site_id;
 
         // 找出广告列表数据
         $post_title = $this->request->param('title');
@@ -62,40 +41,16 @@ class AdCategory extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
      * 新增分类
      * @return mixed
-     * @throws \think\Exception
-     * @throws \think\exception\DbException
      */
     public function create()
     {
-        // 新增
-        $title = '新增分类';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -137,32 +92,11 @@ class AdCategory extends Base
      */
     public function edit($id)
     {
-        $title = '编辑广告分类';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
         // 获取网站信息
         $data_list = AdCategoryModel::get($id);
         $this->assign('data',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**

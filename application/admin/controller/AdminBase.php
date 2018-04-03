@@ -15,6 +15,7 @@ class AdminBase extends Controller
 {
     protected $site_id;
     protected $template_path;
+    protected $site;
 
     /**
      * 管理员模板初始化数据

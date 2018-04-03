@@ -10,29 +10,16 @@ namespace app\admin\controller;
 use think\Request;
 use app\base\model\AreaCounty as AreaCountyModel;
 use app\base\model\AreaCity;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
 
-class AreaCounty extends Base
+class AreaCounty extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-
         // 找出列表数据
         $pages=15;
         $post_title = $request->param('title');
@@ -53,34 +40,28 @@ class AreaCounty extends Base
         $this->assign('data_count',$data_count);
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
-        // 新增
-        $title = '类目';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取分类列表
         $category_data = new AreaCity();
         $category = $category_data->where(['status'=>1])->select();
         $this->assign('category',$category);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         $post_city_id = $request->param('city_id');
@@ -104,22 +85,15 @@ class AreaCounty extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title = '编辑类目';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取信息
         $data_list = AreaCountyModel::get($id);
         $this->assign('data',$data_list);
@@ -134,9 +108,13 @@ class AreaCounty extends Base
         $this->assign('my_city_id',$data_list['city_id']);
         $this->assign('my_city_title',$my_category_title);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         $post_id = $request->post('id');
@@ -166,6 +144,10 @@ class AreaCounty extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = AreaCountyModel::get($id);

@@ -9,13 +9,11 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\AdminCategory as AdminCategoryModel;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\Site;
 
-class AdminCategory extends Base
+class AdminCategory extends AdminBase
 {
     /**
+     * 管理员类型
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -23,27 +21,7 @@ class AdminCategory extends Base
      */
     public function index()
     {
-        // 给当页面标题赋值
-        $title = '管理员类型';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $this->request->param('title');
         $data = new AdminCategoryModel;
@@ -57,40 +35,16 @@ class AdminCategory extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
      * 新增管理员类型
      * @return mixed
-     * @throws \think\Exception
-     * @throws \think\exception\DbException
      */
     public function create()
     {
-        // 新增
-        $title = '管理员分类列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -128,32 +82,11 @@ class AdminCategory extends Base
      */
     public function edit($id)
     {
-        $title = '编辑广告分类';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new Site();
-        $site_id = $site_id_data->info();
-        $this->assign('site_id',$site_id);
-
         // 获取网站信息
         $data_list = AdminCategoryModel::get($id);
         $this->assign('data',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
