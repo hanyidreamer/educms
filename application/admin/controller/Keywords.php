@@ -8,16 +8,18 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\index\model\Keywords as KeywordsModel;
-use app\index\model\KeywordsCategory;
+use app\base\model\Keywords as KeywordsModel;
+use app\base\model\KeywordsCategory;
 
-class Keywords extends Base
+class Keywords extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='关键词管理';
-        $this->assign('title',$title);
-
         $post_title= $request->post('keyword');
         if($post_title==!''){
             $data_sql['keyword'] =  ['like','%'.$post_title.'%'];
@@ -45,6 +47,12 @@ class Keywords extends Base
         return $this -> fetch();
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function add()
     {
         $title='添加关键词';
@@ -57,6 +65,10 @@ class Keywords extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function insert(Request $request)
     {
         $post_category_id= $request->post('category');
@@ -90,6 +102,13 @@ class Keywords extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title='编辑关键词';
@@ -110,6 +129,10 @@ class Keywords extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -139,6 +162,10 @@ class Keywords extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = KeywordsModel::get($id);
@@ -150,6 +177,11 @@ class Keywords extends Base
         }
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function recycle(Request $request){
         $title='关键词回收站';
         $this->assign('title',$title);
@@ -174,7 +206,11 @@ class Keywords extends Base
         return $this -> fetch();
     }
 
-    // 恢复网站
+    /**
+     * 恢复网站
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function recovery($id){
         $user = KeywordsModel::get($id);
         $user['status'] = 1;
@@ -185,7 +221,11 @@ class Keywords extends Base
         }
     }
 
-    //永久删除
+    /**
+     * 永久删除
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function del($id)
     {
         $user = KeywordsModel::get($id);

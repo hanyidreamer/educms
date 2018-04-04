@@ -9,32 +9,25 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
-use think\Session;
-use think\Cookie;
-use app\base\controller\TemplatePath;
 use app\base\model\Admin;
 use app\base\model\Site;
 
 class Login extends Controller
 {
+    /**
+     * 后台登录页
+     * @return mixed
+     */
     public function index()
     {
-        // 当前页面标题
-        $title = '系统登录 - 交易培训分销系统后台';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-
+        // 后台模板路径
+        $template = new AdminTemplate();
+        $template_path = $template->path();
         return $this->fetch($template_path);
-
     }
 
     /**
-     * 登陆后台管理
+     * 登陆后台权限判断
      * @param Request $request
      * @throws \think\exception\DbException
      */

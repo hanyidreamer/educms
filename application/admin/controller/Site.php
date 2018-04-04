@@ -8,16 +8,14 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\base\controller\Base;
-use app\base\controller\TemplatePath;
 use app\base\model\Site as SiteModel;
 use app\base\model\Admin;
 use app\base\controller\Upload;
 
-class Site extends Base
+class Site extends AdminBase
 {
     /**
-     * 网站管理
+     * 网站基本信息设置
      * @return mixed
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
@@ -26,30 +24,10 @@ class Site extends Base
      */
     public function index()
     {
-        // 给当页面标题赋值
-        $title = '网站基本信息设置';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取admin_id
         $admin_username = session('username');
         $site_admin_data = Admin::get(['username'=>$admin_username]);
         $admin_id = $site_admin_data['id'];
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-
 
         $site_info_sql['admin_id'] = $admin_id;
         $site_info_sql['status'] = 1;
@@ -68,31 +46,20 @@ class Site extends Base
         $this->assign('site_info',$site_info);
         $this->assign('site_count',$site_count);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
-
+    /**
+     * @return mixed
+     */
     public function create()
     {
-        //增加网站
-        $title = '新增网站';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
-
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // 获取icon文件
@@ -208,26 +175,11 @@ class Site extends Base
      */
     public function edit($id)
     {
-        // 编辑网站
-        $title = '编辑网站';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         // 获取网站信息
         $site_info = SiteModel::get($id);
         $this->assign('site',$site_info);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
 

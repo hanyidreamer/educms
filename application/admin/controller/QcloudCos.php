@@ -8,28 +8,19 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
 use app\base\model\QcloudCos as QcloudCosModel;
 
-class QcloudCos extends Base
+class QcloudCos extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='腾讯云存储';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         $post_name= $request->post('name');
         if($post_name==!''){
             $data_sql['name'] =  ['like','%'.$post_name.'%'];
@@ -42,28 +33,20 @@ class QcloudCos extends Base
         $this->assign('data_list',$data_list);
         $this->assign('data_count',$data_count);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
-        $title='添加 腾讯云存储';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_name= $request->post('name');
@@ -95,29 +78,22 @@ class QcloudCos extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='添加 腾讯云存储';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
         $data_list = QcloudCosModel::get($id);
-
         $this->assign('data_list',$data_list);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -149,6 +125,10 @@ class QcloudCos extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = QcloudCosModel::get($id);

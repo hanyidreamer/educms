@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class Spider extends Base
+class Spider extends AdminBase
 {
     public function index()
     {

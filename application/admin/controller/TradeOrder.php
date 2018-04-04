@@ -8,17 +8,20 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\TradeOrder as TradeOrderModel;
-use app\common\model\TradeAccount;
-use app\common\model\TradeServer;
-use app\common\model\Member;
+use app\base\model\TradeOrder as TradeOrderModel;
+use app\base\model\TradeAccount;
+use app\base\model\TradeServer;
+use app\base\model\Member;
 
-class TradeOrder extends Base
+class TradeOrder extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='交易订单记录';
-        $this->assign('title',$title);
         $pages=20;
 
         $post_account= $request->post('account');
@@ -70,14 +73,17 @@ class TradeOrder extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
-        $title='添加交易平台服务器';
-        $this->assign('title',$title);
-
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_platform= $request->post('platform');
@@ -102,17 +108,23 @@ class TradeOrder extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑 交易平台服务器';
-        $this->assign('title',$title);
-
         $data_list = TradeServer::get($id);
 
         $this->assign('data_list',$data_list);
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -138,6 +150,10 @@ class TradeOrder extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = TradeOrderModel::get($id);

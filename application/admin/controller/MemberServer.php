@@ -8,11 +8,18 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\MemberServer as MemberServerModel;
-use app\common\model\TradeServer;
+use app\base\model\MemberServer as MemberServerModel;
+use app\base\model\TradeServer;
 
-class MemberServer extends Base
+class MemberServer extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         $post_username= $request->post('name');
@@ -35,6 +42,12 @@ class MemberServer extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function add()
     {
         $trade_server_data = new TradeServer();
@@ -43,6 +56,10 @@ class MemberServer extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function insert(Request $request)
     {
         $post_name= $request->post('name');
@@ -90,6 +107,11 @@ class MemberServer extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $data_list = MemberServerModel::get($id);
@@ -102,6 +124,10 @@ class MemberServer extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -134,6 +160,10 @@ class MemberServer extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = MemberServerModel::get($id);

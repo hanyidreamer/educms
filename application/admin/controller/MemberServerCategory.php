@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class MemberServerCategory extends Base
+class MemberServerCategory extends AdminBase
 {
 
 }

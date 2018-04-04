@@ -8,12 +8,19 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\Member;
-use app\common\model\Product;
-use app\common\model\ProductOrder as ProductOrderModel;
+use app\base\model\Member;
+use app\base\model\Product;
+use app\base\model\ProductOrder as ProductOrderModel;
 
-class ProductOrder extends Base
+class ProductOrder extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         $post_username= $request->post('order_number');
@@ -44,11 +51,17 @@ class ProductOrder extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_name= $request->post('name');
@@ -74,6 +87,11 @@ class ProductOrder extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $data_list = ProductOrderModel::get(['id'=>$id]);
@@ -82,6 +100,10 @@ class ProductOrder extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -107,6 +129,10 @@ class ProductOrder extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = ProductOrderModel::get($id);

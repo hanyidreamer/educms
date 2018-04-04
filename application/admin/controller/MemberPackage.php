@@ -8,11 +8,18 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\Member as MemberModel;
-use app\common\model\MemberServicePackage;
+use app\base\model\Member as MemberModel;
+use app\base\model\MemberServicePackage;
 
-class MemberPackage extends Base
+class MemberPackage extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         $post_username= $request->post('name');
@@ -29,11 +36,17 @@ class MemberPackage extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_name= $request->post('name');
@@ -55,6 +68,11 @@ class MemberPackage extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $service_list = MemberServicePackage::get(['status'=>1]);
@@ -66,6 +84,10 @@ class MemberPackage extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -85,6 +107,10 @@ class MemberPackage extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = MemberServicePackage::get($id);

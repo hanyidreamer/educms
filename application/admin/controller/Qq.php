@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class Qq extends Base
+class Qq extends AdminBase
 {
     public function index()
     {

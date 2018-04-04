@@ -9,7 +9,7 @@ namespace app\admin\controller;
 
 use think\Request;
 
-class MakeHtml extends Base
+class MakeHtml extends AdminBase
 {
     public function index()
     {

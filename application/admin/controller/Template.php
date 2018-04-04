@@ -10,36 +10,20 @@ namespace app\admin\controller;
 use think\Request;
 use app\base\model\Template as TemplateModel;
 use app\base\model\TemplateCategory;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\SiteId;
 use app\base\controller\Upload;
 
-class Template extends Base
+class Template extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '广告列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         // 找出广告列表数据
         $post_title = $request->param('title');
         $data = new TemplateModel;
@@ -60,41 +44,29 @@ class Template extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
-        // 新增
-        $title = '广告列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+        $site_id = $this->site_id;
         // 获取网站分类列表
-        $category_data = new AdCategory();
+        $category_data = new TemplateCategory();
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // 获取 略缩图 thumb文件
@@ -120,7 +92,7 @@ class Template extends Base
             $this->error('广告标题不能为空');
         }
 
-        $data = new AdModel;
+        $data = new TemplateModel();
         $data['site_id'] = $post_site_id;
         $data['title'] = $post_title;
         $data['sort'] = $post_sort;
@@ -137,49 +109,41 @@ class Template extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title = '编辑广告';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
+        $site_id = $this->site_id;
         // 获取当前分类id
-        $categorg_id_info = AdModel::get($id);
+        $categorg_id_info = TemplateCategory::get($id);
         $categorg_id = $categorg_id_info['category_id'];
 
         // 获取广告信息
-        $data_list = AdModel::get($id);
+        $data_list = TemplateModel::get($id);
         $this->assign('data',$data_list);
 
         // 获取网站分类列表
-        $category_data = new AdCategory();
+        $category_data = new TemplateModel();
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        $my_categorg_data = AdCategory::get($categorg_id);
+        $my_categorg_data = TemplateCategory::get($categorg_id);
         $my_categorg_title = $my_categorg_data['title'];
         $this->assign('my_category_id',$categorg_id);
         $this->assign('my_categorg_title',$my_categorg_title);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取 分类略缩图 thumb文件
@@ -203,7 +167,7 @@ class Template extends Base
             $this->error('广告标题不能为空');
         }
 
-        $user = AdModel::get($post_id);
+        $user = TemplateModel::get($post_id);
 
         if(!empty($post_thumb)){
             $user['thumb'] = $post_thumb;
@@ -227,9 +191,13 @@ class Template extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
-        $data = AdModel::get($id);
+        $data = TemplateModel::get($id);
         if ($data) {
             $data->delete();
             $this->success('删除广告成功', '/admin/ad/index');

@@ -8,36 +8,21 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\base\controller\Base;
-use app\base\controller\TemplatePath;
-use app\base\controller\SiteId;
 use app\base\model\CourseCategory as CourseCategoryModel;
 use app\base\controller\Upload;
 
-class CourseCategory extends Base
+class CourseCategory extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title = '课程分类列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new CourseCategoryModel;
@@ -56,36 +41,21 @@ class CourseCategory extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
-        // 新增
-        $title = '新增分类';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         // 获取 分类略缩图 thumb文件
@@ -119,7 +89,9 @@ class CourseCategory extends Base
         $data['site_id'] = $post_site_id;
         $data['title'] = $post_title;
         $data['unique_code'] = $post_unique_code;
-        $data['thumb'] = $post_thumb;
+        if(!empty($post_thumb)){
+            $data['thumb'] = $post_thumb;
+        }
         $data['short_title'] = $post_short_title;
         $data['keywords'] = $post_keywords;
         $data['desc'] = $post_desc;
@@ -135,36 +107,25 @@ class CourseCategory extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title = '编辑分类';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
         // 获取网站信息
         $data_list = CourseCategoryModel::get($id);
         $this->assign('data',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取 分类略缩图 thumb文件
@@ -213,6 +174,10 @@ class CourseCategory extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $data = CourseCategoryModel::get($id);

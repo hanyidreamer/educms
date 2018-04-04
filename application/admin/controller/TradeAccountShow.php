@@ -8,17 +8,20 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\index\model\TradeAccountShow as TradeAccountDemoModel;
-use app\index\model\TradeAccount;
-use app\index\model\CommonInfo;
+use app\base\model\TradeAccountShow as TradeAccountDemoModel;
+use app\base\model\TradeAccount;
 
-class TradeAccountShow extends Base
+class TradeAccountShow extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='交易平台演示账户管理';
-        $this->assign('title',$title);
-
         // 获取网站id
         $get_domain=$request->domain();
         $site_info= new CommonInfo();
@@ -52,14 +55,18 @@ class TradeAccountShow extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
-        $title='添加演示账户';
-        $this->assign('title',$title);
-
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function insert(Request $request)
     {
         $post_account= $request->post('account');
@@ -83,11 +90,13 @@ class TradeAccountShow extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑 演示账户';
-        $this->assign('title',$title);
-
         $data_list = TradeAccountDemoModel::get($id);
         $aid=$data_list['aid'];
 
@@ -98,6 +107,10 @@ class TradeAccountShow extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -120,6 +133,10 @@ class TradeAccountShow extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = TradeAccountDemoModel::get($id);

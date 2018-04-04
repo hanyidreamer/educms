@@ -9,12 +9,9 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\WechatOfficialAccounts as WechatOfficialAccountsModel;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\Site;
 use app\base\controller\Upload;
 
-class WechatOfficialAccounts extends Base
+class WechatOfficialAccounts extends AdminBase
 {
     /**
      * @param Request $request
@@ -25,26 +22,7 @@ class WechatOfficialAccounts extends Base
      */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '微信公众号';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $request->controller();
-        $action_name = $request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $site_data = new Site();
-        $site_array = $site_data->info();
-        $site_id = $site_array['id'];
-
+        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new WechatOfficialAccountsModel;
@@ -58,35 +36,15 @@ class WechatOfficialAccounts extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
      * @return mixed
-     * @throws \think\exception\DbException
      */
     public function create()
     {
-        $title = '添加公众号';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $site_data = new Site();
-        $site_array = $site_data->info();
-        $site_id = $site_array['id'];
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -166,32 +124,11 @@ class WechatOfficialAccounts extends Base
      */
     public function edit($id)
     {
-        $title = '编辑公众号';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_data = new Site();
-        $site_array = $site_data->info();
-        $site_id = $site_array['id'];
-
         // 获取信息
         $data_list = WechatOfficialAccountsModel::get($id);
         $this->assign('data',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**

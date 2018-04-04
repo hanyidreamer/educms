@@ -8,11 +8,17 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\index\model\MemberAuthentication;
-use app\index\model\Member;
+use app\base\model\MemberAuthentication;
+use app\base\model\Member;
 
-class Authentication extends Base
+class Authentication extends AdminBase
 {
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index()
     {
         $member_info_sql['status'] = ['<>','0'];
@@ -39,13 +45,17 @@ class Authentication extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
-        $title = '新增 授权';
-        $this->assign('title',$title);
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_ip = $request->ip();
@@ -74,6 +84,11 @@ class Authentication extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $data_sql['id'] = $id;
@@ -83,6 +98,10 @@ class Authentication extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -111,6 +130,10 @@ class Authentication extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = MemberAuthentication::get($id);

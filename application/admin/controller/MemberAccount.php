@@ -9,5 +9,8 @@ namespace app\admin\controller;
 
 class MemberAccount extends AdminBase
 {
+    public function index()
+    {
 
+    }
 }

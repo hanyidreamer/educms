@@ -8,10 +8,17 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\Product as ProductModel;
+use app\base\model\Product as ProductModel;
 
-class Product extends Base
+class Product extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         $post_username= $request->post('name');
@@ -29,11 +36,17 @@ class Product extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_name= $request->post('name');
@@ -59,6 +72,11 @@ class Product extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $data_list = ProductModel::get($id);
@@ -68,6 +86,10 @@ class Product extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -93,6 +115,10 @@ class Product extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = ProductModel::get($id);

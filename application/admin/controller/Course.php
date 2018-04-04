@@ -8,43 +8,25 @@
 namespace app\admin\controller;
 
 use think\Request;
-use think\Session;
 use app\base\model\Course as CourseModel;
 use app\base\model\CourseCategory;
 use app\base\model\Admin;
 use app\base\model\Teacher;
 use app\base\model\ResourcesFile;
 use app\base\model\ResourcesVideo;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\SiteId;
 use app\base\controller\Upload;
 
 
-class Course extends Base
+class Course extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='课程管理';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         $post_title= $request->post('title');
         if($post_title==!''){
             $data_sql['title'] =  ['like','%'.$post_title.'%'];
@@ -68,32 +50,18 @@ class Course extends Base
         }
         $this->assign('data_list',$data_list);
         $this->assign('data_count',$data_count);
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
-        $title='添加课程';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+        $site_id = $this->site_id;
         $article_category_info = new CourseCategory();
         $category_list = $article_category_info->where(['site_id'=>$site_id]) -> select();
         foreach($category_list as $data)
@@ -107,13 +75,17 @@ class Course extends Base
         $teacher_list = $teacher_info->where(['site_id'=>$site_id]) -> select();
         $this->assign('teacher_list',$teacher_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_site_id = $request->post('site_id');
-        $admin_username=Session::get('username');
+        $admin_username= session('username');
         $admin_list = Admin::get(['username'=>$admin_username]);
         $admin_id = $admin_list['id'];
 
@@ -139,7 +111,7 @@ class Course extends Base
             $file_data['status'] = 1;
             $file_data['site_id'] = $post_site_id;
             $file_data->save();
-            $file_id = $file_data->id;
+            $file_id = $file_data['id'];
         }
 
         $file_video = $request->file('video');
@@ -155,7 +127,7 @@ class Course extends Base
             $video_data['status'] = 1;
             $video_data['site_id'] = $post_site_id;
             $video_data->save();
-            $video_id = $video_data->id;
+            $video_id = $video_data['id'];
         }
 
 
@@ -228,29 +200,16 @@ class Course extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑课程';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+        $site_id = $this->site_id;
         $article_info = new CourseModel();
         $data_list = $article_info -> get($id);
         $file_id = $data_list['file_id'];
@@ -278,14 +237,18 @@ class Course extends Base
         $teacher_list = $teacher_info->where(['site_id'=>$site_id]) -> select();
         $this->assign('teacher_list',$teacher_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         $post_id = $request->post('id');
         $post_site_id = $request->post('site_id');
-        $admin_username=Session::get('username');
+        $admin_username= session('username');
         $admin_list = Admin::get(['username'=>$admin_username]);
         $admin_id = $admin_list['id'];
 
@@ -311,7 +274,7 @@ class Course extends Base
             $file_data['status'] = 1;
             $file_data['site_id'] = $post_site_id;
             $file_data->save();
-            $file_id = $file_data->id;
+            $file_id = $file_data['id'];
         }
 
         $file_video = $request->file('video');
@@ -327,7 +290,7 @@ class Course extends Base
             $video_data['status'] = 1;
             $video_data['site_id'] = $post_site_id;
             $video_data->save();
-            $video_id = $video_data->id;
+            $video_id = $video_data['id'];
         }
 
         $post_title= $request->post('title');
@@ -397,6 +360,10 @@ class Course extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = CourseModel::get($id);
@@ -408,28 +375,13 @@ class Course extends Base
         }
     }
 
-    public function recycle(Request $request){
-        $title='文章回收站';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function recycle(Request $request)
+    {
         $post_title= $request->post('title');
         if($post_title==!''){
             $data_sql['title'] =  ['like','%'.$post_title.'%'];
@@ -447,10 +399,14 @@ class Course extends Base
         }
         $this->assign('data_list',$data_list);
         $this->assign('data_count',$data_count);
-        return $this -> fetch($template_path);
+        return $this -> fetch($this->template_path);
     }
 
-    // 恢复网站
+    /**
+     * 恢复网站
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function recovery($id){
         $user = CourseModel::get($id);
         $user['status'] = 1;
@@ -461,7 +417,11 @@ class Course extends Base
         }
     }
 
-    //永久删除
+    /**
+     * 永久删除
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function del($id)
     {
         $user = CourseModel::get($id);

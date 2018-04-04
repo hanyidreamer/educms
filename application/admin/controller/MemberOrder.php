@@ -8,12 +8,19 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\Member;
-use app\common\model\MemberOrder as MemberOrderModel;
-use app\common\model\MemberServicePackage;
+use app\base\model\Member;
+use app\base\model\MemberOrder as MemberOrderModel;
+use app\base\model\MemberServicePackage;
 
-class MemberOrder extends Base
+class MemberOrder extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         $post_username= $request->post('username');

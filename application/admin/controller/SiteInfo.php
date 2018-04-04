@@ -8,34 +8,20 @@
 namespace app\admin\controller;
 
 use think\Request;
-use think\Session;
 use app\base\model\Site;
 use app\base\model\Admin;
-use app\base\controller\Base;
 use app\base\controller\Upload;
-use app\base\controller\SiteId;
-use app\base\controller\TemplatePath;
 
-class SiteInfo extends Base
+class SiteInfo extends AdminBase
 {
-    // 我的网站列表
+    /**
+     * 我的网站列表
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index()
     {
-        $title='网站列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        $admin_username = Session::get('username');
+        $admin_username = session('username');
         $admin_info = Admin::get(['username'=>$admin_username]);
         $admin_id = $admin_info['id'];
 
@@ -47,32 +33,17 @@ class SiteInfo extends Base
         $this->assign('site_info',$site_info);
         $this->assign('site_count',$site_count);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
-    // 编辑网站基本信息
+    /**
+     * 编辑网站基本信息
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function info()
     {
-        $title = '网站基本信息';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         $site_info = Site::get($site_id);
         // 获取站长名称
         $admin_id = $site_info['admin_id'];
@@ -81,10 +52,14 @@ class SiteInfo extends Base
         $site_info['admin_username'] = $admin_info['username'];
 
         $this->assign('site_info',$site_info);
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
 
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         // 获取icon文件
@@ -167,33 +142,23 @@ class SiteInfo extends Base
 
     }
 
+    /**
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function contact()
     {
-        $title = '网站联系方式';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
+        $site_id = $this->site_id;
         $site_info = Site::get($site_id);
 
         $this->assign('site_info',$site_info);
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function contact_save(Request $request)
     {
         $post_id= $request->post('id');

@@ -10,17 +10,19 @@ namespace app\admin\controller;
 use think\Request;
 use app\base\model\SiteLink as SiteLinkModel;
 use app\base\model\SiteLinkCategory;
-use app\base\controller\Base;
 
-class SiteLink extends Base
+class SiteLink extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='网站友情链接';
-        $this->assign('title',$title);
-
         $site_id = $this->site_id;
-        $template_path = $this->template_path;
 
         // 友情链接分类id
         $category_info = SiteLinkCategory::get(['unique_code'=>'footer_links']);
@@ -47,16 +49,15 @@ class SiteLink extends Base
         $this->assign('data_list',$data_list);
 
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
-    // 增加
+    /**
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function add()
     {
-        $title = '新增链接';
-        $this->assign('title',$title);
-
-        $template_path = $this->template_path;
         $site_id = $this->site_id;
         $this->assign('site_id',$site_id);
         // 分类id
@@ -66,10 +67,13 @@ class SiteLink extends Base
 
         $this->assign('data_list',$site_link_category_info);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
 
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_category_id= $request->post('category_id');
@@ -95,21 +99,24 @@ class SiteLink extends Base
         }
     }
 
-    // 编辑
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title = '信息编辑';
-        $this->assign('title',$title);
-
-        $template_path = $this->template_path;
-
         $top_link_info = SiteLinkModel::get($id);
 
         $this->assign('data_list',$top_link_info);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -132,7 +139,10 @@ class SiteLink extends Base
 
     }
 
-    // 删除
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = SiteLinkModel::get($id);

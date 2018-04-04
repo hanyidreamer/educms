@@ -8,7 +8,7 @@
 namespace app\admin\controller;
 
 
-class ArticleSpider extends Base
+class ArticleSpider extends AdminBase
 {
     public function index()
     {

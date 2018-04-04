@@ -8,40 +8,22 @@
 namespace app\admin\controller;
 
 use think\Request;
-use think\Session;
 use app\base\model\Article as ArticleModel;
 use app\base\model\ArticleCategory;
 use app\base\model\Admin;
 use app\base\controller\Upload;
-use app\base\controller\TemplatePath;
-use app\base\controller\SiteId;
-use app\base\controller\Base;
 
 
-class Article extends Base
+class Article extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='文章管理';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         $post_title= $request->post('title');
         if($post_title==!''){
             $data_sql['title'] =  ['like','%'.$post_title.'%'];
@@ -59,32 +41,18 @@ class Article extends Base
         }
         $this->assign('data_list',$data_list);
         $this->assign('data_count',$data_count);
-        return $this -> fetch($template_path);
+        return $this -> fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
-        $title='添加文章';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+        $site_id = $this->site_id;
         $article_category_info = new ArticleCategory();
         $category_list = $article_category_info->where(['site_id'=>$site_id]) -> select();
         foreach($category_list as $data)
@@ -93,9 +61,13 @@ class Article extends Base
             $data->title;
         }
         $this->assign('category_list',$category_list);
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         // 获取 网站略缩图 thumb文件
@@ -109,7 +81,7 @@ class Article extends Base
 
         $post_site_id = $request->post('site_id');
 
-        $admin_username=Session::get('username');
+        $admin_username= session('username');
         $admin_list = Admin::get(['username'=>$admin_username]);
         $mid=$admin_list['id'];
 
@@ -173,29 +145,16 @@ class Article extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑文章';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+        $site_id = $this->site_id;
         $article_info = new ArticleModel();
         $data_list = $article_info -> get($id);
         $this->assign('data_list',$data_list);
@@ -213,9 +172,13 @@ class Article extends Base
         }
         $this->assign('category_list',$category_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取 网站略缩图 thumb文件
@@ -227,7 +190,7 @@ class Article extends Base
             $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
         }
 
-        $admin_username=Session::get('username');
+        $admin_username= session('username');
         $admin_list = Admin::get(['username'=>$admin_username]);
         $mid=$admin_list['id'];
 
@@ -292,6 +255,10 @@ class Article extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = ArticleModel::get($id);
@@ -303,27 +270,13 @@ class Article extends Base
         }
     }
 
-    public function recycle(Request $request){
-        $title='文章回收站';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function recycle(Request $request)
+    {
         $post_title= $request->post('title');
         if($post_title==!''){
             $data_sql['title'] =  ['like','%'.$post_title.'%'];
@@ -341,10 +294,14 @@ class Article extends Base
         }
         $this->assign('data_list',$data_list);
         $this->assign('data_count',$data_count);
-        return $this -> fetch($template_path);
+        return $this -> fetch($this->template_path);
     }
 
-    // 恢复网站
+    /**
+     * 恢复网站
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function recovery($id){
         $user = ArticleModel::get($id);
         $user['status'] = 1;
@@ -355,7 +312,11 @@ class Article extends Base
         }
     }
 
-    //永久删除
+    /**
+     * 永久删除
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function del($id)
     {
         $user = ArticleModel::get($id);

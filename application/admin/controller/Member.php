@@ -9,17 +9,18 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\Member as MemberModel;
-use app\base\controller\Base;
 use app\base\controller\Upload;
 
-class Member extends Base
+class Member extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='会员管理';
-        $this->assign('title',$title);
         $site_id = $this->site_id;
-        $template_path = $this->template_path;
 
         // 找出列表数据
         $pages=15;
@@ -35,20 +36,20 @@ class Member extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
-        $title='新增';
-        $this->assign('title',$title);
-        $site_id = $this->site_id;
-        $this->assign('site_id',$site_id);
-
-        $template_path = $this->template_path;
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // 获取icon文件
@@ -99,19 +100,22 @@ class Member extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑';
-        $this->assign('title',$title);
-        $site_id = $this->site_id;
-        $this->assign('site_id',$site_id);
-        $template_path = $this->template_path;
-
         $data_list = MemberModel::get($id);
         $this->assign('data_list',$data_list);
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取icon文件
@@ -161,6 +165,10 @@ class Member extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = MemberModel::get($id);

@@ -8,15 +8,19 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\TradeServer as TradeServerModel;
+use app\base\model\TradeServer as TradeServerModel;
 
-class TradeServer extends Base
+class TradeServer extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='交易平台服务器管理';
-        $this->assign('title',$title);
-
         $post_server_name= $request->post('server_name');
         $trade_data = new TradeServerModel();
 
@@ -34,14 +38,17 @@ class TradeServer extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
-        $title='添加交易平台服务器';
-        $this->assign('title',$title);
-
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_platform= $request->post('platform');
@@ -66,16 +73,22 @@ class TradeServer extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑 交易平台服务器';
-        $this->assign('title',$title);
-
         $data_list = TradeServerModel::get($id);
         $this->assign('data_list',$data_list);
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -101,6 +114,10 @@ class TradeServer extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = TradeServerModel::get($id);

@@ -10,36 +10,20 @@ namespace app\admin\controller;
 use think\Request;
 use app\base\model\Slide as SlideModel;
 use app\base\model\SlideCategory;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\SiteId;
 use app\base\controller\Upload;
 
-class Slide extends Base
+class Slide extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '幻灯片列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new SlideModel;
@@ -60,40 +44,29 @@ class Slide extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function create()
     {
-        $title = '幻灯片';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
-
+        $site_id = $this->site_id;
         // 获取分类列表
         $category_data = new SlideCategory();
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // 获取上传的文件
@@ -151,31 +124,19 @@ class Slide extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title = '编辑幻灯片';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-        $this->assign('site_id',$site_id);
+        $site_id = $this->site_id;
         // 获取当前分类id
-        $categorg_id_info = SlideModel::get($id);
-        $categorg_id = $categorg_id_info['category_id'];
+        $category_id_info = SlideModel::get($id);
+        $category_id = $category_id_info['category_id'];
 
         // 获取信息
         $data_list = SlideModel::get($id);
@@ -186,14 +147,18 @@ class Slide extends Base
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        $my_categorg_data = SlideCategory::get($categorg_id);
-        $my_categorg_title = $my_categorg_data['title'];
-        $this->assign('my_category_id',$categorg_id);
-        $this->assign('my_categorg_title',$my_categorg_title);
+        $my_category_data = SlideCategory::get($category_id);
+        $my_category_title = $my_category_data['title'];
+        $this->assign('my_category_id',$category_id);
+        $this->assign('my_category_title',$my_category_title);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function update(Request $request)
     {
         // 获取上传的文件
@@ -251,6 +216,10 @@ class Slide extends Base
         }
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = SlideModel::get($id);

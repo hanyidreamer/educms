@@ -8,14 +8,21 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\Member;
-use app\common\model\MemberService as MemberServiceModel;
-use app\common\model\MemberServer;
-use app\common\model\MemberServicePackage;
-use app\common\model\TradeAccount;
+use app\base\model\Member;
+use app\base\model\MemberService as MemberServiceModel;
+use app\base\model\MemberServer;
+use app\base\model\MemberServicePackage;
+use app\base\model\TradeAccount;
 
-class MemberService extends Base
+class MemberService extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
         $post_username= $request->post('username');
@@ -105,11 +112,17 @@ class MemberService extends Base
 
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_username= $request->post('username');
@@ -137,6 +150,11 @@ class MemberService extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $data_list = MemberServiceModel::get($id);
@@ -144,6 +162,10 @@ class MemberService extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -171,6 +193,10 @@ class MemberService extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = MemberServiceModel::get($id);

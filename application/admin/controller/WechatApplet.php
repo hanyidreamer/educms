@@ -9,11 +9,8 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\WechatApplet as WechatAppletModel;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\Site;
 
-class WechatApplet extends Base
+class WechatApplet extends AdminBase
 {
     /**
      * @param Request $request
@@ -24,27 +21,7 @@ class WechatApplet extends Base
      */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '微信小程序';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $request->controller();
-        $action_name = $request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new Site();
-        $site_id = $site_id_data->info();
-
+        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new WechatAppletModel;
@@ -58,37 +35,15 @@ class WechatApplet extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
      * @return mixed
-     * @throws \think\exception\DbException
      */
     public function create()
     {
-        $title = '添加小程序';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new Site();
-        $site_id = $site_id_data->info();
-        $this->assign('site_id',$site_id);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -124,32 +79,11 @@ class WechatApplet extends Base
      */
     public function edit($id)
     {
-        $title = '编辑小程序';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = $this->request->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new Site();
-        $site_id = $site_id_data->info();
-        $this->assign('site_id',$site_id);
-
         // 获取信息
         $data_list = WechatAppletModel::get($id);
         $this->assign('data',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**

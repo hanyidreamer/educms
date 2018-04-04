@@ -9,36 +9,19 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\Sms as SmsModel;
-use app\base\model\SmsCategory;
-use app\base\controller\TemplatePath;
-use app\base\controller\Base;
-use app\base\controller\SiteId;
 
-class Sms extends Base
+class Sms extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        // 给当页面标题赋值
-        $title = '广告列表';
-        $this->assign('title',$title);
-
-        // 当前方法不同终端的模板路径
-        $controller_name = Request::instance()->controller();
-        $action_name = Request::instance()->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        // 获取网站id
-        $get_domain = Request::instance()->server('HTTP_HOST');
-        $this->assign('domain',$get_domain);
-        $site_id_data = new SiteId();
-        $site_id = $site_id_data->info($get_domain);
-
+        $site_id = $this->site_id;
         // 找出广告列表数据
         $post_title = $request->param('title');
         $data = new SmsModel;
@@ -52,17 +35,22 @@ class Sms extends Base
 
         $this->assign('data_list',$data_list);
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
-    // 增加网站
+    /**
+     * @return mixed
+     */
     public function add()
     {
-        $title = '新增短信接口';
-        $this->assign('title',$title);
         return $this->fetch();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $data_list = SmsModel::get($id);
@@ -70,6 +58,10 @@ class Sms extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id = $request->post('id');
@@ -103,7 +95,10 @@ class Sms extends Base
 
     }
 
-    // 新增短信接口
+    /**
+     * 新增短信接口
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_name = $request->post('name');
@@ -136,7 +131,10 @@ class Sms extends Base
         }
     }
 
-    // 删除
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = SmsModel::get($id);

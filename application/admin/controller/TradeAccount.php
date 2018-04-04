@@ -8,18 +8,22 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\common\model\TradeAccount as TradeAccountModel;
-use app\common\model\Member;
-use app\common\model\MemberServer;
-use app\common\model\TradeServer;
+use app\base\model\TradeAccount as TradeAccountModel;
+use app\base\model\Member;
+use app\base\model\MemberServer;
+use app\base\model\TradeServer;
 
-class TradeAccount extends Base
+class TradeAccount extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='交易账户管理';
-        $this->assign('title',$title);
-
         $post_account= $request->post('account');
         if(!empty($post_account)){
             $trade_data = new TradeAccountModel();
@@ -61,11 +65,14 @@ class TradeAccount extends Base
         return $this->fetch();
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function add()
     {
-        $title='添加交易账户';
-        $this->assign('title',$title);
-
         $member_data = new MemberServer;
         $member_list = $member_data->where(['status'=>1]) -> select();
         $this->assign('member_list',$member_list);
@@ -77,6 +84,10 @@ class TradeAccount extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function insert(Request $request)
     {
         $post_username= $request->post('username');
@@ -116,11 +127,13 @@ class TradeAccount extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
-        $title='编辑交易账户';
-        $this->assign('title',$title);
-
         $data_list = TradeAccountModel::get($id);
 
         $mid=$data_list['mid'];
@@ -144,6 +157,10 @@ class TradeAccount extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -185,6 +202,10 @@ class TradeAccount extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = TradeAccountModel::get($id);

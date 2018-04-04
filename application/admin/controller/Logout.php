@@ -7,19 +7,20 @@
  */
 namespace app\admin\controller;
 
-use think\Session;
-use think\Cookie;
-use app\base\controller\Base;
+use think\facade\Session;
+use think\facade\Cookie;
 
-class Logout extends Base
+class Logout extends AdminBase
 {
+    /**
+     * 注销登录
+     */
     public function index()
     {
-        // 注销登录
         Session::delete('username');
         Session::delete('password');
-        cookie::delete('password');
-        cookie::delete('username');
+        Cookie::delete('password');
+        Cookie::delete('username');
         $this->success('正在退出', '/admin/login/index');
     }
 }

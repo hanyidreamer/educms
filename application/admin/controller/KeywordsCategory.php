@@ -8,16 +8,20 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\index\model\KeywordsCategory as KeywordsCategoryModel;
+use app\base\model\KeywordsCategory as KeywordsCategoryModel;
 
 
-class KeywordsCategory extends Base
+class KeywordsCategory extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='关键词分类管理';
-        $this->assign('title',$title);
-
         $post_name= $request->post('title');
         if($post_name==!''){
             $data_sql['title'] =  ['like','%'.$post_name.'%'];
@@ -39,6 +43,12 @@ class KeywordsCategory extends Base
         return $this -> fetch();
     }
 
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function add()
     {
         $category_sql['parent_id'] = 0;
@@ -56,6 +66,9 @@ class KeywordsCategory extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
 
@@ -80,6 +93,13 @@ class KeywordsCategory extends Base
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $title='编辑文章分类';
@@ -101,6 +121,10 @@ class KeywordsCategory extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -126,6 +150,10 @@ class KeywordsCategory extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = KeywordsCategoryModel::get($id);

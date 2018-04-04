@@ -8,22 +8,19 @@
 namespace app\admin\controller;
 
 use think\Request;
-use app\index\model\Comment as ModelComment;
-use app\common\model\Member;
-use app\index\model\CommonInfo;
+use app\base\model\Comment as ModelComment;
+use app\base\model\Member;
 
-class Comment extends Base
+class Comment extends AdminBase
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function index(Request $request)
     {
-        $title='会员管理';
-        $this->assign('title',$title);
-
-        // 获取网站id
-        $get_domain=$request->domain();
-        $site_info= new CommonInfo();
-        $site_id = $site_info->site_id($get_domain);
-
+        $site_id = $this->site_id;
         $post_username= $request->post('title');
         if($post_username==!''){
             $data_sql['title'] =  ['like','%'.$post_username.'%'];
@@ -51,17 +48,14 @@ class Comment extends Base
         return $this->fetch();
     }
 
-    public function add(Request $request)
+    /**
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function add()
     {
-        $title='添加评论';
-        $this->assign('title',$title);
-
-        // 获取网站id
-        $get_domain=$request->domain();
-        $site_info= new CommonInfo();
-        $site_id = $site_info->site_id($get_domain);
-        $this->assign('site_id',$site_id);
-
         $member_info_sql['status'] = 1;
         $my_member_info = new Member();
         $member_info = $my_member_info->where($member_info_sql) ->limit(50) ->order('id desc') -> select();
@@ -70,6 +64,9 @@ class Comment extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     */
     public function insert(Request $request)
     {
         $post_site_id=$request->post('site_id');
@@ -95,17 +92,15 @@ class Comment extends Base
 
     }
 
-    public function edit(Request $request,$id)
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function edit($id)
     {
-        $title='编辑评论';
-        $this->assign('title',$title);
-
-        // 获取网站id
-        $get_domain=$request->domain();
-        $site_info= new CommonInfo();
-        $site_id = $site_info->site_id($get_domain);
-        $this->assign('site_id',$site_id);
-
         $member_info_sql['status'] = 1;
         $my_member_info = new Member();
         $member_info = $my_member_info->where($member_info_sql) ->limit(50) ->order('id desc') -> select();
@@ -121,6 +116,10 @@ class Comment extends Base
         return $this->fetch();
     }
 
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     */
     public function save(Request $request)
     {
         $post_id= $request->post('id');
@@ -147,6 +146,10 @@ class Comment extends Base
 
     }
 
+    /**
+     * @param $id
+     * @throws \think\exception\DbException
+     */
     public function delete($id)
     {
         $user = ModelComment::get($id);
