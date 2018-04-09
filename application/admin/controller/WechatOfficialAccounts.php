@@ -14,6 +14,7 @@ use app\base\controller\Upload;
 class WechatOfficialAccounts extends AdminBase
 {
     /**
+     * 微信公众号列表
      * @param Request $request
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException

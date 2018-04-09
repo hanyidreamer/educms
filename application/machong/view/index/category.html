@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" media="screen">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$category_info.name}_{$index_name}</title>
+    <meta name="keywords" content="{$category_info.keywords}" />
+    <meta name="description" content="{$category_info.description}" />
+    <style type="text/css">
+        html,body,div,a,p,img { margin: 0; padding: 0; }
+        html, body { height: 100%; font-family:Microsoft Yahei;}
+        .content{width:100%; margin: 0 auto;max-width: 640px;background-color: white;}
+        a { list-style: none; text-decoration: none; display:block; -webkit-tap-highlight-color:rgba(0,0,0,0);}
+        .all{margin:0px 20px;}
+        .box{position: relative;height: 85px;padding:15px 0px 15px 95px;border-bottom: 1px solid #ccc;}
+        .box .title{color: #666;line-height: 25px;white-space: nowrap;text-overflow: ellipsis;width: 100%;overflow: hidden;}
+        .box .area{color: #999;line-height: 20px;font-size: 14px;height: 40px;}
+        .box .time{color: #ACC0D5;line-height: 20px;font-size: 14px;}
+        .box .bg{width:85px;height: 85px;position: absolute;left: 0;top: 15px;}
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="all">
+        {volist name="category" id="data"}
+        <div class="box">
+            <a href="http://mayongtour.ddtui.com/article/{$data.id}">
+                {empty name="data.img_url"}
+                <img class="bg" src="/nopic.png">
+                {else /}
+                <img class="bg" src="http://mayongtour.ddtui.com{$data.img_url}">
+                {/empty}
+                <p class="title">{$data.title}</p>
+                <p class="time" style="font-size:12px;color:#666">{$data.description|raw}</p>
+                <div style="clear:both;"></div>
+            </a>
+        </div>
+        {/volist}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" media="screen">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$category_info.name}_{$index_name}</title>
+    <meta name="keywords" content="{$category_info.keywords}" />
+    <meta name="description" content="{$category_info.description}" />
+    <link href="http://mayongtour.ddtui.com/App/Tpl/Public/Style/morecityscen.css?1" type="text/css" rel="stylesheet">
+    <style>
+        .sub{border:none; background: url(http://mayongtour.ddtui.com/App/Tpl/Public/Images/sousou3.jpg) no-repeat; width: 19%;height: 37px; float: left;background-position: center;background-size:
+                30px;}
+        #header{ background: #fff;}
+        #main .nav{ background: #131521;}
+        #main .info h3.allview{ color: #f59900}
+        #main .info .view ul li a i{ background:url(http://mayongtour.ddtui.com/App/Tpl/Public/Images/arrow2.jpg);}
+        #content{ background: #333439}
+        #main .info .view ul{background:#333439;}
+        #main .info .view ul li{ background:#333439;border-bottom:1px solid #3c3d42;}
+        #main .info .view ul li a{ color: #a1a5ca}
+        #tabs #current a::after{border-bottom:7px solid #333439;}
+        #main{ background: #333439}
+        #tabs li a{ color: #a1a5ca}
+        #tabs #current a{color: #cfd1e8}
+        #header .search .searchbox{ background:#ccc; color: #333}
+        .box{width: 100%;position: relative;margin: 2% 0 0 0;}
+        .box .title{width: 100%;position: absolute;bottom: 0;background: rgba(0,0,0,0.8);color: #fff;line-height: 30px;text-indent: 1em;}
+        .box .bg{width: 100%;float: left;}
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <div id="header" style="border-bottom: 1px solid #ccc">
+        <div class="search">
+            <div class="searchBar">
+                <form action="http://mayongtour.ddtui.com/article/search.html" method="post">
+                    <a class="searchBtn"></a>
+
+                    <input id="searchtxt" type="text" name="search" class="searchbox"  placeholder="搜索镇区、景区">
+                    <input type="submit" class="sub" value="" />
+                    <a class="closeBtn"></a>
+                    <a class="closeTxt">取消</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="all">
+            {volist name="category" id="data"}
+            <div class="box">
+                <a href="http://mayongtour.ddtui.com/article/{$data.id}">
+                    {empty name="data.img_url"}
+                    <img class="bg" src="/nopic.png">
+                    {else /}
+                    <img class="bg" src="http://mayongtour.ddtui.com{$data.img_url}">
+                    {/empty}
+                    <p class="title">{$data.title}</p>
+                    <div style="clear:both;"></div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+    <div id="searchPage">
+        <h3>搜索结果</h3>
+        <div class="result">
+
+        </div>
+    </div>
+</div>
+<script src="http://mayongtour.ddtui.com/App/Tpl/Public/Js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="http://mayongtour.ddtui.com/App/Tpl/Public/Js/morecityscen.js?1" type="text/javascript"></script>
+
+</body>
+</html>

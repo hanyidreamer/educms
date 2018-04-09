@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" media="screen">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <title>搜索_麻涌旅游攻略</title>
+    <meta name="keywords" content="麻涌旅游" />
+    <meta name="description" content="尽享麻涌旅游资讯" />
+    <link href="http://mayongtour.ddtui.com/App/Tpl/Public/Style/morecityscen.css" type="text/css" rel="stylesheet">
+    <style>
+        .sub{border:none; background: url(http://mayongtour.ddtui.com/App/Tpl/Public/Images/sousou3.jpg) no-repeat; width: 19%;height: 37px; float: left;background-position: center;background-size:
+                30px;}
+        .result{margin:0px 20px;}
+        .box{position: relative;height: 85px;padding:15px 0px 15px 95px;border-bottom: 1px solid #ccc;}
+        .box .title{color: #666;line-height: 25px;white-space: nowrap;text-overflow: ellipsis;width: 100%;overflow: hidden;}
+        .box .area{color: #999;line-height: 20px;font-size: 13px;height: 40px;}
+        .box .time{color: #ACC0D5;line-height: 20px;font-size: 14px;}
+        .box .bg{width:85px;height: 85px;position: absolute;left: 0;top: 15px;}
+        #searchPage .result p {
+            line-height: 40px;
+            padding: 0px 2px;
+            border-bottom: 1px #b6b6b6 solid;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <div id="header" style="background: #ffffff">
+        <div class="search">
+            <div class="searchBar">
+                <form action="/machong/index/search" method="post">
+                    <a class="searchBtn"></a>
+                    <input id="searchtxt" type="text" name="keyword" class="searchbox" value="" style="background: #eeeeee">
+                    <input type="submit" class="sub" value="" />
+                    <a class="closeBtn"></a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="searchPage">
+        <h3>搜索结果</h3>
+        <div class="result" style="border: 1px solid rgb(203, 201, 192);">
+            {empty name="search"}
+            暂无相关信息！
+            {else /}
+            {volist name="search" id="data"}
+            <div class="box">
+                <a href="http://mayongtour.ddtui.com/article/{$data.id}">
+                    <img class="bg" src="http://mayongtour.ddtui.com{$data.img_url}">
+                    <p class="title" style="border-bottom: none;position: relative;bottom: 17px;">{$data.title}</p>
+                    <div class="area" style="position: relative;bottom: 17px;">{$data.description}</div>
+                </a>
+            </div>
+            {/volist}
+            {/empty}
+    </div>
+</div>
+<script src="http://mayongtour.ddtui.com/App/Tpl/Public/Js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script>
+    $("#searchPage").show();
+    $('.closeTxt').show();
+</script>
+</body>
+</html>
