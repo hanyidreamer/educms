@@ -15,6 +15,9 @@
     <title>{$title}</title>
     <Link href="http://mayongtour.ddtui.com/App/Tpl/Public/Style/swiper.min.css" type="text/css" rel="stylesheet" />
     <Link href="http://mayongtour.ddtui.com/App/Tpl/Public/Style/index3.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/search/css/normalize.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/search/css/style.css">
     <style>
         body {
             margin: 0 auto;
@@ -38,7 +41,7 @@
             clear: both;
         }
         .footer_link_img {
-            width: 27%;
+            width: 32%;
             float: left;
             padding-left: 2.8%;
             padding-right: 2.8%;
@@ -164,7 +167,12 @@
         <div class="swiper-pagination swiper-pagination-white"></div>
     </div>
     <div class="search_img">
-        <a href="/machong/index/search_index"><img src="http://gz-1251279962.cosgz.myqcloud.com/images/%E6%90%9C%E7%B4%A2.png" width="100%" /></a>
+            <div class="search d1">
+                <form action="/machong/index/search" method="post">
+                <input type="text" name="keyword" placeholder="搜索...">
+                    <button type="submit" style="font-size: 14px;color: #ffffff;"> 搜索</button>
+                </form>
+            </div>
     </div>
     <div class="menu_list_box">
         <div class="menu_list_left">
@@ -191,11 +199,11 @@
         </div>
     </div>
 </div>
+<div style="clear: both;"></div>
+<div class="line_img">
+    <img src="http://gz-1251279962.cosgz.myqcloud.com/images/%E5%AE%9E%E7%94%A8%E9%94%A6%E5%9B%8A.png" width="100%" />
+</div>
 
-<div>
-    <div class="line_img">
-        <img src="http://gz-1251279962.cosgz.myqcloud.com/images/%E5%AE%9E%E7%94%A8%E9%94%A6%E5%9B%8A.png" width="100%" />
-    </div>
     <div class="footer_link">
         <div class="footer_link_img">
             <a href="/machong/index/category/id/222"><img src="http://gz-1251279962.cosgz.myqcloud.com/images/%E4%BD%8F%E5%AE%BF.png"  width="100%"/></a>
@@ -206,10 +214,9 @@
         <div class="footer_link_img">
             <a href="/machong/index/category/id/223"><img src="http://gz-1251279962.cosgz.myqcloud.com/images/%E5%85%B6%E4%BB%96.png" width="100%"/></a>
         </div>
-
     </div>
-    <p style="clear:both;"></p>
-</div>
+    <div style="clear:both;"></div>
+
 
 <div class="copyright" style="/*margin-bottom:60px;*/width: 100%; text-align: center; padding-bottom: 10px; color: rgb(170, 170, 170); font-size: 10px; z-index: 10000;"><p>Copyright©2018 麻涌旅游局 版权所有</p><p>由<a href="http://m.qianbailang.com/" style="display: inline;color: rgb(170, 170, 170);">千百浪</a>提供技术支持  粤ICP备15005688号-29</p></div>
 
