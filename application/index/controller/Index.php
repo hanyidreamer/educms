@@ -16,7 +16,7 @@ use app\base\model\StudentCategory;
 class Index extends Base
 {
     /**
-     * 首页
+     * 网站首页
      * @return mixed
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
