@@ -1,0 +1,798 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    margin: 0 auto;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: #3d4145;
+    background-color: #ebebeb;
+    max-width: 650px;
+}
+
+img {
+    display: block;
+    border: 0;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+li {
+    list-style: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/******************************
+  众筹首页
+*******************************/
+
+.page-zhongchou {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.page-zhongchou .header {
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+.page-zhongchou .header .content {
+    padding: 20px 14px;
+}
+
+.page-zhongchou .header .des h1 {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 500;
+    color: #333;
+}
+
+.page-zhongchou .header .des p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.page-zhongchou .header .progress {
+    margin-bottom: 20px;
+}
+
+.page-zhongchou .header .progress .p-num {
+    font-size: 14px;
+    line-height: 36px;
+    color: #333;
+}
+
+.page-zhongchou .header .progress .p-num span {
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 24px;
+    line-height: 36px;
+    color: #f44;
+}
+
+.page-zhongchou .header .progress .p-bar {
+    margin-bottom: 5px;
+    height: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.page-zhongchou .header .progress .p-bar .color-progress {
+    height: 20px;
+    background: -webkit-linear-gradient(to right, #f94d10 0, #f00 100%);
+    background: linear-gradient(to right, #f94d10 0, #f00 100%);
+}
+
+.page-zhongchou .header .progress .p-progress {
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+}
+
+.page-zhongchou .header .progress .p-progress span {
+    margin-left: 3px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.page-zhongchou .header .data {
+    background-color: #f4f4f4;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
+}
+
+.page-zhongchou .header .data dl {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+.page-zhongchou .header .data dl dt {
+    font-family: "Heiti SC", "Helvetica", "Rotobo";
+    font-size: 20px;
+    line-height: 30px;
+    color: #f44;
+}
+
+.page-zhongchou .header .data dl dt span {
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+    vertical-align: baseline;
+}
+
+.page-zhongchou .header .data dl dd {
+    font-size: 12px;
+    line-height: 16px;
+    color: #999;
+}
+
+
+.page-zhongchou .rs-list {
+    padding: 0 14px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.page-zhongchou .rs-list h5 {
+    font-size: 16px;
+    line-height: 44px;
+    color: #666;
+    font-weight: normal;
+}
+
+
+.page-zhongchou .rs-list ul li a {
+    padding: 12px 0;
+    display: block;
+    border-top: 1px solid #eee;
+}
+
+.page-zhongchou .rs-list ul li a p {
+    float: left;
+    font-family: "Heiti SC", "Helvetica", "Rotobo";
+    font-size: 20px;
+    line-height: 30px;
+    color: #f44;
+}
+
+.page-zhongchou .rs-list ul li a p i {
+    margin-right: 5px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+    vertical-align: baseline;
+    font-style: normal;
+}
+
+.page-zhongchou .rs-list ul li a p b {
+    font-size: 12px;
+    line-height: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #fbf7ef;
+    color: #cac1b0;
+    font-weight: normal;
+    padding: 0 5px;
+    border-radius: 5px;
+    display: block;
+}
+
+.page-zhongchou .rs-list ul li a span {
+    position: relative;
+    display: block;
+    float: right;
+    font-size: 13px;
+    line-height: 30px;
+    color: #999;
+    padding-right: 16px;
+    margin-top: 10px;
+}
+
+.page-zhongchou .rs-list ul li a span:after {
+    content: " ";
+    position: absolute;
+    top: 9px;
+    right: 0;
+    display: block;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    height: 8px;
+    width: 8px;
+    border-width: 2px 2px 0 0;
+    border-color: #ccc;
+    border-style: solid;
+}
+
+.page-zhongchou .introduce {
+    background-color: #fff;
+}
+
+
+
+/******************************
+  客户列表
+*******************************/
+
+.zhongchou-list-title {
+    margin-bottom: 10px;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 52px;
+    color: #666;
+    text-align: center;
+    font-weight: normal;
+}
+
+.zhongchou-list {
+    padding: 0 15px;
+    background: #fff;
+}
+
+.zhongchou-list li a {
+    display: block;
+    padding: 7px 0;
+    height: 51px;
+    border-bottom: 1px solid #eee;
+}
+
+.zhongchou-list li:last-child {
+    border-bottom: none;
+}
+
+.zhongchou-list li .avatar {
+    float: left;
+    margin-right: 8px;
+    width: 36px;
+    height: 36px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+.zhongchou-list li .avatar img {
+    display: block;
+    width: 34px;
+    height: 34px;
+}
+
+.zhongchou-list li p.name {
+    display: block;
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.zhongchou-list li .col3 {
+    margin-left: 8px;
+    float: right;
+    font-size: 12px;
+    line-height: 36px;
+    color: #999;
+}
+
+.zhongchou-list li .add-data {
+    float: right;
+    margin-top: 6px;
+    margin-right: 20px;
+    padding: 0 5px;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+}
+
+.zhongchou-list li .add-data span {
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 12px;
+    line-height: 24px;
+    color: #888;
+}
+
+.zhongchou-list li .add-data span:first-child {
+    border-right: 1px solid #e5e5e5;
+}
+
+/******************************
+  页面底部 固定按钮
+*******************************/
+
+.footer-mobile {
+    height: 65px;
+}
+
+.mobile-footer {
+    margin-top: 15px;
+}
+
+.mobile-footer .logo {
+    margin: 0 auto 5px auto;
+    width: 205px;
+    height: 34px;
+    background: url(/share/images/login_mobile@2x.png) no-repeat 0 -75px;
+    background-size: 205px 109px;
+}
+
+.mobile-footer .copyright {
+    margin-bottom: 5px;
+    font-size: 11px;
+    line-height: 14px;
+    color: #ccc;
+    text-align: center;
+}
+
+.navgation {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    padding: 6px 14px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+
+.navgation a {
+    display: block;
+    background-color: #f44;
+    font-size: 18px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+/******************************
+  表单一
+*******************************/
+
+input {
+    border: 0;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    color: #333;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input[type="radio"] {
+    position: absolute !important;
+    margin: 0;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+
+.zhongchou-form1 {}
+
+.zhongchou-form1 .title {
+    margin-bottom: 10px;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 52px;
+    color: #666;
+    text-align: center;
+    font-weight: normal;
+}
+
+.zhongchou-form1 .level-wrap {}
+
+.zhongchou-form1 .level-wrap .level {
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.zhongchou-form1 .level-wrap .level .input-control {
+    position: relative;
+    border-bottom: 1px dashed #eee;
+}
+
+.zhongchou-form1 .level-wrap .level .input-control label {
+    padding: 15px 14px;
+    display: block;
+    font-family: "Heiti SC", "Helvetica", "Rotobo";
+    font-size: 20px;
+    line-height: 20px;
+    height: 50px;
+    color: #f44;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+
+.zhongchou-form1 .level-wrap .level .input-control label span {
+    font-size: 12px;
+    line-height: 20px;
+    vertical-align: baseline;
+}
+
+
+.zhongchou-form1 .level-wrap .level .input-control label:before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-color: #ccc;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: background-color .15s ease-in-out;
+    transition: background-color .15s ease-in-out;
+}
+
+.zhongchou-form1 .level-wrap .level .input-control label:after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    display: block;
+    width: 13px;
+    height: 9px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAPCAYAAAALWoRrAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIlJREFUeNpiYKAS+P//vwEQ3wfi89QyMACI3/+HgPPUMLDgPwKcB2IBSg2cTzUDQZqhhlDNQFiE4DYQamsAGRGC24VI3mggIULwexnNK/uxKUSLEBBYjzcMoWGE7CUQ2wFHhIDAfFIC/z2a5n40XxBvIAGDyTeQCIPnU6NgeE81A7EYTJaBAAEGAO6KgirPGZYtAAAAAElFTkSuQmCC);
+    background-size: 13px 9px;
+    background-repeat: no-repeat;
+}
+
+.zhongchou-form1 .level-wrap .level .input-control input[type="radio"]:checked + label {
+    color: #f44;
+}
+
+.zhongchou-form1 .level-wrap .level .input-control input[type="radio"]:checked + label:before {
+    background-color: #f44;
+}
+
+.zhongchou-form1 .level-wrap .level .intro {
+    padding: 15px 14px;
+}
+
+.zhongchou-form1 .level-wrap .level .intro .content {
+    font-size: 15px;
+    line-height: 20px;
+    color: #666;
+}
+
+.zhongchou-form1 .level-wrap .level .intro .count {
+    margin-top: 15px;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+    border-radius: 15px;
+    background-color: #f8f8f8;
+}
+
+.zhongchou-form1 .level-wrap .level .intro .count p {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.zhongchou-form1 .level-wrap .level .intro .count p:last-child {
+    margin-right: 0;
+}
+
+.zhongchou-form1 .level-wrap .level .intro .count p span {
+    color: #999;
+}
+
+/******************************
+  表单二
+*******************************/
+
+.zhongchou-form2 .title {
+    margin-bottom: 10px;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 52px;
+    color: #666;
+    text-align: center;
+    font-weight: normal;
+}
+
+.zhongchou-form2 .form-wrap {
+    padding: 15px 14px;
+    background-color: #fff;
+}
+
+.zhongchou-form2 .form-wrap dl {
+    position: relative;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.zhongchou-form2 .form-wrap dl dt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+    line-height: 40px;
+    color: #333;
+}
+
+.zhongchou-form2 .form-wrap dl dt i {
+    font-style: normal;
+    margin-right: 3px;
+    color: #f44;
+}
+
+.zhongchou-form2 .form-wrap dl dt span {
+    margin-right: 3px;
+    color: #fff;
+}
+
+.zhongchou-form2 .form-wrap dl dd .input {
+    display: block;
+    width: 100%;
+    padding: 10px 0 10px 50px;
+}
+
+.zhongchou-form2 .form-wrap .addr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.zhongchou-form2 .form-wrap .input-control {
+    position: relative;
+    margin: 10px 0;
+}
+
+.zhongchou-form2 .form-wrap .input-control label {
+    padding: 10px 10px;
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+    color: #666;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    border-radius: 3px;
+    border: 1px solid #eee;
+}
+
+.zhongchou-form2 .form-wrap .input-control label:before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-color: #ccc;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: background-color .15s ease-in-out;
+    transition: background-color .15s ease-in-out;
+}
+
+.zhongchou-form2 .form-wrap .input-control label:after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    display: block;
+    width: 13px;
+    height: 9px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAPCAYAAAALWoRrAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIlJREFUeNpiYKAS+P//vwEQ3wfi89QyMACI3/+HgPPUMLDgPwKcB2IBSg2cTzUDQZqhhlDNQFiE4DYQamsAGRGC24VI3mggIULwexnNK/uxKUSLEBBYjzcMoWGE7CUQ2wFHhIDAfFIC/z2a5n40XxBvIAGDyTeQCIPnU6NgeE81A7EYTJaBAAEGAO6KgirPGZYtAAAAAElFTkSuQmCC);
+    background-size: 13px 9px;
+    background-repeat: no-repeat;
+}
+
+.zhongchou-form2 .form-wrap .input-control input[type="radio"]:checked + label {
+    color: #f44;
+    border-color: #f44;
+}
+
+.zhongchou-form2 .form-wrap .input-control input[type="radio"]:checked + label:before {
+    background-color: #f44;
+}
+
+.zhongchou-form2 .class-info {
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #f4f4f4;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.zhongchou-form2 .class-info img {
+    float: left;
+    width: 64px;
+    height: 64px;
+}
+
+.zhongchou-form2 .class-info .info {
+    padding: 5px 5px 5px 70px;
+}
+
+.zhongchou-form2 .class-info .info h5 {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: normal;
+}
+
+.zhongchou-form2 .class-info .info h5 span {
+    font-size: 14px;
+    color: #999;
+}
+
+.zhongchou-form2 .class-info .info p {
+    font-family: "Heiti SC", "Helvetica", "Rotobo";
+    font-size: 16px;
+    line-height: 18px;
+    color: #f44;
+}
+
+.tijiao-btn {
+    padding: 12px 0;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-align: center;
+    background: #f44;
+    border-radius: 3px;
+}
+
+.page-zhongchou-suc {
+    font-size: 24px;
+    line-height: 5;
+    text-align: center;
+}
+
+
+.hide {
+    display: none!important;
+}
+
+/******************************
+  card
+*******************************/
+
+.vh {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.zc-card {
+    background-color: #fff;
+    padding: 20px 15px;
+}
+
+.zc-card .card-wrap {
+    position: relative;
+    width: 750px;
+    height: 320px;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    opacity: 0;
+}
+
+.zc-card .card-wrap .content {
+    position: absolute;
+    left: 30px;
+    top: 44px;
+    right: 18px;
+    bottom: 46px;
+}
+
+.zc-card .card-wrap .content .left p.dingdan {
+    margin-bottom: 10px;
+    font-size: 36px;
+    line-height: 40px;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, .2);
+}
+
+.zc-card .card-wrap .content .left p.name {
+    font-size: 36px;
+    line-height: 60px;
+    display: inline-block;
+    vertical-align: middle;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, .2);
+}
+
+.zc-card .card-wrap .content .right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24px;
+    line-height: 32px;
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, .2);
+}
+
+/*白银席位*/
+
+.zc-card .card-wrap.by .content {
+    color: #2a2a2b;
+}
+
+/*黄金席位*/
+
+.zc-card .card-wrap.hj .content {
+    color: #491615;
+}
+
+
+/*钻石席位*/
+
+.zc-card .card-wrap.zs .content {
+    color: #fff;
+}
+
+.zc-card .card-wrap.zs .content {
+    right: 38px;
+}
+
+
+
+.headlogo{position:relative;padding:5px 10px;width:100%;background-color:#1e1d22}
+.headlogo div{margin-right:3px;display:inline-block;vertical-align:middle;-wbkit-border-radius:50%;border-radius:50%;background-color:#f4f4f4}
+.headlogo img{display:block;width:24px;height:24px}
+.headlogo p{display:inline-block;vertical-align:middle;font-size:14px;line-height:24px;color:#999}
+.headlogo a{position:absolute;top:0;right:0;display:block;padding:0 10px;font-size:14px;line-height:34px;color:#999}
+.popup{position:fixed;top:0;left:0;bottom:0;z-index:999;width:100%;visibility:visible;-webkit-transform:translateX(100%);transform:translateX(100%);-webkit-transition:all .3s ease;transition:all .3s ease;opacity:0;background-color:rgba(0,0,0,.9)}
+.popup .closed{position:absolute;bottom:20px;left:50%;width:40px;height:40px;margin-left:-20px;overflow:hidden;background-color:#333;-webkit-border-radius:50%;border-radius:50%}
+.popup .closed:after,.popup .closed:before{content:'';position:absolute;height:2px;width:60%;top:50%;left:20%;margin-top:-1px;-webkit-border-radius:1px;border-radius:1px;background:#ccc}
+.popup .closed:before{-webkit-transform:rotate(45deg);transform:rotate(45deg)}
+.popup .closed:after{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
+.popup .cocntent{position:absolute;top:50%;left:0;margin-top:-151px;padding:0 20px;width:100%;font-size:15px;line-height:16px;text-align:center;color:#ccc}
+.popup .cocntent img{margin:20px auto;display:block;width:200px;height:200px;border:10px solid #fff;background-color:#fff}
+
+
