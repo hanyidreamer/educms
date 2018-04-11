@@ -1,14 +1,14 @@
-{include file="$public_header"}
+{include file="$public_header" title="编辑管理员"}
 
 <form action="/admin/admin/update" enctype="multipart/form-data" method="post" class="definewidth m20">
     <input type="hidden" name="id" value="{$data.id}" />
-    <input type="hidden" name="site_id" value="{$site_id}" />
+    <input type="hidden" name="site_id" value="{$site.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
             <td width="15%" class="tableleft">管理员类型</td>
             <td>
                 <select name="category_id">
-                    <option value="{$my_category_id}">{$my_categorg_title}</option>
+                    <option value="{$my_category_id}">{$my_category_title}</option>
                     {volist name="category" id="list" }
                     <option value="{$list.id}">{$list.title}</option>
                     {/volist}
@@ -68,7 +68,7 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="submit" class="btn btn-primary">保存</button>
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>

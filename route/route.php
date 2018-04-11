@@ -15,6 +15,7 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+
 return [
     'category/:id'   => 'index/category/view',
     'article/:id'   => 'index/article/view',

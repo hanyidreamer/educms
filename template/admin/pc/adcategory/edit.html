@@ -1,7 +1,7 @@
-{include file="$public_header"}
+{include file="$public_header" title="编辑广告分类"}
 
 <form action="/admin/ad_category/update" enctype="multipart/form-data" method="post" class="definewidth m20">
-    <input type="hidden" name="site_id" value="{$site_id}" />
+    <input type="hidden" name="site_id" value="{$site.id}" />
     <input type="hidden" name="id" value="{$data.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
@@ -18,7 +18,7 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="submit" class="btn btn-primary">保存</button>
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>

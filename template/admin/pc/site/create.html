@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="新增网站"}
 
 <form action="/admin/site/save" enctype="multipart/form-data"  method="post">
 <table class="table table-bordered table-hover definewidth m10">
@@ -8,7 +8,13 @@
     </tr>
     <tr>
         <td width="10%" class="tableleft">网站管理员</td>
-        <td><input type="text" name="admin_id"/></td>
+        <td>
+            <select name="admin_id">
+                {volist name="admin" id="data" }
+                <option value="{$data.id}">{$data.username}（{$data.nickname}）</option>
+                {/volist}
+            </select>
+        </td>
     </tr>
     <tr>
         <td class="tableleft">网站名称</td>
@@ -21,7 +27,7 @@
     <tr>
         <td class="tableleft">网站描述</td>
         <td>
-            <textarea type="text" name="desc" rows="3" cols="40"></textarea>
+            <textarea type="text" name="description" rows="3" cols="40"></textarea>
         </td>
     </tr>
     <tr>
@@ -117,7 +123,7 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="submit" class="btn btn-primary">保存</button>
             <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
         </td>
     </tr>

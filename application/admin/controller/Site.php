@@ -29,8 +29,12 @@ class Site extends AdminBase
         $site_admin_data = Admin::get(['username'=>$admin_username]);
         $admin_id = $site_admin_data['id'];
 
-        $site_info_sql['admin_id'] = $admin_id;
-        $site_info_sql['status'] = 1;
+        if($admin_id == 1){
+            $site_info_sql['status'] = 1;
+        }else{
+            $site_info_sql['admin_id'] = $admin_id;
+            $site_info_sql['status'] = 1;
+        }
         $site_data = new SiteModel();
         $site_info = $site_data->where($site_info_sql) -> select();
         $site_count = count($site_info);
@@ -50,249 +54,209 @@ class Site extends AdminBase
     }
 
     /**
+     * 新增网站
      * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function create()
     {
+        // 网站管理员信息
+        $data = new Admin();
+        $admin = $data->where('status','=',1)->select();
+        $this->assign('admin',$admin);
+
         return $this->fetch($this->template_path);
     }
 
     /**
-     * @param Request $request
+     * 保存新增网站数据
+     * @throws \think\exception\DbException
      */
-    public function save(Request $request)
+    public function save()
     {
+        // 上传文件
+        $upload = new Upload();
         // 获取icon文件
-        $file_icon = $request->file('icon');
-        if(!empty($file_icon)){
-            $local_icon = $file_icon->getInfo('tmp_name');
-            $icon_filename = $file_icon->getInfo('name');
-            $icon_file_info = new Upload();
-            $post_icon=$icon_file_info->qcloud_file($local_icon,$icon_filename);
-        }
-
+        $post_icon = $upload->qcloud_file('icon');
         // 获取logo文件
-        $file_logo = $request->file('logo');
-        if(!empty($file_logo)){
-            $local_logo = $file_logo->getInfo('tmp_name');
-            $logo_filename = $file_logo->getInfo('name');
-            $logo_file_info = new Upload();
-            $post_logo=$logo_file_info->qcloud_file($local_logo,$logo_filename);
-        }
+        $post_logo = $upload->qcloud_file('logo');
 
         // 获取 分类略缩图 thumb文件
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $post_thumb = $upload->qcloud_file('thumb');
 
         // 获取 二维码图片文件
-        $file_qrcode = $request->file('qrcode');
-        if(!empty($file_qrcode)){
-            $local_qrcode = $file_qrcode->getInfo('tmp_name');
-            $qrcode_filename = $file_qrcode->getInfo('name');
-            $qrcode_file_info = new Upload();
-            $post_qrcode = $qrcode_file_info->qcloud_file($local_qrcode,$qrcode_filename);
-        }
+        $post_qrcode = $upload->qcloud_file('qrcode');
 
+        $post_domain = $this->request->post('domain');
+        $post_admin_id = $this->request->post('admin_id');
+        $post_title= $this->request->post('title');
+        $post_description = $this->request->post('description');
+        $post_keywords= $this->request->post('keywords');
 
-        $post_domain = $request->post('domain');
-        $post_admin_id = $request->post('admin_id');
-        $post_title= $request->post('title');
-        $post_desc = $request->post('desc');
-        $post_keywords= $request->post('keywords');
+        $post_home_title = $this->request->post('home_title');
+        $post_template_id = $this->request->post('template_id');
+        $post_stats = $this->request->post('stats');
+        $post_icp = $this->request->post('icp');
+        $post_copyright = $this->request->post('copyright');
 
-        $post_home_title = $request->post('home_title');
-        $post_template_id = $request->post('template_id');
-        $post_stats = $request->post('stats');
-        $post_icp = $request->post('icp');
-        $post_copyright = $request->post('copyright');
+        $post_tel = $this->request->post('tel');
+        $post_phone = $this->request->post('phone');
+        $post_qq = $this->request->post('qq');
+        $post_email = $this->request->post('email');
+        $post_address = $this->request->post('address');
 
-        $post_tel = $request->post('tel');
-        $post_phone = $request->post('phone');
-        $post_qq = $request->post('qq');
-        $post_email = $request->post('email');
-        $post_address = $request->post('address');
-
-        $post_status= $request->post('status');
+        $post_status= $this->request->post('status');
         if($post_domain=='' or $post_title==''){
             $this->error('网站域名和名称不能为空');
         }
-        $user = new SiteModel;
-        $user['domain'] = $post_domain;
-        $user['title'] = $post_title;
-        $user['desc'] = $post_desc;
-        $user['keywords'] = $post_keywords;
+        $data = new SiteModel;
+        $data['domain'] = $post_domain;
+        $data['title'] = $post_title;
+        $data['description'] = $post_description;
+        $data['keywords'] = $post_keywords;
         if(!empty($post_icon)){
-            $user['icon'] = $post_icon;
+            $data['icon'] = $post_icon;
         }
         if(!empty($post_thumb)){
-            $user['thumb'] = $post_thumb;
+            $data['thumb'] = $post_thumb;
         }
         if(!empty($post_logo)){
-            $user['logo'] = $post_logo;
+            $data['logo'] = $post_logo;
         }
         if(!empty($post_qrcode)){
-            $user['qrcode'] = $post_qrcode;
+            $data['qrcode'] = $post_qrcode;
         }
+        $data['home_title'] = $post_home_title;
+        $data['template_id'] = $post_template_id;
+        $data['stats'] = $post_stats;
+        $data['icp'] = $post_icp;
+        $data['copyright'] = $post_copyright;
+        $data['admin_id'] = $post_admin_id;
+        $data['tel'] = $post_tel;
+        $data['phone'] = $post_phone;
+        $data['qq'] = $post_qq;
+        $data['email'] = $post_email;
+        $data['address'] = $post_address;
+        $data['status'] = $post_status;
 
-        $user['home_title'] = $post_home_title;
-        $user['template_id'] = $post_template_id;
-        $user['stats'] = $post_stats;
-        $user['icp'] = $post_icp;
-        $user['copyright'] = $post_copyright;
-        $user['admin_id'] = $post_admin_id;
-
-        $user['tel'] = $post_tel;
-        $user['phone'] = $post_phone;
-        $user['qq'] = $post_qq;
-        $user['email'] = $post_email;
-        $user['address'] = $post_address;
-
-        $user['status'] = $post_status;
-
-        if ($user->save()) {
+        if ($data->save()) {
             $this->success('新增网站成功', '/admin/site/index');
         } else {
             $this->error('操作失败');
         }
     }
 
-
+    /**
+     * 读取网站信息
+     * @param $id
+     * @return mixed
+     */
     public function read($id)
     {
-        // 查看页
+       return $id;
     }
 
-
     /**
+     * 编辑网站信息
      * @param $id
      * @return mixed
      * @throws \think\exception\DbException
      */
     public function edit($id)
     {
+        // 网站管理员信息
+        $data = new Admin();
+        $admin = $data->where('status','=',1)->select();
+        $this->assign('admin',$admin);
+
         // 获取网站信息
         $site_info = SiteModel::get($id);
-        $this->assign('site',$site_info);
+        $this->assign('site_info',$site_info);
+
+        // 当前管理员信息
+        $site_admin = Admin::get($site_info['admin_id']);
+        $this->assign('site_admin',$site_admin);
 
         return $this->fetch($this->template_path);
     }
 
-
     /**
+     * 更新网站信息
      * @param Request $request
      * @param $id
      * @throws \think\exception\DbException
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
+        $upload = new Upload();
         // 获取icon文件
-        $file_icon = $request->file('icon');
-        if(!empty($file_icon)){
-            $local_icon = $file_icon->getInfo('tmp_name');
-            $icon_filename = $file_icon->getInfo('name');
-            $icon_file_info = new Upload();
-            $post_icon=$icon_file_info->qcloud_file($local_icon,$icon_filename);
-        }
-
+        $post_icon = $upload->qcloud_file('icon');
         // 获取logo文件
-        $file_logo = $request->file('logo');
-        if(!empty($file_logo)){
-            $local_logo = $file_logo->getInfo('tmp_name');
-            $logo_filename = $file_logo->getInfo('name');
-            $logo_file_info = new Upload();
-            $post_logo=$logo_file_info->qcloud_file($local_logo,$logo_filename);
-        }
-
+        $post_logo = $upload->qcloud_file('logo');
         // 获取 分类略缩图 thumb文件
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
-
+        $post_thumb = $upload->qcloud_file('thumb');
         // 获取 二维码图片文件
-        $file_qrcode = $request->file('qrcode');
-        if(!empty($file_qrcode)){
-            $local_qrcode = $file_qrcode->getInfo('tmp_name');
-            $qrcode_filename = $file_qrcode->getInfo('name');
-            $qrcode_file_info = new Upload();
-            $post_qrcode = $qrcode_file_info->qcloud_file($local_qrcode,$qrcode_filename);
-        }
-
-
-        $post_domain = $request->post('domain');
-        $post_admin_id = $request->post('admin_id');
-        $post_title= $request->post('title');
-        $post_desc = $request->post('desc');
-        $post_keywords= $request->post('keywords');
-
-        $post_home_title = $request->post('home_title');
-        $post_template_id = $request->post('template_id');
-        $post_stats = $request->post('stats');
-        $post_icp = $request->post('icp');
-        $post_copyright = $request->post('copyright');
-
-        $post_tel = $request->post('tel');
-        $post_phone = $request->post('phone');
-        $post_qq = $request->post('qq');
-        $post_email = $request->post('email');
-        $post_address = $request->post('address');
-
-        $post_status= $request->post('status');
+        $post_qrcode = $upload->qcloud_file('qrcode');
+        $post_domain = $this->request->post('domain');
+        $post_admin_id = $this->request->post('admin_id');
+        $post_title= $this->request->post('title');
+        $post_desc = $this->request->post('description');
+        $post_keywords= $this->request->post('keywords');
+        $post_home_title = $this->request->post('home_title');
+        $post_template_id = $this->request->post('template_id');
+        $post_stats = $this->request->post('stats');
+        $post_icp = $this->request->post('icp');
+        $post_copyright = $this->request->post('copyright');
+        $post_tel = $this->request->post('tel');
+        $post_phone = $this->request->post('phone');
+        $post_qq = $this->request->post('qq');
+        $post_email = $this->request->post('email');
+        $post_address = $this->request->post('address');
+        $post_status= $this->request->post('status');
         if($post_domain=='' or $post_title==''){
             $this->error('网站域名和名称不能为空');
         }
 
-        $user = SiteModel::get($id);
-        $user['domain'] = $post_domain;
-        $user['title'] = $post_title;
-        $user['desc'] = $post_desc;
-        $user['keywords'] = $post_keywords;
+        $data = SiteModel::get($id);
+        $data['domain'] = $post_domain;
+        $data['title'] = $post_title;
+        $data['description'] = $post_desc;
+        $data['keywords'] = $post_keywords;
         if(!empty($post_icon)){
-            $user['icon'] = $post_icon;
+            $data['icon'] = $post_icon;
         }
         if(!empty($post_thumb)){
-            $user['thumb'] = $post_thumb;
+            $data['thumb'] = $post_thumb;
         }
         if(!empty($post_logo)){
-            $user['logo'] = $post_logo;
+            $data['logo'] = $post_logo;
         }
         if(!empty($post_qrcode)){
-            $user['qrcode'] = $post_qrcode;
+            $data['qrcode'] = $post_qrcode;
         }
-
-        $user['home_title'] = $post_home_title;
-        $user['template_id'] = $post_template_id;
-        $user['stats'] = $post_stats;
-        $user['icp'] = $post_icp;
-        $user['copyright'] = $post_copyright;
-        $user['admin_id'] = $post_admin_id;
-
-        $user['tel'] = $post_tel;
-        $user['phone'] = $post_phone;
-        $user['qq'] = $post_qq;
-        $user['email'] = $post_email;
-        $user['address'] = $post_address;
-        $user['status'] = $post_status;
-
-
-        if ($user->save()) {
+        $data['home_title'] = $post_home_title;
+        $data['template_id'] = $post_template_id;
+        $data['stats'] = $post_stats;
+        $data['icp'] = $post_icp;
+        $data['copyright'] = $post_copyright;
+        $data['admin_id'] = $post_admin_id;
+        $data['tel'] = $post_tel;
+        $data['phone'] = $post_phone;
+        $data['qq'] = $post_qq;
+        $data['email'] = $post_email;
+        $data['address'] = $post_address;
+        $data['status'] = $post_status;
+        if ($data->save()) {
             $this->success('更新网站成功', '/admin/site/index');
         } else {
             $this->error('操作失败');
         }
-
     }
 
-
     /**
+     * 删除网站
      * @param $id
      * @throws \think\exception\DbException
      */

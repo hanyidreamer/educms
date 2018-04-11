@@ -127,9 +127,9 @@ class AdminCategory extends AdminBase
         $data = AdminCategoryModel::get($id);
         if ($data) {
             $data->delete();
-            $this->success('删除广告分类成功', '/admin/admin_category/index');
+            $this->success('删除管理员分类成功', '/admin/admin_category/index');
         } else {
-            $this->error('您要删除的广告分类不存在');
+            $this->error('您要删除的管理员分类不存在');
         }
     }
 

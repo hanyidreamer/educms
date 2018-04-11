@@ -26,9 +26,7 @@ class Index extends AdminBase
         $site_info = $my_site_info->where($site_info_sql) -> select();
         $this->assign('site_info',$site_info);
 
-
-        $admin_type = $admin_info['category_id'];
-        if($admin_type==1){
+        if($admin_id==1){
             return $this->fetch($this->template_path);
         }
         else{

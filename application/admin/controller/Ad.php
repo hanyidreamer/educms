@@ -23,9 +23,11 @@ class Ad extends AdminBase
         $post_title = $this->request->param('title');
         $data = new AdModel;
         if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+            $data_list = $data->where('status' ,'=',1)
+                ->where('title','like','%'.$post_title.'%')
+                ->select();
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            $data_list = $data->where('status',1)->where('site_id',$site_id)->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -64,18 +66,13 @@ class Ad extends AdminBase
     /**
      * 保存广告数据
      * @param Request $request
+     * @throws \think\exception\DbException
      */
     public function save(Request $request)
     {
+        $upload = new Upload();
         // 获取 略缩图 thumb文件
-        $post_thumb = '';
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb = $thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $post_thumb = $upload->qcloud_file('thumb');
 
         $post_site_id = $request->param('site_id');
         $post_category_id = $request->param('category_id');
@@ -120,8 +117,8 @@ class Ad extends AdminBase
         $site_id = $this->site_id;
 
         // 获取当前分类id
-        $categorg_id_info = AdModel::get($id);
-        $categorg_id = $categorg_id_info['category_id'];
+        $category_id_info = AdModel::get($id);
+        $category_id = $category_id_info['category_id'];
 
         // 获取广告信息
         $data_list = AdModel::get($id);
@@ -132,10 +129,10 @@ class Ad extends AdminBase
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        $my_categorg_data = AdCategory::get($categorg_id);
-        $my_categorg_title = $my_categorg_data['title'];
-        $this->assign('my_category_id',$categorg_id);
-        $this->assign('my_categorg_title',$my_categorg_title);
+        $my_category_data = AdCategory::get($category_id);
+        $my_category_title = $my_category_data['title'];
+        $this->assign('my_category_id',$category_id);
+        $this->assign('my_category_title',$my_category_title);
 
         return $this->fetch($this->template_path);
     }
@@ -147,14 +144,10 @@ class Ad extends AdminBase
      */
     public function update(Request $request)
     {
-        // 获取 分类略缩图 thumb文件
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $upload = new Upload();
+        // 获取 略缩图 thumb文件
+        $post_thumb = $upload->qcloud_file('thumb');
+
         $post_id = $request->post('id');
         $post_site_id = $request->post('site_id');
         $post_category_id = $request->post('category_id');

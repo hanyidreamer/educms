@@ -7,7 +7,9 @@
  */
 namespace app\base\controller;
 
-use Qcloud_cos\Cosapi;
+use app\base\model\QcloudCos;
+use Qcloud\Cos\Client;
+use think\facade\Env;
 
 
 class Upload extends Base
@@ -21,51 +23,89 @@ class Upload extends Base
         return $this->fetch();
     }
 
-    // 上传程序服务器文件
-    public function upload_file()
+    /**
+     * 上传本地服务器文件
+     * @param string $name
+     * @return string
+     */
+    public function upload_file($name = 'file')
     {
-        // 获取上传的文件信息
-        $file = request()->file('images');
+        $file = $this->request->file($name);
+        $qcloud_file_path = '';
+        if(!empty($file)){
+            $info = $file->move( 'uploads');
+            if($info){
+                $file_ext = $info->getExtension();
+                $file_ext_array = array('jpg','png','bmp','gif','ico','rar','zip','jpeg','xls','xlsx','doc','docx','pdf','ico');
+                if (!in_array($file_ext, $file_ext_array))
+                {
+                    $this->error('不支持.'.$file_ext.'格式的文件上传！');
+                }
+                $file_name = $info->getFilename();
+                $file_time = date('Ymd',time());
+                $qcloud_file_path = 'uploads/'.$file_time.'/'.$file_name;
+            }else{
+                // 上传失败获取错误信息
+                return $file->getError();
+            }
+        }
+        return $qcloud_file_path;
     }
 
     /**
-     * 上传文件到腾讯云
-     * @param $local_file_name
-     * @param $filename
+     * 上传到腾讯云
+     * @param string $name
      * @return string
+     * @throws \think\exception\DbException
      */
-    public function qcloud_file($local_file_name,$filename)
+    public function qcloud_file($name = 'file')
     {
-        $web_url = 'https://waihui-10080712.file.myqcloud.com';
-        $time = time();
-        $date = date('Y-m-d',$time);
-        $bucketName = 'waihui';  // bucket名称
-        $srcPath = $local_file_name;  // 本地文件路径
-        $dstFolder = '/upload/'.$date.'/'; // 上传的文件夹
-        $dstPath = $dstFolder.$time.$filename;  // 上传的文件路径
+        $qcloud_file_path = '';
+        $file = $this->request->file($name);
+        if(!empty($file)){
+            $info = $file->move( 'uploads');
+            if($info){
+                $file_ext = $info->getExtension();
+                $file_ext_array = array('jpg','png','bmp','gif','ico','rar','zip','jpeg','xls','xlsx','doc','docx','pdf','ico');
+                if (!in_array($file_ext, $file_ext_array))
+                {
+                    $this->error('不支持.'.$file_ext.'格式的文件上传！');
+                }
+                $file_path = $info->getSaveName();
+                $root_path = Env::get('root_path');
+                $local_file_path = $root_path.'web\uploads\\'.$file_path;
+                $file_name = $info->getFilename();
+                $file_time = date('Ymd',time());
+                $qcloud_file_path = 'uploads/'.$file_time.'/'.$file_name;
 
-        Cosapi::setTimeout(3600);
-
-        //创建文件夹
-        Cosapi::createFolder($bucketName, $dstFolder);
-
-        //上传文件
-        $bizAttr = ""; // 目录属性信息，业务自行维护
-        $insertOnly = 0; // 是否覆盖同名文件:0 覆盖,1:不覆盖
-        $sliceSize = 3 * 1024 * 1024;  // 分片大小
-        $uploadRet = Cosapi::upload($bucketName, $srcPath, $dstPath,$bizAttr,$sliceSize, $insertOnly);
-        $code = $uploadRet['code']; // 状态码 0 为成功
-        $message=$uploadRet['message']; // 返回值 success 为成功
-        $access_url=$uploadRet['data']['access_url'];  // 生成的资源可访问的url(仅文件有效)
-        $resource_path=$uploadRet['data']['resource_path']; // 资源路径
-        $source_url=$uploadRet['data']['source_url'];  // 资源url
-        $url=$uploadRet['data']['url'];
-
-        $out_url=$web_url.$resource_path;
-
-        return $out_url;
-       // dump($uploadRet);
-
+                // 上传到腾讯云
+                $cos_data = new QcloudCos();
+                $cos_info = $cos_data->get(['site_id'=>$this->site_id]);
+                if(empty($cos_info)){
+                    $cos_info = $cos_data->get(['site_id'=>0]);
+                }
+                $cosClient = new Client(array('region' => $cos_info['region'],
+                    'credentials'=> array(
+                        'appId' => $cos_info['app_id'],
+                        'secretId'    => $cos_info['secret_id'],
+                        'secretKey' => $cos_info['secret_key'])));
+                $result = $cosClient->upload(
+                    $bucket = $cos_info['bucket_name'].'-'.$cos_info['app_id'],
+                    $key = $qcloud_file_path,
+                    $body = fopen($local_file_path, 'rb'),
+                    $options = array(
+                        "ACL"=>'private',
+                        'CacheControl' => 'private'));
+                if(empty($result['Location'])){
+                    $this->error('文件上传不成功');
+                }
+                $qcloud_file_path = $cos_info['url'].$qcloud_file_path;
+            }else{
+                // 上传失败获取错误信息
+                return $file->getError();
+            }
+        }
+        return $qcloud_file_path;
     }
 
 }

@@ -24,18 +24,31 @@ class Admin extends AdminBase
     public function index()
     {
         $site_id = $this->site_id;
-        // 找出列表数据
         $post_username = $this->request->param('username');
+
         $data = new AdminModel;
-        if(!empty($post_username)){
-            $data_list = $data->where([
-                'site_id'=>$site_id,
-                'status' => 1,
-                'username' => ['like','%'.$post_username.'%']
-            ])
-                ->select();
+        $admin_data = $data->get(['username'=>session('username')]);
+        if($admin_data['id'] == 1){
+            if(!empty($post_username)){
+                $data_list = $data->where([
+                    'status' => 1,
+                    'username' => ['like','%'.$post_username.'%']
+                ])
+                    ->select();
+            }else{
+                $data_list = $data->where(['status'=>1])->select();
+            }
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            if(!empty($post_username)){
+                $data_list = $data->where([
+                    'site_id'=>$site_id,
+                    'status' => 1,
+                    'username' => ['like','%'.$post_username.'%']
+                ])
+                    ->select();
+            }else{
+                $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            }
         }
 
         foreach ($data_list as $data){
@@ -79,15 +92,9 @@ class Admin extends AdminBase
      */
     public function save(Request $request)
     {
+        $upload = new Upload();
         // 获取 略缩图 icon文件
-        $post_icon = '';
-        $file_thumb = $request->file('icon');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_icon = $thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $post_icon = $upload->qcloud_file('icon');
 
         $post_site_id = $request->param('site_id');
         $post_category_id = $request->param('category_id');
@@ -150,8 +157,8 @@ class Admin extends AdminBase
     {
         $site_id = $this->site_id;
         // 获取当前分类id
-        $categorg_id_info = AdminModel::get($id);
-        $categorg_id = $categorg_id_info['category_id'];
+        $category_id_info = AdminModel::get($id);
+        $category_id = $category_id_info['category_id'];
 
         // 获取信息
         $data_list = AdminModel::get($id);
@@ -162,10 +169,10 @@ class Admin extends AdminBase
         $category = $category_data->where(['site_id'=>$site_id])->select();
         $this->assign('category',$category);
 
-        $my_categorg_data = AdminCategory::get($categorg_id);
-        $my_categorg_title = $my_categorg_data['title'];
-        $this->assign('my_category_id',$categorg_id);
-        $this->assign('my_categorg_title',$my_categorg_title);
+        $my_category_data = AdminCategory::get($category_id);
+        $my_category_title = $my_category_data['title'];
+        $this->assign('my_category_id',$category_id);
+        $this->assign('my_category_title',$my_category_title);
 
         return $this->fetch($this->template_path);
     }
@@ -177,15 +184,9 @@ class Admin extends AdminBase
      */
     public function update(Request $request)
     {
-        // 获取 分类略缩图 thumb文件
-        $post_icon = '';
-        $file_thumb = $request->file('icon');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_icon = $thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $upload = new Upload();
+        // 获取 略缩图 icon文件
+        $post_icon = $upload->qcloud_file('icon');
 
         $post_id = $request->post('id');
         $post_site_id = $request->post('site_id');
@@ -241,9 +242,9 @@ class Admin extends AdminBase
         $data = AdminModel::get($id);
         if ($data) {
             $data->delete();
-            $this->success('删除广告成功', '/admin/admin/index');
+            $this->success('删除管理员成功', '/admin/admin/index');
         } else {
-            $this->error('您要删除的广告不存在');
+            $this->error('您要删除的管理员不存在');
         }
     }
 

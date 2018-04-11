@@ -1,101 +1,108 @@
-{include file="$public_header"}
+{include file="$public_header" title="编辑网站"}
 
 <form action="/admin/site/update" enctype="multipart/form-data" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="{$site.id}" />
+<input type="hidden" name="id" value="{$site_info.id}" />
 <table class="table table-bordered table-hover ">
     <tr>
         <td width="15%" class="tableleft">网站域名</td>
-        <td><input type="text" name="domain" value="{$site.domain}"/></td>
+        <td><input type="text" name="domain" value="{$site_info.domain}"/></td>
     </tr>
     <tr>
-        <td width="10%" class="tableleft">网站管理员</td>
-        <td><input type="text" name="admin_id" value="{$site.admin_id}"/></td>
+        <td class="tableleft">网站管理员</td>
+        <td>
+            <select name="admin_id">
+                <option value="{$site_admin.id}" selected="selected">{$site_admin.username}({$site_admin.nickname})</option>
+                {volist name="admin" id="data" }
+                <option value="{$data.id}">{$data.username}({$data.nickname})</option>
+                {/volist}
+            </select>
+        </td>
     </tr>
     <tr>
         <td class="tableleft">网站名称</td>
-        <td ><input type="text" name="title" value="{$site.title}"/></td>
+        <td ><input type="text" name="title" value="{$site_info.title}"/></td>
     </tr>
     <tr>
         <td class="tableleft">网站首页标题</td>
-        <td ><input type="text" name="home_title" value="{$site.home_title}"/></td>
+        <td ><input type="text" name="home_title" value="{$site_info.home_title}"/></td>
     </tr>
     <tr>
         <td class="tableleft">网站描述</td>
         <td>
-            <textarea type="text" name="desc" rows="3" cols="40">{$site.desc}</textarea>
+            <textarea type="text" name="description" rows="3" cols="40">{$site_info.description}</textarea>
         </td>
     </tr>
     <tr>
         <td class="tableleft">网站关键词</td>
         <td>
-            <textarea type="text" name="keywords" rows="3" cols="40">{$site.keywords}</textarea>
+            <textarea type="text" name="keywords" rows="3" cols="40">{$site_info.keywords}</textarea>
         </td>
     </tr>
     <tr>
         <td class="tableleft">网站icon</td>
-        <td><img src="{$site.icon}" /><br />
+        <td><img src="{$site_info.icon}" width="10" /><br />
             <input type="file" name="icon" />
         </td>
     </tr>
     <tr>
         <td class="tableleft">网站logo</td>
         <td>
-            <img src="{$site.logo}" width="150" /><br />
+            <img src="{$site_info.logo}" width="150" /><br />
             <input type="file" name="logo" />
         </td>
     </tr>
     <tr>
         <td class="tableleft">网站略缩图</td>
         <td>
-            <img src="{$site.thumb}" width="150"/><br />
+            <img src="{$site_info.thumb}" width="150"/><br />
             <input type="file" name="thumb" />
         </td>
     </tr>
     <tr>
         <td class="tableleft">网站二维码</td>
         <td>
-            <img src="{$site.qrcode}" width="150"/><br />
+            <img src="{$site_info.qrcode}" width="150"/><br />
             <input type="file" name="qrcode" />
         </td>
     </tr>
     <tr>
         <td class="tableleft">手机号码</td>
-        <td ><input type="text" name="tel" value="{$site.tel}"/></td>
+        <td ><input type="text" name="tel" value="{$site_info.tel}"/></td>
     </tr>
     <tr>
         <td class="tableleft">固话/400电话</td>
-        <td ><input type="text" name="phone" value="{$site.phone}"/></td>
+        <td ><input type="text" name="phone" value="{$site_info.phone}"/></td>
     </tr>
     <tr>
         <td class="tableleft">QQ号码</td>
-        <td ><input type="text" name="qq" value="{$site.qq}"/></td>
+        <td ><input type="text" name="qq" value="{$site_info.qq}"/></td>
     </tr>
     <tr>
         <td class="tableleft">Email</td>
-        <td ><input type="text" name="email" value="{$site.email}"/></td>
+        <td ><input type="text" name="email" value="{$site_info.email}"/></td>
     </tr>
     <tr>
         <td class="tableleft">地址</td>
-        <td ><input type="text" name="address" value="{$site.address}"/></td>
+        <td ><input type="text" name="address" value="{$site_info.address}"/></td>
     </tr>
     <tr>
         <td class="tableleft">网站模板ID</td>
-        <td ><input type="text" name="template_id" value="{$site.template_id}"/></td>
+        <td ><input type="text" name="template_id" value="{$site_info.template_id}"/></td>
     </tr>
     <tr>
         <td class="tableleft">底部版权信息</td>
         <td>
-            <textarea type="text" name="copyright" rows="3" cols="40">{$site.copyright}</textarea>
+            <textarea type="text" name="copyright" rows="3" cols="40">{$site_info.copyright}</textarea>
         </td>
     </tr>
     <tr>
         <td class="tableleft">网站备案号</td>
-        <td ><input type="text" name="icp" value="{$site.icp}"/></td>
+        <td ><input type="text" name="icp" value="{$site_info.icp}"/></td>
     </tr>
     <tr>
         <td class="tableleft">流量统计代码</td>
         <td>
-            <textarea type="text" name="stats" rows="3" cols="40">{$site.stats}</textarea>
+            <textarea type="text" name="stats" rows="3" cols="40">{$site_info.stats}</textarea>
         </td>
     </tr>
     <tr>
@@ -108,7 +115,7 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="submit" class="btn btn-primary">保存</button>
             <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
         </td>
     </tr>

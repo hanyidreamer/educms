@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="网站列表 - "}
 
 <form class="form-inline definewidth m20" action="/admin/site/index" method="post">
     网站域名：
@@ -16,33 +16,31 @@
         <th>关键词</th>
         <th>站长</th>
         <th>状态</th>
-        <th>最后更新时间</th>
         <th>操作</th>
     </tr>
     </thead>
-    {volist name="site_info" id="user" }
+    {volist name="site_info" id="data" }
 	     <tr align="center">
-            <td width="50">{$user.id}</td>
-             <td width="180"><img src="{$user.icon}" width="16" height="16">  {$user.domain}
-             <br /> {$user.title}
+            <td width="50">{$data.id}</td>
+             <td width="180"><img src="{$data.icon}" width="16" height="16">  {$data.domain}
+             <br /> {$data.title}
              </td>
-            <td width="150"><img src="{$user.logo}" width="145"></td>
-             <td width="350">{$user.desc}</td>
-             <td width="180">{$user.keywords}</td>
+            <td width="150"><img src="{$data.logo}" width="145"></td>
+             <td width="350">{$data.description}</td>
+             <td width="180">{$data.keywords}</td>
              <td width="80">
-                 {$user.site_admin}
+                 {$data.site_admin}
                  <br />
-                 {$user.tel}
+                 {$data.tel}
              </td>
-             <td width="50">{eq name="user.status" value="1" }
+             <td width="50">{eq name="data.status" value="1" }
                  启用
                  {else}
                  禁用
                  {/eq}</td>
-             <td width="150">{$user.update_time}</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="/admin/site/edit/id/{$user.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
-                <a class="btn btn-danger btn-sm" href="/admin/site/delete/id/{$user.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+                <a class="btn btn-sm btn-primary" href="/admin/site/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/site/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
             </td>
         </tr>
     {/volist}

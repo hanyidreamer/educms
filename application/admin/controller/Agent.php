@@ -28,9 +28,11 @@ class Agent extends AdminBase
         $post_username = $this->request->param('username');
         $data = new AgentModel;
         if(!empty($post_username)){
-            $data_list = $data->where(['status' => 1, 'username' => ['like','%'.$post_username.'%']])->select();
+            $data_list = $data->where('status', '=',1)
+                ->where('username','like','%'.$post_username.'%')
+                ->select();
         }else{
-            $data_list = $data->where(['status'=>1])->select();
+            $data_list = $data->where('status', '=',1)->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -56,7 +58,6 @@ class Agent extends AdminBase
      */
     public function create()
     {
-        // 获取网站分类列表
         $category_data = new AgentCategory();
         $category = $category_data->where(['status'=>1])->select();
         $this->assign('category',$category);
@@ -65,35 +66,16 @@ class Agent extends AdminBase
     }
 
     /**
-     * 保存代理商数据
+     * 保存代理商信息
      * @param Request $request
+     * @throws \think\exception\DbException
      */
     public function save(Request $request)
     {
-        // 获取 略缩图 thumb文件
-        $file_icon = $request->file('icon');
-        if(!empty($file_icon)){
-            $local_icon = $file_icon->getInfo('tmp_name');
-            $icon_filename = $file_icon->getInfo('name');
-            $icon_file_info = new Upload();
-            $post_icon = $icon_file_info->qcloud_file($local_icon,$icon_filename);
-        }
-
-        $file_logo = $request->file('logo');
-        if(!empty($file_logo)){
-            $local_logo = $file_logo->getInfo('tmp_name');
-            $logo_filename = $file_logo->getInfo('name');
-            $logo_file_info = new Upload();
-            $post_logo = $logo_file_info->qcloud_file($local_logo,$logo_filename);
-        }
-
-        $file_qrcode = $request->file('qrcode');
-        if(!empty($file_qrcode)){
-            $local_qrcode = $file_qrcode->getInfo('tmp_name');
-            $qrcode_filename = $file_qrcode->getInfo('name');
-            $qrcode_file_info = new Upload();
-            $post_qrcode = $qrcode_file_info->qcloud_file($local_qrcode,$qrcode_filename);
-        }
+        $upload = new Upload();
+        $post_icon = $upload->qcloud_file('icon');
+        $post_logo = $upload->qcloud_file('logo');
+        $post_qrcode = $upload->qcloud_file('qrcode');
 
         $post_category_id = $request->param('category_id');
         $post_username = $request->param('username');
@@ -189,30 +171,10 @@ class Agent extends AdminBase
      */
     public function update(Request $request)
     {
-        // 获取 略缩图 thumb文件
-        $file_icon = $request->file('icon');
-        if(!empty($file_icon)){
-            $local_icon = $file_icon->getInfo('tmp_name');
-            $icon_filename = $file_icon->getInfo('name');
-            $icon_file_info = new Upload();
-            $post_icon = $icon_file_info->qcloud_file($local_icon,$icon_filename);
-        }
-
-        $file_logo = $request->file('logo');
-        if(!empty($file_logo)){
-            $local_logo = $file_logo->getInfo('tmp_name');
-            $logo_filename = $file_logo->getInfo('name');
-            $logo_file_info = new Upload();
-            $post_logo = $logo_file_info->qcloud_file($local_logo,$logo_filename);
-        }
-
-        $file_qrcode = $request->file('qrcode');
-        if(!empty($file_qrcode)){
-            $local_qrcode = $file_qrcode->getInfo('tmp_name');
-            $qrcode_filename = $file_qrcode->getInfo('name');
-            $qrcode_file_info = new Upload();
-            $post_qrcode = $qrcode_file_info->qcloud_file($local_qrcode,$qrcode_filename);
-        }
+        $upload = new Upload();
+        $post_icon = $upload->qcloud_file('icon');
+        $post_logo = $upload->qcloud_file('logo');
+        $post_qrcode = $upload->qcloud_file('qrcode');
 
         $post_id = $request->post('id');
         $post_category_id = $request->param('category_id');
@@ -273,9 +235,9 @@ class Agent extends AdminBase
         $user = AgentModel::get($id);
         if ($user) {
             $user->delete();
-            $this->success('删除成功', '/admin/agent/index');
+            $this->success('删除代理商成功', '/admin/agent/index');
         } else {
-            $this->error('删除失败');
+            $this->error('删除代理商失败');
         }
     }
 }
