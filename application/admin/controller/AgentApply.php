@@ -12,7 +12,6 @@ use app\base\model\AgentApply as AgentApplyModel;
 use app\base\model\AgentCategory;
 use app\base\model\Admin;
 use app\base\controller\Upload;
-use app\base\model\Ad as AdModel;
 
 class AgentApply extends AdminBase
 {
@@ -56,6 +55,7 @@ class AgentApply extends AdminBase
     }
 
     /**
+     * 编辑代理商申请信息
      * @param $id
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
@@ -86,19 +86,15 @@ class AgentApply extends AdminBase
     }
 
     /**
+     * 更新代理商申请资料
      * @param Request $request
      * @throws \think\exception\DbException
      */
     public function update(Request $request)
     {
-        // 获取 分类略缩图 thumb文件
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $upload = new Upload();
+        $post_thumb = $upload->qcloud_file('thumb');
+
         $post_id = $request->post('id');
         $post_site_id = $request->post('site_id');
         $post_category_id = $request->post('category_id');
@@ -109,10 +105,10 @@ class AgentApply extends AdminBase
         $post_background = $request->post('background');
         $post_status= $request->post('status');
         if(empty($post_title)){
-            $this->error('广告标题不能为空');
+            $this->error('标题不能为空');
         }
 
-        $user = AdModel::get($post_id);
+        $user = AgentApplyModel::get($post_id);
 
         if(!empty($post_thumb)){
             $user['thumb'] = $post_thumb;
@@ -137,6 +133,7 @@ class AgentApply extends AdminBase
     }
 
     /**
+     * 删除代理商申请信息
      * @param $id
      * @throws \think\exception\DbException
      */
