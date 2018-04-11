@@ -34,7 +34,7 @@ class WeixinUser extends Controller
             $state = Request::instance()->param('state');
             $user_info = Request::instance()->param('user_info');
             $request = Request::instance();
-            $script_uri = $request->server('SCRIPT_URI');
+            // $script_uri = $request->server('SCRIPT_URI');
             $request_uri = $request->server('REQUEST_URI');
             $server_name = $request->server('SERVER_NAME');
             $request_url = 'http://'.$server_name.$request_uri;
@@ -61,15 +61,16 @@ class WeixinUser extends Controller
 
                 $code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$app_id."&redirect_uri=".$redirect_url."&response_type=code&scope=".$scope."&state=".$state."#wechat_redirect";
                 header("Location: ".$code_url);
-            }else{
+            }
+            else{
                 // 获取微信access_token
                 $token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$app_id."&secret=".$app_secret."&code=".$code."&grant_type=authorization_code";
                 $weixin_user_data = new Curl();
                 $access_token_data = $weixin_user_data->get_info($token_url,$timeout,$user_agent);
                 $access_token_info = json_decode($access_token_data);
                 $access_token = $access_token_info->access_token;
-                $expires_in = $access_token_info->expires_in;
-                $refresh_token = $access_token_info->refresh_token;
+                // $expires_in = $access_token_info->expires_in;
+                // $refresh_token = $access_token_info->refresh_token;
                 $openid = $access_token_info->openid;
                 $scope = $access_token_info->scope;
 
@@ -91,7 +92,8 @@ class WeixinUser extends Controller
                         Session::set('weixin_user',$openid);
                     }
 
-                }else{
+                }
+                else{
                     $user_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
                     $user_data = $weixin_user_data->get_info($user_info_url,$timeout,$user_agent);
                     $user_info = json_decode($user_data);
@@ -124,10 +126,12 @@ class WeixinUser extends Controller
                     }
                     // 写入Session 数据
                     Session::set('weixin_user',$openid);
-
                 }
                 return $openid;
             }
+
+            $openid = '';
+            return $openid;
     }
 
 }

@@ -8,7 +8,6 @@
 namespace app\member\controller;
 
 use think\Request;
-use think\Session;
 use app\index\controller\Base;
 use app\base\model\Member;
 use app\base\model\Membership;
@@ -19,28 +18,18 @@ use app\base\controller\BrowserCheck;
 class Register extends Base
 {
     /**
-     * @param string $mid
      * @return mixed
      * @throws \think\Exception
      * @throws \think\exception\DbException
      */
-    public function index($mid = '')
+    public function index()
     {
-        $site_id = $this->site_id;
-
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $template_path = $this->template_path;
-
-        $this->assign('mid',$mid);
-
         // 判断是否为微信浏览器
         $user_browser = new BrowserCheck();
         $user_browser_info = $user_browser->info();
         if($user_browser_info=='wechat_browser'){
             $weixin_user_info = new Weixin();
-            $openid = $weixin_user_info->info($site_id,$mid);
+            $openid = $weixin_user_info->info($this->site_id,session('mid'));
             $this->assign('openid',$openid);
             // 获取会员信息
             $member_weixin_info = MemberWeixin::get(['openid'=>$openid]);
@@ -55,10 +44,9 @@ class Register extends Base
                 $member_weixin_info['name'] = $member_weixin_info['nickname'];
                 $this->assign('member_data',$member_weixin_info);
             }
-            return $this->fetch($template_path);
         }
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -66,8 +54,6 @@ class Register extends Base
      */
     public function save(Request $request)
     {
-        $site_id = $this->site_id;
-
         // 判断是否为微信浏览器
         $user_browser = new BrowserCheck();
         $user_browser_info = $user_browser->info();
@@ -83,7 +69,7 @@ class Register extends Base
             }
         }
 
-        $post_open_id = $request->param('open_id');
+        // $post_open_id = $request->param('open_id');
         $post_mobile = $request->param('mobile');
         $post_password = $request->param('password');
         $post_password = md5($post_password);
@@ -93,7 +79,7 @@ class Register extends Base
             $post_mid = '0';
         }
 
-        $sms_code = Session::get('sms_code');
+        $sms_code = session('sms_code');
         if($post_sms_code != $sms_code){
             $this->error('短信验证码不正确','/member/register/index');
         }
@@ -102,20 +88,18 @@ class Register extends Base
 
         // 将会员资料写入到数据库中
         $member_data = new Member();
-        $member_data['site_id'] = $site_id;
-        $member_data['username'] = 'tel_'.$site_id.$post_mobile;
+        $member_data['site_id'] = $this->site_id;
+        $member_data['username'] = 'tel_'.$this->site_id . $post_mobile;
         $member_data['password'] = $post_password;
         $member_data['tel'] = $post_mobile;
         $member_data['ip'] = $ip;
         $member_data['status'] = 1;
         $member_data->save();
 
-        $mid = $member_data->id;
-
         // 把分销上下级关系写入到数据库中
         $membership_data = new Membership();
-        $membership_data['site_id'] = $site_id;
-        $membership_data['mid'] = $mid;
+        $membership_data['site_id'] = $this->site_id;
+        $membership_data['mid'] = session('mid');
         $membership_data['father_id'] = $post_mid;
         $membership_data['status'] = 1;
 

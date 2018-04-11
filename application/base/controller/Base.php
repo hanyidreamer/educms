@@ -44,18 +44,5 @@ class Base extends Controller
             $this->error('您没有管理该网站的权限','/admin/login/index');
         }
 
-        // 当前方法不同终端的模板路径
-        // $module_name = $this->request->module();
-        $controller_name = $this->request->controller();
-        $action_name = $this->request->action();
-        $template_path_info = new TemplatePath();
-        $template_path = $template_path_info->admin_path($controller_name,$action_name);
-        $template_public = $template_path_info->admin_public_path();
-        $template_public_header = $template_public.'/header';
-        $template_public_footer = $template_public.'/footer';
-        $this->assign('public_header',$template_public_header);
-        $this->assign('public_footer',$template_public_footer);
-
-        $this->template_path = $template_path;
     }
 }

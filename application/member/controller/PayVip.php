@@ -16,27 +16,18 @@ use app\base\model\Member;
 class PayVip extends Base
 {
     /**
-     * @param string $mid
      * @return mixed
      * @throws \think\Exception
      * @throws \think\exception\DbException
      */
-    public function index($mid='')
+    public function index()
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
-        $this->assign('mid',$mid);
-
         // 判断是否为微信浏览器
         $user_browser = new BrowserCheck();
         $user_browser_info = $user_browser->info();
         if($user_browser_info=='wechat_browser'){
             $weixin_user_info = new Weixin();
-            $openid = $weixin_user_info->info($site_id,$mid);
+            $openid = $weixin_user_info->info($this->site_id,session('mid'));
             $this->assign('openid',$openid);
             // 获取会员信息
             $member_weixin_info = MemberWeixin::get(['openid'=>$openid]);
@@ -51,26 +42,16 @@ class PayVip extends Base
                 $member_weixin_info['name'] = $member_weixin_info['nickname'];
                 $this->assign('member_data',$member_weixin_info);
             }
-            return $this->fetch($template_path);
         }
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
-     * @param string $mid
      * @return mixed
      */
-    public function buy($mid='')
+    public function buy()
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
-        $this->assign('mid',$mid);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 }

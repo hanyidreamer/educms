@@ -14,24 +14,11 @@ use app\index\controller\Base;
 class Binding extends Base
 {
     /**
-     * @param string $mid
-     * @param string $openid
      * @return mixed
      */
-    public function Tel($mid = '',$openid = '')
+    public function Tel()
     {
-        $site_id = $this->site_id;
-
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $template_path = $this->template_path;
-
-        $this->assign('mid',$mid);
-
-        $this->assign('openid',$openid);
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -41,15 +28,13 @@ class Binding extends Base
     {
         $site_id = $this->site_id;
 
-        $post_open_id = $request->param('open_id');
+        // $post_open_id = $request->param('open_id');
         $post_mobile = $request->param('mobile');
         $post_password = $request->param('password');
         $post_password = md5($post_password);
         $post_sms_code = $request->param('sms_code');
-        $post_mid = $request->param('mid');
-        if(empty($post_mid) or !is_numeric($post_mid)){
-            $post_mid = '0';
-        }
+        // $post_mid = $request->param('mid');
+
 
         $sms_code = session('sms_code');
         if($post_sms_code != $sms_code){

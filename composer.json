@@ -25,7 +25,8 @@
         "topthink/think-helper": "^1.0",
         "topthink/think-testing": "^2.0",
         "twbs/bootstrap": "^4.0",
-        "qcloud/cos-sdk-v5": "^1.1"
+        "qcloud/cos-sdk-v5": "^1.1",
+        "endroid/qr-code": "^3.2"
     },
     "autoload": {
         "psr-4": {

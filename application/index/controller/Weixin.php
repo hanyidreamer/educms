@@ -8,22 +8,27 @@
 namespace app\index\controller;
 
 use think\Controller;
-use think\Request;
 use app\base\model\MemberWeixin;
 use app\base\model\Curl;
 
 class Weixin extends Controller
 {
+    /**
+     * @param $app_id
+     * @param $app_secret
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
     public function info($app_id,$app_secret)
     {
-        $get_token = Request::instance()->param('token');
-        $code = Request::instance()->param('code');
-        $state = Request::instance()->param('state');
+        $get_token = $this->request->param('token');
+        $code = $this->request->param('code');
+        $state = $this->request->param('state');
         $timeout = 30;
         $user_agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 MicroMessenger/6.5.9 NetType/4G Language/zh_CN';
 
         // 判断token 是否为空
-        $redirect_url = Request::instance()->url(true);
+        $redirect_url = $this->request->url(true);
         if(empty($get_token)){
             $redirect_url = preg_replace('/\?(.*)/','',$redirect_url);
             $question_mark = '?';
@@ -79,7 +84,7 @@ class Weixin extends Controller
         // $expires_in = $access_token_info->expires_in;
         // $refresh_token = $access_token_info->refresh_token;
         $openid = $access_token_info->openid;
-        $scope = $access_token_info->scope;
+        // $scope = $access_token_info->scope;
 
         // 判断数据库中openid是否存在，如果不存在，跳转到微信登录授权url
         if($state=='snsapi_base'){
@@ -111,7 +116,7 @@ class Weixin extends Controller
         $country = $user_info->country;
         $headimgurl = $user_info->headimgurl;
         $headimgurl = preg_replace('/http:/','https:',$headimgurl);
-        $privilege = $user_info->privilege;
+        // $privilege = $user_info->privilege;
         // $unionid = $user_info->unionid;
         // 把微信用户信息保存到数据库中
 

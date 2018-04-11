@@ -14,22 +14,14 @@ use app\base\controller\BrowserCheck;
 class Course extends Base
 {
     /**
-     * @param string $mid
      * @return mixed
      * @throws \think\exception\DbException
      */
-    public function index($mid = '')
+    public function index()
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-        $this->assign('mid',$mid);
-
         $course_info = new CourseModel();
         $pages = 10;
-        $course_data = $course_info->where(['site_id'=>$site_id])-> order('sort asc') -> paginate($pages);
+        $course_data = $course_info->where(['site_id'=>$this->site_id])-> order('sort asc') -> paginate($pages);
         $this->assign('course',$course_data);
 
         // 判断是否为微信浏览器
@@ -54,28 +46,21 @@ class Course extends Base
                 $this->assign('member_data',$member_weixin_info);
             }
             */
-            return $this->fetch($template_path);
+            return $this->fetch($this->template_path);
         }
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
      * @param string $id
-     * @param string $mid
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function category($id='',$mid='')
+    public function category($id='')
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
         // 文章内容  判断id是否为数字
         if(is_numeric($id)){
             // id 为数字，按照id查询对应的文章数据
@@ -109,7 +94,7 @@ class Course extends Base
                 $this->assign('data',$article_data);
                 // 资讯列表
                 $article_info = new CourseModel();
-                $article_data = $article_info->where(['site_id'=>$site_id,'category_id'=>$category_id])-> order('sort asc') ->limit(10) ->select();
+                $article_data = $article_info->where(['site_id'=>$this->site_id,'category_id'=>$category_id])-> order('sort asc') ->limit(10) ->select();
                 $this->assign('course',$article_data);
 
             }
@@ -119,18 +104,16 @@ class Course extends Base
             }
         }
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
-    public function view($mid='',$id='')
+    /**
+     * @param string $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function view($id='')
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
-
         if(is_numeric($id)){
             // id 为数字，按照id查询对应的文章数据
             $article_data = CourseModel::get($id);
@@ -172,7 +155,7 @@ class Course extends Base
         }
 
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
 }

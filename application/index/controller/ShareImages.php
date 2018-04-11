@@ -93,15 +93,11 @@ class ShareImages extends Base
 
     }
 
+    /**
+     * @param Request $request
+     */
     public function qr_code(Request $request)
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-        $mid = $this->mid;
-        $this->assign('mid',$mid);
-
         // 生成二维码
         $text = '长按二维码，识别领取';
         $font_path = '../vendor/endroid/qrcode/assets/noto_sans.otf';
@@ -113,7 +109,7 @@ class ShareImages extends Base
         $base_url = $request->baseUrl();
         $url = $domain.$base_url;
 
-        $qrCode=new QrCodeMode();
+        $qrCode = new QrCodeMode();
         $qrCode->setText($url)
             ->setSize($img_size)//大小
             ->setLabelFontPath($font_path)

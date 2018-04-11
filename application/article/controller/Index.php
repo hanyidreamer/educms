@@ -7,9 +7,7 @@
  */
 namespace app\article\controller;
 
-use think\Request;
 use app\index\controller\Base;
-use app\base\controller\SiteId;
 
 class Index extends Base
 {

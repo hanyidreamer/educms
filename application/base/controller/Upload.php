@@ -22,27 +22,10 @@ class Upload extends Base
     }
 
     // 上传程序服务器文件
-    public function upload_file($file)
+    public function upload_file()
     {
         // 获取上传的文件信息
-        //$file = $my_request->file('file');
-
-        if ($file) {
-            // 移动到框架应用根目录/public/uploads/ 目录下
-            $info = $file->validate(['ext' => 'jpg,png,ico,gif'])->move('./uploads/file');
-            if ($info) {
-                $filename= $info->getSaveName();
-                $filename=str_replace('\\','/',$filename);
-                $filename='/uploads/file/'.$filename;
-            } else {
-                $filename='';
-                // 上传失败获取错误信息
-                $this->error($info->getError());
-            }
-        }else{
-            $filename='';
-        }
-        return $filename;
+        $file = request()->file('images');
     }
 
     /**

@@ -18,17 +18,11 @@ class Index extends Base
      * @return mixed
      */
     public function index(){
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $template_path = $this->template_path;
-
         // 判断用户是否登录
-        if(empty($username)){
+        if(empty(session('username'))){
             $this->error('请先登录','/member/login/index');
         }
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
     // 注销登录
 

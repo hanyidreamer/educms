@@ -12,14 +12,19 @@ use app\base\model\AgentApply as AgentApplyModel;
 
 class ApplyAgent extends Base
 {
+    /**
+     * 代理申请
+     * @return mixed
+     */
     public function index()
     {
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
+    /**
+     * 保存代理申请信息
+     * @param Request $request
+     */
     public function save(Request $request)
     {
         // $post_site_id = $request->param('site_id');

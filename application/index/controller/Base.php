@@ -7,8 +7,9 @@
  */
 namespace app\index\controller;
 
-use app\base\controller\Site;
+use app\base\controller\TemplatePath;
 use think\Controller;
+use app\base\model\Site;
 use app\base\model\CourseCategory;
 
 class Base extends Controller
@@ -25,8 +26,9 @@ class Base extends Controller
     protected function initialize()
     {
         // 网站基本信息
-        $site_data = new Site();
-        $site_info = $site_data->info();
+        $domain = $this->request->host();
+        $domain = preg_replace('/www./','',$domain);
+        $site_info = Site::get(['domain'=>$domain]);
         if(empty($site_info)){
             $this->error('欢迎使用培训分销系统，您的网站还没有开通，请联系电话：13450232305');
         }
@@ -36,11 +38,13 @@ class Base extends Controller
         // 网站基本信息
         $this->assign('site',$site_info);
 
-        // 检查模板信息
-
-        $template_data = $check_data->template();
+        // 模板信息
+        $template_data = new TemplatePath();
+        $template_info = $template_data->info($site_info['id']);
+        $this->template_path = $template_info;
 
         // 顶部导航
+
         // 一级分类
         $nav_level_one_info = new CourseCategory();
         $nav_level_one_data = $nav_level_one_info->where(['site_id'=>$site_info['id'],'parent_id'=>0,'nav_status'=>1])->select();
@@ -52,9 +56,6 @@ class Base extends Controller
             $data['sub_list'] = $category_data;
         }
         $this->assign('nav',$nav_level_one_data);
-
-
-
     }
 
 }

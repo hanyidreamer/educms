@@ -8,7 +8,7 @@
 namespace app\index\controller;
 
 use think\Controller;
-use think\Session;
+use think\facade\Session;
 use app\base\model\Curl;
 
 class Sms extends Controller
@@ -24,8 +24,8 @@ class Sms extends Controller
 
         // 判断手机号是否合法
         if(is_numeric($mobile)){
-            Session::set('mobile',$mobile);
-            Session::set('sms_code',$code_num);
+            session::set('mobile',$mobile);
+            session::set('sms_code',$code_num);
         }
         // 发送验证码到指定手机号
         $sms_url = "http://api.sms.cn/sms/?ac=send&uid=$uid&pwd=$password&template=$template_number&mobile=$mobile&content=$text";

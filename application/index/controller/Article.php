@@ -14,24 +14,15 @@ use app\base\model\Article as ArticleModel;
 class Article extends Base
 {
     /**
-     * @param string $mid
+     * 文章分类
      * @param string $id
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function category($mid='',$id='')
+    public function category($id='')
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
-        $this->assign('mid',$mid);
-
-
         // 文章内容  判断id是否为数字
         if(is_numeric($id)){
             // id 为数字，按照id查询对应的文章数据
@@ -63,7 +54,7 @@ class Article extends Base
                 $this->assign('data',$article_data);
                 // 资讯列表
                 $article_info = new ArticleModel();
-                $article_data = $article_info->where(['site_id'=>$site_id,'category_id'=>$category_id])-> order('sort asc') ->limit(10) ->select();
+                $article_data = $article_info->where(['site_id'=>$this->site_id,'category_id'=>$category_id])-> order('sort asc') ->limit(10) ->select();
                 $this->assign('article',$article_data);
             }
             else{
@@ -72,24 +63,17 @@ class Article extends Base
             }
         }
 
-
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     /**
-     * @param string $mid
+     * 查看文章
      * @param string $id
      * @return mixed
      * @throws \think\exception\DbException
      */
-    public function view($mid='',$id='')
+    public function view($id='')
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-
         // 文章内容  判断id是否为数字
         if(is_numeric($id)){
             // id 为数字，按照id查询对应的文章数据
@@ -126,7 +110,7 @@ class Article extends Base
         }
 
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
 }

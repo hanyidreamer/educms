@@ -5,7 +5,7 @@
  * Date: 2017/6/23
  * Time: 11:27
  */
-namespace app\index\controller;
+namespace app\member\controller;
 
 use think\Controller;
 

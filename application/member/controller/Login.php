@@ -20,23 +20,9 @@ class Login extends Base
     /**
      * @return mixed
      */
-    public function index(){
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-
-        $mid = $this->mid;
-        $this->assign('mid',$mid);
-
-        // 判断是否为微信浏览器
-        $user_browser = new BrowserCheck();
-        $user_browser_info = $user_browser->info();
-        if($user_browser_info=='wechat_browser'){
-
-        }
-        $template_path = $this->template_path;
-        return $this->fetch($template_path);
+    public function index()
+    {
+        return $this->fetch($this->template_path);
     }
 
     /**
@@ -102,26 +88,21 @@ class Login extends Base
 
     /**
      * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
      */
-    public function index_wx(){
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-
-        $mid = $this->mid;
-        $this->assign('mid',$mid);
-
+    public function index_wx()
+    {
         // 判断是否为微信浏览器
         $user_browser = new BrowserCheck();
         $user_browser_info = $user_browser->info();
         if($user_browser_info=='wechat_browser'){
             $weixin_user_info = new WeixinUser();
-            $openid = $weixin_user_info->login($site_id,$mid);
+            $openid = $weixin_user_info->login($this->site_id,session('mid'));
             $this->assign('openid',$openid);
         }
-        $template_path = $this->template_path;
-        return $this->fetch($template_path);
+
+        return $this->fetch($this->template_path);
     }
 
     /**

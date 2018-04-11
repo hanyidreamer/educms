@@ -5,3 +5,14 @@
  * Date: 2017/6/23
  * Time: 5:52
  */
+namespace app\member\controller;
+
+use app\base\controller\Base;
+
+class FmDetail extends Base
+{
+    public function index()
+    {
+
+    }
+}

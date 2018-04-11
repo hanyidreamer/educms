@@ -16,19 +16,15 @@ use app\base\model\WechatOfficialAccounts;
 
 class Enroll extends Base
 {
+    /**
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
     public function index()
     {
-        $username = $this->username ;
-        $this->assign('username',$username);
-
-        $site_id = $this->site_id;
-        $template_path = $this->template_path;
-        $mid = $this->mid;
-        $this->assign('mid',$mid);
-
-
         // 微信jssdk
-        $official_accounts_info = WechatOfficialAccounts::get(['site_id'=>$site_id]);
+        $official_accounts_info = WechatOfficialAccounts::get(['site_id'=>$this->site_id]);
         $app_id = $official_accounts_info['app_id'];
         $app_secret = $official_accounts_info['app_secret'];
         $jssdk = new Jssdk();
@@ -40,7 +36,7 @@ class Enroll extends Base
         $user_browser_info = $user_browser->info();
         if($user_browser_info=='wechat_browser'){
             $weixin_user_info = new Weixin();
-            $openid = $weixin_user_info->info($site_id,$mid);
+            $openid = $weixin_user_info->info($this->site_id,session('mid'));
             $this->assign('openid',$openid);
             // 获取会员信息
             $member_weixin_info = MemberWeixin::get(['openid'=>$openid]);
@@ -56,13 +52,11 @@ class Enroll extends Base
                 $this->assign('member_data',$member_weixin_info);
             }
 
-            $member_weixin_data = MemberWeixin::get(['mid'=>$mid]);
+            $member_weixin_data = MemberWeixin::get(['mid'=>session('mid')]);
             $this->assign('member_weixin',$member_weixin_data);
-
-            return $this->fetch($template_path);
         }
 
-        return $this->fetch($template_path);
+        return $this->fetch($this->template_path);
     }
 
     public function update(Request $request)
