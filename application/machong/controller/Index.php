@@ -102,7 +102,9 @@ class Index extends Base
     {
         $keyword = $this->request->param('keyword');
         if (!empty($keyword)){
-            $search = Db::name('article')->where('title','like','%'.$keyword.'%')->select();
+            //$search_data = new Article;
+            // $search = $search_data->where('title' ,'like','%'.$keyword.'%')->select();
+            $search = Db::name('article')->where('title' ,'like','%'.$keyword.'%')->where('status','=',1)->select();
         }else {
             $search = '';
         }
