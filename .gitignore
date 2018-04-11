@@ -4,4 +4,7 @@ composer.lock
 thinkphp
 machong
 database.php
+.env
+_config.yml
+
 
