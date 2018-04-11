@@ -1,0 +1,80 @@
+@charset "utf8";
+.vg-w25 { width: 25%;}
+.vg-text-xss { font-size: 0.55rem; }
+.vg-padding-bottom-xxl { padding-bottom: 2.5rem;}
+.wsearch { position: absolute; top: 0.5rem; right: 0.5rem; width: 2.8rem; height: 1.2rem;background-color: #d9e5f7;display: block;z-index: 999;border-radius: 0.6rem;font-size: 0.5rem;text-align: center;line-height: 1.2rem;}
+.wsearch>i{color: #7a808b;}
+a:hover{ color: #e44242;}
+a.vg-login-bg:hover{ color: #fff;}
+.vg-tit-bdb-2 {border-bottom:2px solid #e44242;}
+.vg-tit-bdl-6 {border-left:6px solid #13b868;}
+.vg-main-font-color {color: #e44242;}
+.vg-weichat-button{background-color: #39c11a; color: #fefefe;}
+.vg-main-button { background-color: #e44242; color: #fefefe;}
+.vg-main-button-fall{ background-color: #cccccc; color: #fefefe;}
+.vg-main-button:hover,.vg-main-button:focus{ background-color:#9e0c0f;color:#fefefe;}
+.tab_menu div.on { border-bottom: 4px solid #e44242;}
+.vg-income-wrap-bg { background-color:#ff6666; }
+.vg-main-border { border:1px solid #e44242;}
+.vg-login-bg { background-color: #e44242;}
+.vg-mb3-nav-wrap { height: 3.25rem;}
+.vg-mb3-nav-wrap-login { width: 2.25rem; height: 2.25rem; margin-left: auto; margin-right: auto; line-height: 2.25rem; vertical-align: middle;}
+.vg-mb3-select:hover,.vg-mb3-select:active { color:#e44242; }
+.vg-text-llgreen { color: #13b868;}
+.vg-bg-llgreen { background-color: #13b868; }
+.weichat_input::-webkit-input-placeholder { color:#13b868; }
+.weichat_input::-moz-placeholder { color:#13b868; } /* firefox 19+ */
+.weichat_input:-ms-input-placeholder { color:#13b868; } /* ie */
+.vg-weichat-vip-button {border:2px solid #13b868;}
+.vg-icon-color-pink{color:#f7a3a3;}
+.vg-icon-color-green{color:#aae4b1;}
+.vg-icon-color-sblue{color:#bbcbfb;}
+.vg-icon-color-ssblue{color:#99dde3;}
+.vg-icon-color-lyellow{color:#f6e9bb;}
+.foot_nav {position: fixed; bottom: 0; left: 0; z-index: 9999;width: 100%;}
+
+.pagelist {
+    text-align: center;
+    padding-top: 15px;
+}
+.pagelist ul li span {
+     font-size: 30px;
+ }
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    clear: both;
+}
+
+ul.pagination li {
+    display: inline;
+    float: left;
+}
+ul.pagination li.disabled {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+ul.pagination li.active {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}

@@ -1,0 +1,16 @@
+@charset "utf8";
+
+/*模板三皮肤一:橙色(#ff9900)*/
+a:hover{ color: #ff9900;}
+a.vg-login-bg:hover{ color: #fff;}
+.vg-tit-bdb-2 {border-bottom:2px solid #ff9900;}
+.vg-main-font-color {color: #ff9900;}
+.vg-main-button { background-color: #ff9900; color: #fefefe;}
+.vg-main-button:hover,.vg-main-button:focus{ background-color:#cc9900;color:#fefefe;}
+.tab_menu div.on { border-bottom: 2px solid #ff9900;}
+.vg-income-wrap-bg { background-color:#ff9933; }
+.vg-main-border { border:1px solid #ff9900;}
+.vg-login-bg { background-color: #ff9900;}
+.vg-mb3-nav-wrap { height: 3.25rem;}
+.vg-mb3-nav-wrap-login { width: 2.25rem; height: 2.25rem; margin-left: auto; margin-right: auto; line-height: 2.25rem; vertical-align: middle;}
+.vg-mb3-select:hover,.vg-mb3-select:active { color:#ff9900; }

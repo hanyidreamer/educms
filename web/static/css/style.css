@@ -1,0 +1,92 @@
+﻿/*头部*/
+.header{position: fixed;z-index: 10000;left: 0;top: 0;width: 100%;height: 65px;background-color: #393D49;border-bottom: 1px solid #404553;border-right: 1px solid #404553;}
+.header .logo{position: absolute; left: 10px; top: 0;width: 340px;height: 65px;line-height: 65px;}
+.header .logo img{width: 135px; height: 37px;}
+.header .logo span{margin-left: 5px;color:#aaa;}
+.header .layui-nav{position: absolute;background: none; top: 17px;height: 40px;right: 5%;}
+.header .layui-nav li.login {display: inline-block;width: 80px;height: 30px;line-height: 30px;text-align: center;float: left;margin-left: 10px;}
+.header .layui-nav li.login a{display: inline-block;width: 100%;height: 100%;text-decoration: none;color: #5FB878;}
+.header .layui-nav li.login a.register {border: 1px solid #5FB878;border-radius: 5px;color: #5FB878;}
+.header .layui-nav li.login a:hover {background: #5FB878;border-radius: 5px;color: #fff;}
+.header .layui-nav li.info {display: inline-block;float: left;margin-left:30px;height: 30px;line-height: 30px;}
+.header .layui-nav li.info a{display: inline-block;text-decoration: none;color: #5FB878;}
+.header .layui-nav li.info a:hover {color: #9FF878;}
+
+/* 首页banner部分 */
+.site-banner{position: relative;height: 460px;text-align: center;background: #393D49;}
+.site-banner-content{position: absolute;top:80px;left:50%;width: 950px;z-index: 2;margin-left: -475px;}
+.site-banner-text img,.site-banner-text-center{width: 100%;}
+.site-banner-btn {padding: 10px 50px!important;border: 1px solid #009688!important;background: #009688;font-size: 18px!important;color: #fff!important;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;border-radius: 4px;}
+.site-banner-btn:hover{background: #339688;}
+
+/*首页中间*/
+.site-main {width: 100%;background: #fff;}
+.site-main .content {width: 1000px;margin: 0 auto;position: relative;padding-bottom: 30px;text-align: center;}
+.site-main .content h3 {font-weight: normal;font: 24px/2 'PingFang SC', 'Microsoft Yahei';text-align: center;margin-top: 50px;}
+.site-main .item {float: left;margin-top: 50px;margin-bottom: 80px;width: 25%;}
+.site-main .item img {width: 155px;height: 179px;}
+.site-main .item-text p{font-size: 16px;  color: #535353;}
+
+/*底部*/
+.footer{width:100%;background:#232736;letter-spacing:1px;position: fixed;bottom: 0;z-index: 9999;}
+.footer .screen-footer{width:100%;position:relative;background:#232736;min-height:75px;z-index:5;padding-bottom:20px;}
+.footer .screen-footer .message-box{width:100%;height:215px;position:relative;border-bottom:1px solid #3f4351}
+.footer .screen-footer .message{margin:0 auto;padding:60px 0 0}
+.footer .screen-footer .message .left{width:350px;height:155px;float:left;font-size:16px;color:#fff}
+.footer .screen-footer .message .middle{width:440px;height:155px;float:left;margin-left:50px;position:relative}
+.footer .screen-footer .message .right{width:auto;height:155px;float:right;text-align:left;padding-right:70px;}
+.footer .screen-footer .text-nav{width:950px;margin:0 auto;text-align:center;padding-top:20px;color:#909194}
+.footer .screen-footer .text-nav a{color:#909194;padding:0 10px}
+.footer .screen-footer .text-nav p{padding-top:10px}
+.footer .screen-footer .message .left p{padding-left:70px;font-size:14px;margin:0 0 10px}
+.footer .screen-footer .message .zhong p{padding-left:0px;}
+.footer .screen-footer .message .left p.font{font-size:16px}
+.footer .screen-footer .message .middle p{position:absolute;left:72px;font-size:14px;top:0;color:#fff}
+.footer .screen-footer .message .middle img{width:300px;vertical-align:middle;border:0}
+
+/*新闻内容*/
+.news{padding: 10px;margin-top: 80px;margin-bottom: 90px;}
+.news_show{padding: 10px;}
+
+/*会员中心*/
+.user {width:100%;_height:450px;min-height:450px;background:#f2f2f2;padding-top:85px;padding-bottom:40px;}
+.reg {padding-top:5px;}
+.user .layui-main{height:100%}
+.user .main{width:450px;min-height:200px;padding:1rem 3.25rem 1.2rem;background:#fff;margin:0 auto;max-width:450px;position:relative;top:90px;width:100%;z-index:5;-moz-transition-property:all;-o-transition-property:all;-webkit-transition-property:all;transition-property:all;-moz-transition-duration:.3s;-o-transition-duration:.3s;-webkit-transition-duration:.3s;transition-duration:.3s}
+.user .page-title{position:relative;font-size:18px;margin:0 0 30px;padding:10px 15px;line-height:30px;border-bottom:1px solid #DFDFDF}
+.user .page-title a{float: right;font-size:14px;color:#f30;}	
+.user .tk input {display: inline-block;}
+.user .tk .layui-form-checkbox {display:none;}
+
+.user .tab-left,.user .tab-right{float: left;/*position:relative;top:90px;*/min-height:80%;}
+.user .tab-left{width:20%;}
+.user .tab-right{margin-left:1.5%;width:78.5%;background:#fff;}
+.user .tab-right h2{margin:0;}
+.user .center th,.user .center td {text-align:center;}
+.user .layui-nav .layui-icon,.user .layui-nav .fa {position: relative;top: 2px;width:20px;font-size: 20px;margin-right: 10px;}
+.user .layui-nav {/*position: absolute;right: 0;top: 0;z-index: 1000;*/float: right;height: 100%;min-height:360px;}
+
+.user .sdk{float: left;width:98%;padding:1%;}
+.user .sdk h2{float: left;width:100%;height:40px;line-height:40px;font-size:18px;}
+.user .sdk .init{float: left;width:20%;margin:5px 20px 0px 5px;}
+.user .sdk .init a{float: left;width:100%;text-align:center;height:100px;line-height:100px;border:1px solid #DFDFDF;font-size:20px;}
+.user .layui-input-block .txt{line-height: 36px;}
+.user .layui-tab-item p{padding: 10px;}
+.user .tx .layui-form-select{width: 200px;display: inline-block;}
+.user .layui-tab-item .pic{padding:0px;width:100px;height:100px;display:none;}
+.user .layui-tab-item .pic img{padding-top:8px;width:100%;height:100%;}
+
+/*form-so*/
+.layui-form-so{text-align: center;}
+.layui-form-so .layui-form-label{width: auto;padding-right: 8px;display: inline;float: none;}
+.layui-form-so .layui-input-inline{float: none;width: auto;}
+.layui-form-so .layui-input-inline input{width: 100px;height: 30px;line-height: 30px;}
+.layui-form-so .layui-btn{height: 30px;line-height: 30px;}
+
+/*分页*/
+#page{display: block;line-height: 35px;padding-top: 10px;padding-bottom: 30px}
+.data_nums{float: left;width: 200px;margin-left: 10px;color: #333;}
+.data_page{float: right;margin-right: 10px;}
+.layui-laypage{margin: 0px;}
+
+.layui-btn-disabled{color: #999;}
