@@ -3,7 +3,6 @@
 namespace app\api\controller;
 
 use think\Controller;
-use think\Request;
 use app\base\model\AdminUser as AdminUserModel;
 
 class AdminUser extends Controller

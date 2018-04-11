@@ -73,7 +73,7 @@ class Weixin extends Controller
         // $expires_in = $access_token_info->expires_in;
         // $refresh_token = $access_token_info->refresh_token;
         $openid = $access_token_info->openid;
-        $scope = $access_token_info->scope;
+        // $scope = $access_token_info->scope;
 
         // 判断数据库中openid是否存在，如果不存在，跳转到微信登录授权url
         if($state=='snsapi_base'){
