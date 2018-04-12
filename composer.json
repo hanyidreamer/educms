@@ -21,7 +21,6 @@
         "topthink/think-captcha": "^2.0",
         "topthink/think-image": "^1.0",
         "overtrue/wechat": "^4.0",
-        "tencentyun/cos-php-sdk": "^3.3",
         "topthink/think-helper": "^1.0",
         "topthink/think-testing": "^2.0",
         "twbs/bootstrap": "^4.0",
