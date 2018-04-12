@@ -17,8 +17,6 @@ class Ad extends AdminBase
      */
     public function index()
     {
-        $site_id = $this->site_id;
-
         // 找出广告列表数据
         $post_title = $this->request->param('title');
         $data = new AdModel;
@@ -27,7 +25,7 @@ class Ad extends AdminBase
                 ->where('title','like','%'.$post_title.'%')
                 ->select();
         }else{
-            $data_list = $data->where('status',1)->where('site_id',$site_id)->select();
+            $data_list = $data->where('status',1)->where('site_id',$this->site_id)->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -53,11 +51,9 @@ class Ad extends AdminBase
      */
     public function create()
     {
-        $site_id = $this->site_id;
-
         // 获取网站分类列表
         $category_data = new AdCategory();
-        $category = $category_data->where(['site_id'=>$site_id])->select();
+        $category = $category_data->where(['status'=>1])->select();
         $this->assign('category',$category);
 
         return $this->fetch($this->template_path);
@@ -79,7 +75,7 @@ class Ad extends AdminBase
         $post_sort = $request->param('sort');
         $post_title = $request->param('title');
         $post_url = $request->param('url');
-        $post_desc = $request->param('desc');
+        $post_description = $request->param('description');
         $post_background = $request->param('background');
         $post_status = $request->param('status');
 
@@ -93,7 +89,7 @@ class Ad extends AdminBase
         $data['sort'] = $post_sort;
         $data['category_id'] = $post_category_id;
         $data['url'] = $post_url;
-        $data['desc'] = $post_desc;
+        $data['description'] = $post_description;
         $data['background'] = $post_background;
         $data['thumb'] = $post_thumb;
         $data['status'] = $post_status;
@@ -114,8 +110,6 @@ class Ad extends AdminBase
      */
     public function edit($id)
     {
-        $site_id = $this->site_id;
-
         // 获取当前分类id
         $category_id_info = AdModel::get($id);
         $category_id = $category_id_info['category_id'];
@@ -126,7 +120,7 @@ class Ad extends AdminBase
 
         // 获取网站分类列表
         $category_data = new AdCategory();
-        $category = $category_data->where(['site_id'=>$site_id])->select();
+        $category = $category_data->where(['status'=>1])->select();
         $this->assign('category',$category);
 
         $my_category_data = AdCategory::get($category_id);

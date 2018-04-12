@@ -23,7 +23,6 @@ class Admin extends AdminBase
      */
     public function index()
     {
-        $site_id = $this->site_id;
         $post_username = $this->request->param('username');
 
         $data = new AdminModel;
@@ -41,13 +40,13 @@ class Admin extends AdminBase
         }else{
             if(!empty($post_username)){
                 $data_list = $data->where([
-                    'site_id'=>$site_id,
+                    'site_id'=>$this->site_id,
                     'status' => 1,
                     'username' => ['like','%'.$post_username.'%']
                 ])
                     ->select();
             }else{
-                $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+                $data_list = $data->where(['site_id'=>$this->site_id,'status'=>1])->select();
             }
         }
 
@@ -76,10 +75,11 @@ class Admin extends AdminBase
      */
     public function create()
     {
-        $site_id = $this->site_id;
         // 获取分类列表
         $category_data = new AdminCategory();
-        $category = $category_data->where(['site_id'=>$site_id])->select();
+        $category = $category_data->where(['status'=>1])
+            ->where('level','>',0)
+            ->select();
         $this->assign('category',$category);
 
         return $this->fetch($this->template_path);
@@ -155,7 +155,6 @@ class Admin extends AdminBase
      */
     public function edit($id)
     {
-        $site_id = $this->site_id;
         // 获取当前分类id
         $category_id_info = AdminModel::get($id);
         $category_id = $category_id_info['category_id'];
@@ -166,7 +165,9 @@ class Admin extends AdminBase
 
         // 获取网站分类列表
         $category_data = new AdminCategory();
-        $category = $category_data->where(['site_id'=>$site_id])->select();
+        $category = $category_data->where(['status'=>1])
+            ->where('level','>', 0)
+            ->select();
         $this->assign('category',$category);
 
         $my_category_data = AdminCategory::get($category_id);

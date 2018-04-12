@@ -92,40 +92,32 @@ class AgentApply extends AdminBase
      */
     public function update(Request $request)
     {
-        $upload = new Upload();
-        $post_thumb = $upload->qcloud_file('thumb');
-
         $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
         $post_category_id = $request->post('category_id');
-        $post_sort = $request->post('sort');
-        $post_title = $request->post('title');
-        $post_desc = $request->post('desc');
-        $post_url = $request->post('url');
-        $post_background = $request->post('background');
+        $post_contact_person = $request->post('contact_person');
+        $post_tel = $request->post('tel');
+        $post_weixinhao = $request->post('weixinhao');
+        $post_qq = $request->post('qq');
+        $post_city = $request->post('city');
+        $post_company_name = $request->post('company_name');
+        $post_comment = $request->post('comment');
+        $post_admin_opinion = $request->post('admin_opinion');
         $post_status= $request->post('status');
-        if(empty($post_title)){
-            $this->error('标题不能为空');
-        }
 
         $user = AgentApplyModel::get($post_id);
-
-        if(!empty($post_thumb)){
-            $user['thumb'] = $post_thumb;
-        }
-        $user['site_id'] = $post_site_id;
+        $user['contact_person'] = $post_contact_person;
         $user['category_id'] = $post_category_id;
-        $user['sort'] = $post_sort;
-        if(!empty($post_title)){
-            $user['title'] = $post_title;
-        }
-        $user['desc'] = $post_desc;
-        $user['url'] = $post_url;
-        $user['background'] = $post_background;
+        $user['tel'] = $post_tel;
+        $user['weixinhao'] = $post_weixinhao;
+        $user['qq'] = $post_qq;
+        $user['city'] = $post_city;
+        $user['company_name'] = $post_company_name;
+        $user['comment'] = $post_comment;
+        $user['admin_opinion'] = $post_admin_opinion;
         $user['status'] = $post_status;
 
         if ($user->save()) {
-            $this->success('更新成功', '/admin/ad/index');
+            $this->success('更新成功', '/admin/agent_apply/index');
         } else {
             $this->error('操作失败');
         }

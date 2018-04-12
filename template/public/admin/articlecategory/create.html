@@ -1,11 +1,17 @@
-{include file="$public_header"}
+{include file="$public_header" title="新增文章分类"}
 
 <form action="/admin/article_category/save" enctype="multipart/form-data"  method="post">
-    <input type="hidden" name="site_id" value="{$site_id}"/>
+    <input type="hidden" name="site_id" value="{$site.id}"/>
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">上级分类</td>
-        <td><input type="text" name="parent_id"/></td>
+        <td>
+            <select name="parent_id">
+                {volist name="category" id="data" }
+                <option value="{$data.id}">{$data.title}</option>
+                {/volist}
+            </select>
+        </td>
     </tr>
     <tr>
     <td width="10%" class="tableleft">分类排序</td>
@@ -29,7 +35,7 @@
     </tr>
     <tr>
         <td class="tableleft">描述</td>
-        <td><input type="text" name="desc"/></td>
+        <td><input type="text" name="description"/></td>
     </tr>
     <tr>
         <td class="tableleft">分类个性化代码</td>
@@ -75,7 +81,7 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="submit" class="btn btn-primary">保存</button>
             <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
         </td>
     </tr>

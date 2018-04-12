@@ -2,7 +2,7 @@
 
 <form class="form-inline definewidth m20" action="/admin/ad/index" method="post">
     广告标题：
-    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">
     <button type="submit" class="btn btn-primary">查询</button>
     <a class="btn btn-success" href="/admin/ad/create">新增</a>
 </form>
@@ -26,7 +26,7 @@
         <td width="180">{$data.category_title}</td>
         <td width="150"><img src="{$data.thumb}" width="100" /> </td>
         <td width="150">{$data.title}</td>
-        <td width="350">{$data.desc}</td>
+        <td width="350">{$data.description}</td>
         <td width="50"><a href="{$data.url}" target="_blank">{$data.url}</a></td>
         <td width="50">{eq name="data.status" value="1" }
             启用

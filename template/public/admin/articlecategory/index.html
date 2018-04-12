@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="文章分类"}
 
 <form class="form-inline definewidth m20" action="/admin/article_category/index" method="post">
     分类名称：
@@ -31,7 +31,7 @@
              <td>{$data.short_title}</td>
              <td>{$data.unique_code}</td>
              <td>{$data.keywords}</td>
-             <td>{$data.desc}</td>
+             <td>{$data.description}</td>
              <td>{$data.sort}</td>
              <td><img src="{$data.icon}" height="45" /> </td>
              <td><img src="{$data.thumb}" height="45" /> </td>

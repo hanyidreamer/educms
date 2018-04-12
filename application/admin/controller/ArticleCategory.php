@@ -14,6 +14,7 @@ use app\base\controller\Upload;
 class ArticleCategory extends AdminBase
 {
     /**
+     * 文章分类列表
      * @param Request $request
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
@@ -39,6 +40,7 @@ class ArticleCategory extends AdminBase
     }
 
     /**
+     * 新增文章分类
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -56,30 +58,15 @@ class ArticleCategory extends AdminBase
     }
 
     /**
+     * 保存文章分类信息
      * @param Request $request
+     * @throws \think\exception\DbException
      */
     public function save(Request $request)
     {
-        $post_site_id= $request->post('site_id');
-
-        // 获取icon文件
-        $file_icon = $request->file('icon');
-        if(!empty($file_icon)){
-            $local_icon = $file_icon->getInfo('tmp_name');
-            $icon_filename = $file_icon->getInfo('name');
-            $icon_file_info = new Upload();
-            $post_icon=$icon_file_info->qcloud_file($local_icon,$icon_filename);
-        }
-
-        // 获取 分类略缩图 thumb文件
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
-
+        $upload = new Upload();
+        $post_icon = $upload->qcloud_file('icon');
+        $post_thumb = $upload->qcloud_file('thumb');
 
         $post_sort= $request->post('sort');
         if($post_sort==''){
@@ -88,7 +75,7 @@ class ArticleCategory extends AdminBase
         $post_title= $request->post('title');
         $post_short_title= $request->post('short_title');
         $post_keywords= $request->post('keywords');
-        $post_desc= $request->post('desc');
+        $post_description = $request->post('description');
 
         $post_parent_id= $request->post('parent_id');
         $post_category_template_id= $request->post('category_template_id');
@@ -97,6 +84,9 @@ class ArticleCategory extends AdminBase
         $post_redirect_url= $request->post('redirect_url');
         $post_body= $request->post('body');
         $post_unique_code = $request->post('unique_code');
+        if(empty($post_unique_code)){
+            $post_unique_code = 'c' . rand().time();
+        }
 
         $post_status= $request->post('status');
 
@@ -107,10 +97,10 @@ class ArticleCategory extends AdminBase
         $user['title'] = $post_title;
         $user['short_title'] = $post_short_title;
         $user['keywords'] = $post_keywords;
-        $user['desc'] = $post_desc;
+        $user['description'] = $post_description;
 
         $user['parent_id'] = $post_parent_id;
-        $user['site_id'] = $post_site_id;
+        $user['site_id'] = $this->site_id;
         $user['category_template_id'] = $post_category_template_id;
         $user['article_template_id'] = $post_article_template_id;
 
@@ -139,6 +129,7 @@ class ArticleCategory extends AdminBase
     }
 
     /**
+     * 编辑文章分类
      * @param $id
      * @return mixed
      * @throws \think\exception\DbException
@@ -152,6 +143,7 @@ class ArticleCategory extends AdminBase
     }
 
     /**
+     * 更新文章分类
      * @param Request $request
      * @throws \think\exception\DbException
      */
@@ -159,23 +151,9 @@ class ArticleCategory extends AdminBase
     {
         $post_id= $request->post('id');
 
-        // 获取icon文件
-        $file_icon = $request->file('icon');
-        if(!empty($file_icon)){
-            $local_icon = $file_icon->getInfo('tmp_name');
-            $icon_filename = $file_icon->getInfo('name');
-            $icon_file_info = new Upload();
-            $post_icon=$icon_file_info->qcloud_file($local_icon,$icon_filename);
-        }
-
-        // 获取 分类略缩图 thumb文件
-        $file_thumb = $request->file('thumb');
-        if(!empty($file_thumb)){
-            $local_thumb = $file_thumb->getInfo('tmp_name');
-            $thumb_filename = $file_thumb->getInfo('name');
-            $thumb_file_info = new Upload();
-            $post_thumb=$thumb_file_info->qcloud_file($local_thumb,$thumb_filename);
-        }
+        $upload = new Upload();
+        $post_icon = $upload->qcloud_file('icon');
+        $post_thumb = $upload->qcloud_file('thumb');
 
         $post_sort= $request->post('sort');
         if($post_sort==''){
@@ -184,7 +162,7 @@ class ArticleCategory extends AdminBase
         $post_title= $request->post('title');
         $post_short_title= $request->post('short_title');
         $post_keywords= $request->post('keywords');
-        $post_desc= $request->post('desc');
+        $post_description = $request->post('description');
 
         $post_parent_id= $request->post('parent_id');
         $post_category_template_id= $request->post('category_template_id');
@@ -204,7 +182,7 @@ class ArticleCategory extends AdminBase
         $user['title'] = $post_title;
         $user['short_title'] = $post_short_title;
         $user['keywords'] = $post_keywords;
-        $user['desc'] = $post_desc;
+        $user['description'] = $post_description;
 
         $user['parent_id'] = $post_parent_id;
         $user['category_template_id'] = $post_category_template_id;
@@ -236,6 +214,7 @@ class ArticleCategory extends AdminBase
     }
 
     /**
+     * 删除文章分类
      * @param $id
      * @throws \think\exception\DbException
      */

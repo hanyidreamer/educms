@@ -9,6 +9,7 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\base\model\AdminCategory as AdminCategoryModel;
+use app\base\model\Admin;
 
 class AdminCategory extends AdminBase
 {
@@ -21,15 +22,31 @@ class AdminCategory extends AdminBase
      */
     public function index()
     {
-        $site_id = $this->site_id;
-        // 找出列表数据
+        $admin_data = new Admin;
+        $admin_info = $admin_data->get(['username'=>session('admin_username')]);
         $post_title = $this->request->param('title');
         $data = new AdminCategoryModel;
-        if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+        if($admin_info['category_id']>1){
+            if(!empty($post_title)){
+                $data_list = $data->where(['status' => 1])
+                    ->where('title' , 'like','%'.$post_title.'%')
+                    ->where('level','>',0)
+                    ->select();
+            }else{
+                $data_list = $data->where(['status'=>1])
+                    ->where('level','>',0)
+                    ->select();
+            }
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            if(!empty($post_title)){
+                $data_list = $data->where(['status' => 1])
+                    ->where('title' , 'like','%'.$post_title.'%')
+                    ->select();
+            }else{
+                $data_list = $data->where(['status'=>1])->select();
+            }
         }
+
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
 
@@ -48,12 +65,11 @@ class AdminCategory extends AdminBase
     }
 
     /**
-     * 保存数据
+     * 保存管理员类型数据
      * @param Request $request
      */
     public function save(Request $request)
     {
-        $post_site_id = $request->param('site_id');
         $post_title = $request->param('title');
         $post_level = $request->param('level');
         $post_status = $request->param('status');
@@ -61,7 +77,6 @@ class AdminCategory extends AdminBase
             $this->error('分类名称不能为空');
         }
         $data = new AdminCategoryModel;
-        $data['site_id'] = $post_site_id;
         $data['title'] = $post_title;
         $data['level'] = $post_level;
         $data['status'] = $post_status;
@@ -97,7 +112,6 @@ class AdminCategory extends AdminBase
     public function update(Request $request)
     {
         $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
         $post_title = $request->post('title');
         $post_level = $request->post('level');
         $post_status= $request->post('status');
@@ -106,7 +120,6 @@ class AdminCategory extends AdminBase
         }
 
         $user = AdminCategoryModel::get($post_id);
-        $user['site_id'] = $post_site_id;
         $user['title'] = $post_title;
         $user['level'] = $post_level;
         $user['status'] = $post_status;

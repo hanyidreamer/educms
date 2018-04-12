@@ -21,20 +21,17 @@ class AdCategory extends AdminBase
      */
     public function index()
     {
-        $site_id = $this->site_id;
-
         // 找出广告列表数据
         $post_title = $this->request->param('title');
         $data = new AdCategoryModel;
         if(!empty($post_title)){
             $data_list = $data->where([
-                'site_id'=>$site_id,
                 'status' => 1,
                 'title' => ['like','%'.$post_title.'%']
             ])
                 ->select();
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            $data_list = $data->where(['status'=>1])->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -59,7 +56,6 @@ class AdCategory extends AdminBase
      */
     public function save()
     {
-        $post_site_id = $this->request->param('site_id');
         $post_title = $this->request->param('title');
         $post_unique_code = $this->request->param('unique_code');
         $unique_code_info = AdCategoryModel::get(['unique_code'=>$post_unique_code]);
@@ -71,7 +67,6 @@ class AdCategory extends AdminBase
             $this->error('分类名称不能为空');
         }
         $data = new AdCategoryModel;
-        $data['site_id'] = $post_site_id;
         $data['title'] = $post_title;
         $data['unique_code'] = $post_unique_code;
         $data['status'] = $post_status;
@@ -107,7 +102,6 @@ class AdCategory extends AdminBase
     public function update(Request $request)
     {
         $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
         $post_title = $request->post('title');
         $post_status= $request->post('status');
         if(empty($post_title)){
@@ -115,7 +109,6 @@ class AdCategory extends AdminBase
         }
 
         $user = AdCategoryModel::get($post_id);
-        $user['site_id'] = $post_site_id;
         $user['title'] = $post_title;
         $user['status'] = $post_status;
         if ($user->save()) {

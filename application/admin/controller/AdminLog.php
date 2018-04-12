@@ -27,7 +27,9 @@ class AdminLog extends AdminBase
         $post_title = $this->request->param('title');
         $data = new AdminLogModel;
         if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+            $data_list = $data->where(['status' => 1])
+                ->where('username' ,'like','%'.$post_title.'%')
+                ->select();
         }else{
             $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
         }
