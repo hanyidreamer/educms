@@ -11,17 +11,19 @@ use think\Controller;
 use think\Request;
 use app\base\model\Admin;
 use app\base\model\Site;
+use app\base\controller\Template;
 
 class Login extends Controller
 {
     /**
      * 后台登录页
      * @return mixed
+     * @throws \think\exception\DbException
      */
     public function index()
     {
         // 后台模板路径
-        $template = new AdminTemplate();
+        $template = new Template();
         $template_path = $template->path();
         return $this->fetch($template_path);
     }
@@ -59,7 +61,7 @@ class Login extends Controller
 
         // 检查 用户名是否正确
         $admin_info = Admin::get(['username'=>$post_username]);
-
+        $admin_site_id = $admin_info['site_id'];
         if(!empty($admin_info))
         {
             // username 存在 ,判断密码是否正确
@@ -68,10 +70,8 @@ class Login extends Controller
             $admin_password = Admin::get(['username'=>$post_username,'password'=>$post_password]);
             if(!empty($admin_password)){
                 // 用户名密码正确，将$username 存session。
-                session('username',$post_username);
-                session('password',$post_password);
-                cookie('username',$post_username);
-                cookie('password',$post_password);
+                session('admin_username',$post_username);
+                session('admin_password',$post_password);
             }else{
                 // 密码错误
                 $this->error('用户名或密码错误，登陆失败','/admin/login/index');
@@ -82,15 +82,14 @@ class Login extends Controller
             $this->error('用户名或密码错误，登陆失败','/admin/login/index');
         }
 
-        $my_admin_id = $admin_info['id'];
         $my_admin_status = $admin_info['status'];
         // 判断是否拥有网站权利权限
         $get_domain = $this->request->server('HTTP_HOST');
         $get_domain = preg_replace('/www./', '', $get_domain);
         $site_info_list = Site::get(['domain'=>$get_domain]);
-        $admin_id = $site_info_list['admin_id'];
+        $site_id = $site_info_list['id'];
 
-        if($my_admin_id==$admin_id or $my_admin_status==1){
+        if($site_id==$admin_site_id or $my_admin_status==1){
             $this->success('登录成功', '/admin/index/index');
         }else{
             $this->error('您没有管理网站的权限','/admin/login/index');

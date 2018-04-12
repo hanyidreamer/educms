@@ -13,6 +13,7 @@ use \app\base\model\Site as SiteModel;
 class Site extends Controller
 {
     /**
+     * 当前网站信息
      * @throws \think\exception\DbException
      */
     public function info()

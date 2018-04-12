@@ -2,47 +2,59 @@
 /**
  * Created by PhpStorm.
  * User: tanzhenxing
- * Date: 2017/6/14
- * Time: 17:23
+ * Date: 2017/6/30
+ * Time: 16:06
  */
 namespace app\base\controller;
 
 use think\Controller;
 use app\base\model\Site;
-use app\base\model\Admin;
+use app\base\model\CourseCategory;
 
 class Base extends Controller
 {
     protected $site_id;
     protected $template_path;
+
     /**
-     * 检查客户端信息
+     * 前台基本类
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
     protected function initialize()
     {
-        // 获取当前域名是否授权
-        $get_domain = $this->request->server('HTTP_HOST');
-        $get_domain = preg_replace('/www./', '', $get_domain);
-        $site_info = Site::get(['domain'=>$get_domain]);
-
-        // 显示未授权域名的提示信息
-        if(empty($site_info)) {
+        // 网站基本信息
+        $domain = $this->request->host();
+        $domain = preg_replace('/www./','',$domain);
+        $site_info = Site::get(['domain'=>$domain]);
+        if(empty($site_info)){
             $this->error('欢迎使用培训分销系统，您的网站还没有开通，请联系电话：13450232305');
         }
-        // 获取site_id
-        $site_id = $site_info['id'];
-        $this->site_id = $site_id;
-        $site_admin_id = $site_info['admin_id'];
+        // 获取当前网站id
+        $this->site_id = $site_info['id'];
 
-        // 判断是否有管理网站的权限
-        $admin_username = session('username');
-        $admin_data = Admin::get(['username'=>$admin_username]);
-        $my_admin_id = $admin_data['id'];
+        // 网站基本信息
+        $this->assign('site',$site_info);
 
-        if($site_admin_id != $my_admin_id){
-            $this->error('您没有管理该网站的权限','/admin/login/index');
+        // 模板信息
+        $template_data = new Template();
+        $template_info = $template_data->path();
+        $this->template_path = $template_info;
+
+        // 顶部导航
+
+        // 一级分类
+        $nav_level_one_info = new CourseCategory();
+        $nav_level_one_data = $nav_level_one_info->where(['site_id'=>$site_info['id'],'parent_id'=>0,'nav_status'=>1])->select();
+        // 二级分类
+        foreach ($nav_level_one_data as $data){
+            $category_id = $data['id'];
+            $sub_nav_info = new CourseCategory();
+            $category_data = $sub_nav_info->where(['parent_id'=>$category_id])->select();
+            $data['sub_list'] = $category_data;
         }
-
+        $this->assign('nav',$nav_level_one_data);
     }
+
 }

@@ -24,25 +24,12 @@ class Site extends AdminBase
      */
     public function index()
     {
-        // 获取admin_id
-        $admin_username = session('username');
-        $site_admin_data = Admin::get(['username'=>$admin_username]);
-        $admin_id = $site_admin_data['id'];
-
-        if($admin_id == 1){
-            $site_info_sql['status'] = 1;
-        }else{
-            $site_info_sql['admin_id'] = $admin_id;
-            $site_info_sql['status'] = 1;
-        }
         $site_data = new SiteModel();
-        $site_info = $site_data->where($site_info_sql) -> select();
+        $site_info = $site_data->where('status',1) -> select();
         $site_count = count($site_info);
-
         foreach ($site_info as $data)
         {
-            $admin_id = $data['admin_id'];
-            $site_admin_data = Admin::get($admin_id);
+            $site_admin_data = Admin::get(['site_id'=>$data['id']]);
             $site_admin = $site_admin_data['nickname'];
             $data->site_admin = $site_admin;
         }
@@ -90,7 +77,6 @@ class Site extends AdminBase
         $post_qrcode = $upload->qcloud_file('qrcode');
 
         $post_domain = $this->request->post('domain');
-        $post_admin_id = $this->request->post('admin_id');
         $post_title= $this->request->post('title');
         $post_description = $this->request->post('description');
         $post_keywords= $this->request->post('keywords');
@@ -133,7 +119,6 @@ class Site extends AdminBase
         $data['stats'] = $post_stats;
         $data['icp'] = $post_icp;
         $data['copyright'] = $post_copyright;
-        $data['admin_id'] = $post_admin_id;
         $data['tel'] = $post_tel;
         $data['phone'] = $post_phone;
         $data['qq'] = $post_qq;
@@ -176,7 +161,7 @@ class Site extends AdminBase
         $this->assign('site_info',$site_info);
 
         // 当前管理员信息
-        $site_admin = Admin::get($site_info['admin_id']);
+        $site_admin = Admin::get(['username'=>session('username')]);
         $this->assign('site_admin',$site_admin);
 
         return $this->fetch($this->template_path);
@@ -200,7 +185,6 @@ class Site extends AdminBase
         // 获取 二维码图片文件
         $post_qrcode = $upload->qcloud_file('qrcode');
         $post_domain = $this->request->post('domain');
-        $post_admin_id = $this->request->post('admin_id');
         $post_title= $this->request->post('title');
         $post_desc = $this->request->post('description');
         $post_keywords= $this->request->post('keywords');
@@ -241,7 +225,6 @@ class Site extends AdminBase
         $data['stats'] = $post_stats;
         $data['icp'] = $post_icp;
         $data['copyright'] = $post_copyright;
-        $data['admin_id'] = $post_admin_id;
         $data['tel'] = $post_tel;
         $data['phone'] = $post_phone;
         $data['qq'] = $post_qq;

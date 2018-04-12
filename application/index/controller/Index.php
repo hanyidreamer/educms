@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+use app\base\controller\Base;
 use app\base\model\Member;
 use app\base\model\MemberWeixin;
 use app\base\controller\BrowserCheck;

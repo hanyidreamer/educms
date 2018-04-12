@@ -15,6 +15,7 @@ use app\base\model\Curl;
 class Weixin extends Controller
 {
     /**
+     * 微信授权登录
      * @param $site_id
      * @param $mid
      * @return mixed

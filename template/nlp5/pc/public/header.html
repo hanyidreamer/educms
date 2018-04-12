@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>[title]{$site.title}</title>
     <meta name="keywords" content="{$site.keywords}" />
-    <meta name="description" content="{$site.desc}" />
+    <meta name="description" content="{$site.description}" />
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="{$site.icon}">
@@ -70,7 +70,7 @@
                             <img class="avatar-xs" src="/assets/img/default/avatar.png?7.0.2">
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li role="presentation" class="dropdown-header">{$username}</li>
+                            <li role="presentation" class="dropdown-header">{$Request.session.username}</li>
                             <li><a href="/settings/"><i class="es-icon es-icon-setting"></i>个人中心</a></li>
                             <li><a href="/notification"><span class="pull-right num"></span><i class="es-icon es-icon-notificationson"></i>我的同学</a></li>
                             <li><a href="/message/"><span class="pull-right num"></span><i class="es-icon es-icon-mail"></i>我的佣金</a></li>

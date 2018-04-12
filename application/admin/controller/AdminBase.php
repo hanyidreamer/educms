@@ -10,6 +10,7 @@ namespace app\admin\controller;
 use think\Controller;
 use app\base\model\Site;
 use app\base\model\Admin;
+use app\base\controller\Template;
 
 class AdminBase extends Controller
 {
@@ -41,15 +42,14 @@ class AdminBase extends Controller
         $this->site_id = $site_id;
 
         // 判断是否有管理网站的权限
-        $admin_username = session('username');
+        $admin_username = session('admin_username');
         $admin_data = Admin::get(['username'=>$admin_username]);
-        $my_admin_id = $admin_data['id'];
-        if($site_info['admin_id'] != $my_admin_id){
+        if($site_info['id'] != $admin_data['site_id']){
             $this->error('您没有管理该网站的权限',$login_url);
         }
 
         // 后台模板路径
-        $template = new AdminTemplate();
+        $template = new Template();
         $template_path = $template->path();
         $this->template_path = $template_path;
     }

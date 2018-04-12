@@ -17,10 +17,8 @@ class Logout extends AdminBase
      */
     public function index()
     {
-        Session::delete('username');
-        Session::delete('password');
-        Cookie::delete('password');
-        Cookie::delete('username');
+        Session::delete('admin_username');
+        Session::delete('admin_password');
         $this->success('正在退出', '/admin/login/index');
     }
 }
