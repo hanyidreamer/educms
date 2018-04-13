@@ -91,7 +91,27 @@
         "mobiledetect/mobiledetectlib": "^2.8",
         "liesauer/ql-plugin-bingsearcher": "^4.0",
         "liesauer/ql-plugin-simpleform": "^4.0",
-        "league/csv": "^9.1"
+        "league/csv": "^9.1",
+        "xxh/think-wxminihelper": "^1.0",
+        "xiaosier/libweibo": "dev-master",
+        "upyun/sdk": "^3.3",
+        "tecnickcom/tcpdf": "^6.2",
+        "stevenmaguire/oauth2-microsoft": "^2.2",
+        "setasign/fpdi": "^2.0",
+        "setasign/fpdf": "^1.8",
+        "ramsey/uuid": "^3.7",
+        "phpoffice/phpword": "^0.14.0",
+        "mountainguan/ql-plugin-disguise": "^4.0",
+        "kiddyu/beanbun": "^1.0",
+        "jpgraph/jpgraph": "^4.0",
+        "giggsey/libphonenumber-for-php": "^8.9",
+        "fortawesome/font-awesome": "^4.7",
+        "doctrine/cache": "^1.7",
+        "ckeditor/ckeditor": "^4.9",
+        "aws/aws-php-sns-message-validator": "^1.4",
+        "almasaeed2010/adminlte": "^2.4",
+        "anerg2046/alidayu": "^1.1",
+        "anerg2046/helper": "1.0.6.2"
     },
     "autoload": {
         "psr-4": {
