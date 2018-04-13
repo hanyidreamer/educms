@@ -6,11 +6,23 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ZendXml\\' => array($vendorDir . '/zendframework/zendxml/library'),
+    'Twig_' => array($vendorDir . '/twig/twig/lib'),
+    'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src'),
+    'Sabberworm\\CSS' => array($vendorDir . '/sabberworm/php-css-parser/lib'),
+    'Requests' => array($vendorDir . '/rmccue/requests/library'),
     'Qcloud\\Cos\\' => array($vendorDir . '/qcloud/cos-sdk-v5/src'),
+    'ProxyManager\\' => array($vendorDir . '/ocramius/proxy-manager/src'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
+    'PhantomInstaller\\' => array($vendorDir . '/jakoch/phantomjs-installer/src'),
+    'JonnyW\\PhantomJs\\' => array($vendorDir . '/jonnyw/php-phantomjs/src'),
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
+    'Google_Service_' => array($vendorDir . '/google/apiclient-services/src'),
+    'Google_' => array($vendorDir . '/google/apiclient/src'),
+    'GeneratedHydrator\\' => array($vendorDir . '/ocramius/generated-hydrator/src'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
+    'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
     'BaconQrCode' => array($vendorDir . '/bacon/bacon-qr-code/src'),
 );
