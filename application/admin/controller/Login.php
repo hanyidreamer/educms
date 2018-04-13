@@ -11,7 +11,9 @@ use think\Controller;
 use think\Request;
 use app\base\model\Admin;
 use app\base\model\Site;
+use app\base\controller\Site as SiteInfo;
 use app\base\controller\Template;
+use app\base\model\System;
 
 class Login extends Controller
 {
@@ -22,6 +24,17 @@ class Login extends Controller
      */
     public function index()
     {
+        // 当前网站信息
+        $site_data = new SiteInfo();
+        $site = $site_data->info();
+        $this->assign('site', $site);
+        // 后台系统配置信息
+        $system_data = System::get(['site_id'=>$site['id']]);
+        if(empty($system_data)){
+            $system_data = System::get(['site_id'=>0]);
+        }
+        $this->assign('system', $system_data);
+
         // 后台模板路径
         $template = new Template();
         $template_path = $template->path();
