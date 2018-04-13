@@ -31,7 +31,6 @@
         "aliyuncs/oss-sdk-php": "^2.3",
         "johnlui/aliyun-oss": "^2.2",
         "hisune/echarts-php": "^1.0",
-        "lilwil/geetest": "^1.0",
         "swiftmailer/swiftmailer": "^6.0",
         "zoujingli/weopen-developer": "^1.0",
         "zoujingli/wechat-developer": "^1.0",
