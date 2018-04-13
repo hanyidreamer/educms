@@ -199,7 +199,7 @@ final class Versions
   'zoujingli/wechat-developer' => 'v1.0.5@e05fe6bb24438d15259a6af4915bd0638dc3914a',
   'zoujingli/wechat-php-sdk' => 'v1.3.14@4e8563507213f030cb6612fafceb96380ce7cfb7',
   'zoujingli/weopen-developer' => 'v1.0.0@8bb75bc08488a43964c00f027b21b93ed58e8d5a',
-  'tanzhenxing/educms' => 'dev-master@18c3420400d1e2fbe7330622317f613c3dd96e2e',
+  'tanzhenxing/educms' => 'dev-master@9d06ca2fca1916c0bf726c0094a56db4e0aeba9a',
 );
 
     private function __construct()
