@@ -1,0 +1,28 @@
+<script>
+    $(function () {
+        $('#addnew').click(function(){
+            window.location.href="create.html";
+        });
+    });
+
+    function del(id)
+    {
+        if(confirm("确定要删除吗？"))
+        {
+            var url = "delete.html";
+            window.location.href=url;
+        }
+    }
+    $(function () {
+        $('#backid').click(function(){
+            window.location.href="../../index.html";
+        });
+    });
+    $(function () {
+        $('#back').click(function(){
+            window.location.href="index.html";
+        });
+    });
+</script>
+</body>
+</html>

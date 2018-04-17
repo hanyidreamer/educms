@@ -1,0 +1,46 @@
+{include file="public/header" /}
+
+<form action="/admin/comment/insert" enctype="multipart/form-data" method="post">
+<table class="table table-bordered table-hover definewidth m10">
+    <input type="hidden" name="site_id" value="{$site_id}" />
+    <tr>
+        <td class="tableleft">选择点评用户</td>
+        <td>
+            <select name="mid">
+                {volist name="member_info" id="user" }
+                <option value="{$user.id}">{$user.username}</option>
+                {/volist}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" class="tableleft">留言内容</td>
+        <td>
+            <textarea type="text" name="comment"  value="" rows="10" cols="50"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">是否推荐到首页</td>
+        <td>
+            <input type="radio" name="type" value="1" checked/> 推荐
+            <input type="radio" name="type" value="0"/> 不推荐
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 显示
+            <input type="radio" name="status" value="0"/> 不显示
+        </td>
+    </tr>
+
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+{include file="public/footer" /}

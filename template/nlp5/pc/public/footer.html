@@ -1,0 +1,149 @@
+<div class="es-footer-link">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 footer-main clearfix">
+                <div class="link-item ">
+                    <h3>NLP总裁课程</h3>
+                    <ul>
+                        <li>
+                            <a href="" target="_blank">NLP总裁落地教练式管理</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">NLP教练技术</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">NLP大成教练</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="link-item ">
+                    <h3>张国维NLP课程</h3>
+                    <ul>
+                        <li>
+                            <a href="" target="_blank">NLP专业执行师班</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">NLP高级执行师班</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">NLP导师班</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="link-item ">
+                    <h3>总裁落地分享</h3>
+                    <ul>
+                        <li>
+                            <a href="" target="_self">学员分享</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">NLP视频中心</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">NLP智慧与企业运营</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="link-item hidden-xs">
+                    <h3>NLP课程培训</h3>
+                    <ul>
+                        <li>
+                            <a href="" target="_blank">NLP课程报名</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">学院介绍</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">学院招商</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="link-item hidden-xs">
+                    <h3>关于我们</h3>
+                    <ul>
+                        <li>
+                            <a href="" target="_blank">成功案例</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">联系我们</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">在线客服</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 footer-logo hidden-sm hidden-xs">
+                <div class="footer-sns">
+                        <div class="qrcode-content">
+                            <img src="{$site.qrcode}" width="130">
+                        </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<footer class="es-footer">
+    <div class="copyright">
+        <div class="container">
+            <p class="txt">全国课程咨询热线：{$site.phone} 主体课程在线咨询：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$site.qq}&amp;site={$site.domain}&amp;menu=yes" rel="nofollow"><img src="http://wpa.qq.com/pa?p=2:{$site.qq}:41" alt="点击这里给我发消息" width="77" height="22" border="0" title="点击这里给我发消息" align="absmiddle"></a></p>
+            <p class="txt">总部营销中心地址：{$site.address}</p>
+            <p class="txt">运营中心招商热线：{$site.tel}</p>
+            <div class="mts">
+                {$site.copyright}　{$site.icp}
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+<script>
+    var app = {};
+    app.debug = false;
+    app.version = '7.0.2';
+    app.httpHost = 'http://edu.ddtui.com';
+    app.basePath = '';
+    app.theme = 'jianmo';
+    app.themeGlobalScript = 'theme/global-script';
+    app.jsPaths = {"common":"common","theme":"\/themes\/jianmo\/js","customwebbundle":"\/bundles\/customweb\/js","customadminbundle":"\/bundles\/customadmin\/js","topxiawebbundle":"\/bundles\/topxiaweb\/js","topxiaadminbundle":"\/bundles\/topxiaadmin\/js","classroombundle":"\/bundles\/classroom\/js","materiallibbundle":"\/bundles\/materiallib\/js","sensitivewordbundle":"\/bundles\/sensitiveword\/js","orgbundle":"\/bundles\/org\/js"};
+
+    app.crontab = '/common/crontab';
+
+    var CKEDITOR_BASEPATH = app.basePath + '/assets/libs/ckeditor/4.6.7/';
+    var CLOUD_FILE_SERVER = "";
+
+    app.config = {"api":{"weibo":{"key":""},"qq":{"key":""},"douban":{"key":""},"renren":{"key":""}},"cloud":{"video_player":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/GrindPlayer.swf","video_player_watermark_plugin":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/Watermake-1.0.3.swf","video_player_fingerprint_plugin":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/Fingerprint-1.0.1.swf"},"loading_img_path":"\/assets\/img\/default\/loading.gif?7.0.2"};
+
+    app.arguments = {};
+    app.controller = 'index';
+
+    app.scripts = ["es-bar\/index","notification\/notification"];
+
+    app.uploadUrl = '/file/upload';
+    app.imgCropUrl = '/file/img/crop';
+    app.lessonCopyEnabled = '0';
+    app.cloudSdkCdn = '';
+    app.mainScript = '/bundles/topxiaweb/js/app.js?7.0.2';
+</script>
+<script src="/assets/libs/seajs/seajs/2.2.1/sea.js?7.0.2"></script>
+<script src="/assets/libs/seajs/seajs-style/1.0.2/seajs-style.js?7.0.2"></script>
+<script src="/assets/libs/seajs/seajs-text/1.1.1/seajs-text.min.js?7.0.2"></script>
+<script src="/assets/libs/seajs-global-config.js?7.0.2"></script>
+<script>
+    seajs.use(app.mainScript);
+</script>
+
+{$site.stats}
+
+</body>
+</html>

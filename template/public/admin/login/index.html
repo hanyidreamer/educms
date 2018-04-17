@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{$system.title} - 后台管理员登录</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- CSS Files -->
+    {load file="/static/admin/login/css/bootstrap.min.css,/static/admin/login/css/font-awesome.min.css,/static/admin/login/fonts/icon-7-stroke/css/pe-icon-7-stroke.css,/static/admin/login/css/animate.css,/static/admin/login/css/owl.theme.css,/static/admin/login/css/owl.carousel.css,/static/admin/login/css/css-index.css,/static/admin/login/css/fonts.css" /}
+</head>
+<body data-spy="scroll" data-target="#navbar-scroll">
+<div id="preloader"></div>
+<div id="top"></div>
+<div class="fullscreen landing parallax" style="background-image:url('{$system.thumb}');" data-img-width="2000" data-img-height="1333" data-diff="100">
+
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <!-- /.logo -->
+                    <div class="logo wow fadeInDown"> <a href=""><img src="{$system.logo}" alt="logo" width="100%"></a></div>
+                    <!-- /.main title -->
+                    <h1 class="wow fadeInLeft">
+                        {$system.title}
+                    </h1>
+                    <!-- /.header paragraph -->
+                    <div class="landing-text wow fadeInUp">
+                        <p>{$system.description}</p>
+                    </div>
+                    <!-- /.header button -->
+                    <div class="head-btn wow fadeInLeft">
+                        <a href="{$system.url}" class="btn-primary">关于我们</a>
+                        <a href="{$system.url1}" class="btn-default">联系我们</a>
+                    </div>
+                </div>
+                <!-- /.signup form -->
+                <div class="col-md-5">
+                    <div class="signup-header wow fadeInUp" style="margin-bottom:180px">
+                        <h3 class="form-title text-center">后台管理员登录</h3>
+                        <form class="form-header" method="post" action="/admin/login/check">
+                            <div class="form-group">
+                                <input class="form-control input-lg" name="username" id="username" type="text" placeholder="用户名" >
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control input-lg" name="password" id="password" type="password" placeholder="密码" >
+                            </div>
+                            <div class="captcha" style="padding-bottom: 20px;">
+                                <input type="text" name="captcha">
+                                <img src="{:captcha_src()}" width="120" height="43" onclick="this.src='{:captcha_src()}'" alt="captcha" style="padding-bottom: 4px;" />
+                            </div>
+                            <div class="form-group last">
+                                <input type="submit" id="log_in" class="btn btn-warning btn-block btn-lg" value="登录">
+                            </div>
+                            <p class="privacy text-center">本系统需要授权才能登录，联系电话：{$system.tel}</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.javascript files -->
+<script src="/static/admin/login/js/jquery.js"></script>
+<script src="/static/admin/login/js/bootstrap.min.js"></script>
+<script src="/static/admin/login/js/custom.js"></script>
+<script src="/static/admin/login/js/jquery.sticky.js"></script>
+<script src="/static/admin/login/js/wow.min.js"></script>
+<script src="/static/admin/login/js/owl.carousel.min.js"></script>
+<script src="/static/layer/layer.js"></script>
+</body>
+</html>

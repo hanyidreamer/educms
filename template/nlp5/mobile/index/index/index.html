@@ -1,0 +1,110 @@
+{include file="$public_header" title=""}
+
+<section id="slideBox" class="slideBox" >
+	<div class="bd">
+		<ul>
+			{volist name="slide" id="list" }
+			<li class="am-hide">
+				<a class="pic" href="{$list.url}"><img src="{$list.thumb}"/></a>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	<div class="hd">
+		<ul></ul>
+	</div>
+	<script type="text/javascript">
+        seajs.use('lj/preindex');
+	</script>
+</section>
+<!-- 开始adbanner1 -->
+
+<div class="am-g bgfff am-padding-top-sm am-margin-top-sm">
+	<a href="/" class="am-block am-u-sm-6 am-padding-right-xs">
+		<div class="am-text-sm cl333 am-padding-bottom-xs">课程预告</div>
+		<div><img class="wfull" src="http://www.ckjr001.com/assets/i/wap/index/live.png" alt=""></div>
+		<div class="am-text-xs am-padding-vertical-xs cl333">即将上线！<br><span>招商成交之王系统课程</span></div>
+	</a>
+	<a href="/" class="am-block am-u-sm-6 am-padding-left-xs">
+		<div class="am-text-sm cl333 am-padding-bottom-xs">名师讲堂</div>
+		<div class="parents-box">
+			<img class="wfull" src="/static/images/kaijiangla.jpg" alt="">
+		</div>
+		<div class="am-text-xs am-padding-vertical-xs cl333">招商成交之王张佑会<br><span class="clff6e00">招商成交之王好处</span></div>
+	</a>
+</div>
+<!-- 结束adbanner1-->
+
+<!-- 开始热门推荐视频 -->
+<div class="am-remen">
+	<div class="am-break">热门推荐</div>
+	<hr>
+	<div class="am-g">
+		<ul class="am-avg-sm-2 ckjr_onlinedetail">
+			{volist name="course" id="list" }
+			<li data-i="94">
+				<a href="/course/{$list.unique_code}"><img class="am-img-responsive .am-list-img2" src="{$list.thumb}"></a>
+				<dl><dt  style="font-size: 12px;">{$list.title}</dt>
+					<dd style="font-size: 20px;"> <span class="am-fr playNum am-hide">{$list.click}次</span></dd>
+				</dl>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+</div>
+<!-- 结束热门推荐视频 -->
+<!-- 开始adbanner2 -->
+<div class="am-category">
+	<a href="/"><img src="https://images.qianbailang.com/upload/2017-09-21/150600415901_proc.jpg" alt=""></a>
+</div>
+<!-- 结束adbanner2-->
+<!-- 开始VIP专区视频 -->
+<div style="clear: both; height: 10px;"></div>
+<div class="am-remen">
+	<div class="am-break">名师专区</div>
+	<hr>
+	<div class="am-g">
+		<ul class="am-avg-sm-2 ckjr_onlinedetail">
+			{volist name="teacher" id="list" }
+			<li data-i="94">
+				<a href="/teacher/{$list.unique_code}"><img class="am-img-responsive .am-list-img2" src="{$list.icon}"></a>
+				<dl>
+					<dt  style="font-size: 12px;">{$list.nickname}</dt>
+				</dl>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	<div class="am-g am-btncontent">
+		<button id="ckjr_viplist" type="button" class="am-btn am-btn-block am-btn-more">更多名师>></button>
+	</div>
+</div>
+<!-- 结束VIP专区视频 -->
+<!-- 开始精品视频 -->
+<div class="am-jingpin">
+	<div class="am-break">精品视频专区</div>
+	<div class="am-g">
+		<ul class="am-avg-sm-3">
+			<li class="ckjr_online" data-i="11"><img class="am-img-responsive"  src="http://www.ckjr001.com/assets/i/wap/index/tu1.jpg"/><div class="am-playtitle">销售能力类</div></li>
+			<li class="ckjr_online" data-i="12"><img class="am-img-responsive"  src="http://www.ckjr001.com/assets/i/wap/index/tu2.jpg"/><div class="am-playtitle">团队管理类</div></li>
+			<li class="ckjr_online" data-i="13"><img class="am-img-responsive"  src="http://www.ckjr001.com/assets/i/wap/index/tu3.jpg"/><div class="am-playtitle">创业管理类</div></li>
+			<li class="ckjr_online" data-i="14"><img class="am-img-responsive"  src="http://www.ckjr001.com/assets/i/wap/index/tu4.jpg"/><div class="am-playtitle">新媒体营销类</div></li>
+			<li class="ckjr_online" data-i="15"><img class="am-img-responsive"  src="http://www.ckjr001.com/assets/i/wap/index/tu5.jpg"/><div class="am-playtitle">传统转型类</div></li>
+			<li class="ckjr_online" data-i="16"><img class="am-img-responsive"  src="http://www.ckjr001.com/assets/i/wap/index/tu6.jpg"/><div class="am-playtitle">微商专题类</div></li>
+		</ul>
+	</div>
+</div>
+<!-- 结束精品视频 -->
+
+<!-- 开始底部-->
+
+<div class="am-g am-footer">
+	<dl>
+		<dd><img src="/static/images/logo2.png"/></dd>
+		<dd>{$site.copyright}</dd>
+		<dd>{$site.icp}</dd>
+	</dl>
+</div>
+
+
+{include file="$public_footer"}

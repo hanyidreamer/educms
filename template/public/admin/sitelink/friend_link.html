@@ -1,0 +1,41 @@
+{include file="public/header" /}
+<br />
+&nbsp &nbsp &nbsp &nbsp <a href="/admin/site_link/add/type/{$type}"><button type="button" class="btn btn-success" id="addnew">新增</button></a>
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>排序</th>
+        <th>图标</th>
+        <th>链接文字</th>
+        <th>链接说明</th>
+        <th>链接网址</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="user" }
+    <tr>
+        <td>{$user.sort}</td>
+        <td><img src="{$user.icon}" width="50" /> </td>
+        <td>{$user.title}</td>
+        <td>{$user.description}</td>
+        <td>{$user.url}</td>
+
+        <td>{eq name="user.status" value="1" }
+            启用
+            {else}
+            禁用
+            {/eq}</td>
+        <td>{$user.update_time}</td>
+        <td>
+            <a class="btn btn-sm btn-primary" href="/admin/site_link/home_icon_edit/type/{$type}/id/{$user.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+            <a class="btn btn-danger btn-sm" href="/admin/site_link/home_icon_delete/type/{$type}/id/{$user.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+        </td>
+    </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+</div>
+{include file="public/footer" /}

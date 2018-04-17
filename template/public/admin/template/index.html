@@ -1,0 +1,39 @@
+{include file="$public_header" title="模板管理"}
+
+<form class="form-inline definewidth m20" action="/admin/template/index" method="post">
+    标题：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a class="btn btn-success" href="/admin/template/create">新增</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>模板分类</th>
+        <th>模板名称</th>
+        <th>标签</th>
+        <th>状态</th>
+        <th>最后更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+    <tr align="center">
+        <td width="50">{$data.id}</td>
+        <td width="100">{$data.category_title}</td>
+        <td width="100">{$data.title}</td>
+        <td width="150">{$data.tag}</td>
+        <td width="50">{eq name="data.status" value="1" } 启用 {else} 禁用 {/eq}</td>
+        <td width="150">{$data.update_time}</td>
+        <td>
+            <a class="btn btn-sm btn-primary" href="/admin/template/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+            <a class="btn btn-danger btn-sm" href="/admin/template/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+        </td>
+    </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+    共{$data_count} 条记录
+</div>
+{include file="$public_footer"}

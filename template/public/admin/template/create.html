@@ -1,0 +1,44 @@
+{include file="$public_header" title="新增模板"}
+
+<form action="/admin/template/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="15%" class="tableleft">分类</td>
+            <td>
+                <select name="category_id">
+                {volist name="category" id="data" }
+                <option value="{$data.id}">{$data.title}</option>
+                {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">名称</td>
+            <td><input type="text" name="title" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">标签</td>
+            <td><input type="text" name="tag" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 显示
+                <input type="radio" name="status" value="0" /> 隐藏
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

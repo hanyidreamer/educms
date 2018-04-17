@@ -1,0 +1,38 @@
+{include file="$public_header" tilte="新增阿里云OSS"}
+
+<form action="/admin/aliyun_oss/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">标题</td>
+            <td ><input type="text" name="title" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">key</td>
+            <td><input type="text" name="key" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">sign</td>
+            <td ><input type="text" name="sign" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 显示
+                <input type="radio" name="status" value="0" /> 隐藏
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

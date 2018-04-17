@@ -1,0 +1,51 @@
+{include file="$public_header" title="网站列表 - "}
+
+<form class="form-inline definewidth m20" action="/admin/site/index" method="post">
+    网站域名：
+    <input type="text" name="domain" id="domain" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a class="btn btn-success" href="/admin/site/create">新增网站</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>网站</th>
+        <th>Logo</th>
+        <th>简介</th>
+        <th>关键词</th>
+        <th>站长</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="site_info" id="data" }
+	     <tr align="center">
+            <td width="50">{$data.id}</td>
+             <td width="180"><img src="{$data.icon}" width="16" height="16">  {$data.domain}
+             <br /> {$data.title}
+             </td>
+            <td width="150"><img src="{$data.logo}" width="145"></td>
+             <td width="350">{$data.description}</td>
+             <td width="180">{$data.keywords}</td>
+             <td width="80">
+                 {$data.site_admin}
+                 <br />
+                 {$data.tel}
+             </td>
+             <td width="50">{eq name="data.status" value="1" }
+                 启用
+                 {else}
+                 禁用
+                 {/eq}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/site/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/site/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$site_count} 条记录
+</div>
+{include file="$public_footer"}

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$site.title}</title>
+    <meta name="keywords" content="{$site.keywords}" />
+    <meta name="description" content="{$site.description}" />
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$site.icon}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{$resource_path}css/index.css" />
+    <script type="text/javascript" src="{$resource_path}js/html5shiv.js"></script>
+    <script type="text/javascript" src="{$resource_path}js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="{$resource_path}js/koala.min.1.5.js"></script>
+    <script>
+        $(function(){
+            $(".small_menu").hide();
+            $(".nav li").mouseover(function(){
+                $(this).find(".small_menu").slideDown(200);
+            }).mouseleave(function(){
+                $(this).find(".small_menu").slideUp(200);
+            });
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="head width">
+        <h1 class="logo fleft"><a href="index.aspx"><img src="{$site.logo}"></a></h1>
+        <div class="l_by fleft"><img src="{$resource_path}images/logo_by.png"></div>
+        <div class="head_right fright">
+            <div class="hr_font clearfix"><a href="ab_cont.aspx">联系我们</a><a href="index.aspx">返回首页</a></div>
+            <form action="newsert.aspx" method="get" target="_blank" class="search-form">
+                <input name="n" value="UestcNews.Front.Search.Page" type="hidden">
+                <input name="Id" value="1" type="hidden">
+                <input type="text" name="Keyword" placeholder="搜索...">
+                <input class="btn" type="submit" value="搜索">
+            </form>
+        </div>
+    </div>
+    <div class="nav_border">
+        <ul class="nav width">
+            <li><a href="/">首页</a></li>
+            {volist name="article_nav" id="category"}
+                <li><a href="/article/category/view/id/{$category.id}">{$category.title}</a>
+                    <ul class="small_menu">
+                        {volist name="category.sub" id="nav"}
+                        <li><a href="/article/category/view/id/{$nav.id}">{$nav.title}</a></li>
+                        {/volist}
+                    </ul>
+                </li>
+            {/volist}
+        </ul>
+    </div>
+    <div style="clear: both;margin-top: 10px;">
+        {volist name="slide" id="data"}
+        <img src="{$data.thumb}" style="width:100%">
+        {/volist}
+    </div>
+    <div class="main_bg">
+        <div class="main width">
+            <div class="m_news">
+                <div class="mn_news fleft">
+                    <h3 class="sh_tit"><span>商会新闻</span><a href="newsert.aspx?uid=1">更多</a></h3>
+                    <div class="shNews fleft">
+                        <div class="fleft nl_img">
+                            <div id="fsD1" class="focus">
+                                <div id="D1pic1" class="fPic">
+                                    <div class="fcon" style="display: none;">
+                                        <a target="_blank" href="new_det.aspx?Id=3794"><img src="{$resource_path}images/20180404101450-0.png" style="opacity: 1; "></a>
+                                        <span class="shadow"><a target="_blank" href="new_det.aspx?Id=3794" title="【商会】百余位浙商掌门人齐聚普陀  共谋合作发展大计">【商会】百余位浙商掌门人齐聚普陀 共谋合作...</a></span>
+                                    </div>
+                                    <div class="fcon" style="display: none;">
+                                        <a target="_blank" href="new_det.aspx?Id=3793"><img src="{$resource_path}images/20180403103706-0.png" style="opacity: 1; "></a>
+                                        <span class="shadow"><a target="_blank" href="new_det.aspx?Id=3793" title="【商会】有质量、有意义、有温度  商会九届九次会长议事会议召开">【商会】有质量、有意义、有温度 商会九届九...</a></span>
+                                    </div>
+                                    <div class="fcon" style="display: none;">
+                                        <a target="_blank" href="new_det.aspx?Id=3791"><img src="{$resource_path}images/20180328104336-0.png" style="opacity: 1; "></a>
+                                        <span class="shadow"><a target="_blank" href="new_det.aspx?Id=3791" title="【商会】心中有信仰  奋斗有力量 2018年商会党建工作会议新昌召开">【商会】心中有信仰 奋斗有力量 2018年...</a></span>
+                                    </div>
+                                    <div class="fcon" style="display: none;">
+                                        <a target="_blank" href="new_det.aspx?Id=3790"><img src="{$resource_path}images/20180328104111-0.png" style="opacity: 1; "></a>
+                                        <span class="shadow"><a target="_blank" href="new_det.aspx?Id=3790" title="【商会】党建引领 创新为魂 两新组织创新发展论坛">【商会】党建引领 创新为魂 两新组织创新发展论坛</a></span>
+                                    </div>
+                                    <div class="fcon" style="display: none;">
+                                        <a target="_blank" href="new_det.aspx?Id=3774"><img src="{$resource_path}images/20180301100610-0.png" style="opacity: 1; "></a>
+                                        <span class="shadow"><a target="_blank" href="new_det.aspx?Id=3774" title="【E智库】浙里有爱 感恩有您 医委会新春茶话会举办">【E智库】浙里有爱 感恩有您 医委会新春茶话会举办</a></span>
+                                    </div>
+                                    <div class="fcon" style="display: none;">
+                                        <a target="_blank" href="new_det.aspx?Id=3761"><img src="{$resource_path}images/20180301091202-0.png" style="opacity: 1; "></a>
+                                        <span class="shadow"><a target="_blank" href="new_det.aspx?Id=3761" title="【关注】市政府首个工作日 应勇市长与郭广昌等企业家为民营经济把脉问诊">【关注】市政府首个工作日 应勇市长与郭广昌等...</a></span>
+                                    </div>
+                                </div>
+                                <div class="fbg">
+                                    <div class="D1fBt" id="D1fBt">
+                                        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>1</i></a>
+                                        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>2</i></a>
+                                        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>3</i></a>
+                                        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>4</i></a>
+                                        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>5</i></a>
+                                        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>6</i></a>
+                                    </div>
+                                </div>
+                                <span class="prev"></span>
+                                <span class="next"></span>
+                            </div>
+                            <script type="text/javascript">
+                                Qfast.add('widgets', { path: "{$resource_path}js/terminator2.2.min.js", type: "js", requires: ['fx'] });
+                                Qfast(false, 'widgets', function () {
+                                    K.tabs({
+                                        id: 'fsD1',   //焦点图包裹id  
+                                        conId: "D1pic1",  //** 大图域包裹id  
+                                        tabId:"D1fBt",
+                                        tabTn:"a",
+                                        conCn: '.fcon', //** 大图域配置class       
+                                        auto: 1,   //自动播放 1或0
+                                        effect: 'fade',   //效果配置
+                                        eType: 'click', //** 鼠标事件
+                                        pageBt:true,//是否有按钮切换页码
+                                        bns: ['.prev', '.next'],//** 前后按钮配置class                          
+                                        interval: 3000  //** 停顿时间  
+                                    })
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <div class="fleft shN_right">
+                        <ul class="shN_Rlist">
+                            <li><a href="new_det.aspx?Id=3794">【商会】百余位浙商掌门人齐聚普陀 共谋合...</a><span>[ 商会要闻 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3793">【商会】有质量、有意义、有温度 商会九届...</a><span>[ 商会要闻 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3791">【商会】心中有信仰 奋斗有力量 2018...</a><span>[ 商会要闻 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3790">【商会】党建引领 创新为魂 两新组织创新发...</a><span>[ 商会要闻 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3774">【E智库】浙里有爱 感恩有您 医委会新春茶...</a><span>[ 商会要闻 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3761">【关注】市政府首个工作日 应勇市长与郭广昌...</a><span>[ 商会要闻 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3751">【商会】瑞雪兆丰年 房地产联合会展望20...</a><span>[ 商会动态 ]</span></li>
+                            <li><a href="new_det.aspx?Id=3738">【聚焦】“造”出好产品 就能做出“花” ...</a><span>[ 商会要闻 ]</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mntongzhi_left fleft">
+                    <h3 class="mn_tit"><span>最新公告</span><a href="newsert.aspx?uid=1">更多</a></h3>
+                    <ul class="mtz_list">
+                        <li><a href="new_det.aspx?Id=3700">【通知】关于开展2017年上海...</a></li>
+                        <li><a href="new_det.aspx?Id=3699">【荐号】“杭州市投资促进局”网...</a></li>
+                        <li><a href="new_det.aspx?Id=3630">【通知】关于上海市浙江商会教育...</a></li>
+                    </ul>
+                    <div class="n_xian"></div>
+                    <h3 class="mn_tit acmn_tit"><span>活动预告</span><a href="newsert.aspx?Id=10">更多</a></h3>
+                    <ul class="yg_list">
+                    </ul>
+                    <div class="msL msL2" style="margin-left:10px;margin-top:15px;border-radius:3px">
+                        <a href="biaodan.aspx" style="color:#fff">
+                            <span style="font-size:15px;">在线入会</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="fengcai_bg">
+                <h3 class="mn_tit"><span>浙商风采</span><a href="f_hiuzhang.aspx?Id=3">更多</a></h3>
+                <div class="fengcai">
+                    <div class="fleft huizhang">
+                        <a href="f_hiuzhang.aspx?Id=3">
+                            <img src="{$resource_path}images/huizhangx.jpg">
+                            <div class="hz_font">
+                                <span>郭广昌</span>
+                                <p style="height:20px;">上海市浙江商会会长</p>
+                                <p>复星国际董事长</p>
+                                <p><a href="f_hiuzhang.aspx?Id=3"></a></p>
+                            </div>
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                        //js无缝滚动代码
+                        function marquee(i, direction){
+                            var obj = document.getElementById("marquee" + i);
+                            var obj1 = document.getElementById("marquee" + i + "_1");
+                            var obj2 = document.getElementById("marquee" + i + "_2");
+                            if (direction == "up"){
+                                if (obj2.offsetTop - obj.scrollTop <= 0){
+                                    obj.scrollTop -= (obj1.offsetHeight + 20);
+                                }else{
+                                    var tmp = obj.scrollTop;
+                                    obj.scrollTop++;
+                                    if (obj.scrollTop == tmp){
+                                        obj.scrollTop = 1;
+                                    }
+                                }
+                            }else{
+                                if (obj2.offsetWidth - obj.scrollLeft <= 0){
+                                    obj.scrollLeft -= obj1.offsetWidth;
+                                }else{
+                                    obj.scrollLeft++;
+                                }
+                            }
+                        }
+
+                        function marqueeStart(i, direction){
+                            var obj = document.getElementById("marquee" + i);
+                            var obj1 = document.getElementById("marquee" + i + "_1");
+                            var obj2 = document.getElementById("marquee" + i + "_2");
+
+                            obj2.innerHTML = obj1.innerHTML;
+                            var marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+                            obj.onmouseover = function(){
+                                window.clearInterval(marqueeVar);
+                            }
+                            obj.onmouseout = function(){
+                                marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+                            }
+                        }
+                    </script>
+                    <div id="marquee1" class="marqueeleft fleft" style="width:960px;">
+                        <div style="width:8000px;">
+                            <ul id="marquee1_1">
+                                <li>
+                                    <a class="pic" href="fengcai_det.aspx?Id=51"><img src="{$resource_path}images/20170728100344-0.jpg"></a>
+                                    <a href="fengcai_det.aspx?Id=51"><div class="hz_font hz_font2">
+                                        <span>马云 </span>
+                                        <p>阿里巴巴董事局主席</p>
+                                    </div></a>
+                                </li>
+                                <li>
+                                    <a class="pic" href="fengcai_det.aspx?Id=52"><img src="{$resource_path}images/20170731093934-0.JPG"></a>
+                                    <a href="fengcai_det.aspx?Id=52"><div class="hz_font hz_font2">
+                                        <span> 郑永刚 </span>
+                                        <p>杉杉控股董事局主席</p>
+                                    </div></a>
+                                </li>
+                                <li>
+                                    <a class="pic" href="fengcai_det.aspx?Id=53"><img src="{$resource_path}images/20170731093340-0.jpg"></a>
+                                    <a href="fengcai_det.aspx?Id=53"><div class="hz_font hz_font2">
+                                        <span>周成建 </span>
+                                        <p>美特斯邦威集团董事长</p>
+                                    </div></a>
+                                </li>
+                                <li>
+                                    <a class="pic" href=""><img src="{$resource_path}images/20170802094202-0.jpg"></a>
+                                    <a href=""><div class="hz_font hz_font2">
+                                        <span>陈爱莲 </span>
+                                        <p>万丰奥特控股集团有限公司董事局主席、党委书记</p>
+                                    </div></a>
+                                </li>
+                                <li>
+                                    <a class="pic" href="f_mingyu.aspx?Id=4"><img src="{$resource_path}images/20180408132812-0.jpg"></a>
+                                    <a href="f_mingyu.aspx?Id=4"><div class="hz_font hz_font2">
+                                        <span>江南春 </span>
+                                        <p>分众传媒董事长</p>
+                                    </div></a>
+                                </li>
+                                <li>
+                                    <a class="pic" href="fengcai_det.aspx?Id=54"><img src="{$resource_path}images/20170728103000-0.jpg"></a>
+                                    <a href="fengcai_det.aspx?Id=54"><div class="hz_font hz_font2">
+                                        <span>杨国平 </span>
+                                        <p>大众交通（集团）股份有限公司董事长</p>
+                                    </div></a>
+                                </li>
+                            </ul>
+                            <ul id="marquee1_2"></ul>
+                        </div>
+                    </div>
+                    <script type="text/javascript">marqueeStart(1, "left");</script>
+                </div>
+            </div>
+            <div class="sp_cont">
+                <div class="sh_shipin fleft">
+                    <h3 class="mn_tit clearfix"><span>商会视频</span><a href="Video.aspx">更多</a></h3>
+                    <div class="sh_font clearfix"><a href="Video_det.aspx?Id=4">
+                        <img src="{$resource_path}images/20170628105519-0.png" width="170" class="fleft">
+                        <div class="fleft shf_zi">
+                            <strong>上海市浙江商会30周年宣传片</strong>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;《不忘初心 筑梦前行》</p>
+                        </div>
+                    </a>
+                    </div>
+                    <ul class="sp_list">
+                        <li><a href="Video_det.aspx?Id=4"> > 上海市浙江商会30周年宣传片</a><span>2017-06-28</span></li>
+                        <li><a href="Video_det.aspx?Id=2"> > 上海市浙江商会宣传片2017版</a><span>2017-06-19</span></li>
+                        <li><a href="Video_det.aspx?Id=5"> > 上海市浙江商会党建宣传片</a><span>2017-06-28</span></li>
+                        <li><a href="Video_det.aspx?Id=6"> > 三十周年大会主题曲《奔流入海》</a><span>2017-09-28</span></li>
+                    </ul>
+                </div>
+                <div class="zs_zazhi fleft">
+                    <h3 class="mn_tit clearfix"><span>浙商杂志</span><a href="Magazine.aspx?uid=6">更多</a></h3>
+                    <ul class="zazhi">
+                        <li><a href="Magazine_det.aspx?Id=3823" title="新浙商·65期"><img src="{$resource_path}images/20180409151710-0.jpg"></a></li>
+                        <li><a href="Magazine_det.aspx?Id=3818" title="新浙商·64期"><img src="{$resource_path}images/20180408095108-0.jpg"></a></li>
+                        <li><a href="Magazine_det.aspx?Id=3720" title="新浙商·63期"><img src="{$resource_path}images/20171211110354-0.png"></a></li>
+                        <li><a href="Magazine_det.aspx?Id=8" title="新浙商·62期"><img src="{$resource_path}images/20170810103649-0.jpg"></a></li>
+                        <li><a href="Magazine_det.aspx?Id=22" title="新浙商·61期"><img src="{$resource_path}images/20170810103809-0.jpg"></a></li>
+                        <li><a href="Magazine_det.aspx?Id=23" title="新浙商·60期"><img src="{$resource_path}images/20170810103913-0.jpg"></a></li>
+                    </ul>
+                </div>
+                <div class="zs_zazhi fleft">
+                    <h3 class="mn_tit clearfix"><span>工作动态</span><a href="Magazine.aspx?uid=8">更多</a></h3>
+                    <div class="zhi_right fleft">
+                        <ul>
+                            <li><a href="Magazine_det.aspx?Id=3817" class="dtkuan">工作动态·62期</a>
+                                <a href="UpLoad/image/20180408094843-1.pdf" target="_blank">
+                                    查阅</a><a href="index.aspx?Id=20180408094843-1.pdf">下载本期杂志</a></li>
+                            <li><a href="Magazine_det.aspx?Id=3816" class="dtkuan">工作动态·61期</a>
+                                <a href="UpLoad/image/20180408094810-1.pdf" target="_blank">
+                                    查阅</a><a href="index.aspx?Id=20180408094810-1.pdf">下载本期杂志</a></li>
+                            <li><a href="Magazine_det.aspx?Id=3815" class="dtkuan">工作动态·60期</a>
+                                <a href="UpLoad/image/20180408094737-1.pdf" target="_blank">
+                                    查阅</a><a href="index.aspx?Id=20180408094737-1.pdf">下载本期杂志</a></li>
+                            <li><a href="Magazine_det.aspx?Id=3814" class="dtkuan">工作动态·59期</a>
+                                <a href="UpLoad/image/20180408094622-1.pdf" target="_blank">
+                                    查阅</a><a href="index.aspx?Id=20180408094622-1.pdf">下载本期杂志</a></li>
+                            <li><a href="Magazine_det.aspx?Id=3813" class="dtkuan">工作动态·58期</a>
+                                <a href="UpLoad/image/20180408094538-1.pdf" target="_blank">
+                                    查阅</a><a href="index.aspx?Id=20180408094538-1.pdf">下载本期杂志</a></li>
+                            <li><a href="Magazine_det.aspx?Id=3812" class="dtkuan">工作动态·57期</a>
+                                <a href="UpLoad/image/20180408094500-1.pdf" target="_blank">
+                                    查阅</a><a href="index.aspx?Id=20180408094500-1.pdf">下载本期杂志</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="shNew_fenhui">
+                <div class="fh_rukou">
+                    <h3 class="mn_tit"><span>分会入口</span><a href="#">更多</a></h3>
+                    <style type="text/css">
+                        .fh_list{margin-top:20px;}
+                        .fh_list li{float:left;width:158px;margin-right:10px;}
+                        .fh_list li:last-child{margin-right:0}
+                        .fh_list li img{width:73%; border-radius:90px;margin:0 auto; display:block;border:2px solid #B7BEC3;box-shadow: 0px 5px 10px #ccc}
+                        .fh_list li span{display:block;text-align:center;font-size:15px;margin-top:15px;color:#333}
+                    </style>
+                    <ul class="fh_list">
+                        <li>
+                            <a href="newsert.aspx?Id=11"><img src="{$resource_path}images/20170703183600-0.jpg">
+                                <span>女企业家联谊会</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="newsert.aspx?Id=12"><img src="{$resource_path}images/20170703183631-0.jpg">
+                                <span>房地产联合会</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="newsert.aspx?Id=13"><img src="{$resource_path}images/20170703183650-0.jpg">
+                                <span>青年人才联合会</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="newsert.aspx?Id=14"><img src="{$resource_path}images/20170703183711-0.jpg">
+                                <span>青年企业家协会</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="newsert.aspx?Id=15"><img src="{$resource_path}images/20170703183731-0.jpg">
+                                <span>法律委员会</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="newsert.aspx?Id=16"><img src="{$resource_path}images/20170703183759-0.jpg">
+                                <span>医疗人才智库委员会</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="newsert.aspx?Id=17"><img src="{$resource_path}images/20170703183820-0.jpg">
+                                <span>金融委员会</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="Ipro_list">
+                <h3 class="mn_tit"><span>企业和产品展示</span><a href="hyuan_pro.aspx">更多</a></h3>
+                <div class="width col_top clearfix Iprocuct">
+                    <div class="mr_frbox">
+                        <img class="mr_frBtnL prev" src="{$resource_path}images/hnew_prev.png">
+                        <div class="mr_frUl">
+                            <ul class="Inew_img clearfix">
+                                <li onclick="window.location.href='Pro_det.aspx?Id=10'">
+                                    <img src="{$resource_path}images/20170807093536-0.jpg">
+                                    <span class="intro">
+<h5>富春山居度假酒店</h5>
+<p><img src="{$resource_path}images/jia.png" width="70" height="70" /></p>
+</span>
+                                </li>
+                                <li onclick="window.location.href='Pro_det.aspx?Id=33'">
+                                    <img src="{$resource_path}images/20170807094005-0.png">
+                                    <span class="intro">
+<h5>吉祥航空·如意相随</h5>
+<p><img src="{$resource_path}images/jia.png" width="70" height="70" /></p>
+</span>
+                                </li>
+                                <li onclick="window.location.href='Pro_det.aspx?Id=34'">
+                                    <img src="{$resource_path}images/20170807092650-0.jpg">
+                                    <span class="intro">
+<h5>复星·club med</h5>
+<p><img src="{$resource_path}images/jia.png" width="70" height="70" /></p>
+</span>
+                                </li>
+                                <li onclick="window.location.href='Pro_det.aspx?Id=35'">
+                                    <img src="{$resource_path}images/20170622150925-0.jpg">
+                                    <span class="intro">
+<h5>美特斯邦威</h5>
+<p><img src="{$resource_path}images/jia.png" width="70" height="70" /></p>
+</span>
+                                </li>
+                                <li onclick="window.location.href='Pro_det.aspx?Id=36'">
+                                    <img src="{$resource_path}images/20170622151008-0.jpg">
+                                    <span class="intro">
+<h5>大江户</h5>
+<p><img src="{$resource_path}images/jia.png" width="70" height="70" /></p>
+</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <img class="mr_frBtnR next" src="{$resource_path}images/hnew_next.png">
+                    </div>
+                </div>
+            </div>
+            <div class="link">
+                <h3 class="mn_tit clearfix"><span>友情链接</span></h3>
+                <ul class="link_list">
+                    <li onclick="window.location.href='http://www.cches.com.cn/'">上海市杭州商会</li>
+                    <li onclick="window.location.href='http://www.shnbsh.com/'">上海市宁波商会</li>
+                    <li onclick="window.location.href='http://www.shwzsh.com/'">上海市温州商会</li>
+                    <li onclick="window.location.href='#'">上海市嘉兴商会</li>
+                    <li onclick="window.location.href='http://www.hccs.net.cn/'">上海市湖州商会</li>
+                    <li onclick="window.location.href='http://www.shanghaiyueshang.com/'">上海市绍兴商会</li>
+                    <li onclick="window.location.href='#'">上海市金华商会</li>
+                    <li onclick="window.location.href='#'">上海市丽水商会</li>
+                    <li onclick="window.location.href='http://www.shtzsr.com/'">上海市台州商会</li>
+                    <li onclick="window.location.href='#'">上海市舟山商会</li>
+                    <li onclick="window.location.href='#'">上海市衢州商会</li>
+                    <li onclick="window.location.href='http://www.hzec.gov.cn/'">杭州市投资促进局</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="$public_footer"}
+<script type="text/javascript" src="{$resource_path}js/jquery.SuperSlide2.js"></script>
+<script type="text/javascript">
+    $(".mr_frbox").slide({
+        titCell:"",
+        mainCell:".mr_frUl ul",
+        autoPage:true,
+        effect:"leftLoop",
+        autoPlay:true,
+        vis:5
+    });
+</script>
+</body>
+</html>

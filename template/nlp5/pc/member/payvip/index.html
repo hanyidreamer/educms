@@ -1,0 +1,99 @@
+{include file="$public_header"}
+
+<!-- 固定图片 -->
+<!-- <section>
+  <img class="vg-wfull" src="/i/wap/menu/banner.png" alt="">
+</section> -->
+<!-- 可编辑图片，section要留着控制图片样式 -->
+<section class="advert-img-wrap">
+    <div class="user-num-box">
+        <div class="vg-text-white text-center vg-padding-top">累计付费学员</div>
+        <div class="vg-main-font-color text-center vg-margin-top-xs vg-center num-wrap">019201
+        </div>
+    </div>
+    <p>
+        <img src="http://mobile1.51ckjr.com/uploads/image/20170308/20170308142433_32598.jpg" alt="" />
+    </p>
+    <p>
+        <img src="http://mobile1.51ckjr.com/uploads/image/20170307/20170307151122_57555.jpg" alt="" /><img src="http://mobile1.51ckjr.com/uploads/image/20170316/20170316141312_18529.jpg" alt="" /><img src="http://mobile1.51ckjr.com/uploads/image/20170307/20170307151349_42721.jpg" alt="" /><img src="http://mobile1.51ckjr.com/uploads/image/20170308/20170308112040_67056.jpg" alt="" /><img src="http://mobile1.51ckjr.com/uploads/image/20170308/20170308135044_61170.jpg" alt="" />
+    </p>
+</section>
+<!-- <section>
+<img class="wfull" src="/i/wap/menu/adbanner7.png" alt="">
+</section> -->
+<section class="vg-bg-white vg-padding-bottom-xl vg-margin-bottom-xl">
+
+    <!--未登入非会员  -->
+    <div class="regist-box vg-padding-vertical vg-padding-horizontal ">
+        <form method="post" class="vg-padding-horizontal-0" action="/register">
+            <input type="hidden" name="_token" value="Qc6mEZQHJ3Z2sw4bmO1pYrj4wEcYhmqrlRHSvZmK">
+            <input type="text" class=" vg-text-default vg-border-0 vg-margin-bottom-sm vg-padding-sm vg-radius"
+                   id="uname" placeholder="请输入手机号码" autocomplete="off"
+                   autocorrect="off" autocapitalize="off" spellcheck="false" name="phone" value="">
+            <div id="reg2" class=" row vg-bg-white vg-radius vg-margin-bottom-sm "
+                 style="position: relative;">
+                <div class="small-7  vg-padding-left-0 columns vg-padding-sm">
+                    <div class="vg-bdr-default ">
+                        <input name="code" class=" vg-margin-bottom-0 vg-padding-left-sm vg-block vg-radius  vg-text-sm  vg-text-sm vg-border-0" type="text"
+                               id="code" placeholder="验证码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="code" value="">
+                    </div>
+                </div>
+
+                <div class="small-5 columns vg-padding-left-0 vg-padding-right-xs text-right vg-padding-vertical-sm vg-text-center"
+                     id="divgetsmscode">
+                    <a href="javascript:void(0);" id="getsmscode" class=" vg-text-sm vg-text-gray vg-lh-1">
+                        <em id="num" class="vg-padding-right-xs vg-text-sm"></em><span class="vg-text-sm">获取验证码</span>
+                    </a>
+                </div>
+            </div>
+            <div class=" vg-margin-bottom-sm ">
+                <input type="password"
+                       class=" vg-radius vg-text-default vg-margin-bottom-0 vg-padding-sm vg-border-0"
+                       id="pword" placeholder="请输入密码" autocomplete="off"
+                       autocorrect="off" autocapitalize="off" spellcheck="false" name="password" value="">
+            </div>
+            <div class="vg-margin-bottom-sm ">
+                <input type="tel"
+                       class="vg-padding-sm vg-border-0 vg-text-default vg-margin-bottom-0  vg-radius"
+                       name="referee_phone" id="referee"
+                       value=""
+                       placeholder="请输入推荐人手机号码(非必填)" autocomplete="off" autocorrect="off"
+                       autocapitalize="off" spellcheck="false">
+            </div>
+            <input type="button" name="btnLoginAction" id="btnRegistAction"
+                   value="立即注册" class="vg-text-sm vg-padding-sm vg-main-button vg-border-0 vg-radius vg-text-white vg-wfull vg-margin-top-xs">
+            <a href="/login" id="rem1"
+               class="vg-block vg-lh-1 vg-wfull vg-padding-sm vg-main-border vg-radius vg-main-font-color text-center  vg-text-center vg-margin-top-sm vg-text-sm"
+               id="gLoginForgot" style="">已有账号，立即登录</a>
+        </form>
+    </div>
+    <div class="body-shadow" id="toPay">
+        <div class="vg-bg-white vg-w80 vg-radius vg-padding to-pay-box text-center">
+            <div class="vg-text-black vg-text-default vg-margin-vertical text-center">您已注册成功，请登入</div>
+            <!--  <a class="to-pay-btn vg-radius" href="/upgradMmember?time=1498444132" >立即登入</a> -->
+            <a class="to-pay-btn vg-radius" href="/vipPay" >立即登入</a>
+            <span class="shadow-close"> <i class="icon iconfont vg-text-lg vg-text-gray">&#xe61c;</i></span>
+        </div>
+    </div>
+</section>
+<!-- 非会员 -->
+
+<aside class="row vg-padding-sm vg-bg-white vg-bl-fixed vg-bdt-default">
+    <div class="small-7 columns vg-text-sm vg-main-font-color vg-padding-top-xxs">原价1280元 优惠价：<span class="vg-text-lg">￥398.00</span></div>
+    <div class="small-5 columns  vg-margin-bottom-0 vg-padding-right-0 "><a class="vg-block vg-radius text-center vg-padding-vertical-xs vg-text-white vg-main-button vg-text-sm " href="/vipPay">立即升级</a></div>
+</aside>
+<!-- 会员-->
+
+
+<div  class="body-shadow" id="advert">
+    <div class="weixin-code-box">
+        <div class="weixin-code-wrap vg-padding-lg">
+            <a  href="javascript:;"  >
+                <img class="vg-wfull" src="" alt="">
+            </a>
+            <span class="shadow-close"> <i class="icon iconfont vg-text-icon1 vg-text-white">&#xe61c;</i></span>
+        </div>
+    </div>
+</div>
+
+{include file="$public_footer"}

@@ -1,0 +1,89 @@
+{include file="$public_header" title="编辑微信公众号配置"}
+
+<form action="/admin/wechat_official_accounts/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data.id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="10%" class="tableleft">用户名</td>
+            <td><input type="text" name="username" value="{$data.username}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">密码</td>
+            <td><input type="text" name="password" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">微信公众号名称</td>
+            <td><input type="text" name="title" value="{$data.title}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">简介</td>
+            <td>
+                <textarea type="text" name="description" cols="20">{$data.description}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">头像</td>
+            <td><img src="{$data.icon}" width="50" /><br />
+                <input type="file" name="icon" value="{$data.icon}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">二维码</td>
+            <td>
+                <img src="{$data.qrcode}" width="50" /><br />
+                <input type="file" name="qrcode" value="{$data.qrcode}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">微信号</td>
+            <td><input type="text" name="wechat_id" value="{$data.wechat_id}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">原始id</td>
+            <td><input type="text" name="original_id" value="{$data.original_id}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">App_id</td>
+            <td><input type="text" name="app_id" value="{$data.app_id}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">App_secret</td>
+            <td><input type="text" name="app_secret" value="{$data.app_secret}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">商户号</td>
+            <td><input type="text" name="merchant_id" value="{$data.merchant_id}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">微信支付API密钥</td>
+            <td><input type="text" name="api_key" value="{$data.api_key}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">授权token</td>
+            <td><input type="text" name="access_token" value="{$data.access_token}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">刷新token</td>
+            <td><input type="text" name="refresh_token" value="{$data.refresh_token}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">token过期时间</td>
+            <td><input type="text" name="expires_time_token" value="{$data.expires_time_token}"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

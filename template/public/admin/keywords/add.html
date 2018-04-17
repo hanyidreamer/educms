@@ -1,0 +1,49 @@
+{include file="public/header" /}
+
+<form action="/admin/keywords/insert" enctype="multipart/form-data"  method="post">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">分类</td>
+            <td>
+                <select name="category">
+                {volist name="category_list" id="data" }
+                <option value="{$data.id}" {eq name="data.id" value="1" }selected="selected"{/eq}>{$data.title}</option>
+                {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">关键词</td>
+            <td><input type="text" name="keyword"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">电脑端搜索量</td>
+            <td><input type="text" name="pc"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">手机端搜索量</td>
+            <td><input type="text" name="mobile"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">关联文章id</td>
+            <td><input type="text" name="article_id"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td>
+                <input type="radio" name="status" value="1" checked/> 显示
+                <input type="radio" name="status" value="0"/> 隐藏
+            </td>
+        </tr>
+
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="public/footer" /}
