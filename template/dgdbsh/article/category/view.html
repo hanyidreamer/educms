@@ -1,0 +1,8 @@
+{include file="$public_header" title="$category.title" separator=" - " keywords="$category.keywords" description="$category.description"}
+
+{volist name="category_article" id="data_list" }
+| <a href="/article/{$data_list.unique_code}" title="{$data_list.title}">{$data_list.title}</a>
+{/volist}
+
+
+{include file="$public_footer"}

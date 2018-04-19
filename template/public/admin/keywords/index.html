@@ -1,0 +1,71 @@
+{include file="public/header" /}
+
+<form class="form-inline definewidth m20" action="/admin/keywords/index" method="post">
+    关键词：
+    <input type="text" name="keyword" id="keyword" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增关键词</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>分类</th>
+        <th>关键词</th>
+        <th>电脑端搜索量</th>
+        <th>手机端搜索量</th>
+        <th>关联文章</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+    <tr>
+        <td>{$data.id}</td>
+        <td>{$data.category}</td>
+        <td>{$data.keyword}</td>
+        <td>{$data.pc}</td>
+        <td>{$data.mobile}</td>
+        <td>{$data.article_id}</td>
+        <td>
+            {eq name="data.status" value="1" }
+            已发布
+            {else}
+            待审核
+            {/eq}
+        </td>
+        <td>{$data.update_time}</td>
+        <td width="230">
+            <a class="btn btn-sm btn-primary" href="/admin/keywords/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+            <a class="btn btn-danger btn-sm" href="/admin/keywords/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+        </td>
+    </tr>
+    {/volist}
+</table>
+<div class="definewidth m10">
+    <nav>
+        {$data_list->render()}
+    </nav>
+</div>
+<div class="inline pull-right page">
+    共{$data_count} 条记录
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $('#addnew').click(function(){
+            window.location.href="add.html";
+        });
+    });
+
+    function del(id)
+    {
+        if(confirm("确定要删除吗？"))
+        {
+            var url = "del.html";
+            window.location.href=url;
+        }
+    }
+</script>

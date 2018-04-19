@@ -9,20 +9,20 @@ namespace app\base\controller;
 
 use think\Controller;
 use app\common\model\Template as TemplateModel;
-use app\common\model\SiteTemplate;
+use app\common\model\TemplateFile;
 use app\common\model\TemplateCategory;
 
 class Template extends Controller
 {
     /**
-     * 模板路径
+     * 当前模板路径
+     * @param string $template_file_id
      * @return string
      * @throws \think\exception\DbException
      */
-    public function path()
+    public function path($template_file_id = '')
     {
-        // 读取后台模板信息
-        // 模板路径
+        // 当前操作位置
         $module_name = $this->request->module();  // 模块名称
         $controller_name = $this->request->controller(); // 控制器名称
         $action_name = $this->request->action(); // 操作方法名称
@@ -30,33 +30,43 @@ class Template extends Controller
         // 网站信息
         $site = new Site();
         $site_data = $site->info();
-
         // 网站模板配置信息
-        $site_template = new SiteTemplate();
-        $site_template_data = $site_template->get(['site_id'=>$site_data['id']]);
-        $resource_path = '/resource/' . $site_template_data['name'] . '/';
+        $site_template = TemplateModel::get($site_data['template_id']);
+        $resource_path = '/resource/' . $site_template['unique_code'] . '/';
         $this->assign('resource_path',$resource_path);
 
-        // 模板分类信息
-        $template_category = new TemplateCategory();
-        $template_category_data = $template_category->get(['module' => $module_name]);
-
-        // 模板信息
-        $template = new TemplateModel();
-        $admin_template = $template->get(['category_id' => $template_category_data['id'],'site_id' => $site_data['id']]);
-
-        if(empty($admin_template)){
-            $template_tag_name = 'common'; // 模板标签
-            $site_template_data = $site_template->get(['site_id'=>0]);
-            $site_template_name = $site_template_data['name']; // 网站模板名称
+        // 判断是否为指定模板
+        if(is_numeric($template_file_id) and !empty($template_file_id)){
+            $template_file_data = TemplateFile::get($template_file_id);
+            // 模板标识
+            $template_name_data = TemplateModel::get(['id'=>$template_file_data['template_id']]);
+            $template_name = $template_name_data['unique_code'];
+            $template_category = TemplateCategory::get(['id' => $template_file_data['category_id']]);
+            $template_category_module = $template_category['module'];
+            $template_path = '/' . $template_name . '/' . $template_category_module . '/' . $template_file_data['controller_name'] . '/' . $template_file_data['template_file_name'];
         }else{
-            $template_tag_name = $admin_template['tag'];
-            $site_template_name = $site_template_data['name'];
-        }
+            $template_name_data = TemplateModel::get(['id'=>$site_data['template_id']]);
+            $template_name = $template_name_data['unique_code'];
 
-        // 判断模板类型
-        if($template_tag_name == 'common'){
-            // 模块为admin
+            // 是否根据客户端信息，设置不同的模板
+            $client_data = new BrowserCheck();
+            $client = $client_data->info();
+
+            $client_path = '';
+            $template_pc = $template_name_data['pc'];
+            if($client == 'pc' and $template_pc == 1){
+                $client_path = $client . '/';
+            }
+            $template_mobile = $template_name_data['mobile'];
+            if($client == 'mobile' and $template_mobile == 1){
+                $client_path = $client . '/';
+            }
+            $template_wechat = $template_name_data['wechat'];
+            if($client == 'wechat' and $template_wechat == 1){
+                $client_path = $client . '/';
+            }
+
+            // 判断是否为Admin模块
             if($module_name == 'admin'){
                 $site_template_name = 'public';
                 $template_path = '/' .$site_template_name .'/' .$module_name .'/' .$controller_name.'/'.$action_name;
@@ -66,26 +76,17 @@ class Template extends Controller
                 $this->assign('public_header',$template_public_header);
                 $this->assign('public_footer',$template_public_footer);
             }else{
-                $template_path = '/' .$site_template_name .'/' .$module_name .'/' .$controller_name.'/'.$action_name;
-                $template_path = strtolower($template_path);
-                $template_public_header = '/' .$site_template_name . '/public/header';
-                $template_public_footer = '/' .$site_template_name . '/public/footer';
+                // 当前操作默认模板
+                $template_path = '/' . $template_name .'/' . $client_path . $module_name . '/' . $controller_name . '/' . $action_name;
+
+                $template_public_header = '/' .$template_name .'/' . $client_path . '/public/header';
+                $template_public_footer = '/' .$template_name .'/' . $client_path . '/public/footer';
                 $this->assign('public_header',$template_public_header);
                 $this->assign('public_footer',$template_public_footer);
             }
-
-
-        }else{
-            $client_data = new BrowserCheck();
-            $client = $client_data->info();
-            $template_path = '/' .$site_template_name .'/'.$client.'/' .$module_name .'/' .$controller_name.'/'.$action_name;
-            $template_path = strtolower($template_path);
-            $template_public_header = '/' .$site_template_name .'/'.$client. '/public/header';
-            $template_public_footer = '/' .$site_template_name .'/'.$client. '/public/footer';
-            $this->assign('public_header',$template_public_header);
-            $this->assign('public_footer',$template_public_footer);
         }
 
+        $template_path = strtolower($template_path);
         return $template_path;
     }
 

@@ -1,24 +1,20 @@
 <div class="f_foot">
     <div class="fMain width">
         <div class="f_nav">
-            <a href="index.aspx" title="">首页</a>|
-            <a href="about.aspx?uid=1" title="">商会概况</a>|
-            <a href="newsert.aspx?uid=1" title="">商会新闻</a>|
-            <a href="newsert.aspx?uid=2" title="">分会动态</a>|
-            <a href="f_mingyu.aspx?Id=3" title="">浙商风采</a>|
-            <a href="newsert.aspx?Id=18" title="">会员服务</a> |
-            <a href="newsert.aspx?Id=25">党建园地 </a>|
-            <a href="jijin.aspx?uid=6">公益基金会</a>
+            <a href="/" title="首页">首页</a>
+            {volist name="article_nav" id="category" }
+            | <a href="/article_category/{$category.unique_code}" title="">{$category.title}</a>
+            {/volist}
         </div>
         <div class="f_Info clearfix">
             <div class="fleft">
-                <a href="/" class="fl f_logo"> <img src="{$resource_path}images/flogo.png" alt="上海浙江商会" title="上海浙江商会" width="230" /></a>
+                <a href="/" class="fl f_logo"> <img src="{$resource_path}images/flogo.png" width="230" /></a>
             </div>
             <div class="f_Txt fleft">
-                上海市浙江商会(www.zccs.org)@2008-2012 All Rights Reserved <a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备17020763号-1 </a><br />
-                Email：shzjsh@yahoo.com.cn<br />
-                Tel：021-50939588&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fax：021-50939388<br />
-                地址：上海市浦东大道900号华辰金融大厦25楼<br />
+                {$site.title} @2008-2018 All Rights Reserved <a href="http://www.miibeian.gov.cn/" target="_blank">{$site.icp}</a><br />
+                Email：{$site.email}<br />
+                Tel：{$site.phone} Fax：{$site.tel}<br />
+                地址：{$site.address} <br />
             </div>
             <div class="f_code fleft">
                 <img src="{$resource_path}images/erweima.png" alt="二维码" title="二维码" />

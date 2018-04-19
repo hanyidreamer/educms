@@ -9,7 +9,7 @@ namespace app\base\controller;
 
 use app\common\model\ArticleCategory;
 use think\Controller;
-use app\common\model\Site;
+use app\base\controller\Site;
 use app\common\model\CourseCategory;
 
 class Base extends Controller
@@ -26,9 +26,8 @@ class Base extends Controller
     protected function initialize()
     {
         // 网站基本信息
-        $domain = $this->request->host();
-        $domain = preg_replace('/www./','',$domain);
-        $site_info = Site::get(['domain'=>$domain]);
+        $site_data = new Site();
+        $site_info = $site_data->info();
         if(empty($site_info)){
             $this->error('欢迎使用培训分销系统，您的网站还没有开通，请联系电话：13450232305');
         }

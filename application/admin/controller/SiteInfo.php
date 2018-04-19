@@ -43,11 +43,9 @@ class SiteInfo extends AdminBase
      */
     public function info()
     {
-        $site_id = $this->site_id;
-        $site_info = Site::get($site_id);
+        $site_info = Site::get($this->site_id);
         // 获取站长名称
-        $admin_id = $site_info['admin_id'];
-        $admin_info = Admin::get($admin_id);
+        $admin_info = Admin::get(['site_id'=>$this->site_id]);
 
         $site_info['admin_username'] = $admin_info['username'];
 

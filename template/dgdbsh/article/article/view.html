@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{taglib name="html,article" /}
+{include file="$public_header" title="$data.title" separator=" - " keywords="$data.keywords" description="$data.description"}
 
-</body>
-</html>
+{$data.body|raw}
+
+{include file="$public_footer"}
