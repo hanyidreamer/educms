@@ -7,28 +7,27 @@
  */
 namespace app\admin\controller;
 
-use think\Request;
 use app\common\model\Sms as SmsModel;
 
 class Sms extends AdminBase
 {
     /**
-     * @param Request $request
+     * 短信接口
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function index()
     {
-        $site_id = $this->site_id;
-        // 找出广告列表数据
-        $post_title = $request->param('title');
+        $post_title = $this->request->param('title');
         $data = new SmsModel;
         if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+            $data_list = $data->where(['status' => 1,'site_id'=>$this->site_id])
+                ->where('title','like','%'.$post_title.'%')
+                ->select();
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            $data_list = $data->where(['site_id'=>$this->site_id,'status'=>1])->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -39,11 +38,33 @@ class Sms extends AdminBase
     }
 
     /**
+     * 新增
      * @return mixed
      */
-    public function add()
+    public function create()
     {
-        return $this->fetch();
+        return $this->fetch($this->template_path);
+    }
+
+    /**
+     * 保存
+     */
+    public function save()
+    {
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
+            $this->error('平台名称不能为空');
+        }
+
+        $data = new SmsModel;
+        $data_array = array('site_id','title','platform','sign','app_id','app_key','secret_key','sign_name','url','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('保存成功', '/admin/sms/index');
+        } else {
+            $this->error('操作失败');
+        }
     }
 
     /**
@@ -55,80 +76,30 @@ class Sms extends AdminBase
     {
         $data_list = SmsModel::get($id);
         $this->assign('data_list',$data_list);
-        return $this->fetch();
+        return $this->fetch($this->template_path);
     }
 
     /**
-     * @param Request $request
+     * 更新
      * @throws \think\exception\DbException
      */
-    public function save(Request $request)
+    public function update()
     {
-        $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
-        $post_name = $request->post('name');
-        $post_platform = $request->post('platform');
-        $post_sign = $request->post('sign');
-        $post_app_key = $request->post('app_key');
-        $post_secret_key = $request->post('secret_key');
-        $post_sign_name = $request->post('sign_name');
-        $post_status = $request->post('status');
-
-        if($post_name=='' or $post_id==''){
-            $this->error('短信接口名称不能为空');
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
+            $this->error('平台名称不能为空');
         }
 
-        $user = SmsModel::get($post_id);
-        $user['name'] = $post_name;
-        $user['site_id']    = $post_site_id;
-        $user['platform'] = $post_platform;
-        $user['sign'] = $post_sign;
-        $user['app_key']    = $post_app_key;
-        $user['secret_key'] = $post_secret_key;
-        $user['sign_name'] = $post_sign_name;
-        $user['status'] = $post_status;
-        if ($user->save()) {
-            $this->success('保存短信接口信息成功', '/admin/sms/index');
+        $data = SmsModel::get($post_data['id']);
+        $data_array = array('site_id','title','platform','sign','app_id','app_key','secret_key','sign_name','url','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('保存成功', '/admin/sms/index');
         } else {
             $this->error('操作失败');
         }
 
-    }
-
-    /**
-     * 新增短信接口
-     * @param Request $request
-     */
-    public function insert(Request $request)
-    {
-        $post_name = $request->post('name');
-        $post_site_id = $request->post('site_id');
-        $post_platform = $request->post('platform');
-        $post_sign = $request->post('sign');
-        $post_app_key = $request->post('app_key');
-        $post_secret_key = $request->post('secret_key');
-        $post_sign_name= $request->post('sign_name');
-        $post_status = $request->post('status');
-
-
-        if($post_name=='' or $post_app_key==''){
-            $this->error('平台名称和app_key不能为空');
-        }
-        $user = new SmsModel;
-        $user['name'] = $post_name;
-        $user['site_id']    = $post_site_id;
-        $user['platform'] = $post_platform;
-        $user['sign'] = $post_sign;
-        $user['app_key']    = $post_app_key;
-        $user['secret_key'] = $post_secret_key;
-        $user['sign_name'] = $post_sign_name;
-        $user['status'] = $post_status;
-
-        if ($user->save()) {
-            $this->success('新增短息接口成功', '/admin/sms/index');
-        } else {
-            $this->error('操作失败');
-        }
     }
 
     /**

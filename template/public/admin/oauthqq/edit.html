@@ -1,6 +1,6 @@
 {include file="$public_header" tilte="新增阿里云OSS"}
 
-<form action="/admin/aliyun_oss/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+<form action="/admin/oauth_qq/update" enctype="multipart/form-data" method="post" class="definewidth m20">
     <input type="hidden" name="id" value="{$data.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
@@ -12,13 +12,13 @@
             <td ><input type="text" name="title" value="{$data.title}"/></td>
         </tr>
         <tr>
-            <td class="tableleft">key ID</td>
-            <td ><input type="text" name="access_key_id" value="{$data.access_key_id}"/></td>
+            <td class="tableleft">app id</td>
+            <td ><input type="text" name="app_id" value="{$data.app_id}"/></td>
         </tr>
         <tr>
-            <td class="tableleft">Key secret</td>
+            <td class="tableleft">app key</td>
             <td>
-                <input type="text" name="access_key_secret" value="{$data.access_key_secret}"/>
+                <input type="text" name="app_key" value="{$data.app_key}"/>
             </td>
         </tr>
         <tr>
@@ -26,6 +26,10 @@
             <td>
                 <input type="text" name="url" value="{$data.url}"/>
             </td>
+        </tr>
+        <tr>
+            <td class="tableleft">回调网址</td>
+            <td ><input type="text" name="callback" value="{$data.callback}"/></td>
         </tr>
         <tr>
             <td class="tableleft">状态</td>

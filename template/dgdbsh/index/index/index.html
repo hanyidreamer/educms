@@ -1,60 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{$site.title}</title>
-    <meta name="keywords" content="{$site.keywords}" />
-    <meta name="description" content="{$site.description}" />
-    <meta name="format-detection" content="telephone=no">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="{$site.icon}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="{$resource_path}css/index.css" />
-    <script type="text/javascript" src="{$resource_path}js/html5shiv.js"></script>
-    <script type="text/javascript" src="{$resource_path}js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="{$resource_path}js/koala.min.1.5.js"></script>
-    <script>
-        $(function(){
-            $(".small_menu").hide();
-            $(".nav li").mouseover(function(){
-                $(this).find(".small_menu").slideDown(200);
-            }).mouseleave(function(){
-                $(this).find(".small_menu").slideUp(200);
-            });
-        })
-    </script>
-</head>
-<body>
-<div class="wrap">
-    <div class="head width">
-        <h1 class="logo fleft"><a href="index.aspx"><img src="{$site.logo}"></a></h1>
-        <div class="l_by fleft"><img src="{$resource_path}images/logo_by.png"></div>
-        <div class="head_right fright">
-            <div class="hr_font clearfix"><a href="ab_cont.aspx">联系我们</a><a href="index.aspx">返回首页</a></div>
-            <form action="newsert.aspx" method="get" target="_blank" class="search-form">
-                <input name="n" value="UestcNews.Front.Search.Page" type="hidden">
-                <input name="Id" value="1" type="hidden">
-                <input type="text" name="Keyword" placeholder="搜索...">
-                <input class="btn" type="submit" value="搜索">
-            </form>
-        </div>
-    </div>
-    <div class="nav_border">
-        <ul class="nav width">
-            <li><a href="/">首页</a></li>
-            {volist name="article_nav" id="category"}
-                <li><a href="/article/category/view/id/{$category.id}">{$category.title}</a>
-                    <ul class="small_menu">
-                        {volist name="category.sub" id="nav"}
-                        <li><a href="/article/category/view/id/{$nav.id}">{$nav.title}</a></li>
-                        {/volist}
-                    </ul>
-                </li>
-            {/volist}
-        </ul>
-    </div>
+{include file="$public_header" title="" separator="" keywords="$site.keywords" description="$site.description"}
+
+
+
     <div style="clear: both;margin-top: 10px;">
         {volist name="slide" id="data"}
         <img src="{$data.thumb}" style="width:100%">
@@ -419,18 +366,9 @@
             <div class="link">
                 <h3 class="mn_tit clearfix"><span>友情链接</span></h3>
                 <ul class="link_list">
-                    <li onclick="window.location.href='http://www.cches.com.cn/'">上海市杭州商会</li>
-                    <li onclick="window.location.href='http://www.shnbsh.com/'">上海市宁波商会</li>
-                    <li onclick="window.location.href='http://www.shwzsh.com/'">上海市温州商会</li>
-                    <li onclick="window.location.href='#'">上海市嘉兴商会</li>
-                    <li onclick="window.location.href='http://www.hccs.net.cn/'">上海市湖州商会</li>
-                    <li onclick="window.location.href='http://www.shanghaiyueshang.com/'">上海市绍兴商会</li>
-                    <li onclick="window.location.href='#'">上海市金华商会</li>
-                    <li onclick="window.location.href='#'">上海市丽水商会</li>
-                    <li onclick="window.location.href='http://www.shtzsr.com/'">上海市台州商会</li>
-                    <li onclick="window.location.href='#'">上海市舟山商会</li>
-                    <li onclick="window.location.href='#'">上海市衢州商会</li>
-                    <li onclick="window.location.href='http://www.hzec.gov.cn/'">杭州市投资促进局</li>
+                    {volist name="site_link" id="site_link_data"}
+                    <li><a href="{$site_link_data.url}" target="_blank">{$site_link_data.title}</a></li>
+                    {/volist}
                 </ul>
             </div>
         </div>

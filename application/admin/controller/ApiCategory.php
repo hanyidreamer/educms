@@ -122,9 +122,9 @@ class ApiCategory extends AdminBase
         $data = ApiCategoryModel::get($id);
         if ($data) {
             $data->delete();
-            $this->success('删除广告分类成功', '/admin/api_category/index');
+            $this->success('删除成功', '/admin/api_category/index');
         } else {
-            $this->error('您要删除的广告分类不存在');
+            $this->error('删除失败');
         }
     }
 

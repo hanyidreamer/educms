@@ -9,7 +9,6 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-Route::get('xht/:id', 'admin/login/index');
 
 Route::get('article_category/:id', 'article/Category/view');
 Route::get('article/:id', 'article/Article/view');

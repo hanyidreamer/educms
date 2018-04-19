@@ -21,14 +21,15 @@ class BaiduMip extends AdminBase
      */
     public function index(Request $request)
     {
-        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new BaiduMipModel;
         if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+            $data_list = $data->where(['status' => 1, 'site_id' => $this->site_id])
+                ->where('title','like','%'.$post_title.'%')
+                ->select();
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            $data_list = $data->where(['site_id'=>$this->site_id,'status'=>1])->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -51,7 +52,6 @@ class BaiduMip extends AdminBase
      */
     public function save(Request $request)
     {
-        $post_site_id = $request->post('site_id');
         $post_title = $request->post('title');
         $post_status= $request->post('status');
 
@@ -59,7 +59,7 @@ class BaiduMip extends AdminBase
             $this->error('标题不能为空');
         }
         $user = new BaiduMipModel;
-        $user['site_id'] = $post_site_id;
+        $user['site_id'] = $this->site_id;
         $user['title']    = $post_title;
         $user['status'] = $post_status;
 
@@ -92,7 +92,6 @@ class BaiduMip extends AdminBase
     public function update(Request $request)
     {
         $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
         $post_title = $request->post('title');
         $post_status= $request->post('status');
 
@@ -101,7 +100,7 @@ class BaiduMip extends AdminBase
         }
 
         $user = BaiduMipModel::get($post_id);
-        $user['site_id'] = $post_site_id;
+        $user['site_id'] = $this->site_id;
         $user['title']    = $post_title;
         $user['status'] = $post_status;
 

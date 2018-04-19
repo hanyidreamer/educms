@@ -1,10 +1,10 @@
-{include file="public/header" /}
+{include file="$public_header" /}
 
-<form action="/admin/qcloud_cos/insert"  method="post">
+<form action="/admin/qcloud_cos/save"  method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">存储用途</td>
-        <td><input type="text" name="name"/></td>
+        <td width="10%" class="tableleft">名称</td>
+        <td><input type="text" name="title"/></td>
     </tr>
     <tr>
         <td class="tableleft">bucket_name</td>
@@ -27,8 +27,8 @@
         <td><input type="text" name="url"/></td>
     </tr>
     <tr>
-        <td class="tableleft">存储文件夹</td>
-        <td><input type="text" name="folder"/></td>
+        <td class="tableleft">地区</td>
+        <td><input type="text" name="region"/></td>
     </tr>
     <tr>
         <td class="tableleft">状态</td>
@@ -40,10 +40,10 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="submit" class="btn btn-primary">保存</button>
             <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
         </td>
     </tr>
 </table>
 </form>
-{include file="public/footer" /}
+{include file="$public_footer" /}

@@ -13,22 +13,22 @@ use app\common\model\PaymentWxpay as PaymentWxpayModel;
 class PaymentWxpay extends AdminBase
 {
     /**
-     * @param Request $request
+     * 微信支付
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function index()
     {
-        $site_id = $this->site_id;
-        // 找出列表数据
-        $post_title = $request->param('title');
+        $post_title = $this->request->param('title');
         $data = new PaymentWxpayModel;
         if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+            $data_list = $data->where(['status' => 1, 'site_id'=>$this->site_id])
+                ->where('title','like','%'.$post_title.'%')
+                ->select();
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            $data_list = $data->where(['site_id'=>$this->site_id,'status'=>1])->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -51,24 +51,23 @@ class PaymentWxpay extends AdminBase
      */
     public function save(Request $request)
     {
-        $post_site_id = $request->post('site_id');
         $post_title = $request->post('title');
         $post_sign = $request->post('sign');
         $post_key = $request->post('key');
         $post_status= $request->post('status');
 
         if($post_title==''){
-            $this->error('幻灯片标题不能为空');
+            $this->error('标题不能为空');
         }
         $user = new PaymentWxpayModel;
-        $user['site_id'] = $post_site_id;
+        $user['site_id'] = $this->site_id;
         $user['title']    = $post_title;
         $user['sign'] = $post_sign;
         $user['key']    = $post_key;
         $user['status'] = $post_status;
 
         if ($user->save()) {
-            $this->success('新增成功', '/admin/payment_alipay/index');
+            $this->success('新增成功', '/admin/payment_wxpay/index');
         } else {
             $this->error('操作失败');
         }
@@ -96,7 +95,6 @@ class PaymentWxpay extends AdminBase
     public function update(Request $request)
     {
         $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
         $post_title = $request->post('title');
         $post_sign = $request->post('sign');
         $post_key = $request->post('key');
@@ -106,14 +104,14 @@ class PaymentWxpay extends AdminBase
         }
 
         $user = PaymentWxpayModel::get($post_id);
-        $user['site_id'] = $post_site_id;
+        $user['site_id'] = $this->site_id;
         $user['title']    = $post_title;
         $user['sign'] = $post_sign;
         $user['key']    = $post_key;
         $user['status'] = $post_status;
 
         if ($user->save()) {
-            $this->success('保存成功', '/admin/payment_alipay/edit/id/'.$post_id);
+            $this->success('保存成功', '/admin/payment_wxpay/index'.$post_id);
         } else {
             $this->error('操作失败');
         }
@@ -128,7 +126,7 @@ class PaymentWxpay extends AdminBase
         $user = PaymentWxpayModel::get($id);
         if ($user) {
             $user->delete();
-            $this->success('删除成功', '/admin/payment_alipay/index');
+            $this->success('删除成功', '/admin/payment_wxpay/index');
         } else {
             $this->error('删除失败');
         }

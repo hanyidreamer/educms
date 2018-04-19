@@ -1,6 +1,6 @@
 {include file="$public_header" tilte="新增阿里云OSS"}
 
-<form action="/admin/aliyun_oss/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+<form action="/admin/oauth_qq/save" enctype="multipart/form-data" method="post" class="definewidth m20">
     <table class="table table-bordered table-hover ">
         <tr>
             <td width="10%" class="tableleft">排序</td>
@@ -11,16 +11,20 @@
             <td ><input type="text" name="title" value=""/></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">key</td>
-            <td><input type="text" name="access_key_id" value=""/></td>
+            <td width="10%" class="tableleft">app id</td>
+            <td><input type="text" name="app_id" value=""/></td>
         </tr>
         <tr>
-            <td class="tableleft">sign</td>
-            <td ><input type="text" name="access_key_secret" value=""/></td>
+            <td class="tableleft">app key</td>
+            <td ><input type="text" name="app_key" value=""/></td>
         </tr>
         <tr>
             <td class="tableleft">访问网址</td>
             <td ><input type="text" name="url" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">回调网址</td>
+            <td ><input type="text" name="callback" value=""/></td>
         </tr>
         <tr>
             <td class="tableleft">状态</td>

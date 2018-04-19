@@ -8,23 +8,21 @@
 
 namespace app\admin\controller;
 
-use think\Request;
 use app\common\model\AliyunOss as AliyunOssModel;
 
 class AliyunOss extends AdminBase
 {
     /**
      * 阿里云接口列表
-     * @param Request $request
      * @return mixed
      * @throws \think\Exception
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function index()
     {
-        $post_title = $request->param('title');
+        $post_title = $this->request->param('title');
         $data = new AliyunOssModel;
         if(!empty($post_title)){
             $data_list = $data->where(['site_id'=>$this->site_id,'status' => 1])
@@ -52,28 +50,19 @@ class AliyunOss extends AdminBase
 
     /**
      * 保存阿里云OSS信息
-     * @param Request $request
      */
-    public function save(Request $request)
+    public function save()
     {
-        $post_sort = $request->param('sort');
-        $post_title = $request->param('title');
-        $post_key = $request->param('key');
-        $post_sign = $request->param('sign');
-        $post_status = $request->param('status');
-
-        if(empty($post_title)){
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
             $this->error('标题不能为空');
         }
 
         $data = new AliyunOssModel;
-        $data['site_id'] = $this->site_id;
-        $data['title'] = $post_title;
-        $data['sort'] = $post_sort;
-        $data['key'] = $post_key;
-        $data['sign'] = $post_sign;
-        $data['status'] = $post_status;
-        if ($data->save()) {
+        $data_array = array('site_id','title','access_key_id','access_key_secret','url','sort','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
             $this->success('保存成功','/admin/aliyun_oss/index');
         } else {
             $this->error('操作失败');
@@ -95,34 +84,22 @@ class AliyunOss extends AdminBase
     }
 
     /**
-     * 跟新阿里云OSS
-     * @param Request $request
+     * 更新阿里云OSS
      * @throws \think\exception\DbException
      */
-    public function update(Request $request)
+    public function update()
     {
-        $post_id = $request->param('id');
-        $post_sort = $request->param('sort');
-        $post_title = $request->param('title');
-        $post_key = $request->param('key');
-        $post_sign = $request->param('sign');
-        $post_status = $request->param('status');
-        if(empty($post_title)){
-            $this->error('广告标题不能为空');
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
+            $this->error('标题不能为空');
         }
 
-        $data = AliyunOssModel::get($post_id);
-        $data['site_id'] = $this->site_id;
-        $data['key'] = $post_key;
-        $data['sort'] = $post_sort;
-        if(!empty($post_title)){
-            $data['title'] = $post_title;
-        }
-        $data['sign'] = $post_sign;
-        $data['status'] = $post_status;
-
-        if ($data->save()) {
-            $this->success('更新成功', '/admin/aliyun_oss/index');
+        $data = AliyunOssModel::get($post_data['id']);
+        $data_array = array('site_id','title','access_key_id','access_key_secret','url','sort','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('保存成功','/admin/aliyun_oss/index');
         } else {
             $this->error('操作失败');
         }

@@ -1,42 +1,33 @@
-{include file="$public_header" title="新增模板"}
+{include file="$public_header" title="新增模板文件"}
 
-<form action="/admin/template/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+<form action="/admin/template_file/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="template_id" value="{$template_id}"/>
     <table class="table table-bordered table-hover ">
         <tr>
-            <td width="10%" class="tableleft">排序</td>
-            <td><input type="text" name="sort" value=""/></td>
+            <td width="15%" class="tableleft">模块</td>
+            <td>
+                <select name="category_id">
+                    {volist name="module" id="data" }
+                    <option value="{$data.id}">{$data.title}({$data.module})</option>
+                    {/volist}
+                </select>
+            </td>
         </tr>
         <tr>
             <td width="10%" class="tableleft">名称</td>
             <td><input type="text" name="title" value=""/></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">预览图</td>
-            <td><input type="file" name="thumb" value=""/></td>
+            <td width="10%" class="tableleft">控制器名称</td>
+            <td><input type="text" name="controller_name" value=""/></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">PC模板</td>
-            <td>
-                <input type="radio" name="pc" value="1"/> 启用
-                <input type="radio" name="pc" value="0" checked /> 禁用
-            </td>
+            <td width="10%" class="tableleft">模板文件名称</td>
+            <td><input type="text" name="template_file_name" value="" /></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">mobile模板</td>
-            <td>
-                <input type="radio" name="mobile" value="1"/> 启用
-                <input type="radio" name="mobile" value="0" checked /> 禁用
-            </td>
-        </tr>
-        <tr>
-            <td width="10%" class="tableleft">微信模板</td>
-            <td><input type="radio" name="wechat" value="1"/> 启用
-                <input type="radio" name="wechat" value="0" checked /> 禁用
-            </td>
-        </tr>
-        <tr>
-            <td width="10%" class="tableleft">标识</td>
-            <td><input type="text" name="unique_code" value=""/></td>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value=""/></td>
         </tr>
         <tr>
             <td class="tableleft">状态</td>

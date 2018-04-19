@@ -10,13 +10,13 @@
     <thead>
     <tr>
         <th>编号</th>
-        <th>存储用途</th>
+        <th>名称</th>
         <th>bucket_name</th>
         <th>app_id</th>
         <th>secret_id</th>
         <th>secret_key</th>
         <th>访问网址</th>
-        <th>存储文件夹</th>
+        <th>地区</th>
         <th>状态</th>
         <th>更新时间</th>
         <th>操作</th>
@@ -25,13 +25,13 @@
     {volist name="data_list" id="data" }
 	     <tr>
             <td>{$data.id}</td>
-            <td>{$data.name}</td>
+            <td>{$data.title}</td>
              <td>{$data.bucket_name}</td>
              <td>{$data.app_id}</td>
              <td>{$data.secret_id}</td>
              <td>{$data.secret_key}</td>
              <td>{$data.url}</td>
-             <td>{$data.folder}</td>
+             <td>{$data.region}</td>
              <td>{eq name="data.status" value="1" }
                  启用
                  {else}

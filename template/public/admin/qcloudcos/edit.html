@@ -1,11 +1,11 @@
-{include file="public/header" /}
+{include file="$public_header" /}
 
-<form action="/admin/qcloud_cos/save" method="post" class="definewidth m20">
+<form action="/admin/qcloud_cos/update" method="post" class="definewidth m20">
     <input type="hidden" name="id" value="{$data_list.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
-            <td class="tableleft">存储用途</td>
-            <td ><input type="text" name="name" value="{$data_list.name}"/></td>
+            <td class="tableleft">名称</td>
+            <td ><input type="text" name="title" value="{$data_list.title}"/></td>
         </tr>
         <tr>
             <td class="tableleft">bucket_name</td>
@@ -28,8 +28,8 @@
             <td ><input type="text" name="url" value="{$data_list.url}"/></td>
         </tr>
         <tr>
-            <td class="tableleft">存储文件夹</td>
-            <td ><input type="text" name="folder" value="{$data_list.folder}"/></td>
+            <td class="tableleft">地区</td>
+            <td ><input type="text" name="region" value="{$data_list.region}"/></td>
         </tr>
         <tr>
             <td class="tableleft">状态</td>
@@ -41,10 +41,10 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="submit" class="btn btn-primary">保存</button>
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>
     </table>
 </form>
-{include file="public/footer" /}
+{include file="$public_footer" /}

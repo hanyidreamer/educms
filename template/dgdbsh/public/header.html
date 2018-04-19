@@ -27,3 +27,31 @@
     </script>
 </head>
 <body>
+<div class="wrap">
+    <div class="head width">
+        <h1 class="logo fleft"><a href="/"><img src="{$site.logo}"></a></h1>
+        <div class="l_by fleft"><img src="{$resource_path}images/logo_by.png"></div>
+        <div class="head_right fright">
+            <div class="hr_font clearfix"><a href="/contact_us">联系我们</a><a href="/">返回首页</a></div>
+            <form action="/search" method="get" target="_blank" class="search-form">
+                <input name="n" value="UestcNews.Front.Search.Page" type="hidden">
+                <input name="Id" value="1" type="hidden">
+                <input type="text" name="Keyword" placeholder="搜索...">
+                <input class="btn" type="submit" value="搜索">
+            </form>
+        </div>
+    </div>
+    <div class="nav_border">
+        <ul class="nav width">
+            <li><a href="/">首页</a></li>
+            {volist name="article_nav" id="category"}
+            <li><a href="/article_category/{$category.unique_code}">{$category.title}</a>
+                <ul class="small_menu">
+                    {volist name="category.sub" id="nav"}
+                    <li><a href="/article_category/{$nav.unique_code}">{$nav.title}</a></li>
+                    {/volist}
+                </ul>
+            </li>
+            {/volist}
+        </ul>
+    </div>

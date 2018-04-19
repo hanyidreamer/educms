@@ -9,7 +9,7 @@ namespace app\common\model;
 
 use think\Model;
 
-class OathQq extends Model
+class OauthQq extends Model
 {
 
 }

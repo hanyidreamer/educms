@@ -2,14 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: tanzhenxing
- * Date: 2018/4/3
- * Time: 21:02
+ * Date: 2018/4/19
+ * Time: 17:03
  */
 namespace app\common\model;
 
 use think\Model;
 
-class MemberAuthentication extends Model
+class CloudStorage extends Model
 {
 
 }

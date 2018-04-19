@@ -1,8 +1,7 @@
 {include file="$public_header"}
 
-<form action="/admin/payment_alipay/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+<form action="/admin/payment_wxpay/update" enctype="multipart/form-data" method="post" class="definewidth m20">
     <input type="hidden" name="id" value="{$data.id}" />
-    <input type="hidden" name="site_id" value="{$site_id}" />
     <table class="table table-bordered table-hover ">
         <tr>
             <td class="tableleft">名称</td>
@@ -28,7 +27,7 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="submit" class="btn btn-primary">保存</button>
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>

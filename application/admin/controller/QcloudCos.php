@@ -7,27 +7,29 @@
  */
 namespace app\admin\controller;
 
-use think\Request;
 use app\common\model\QcloudCos as QcloudCosModel;
 
 class QcloudCos extends AdminBase
 {
     /**
-     * @param Request $request
+     * 腾讯云存储
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function index()
     {
-        $post_name= $request->post('name');
-        if($post_name==!''){
-            $data_sql['name'] =  ['like','%'.$post_name.'%'];
+        $post_title = $this->request->post('title');
+        $qcloud_cos_data = new QcloudCosModel();
+        if(!empty($post_title)){
+            $data_list = $qcloud_cos_data->where(['status'=>1,'site_id'=>$this->site_id])
+                ->where('title','like','%'.$post_title.'%')
+                -> select();
+        }else{
+            $data_list = $qcloud_cos_data->where(['status'=>1,'site_id'=>$this->site_id]) -> select();
         }
 
-        $qcloud_cos_data = new QcloudCosModel();
-        $data_list = $qcloud_cos_data->where(['status'=>1]) -> select();
         $data_count = count($data_list);
 
         $this->assign('data_list',$data_list);
@@ -37,41 +39,29 @@ class QcloudCos extends AdminBase
     }
 
     /**
+     * 新增
      * @return mixed
      */
-    public function add()
+    public function create()
     {
         return $this->fetch($this->template_path);
     }
 
     /**
-     * @param Request $request
+     * 保存
      */
-    public function insert(Request $request)
+    public function save()
     {
-        $post_name= $request->post('name');
-        $post_bucket_name= $request->post('bucket_name');
-        $post_app_id= $request->post('app_id');
-        $post_secret_id= $request->post('secret_id');
-        $post_secret_key= $request->post('secret_key');
-        $post_url= $request->post('url');
-        $post_folder= $request->post('folder');
-        $post_status= $request->post('status');
-        if($post_name==''){
-            $this->error('用途不能为空');
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['site_id'])){
+            $this->error('名称不能为空');
         }
-        $user = new QcloudCosModel;
-        $user['name'] = $post_name;
-        $user['bucket_name'] = $post_bucket_name;
-        $user['app_id'] = $post_app_id;
-        $user['secret_id'] = $post_secret_id;
-        $user['secret_key'] = $post_secret_key;
-        $user['url'] = $post_url;
-        $user['folder'] = $post_folder;
-        $user['status'] = $post_status;
-
-        if ($user->save()) {
-            $this->success('新增腾讯云存储信息成功', '/admin/qcloudcos/index');
+        $data = new QcloudCosModel;
+        $data_array = array('site_id','title','app_id','secret_id','secret_key','url','bucket_name','region','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('新增腾讯云存储信息成功', '/admin/qcloud_cos/index');
         } else {
             $this->error('操作失败');
         }
@@ -79,6 +69,7 @@ class QcloudCos extends AdminBase
     }
 
     /**
+     * 编辑
      * @param $id
      * @return mixed
      * @throws \think\exception\DbException
@@ -91,34 +82,22 @@ class QcloudCos extends AdminBase
     }
 
     /**
-     * @param Request $request
+     * 更新
      * @throws \think\exception\DbException
      */
-    public function save(Request $request)
+    public function update()
     {
-        $post_id= $request->post('id');
-        $post_status= $request->post('status');
-        $post_name= $request->post('name');
-        $post_bucket_name= $request->post('bucket_name');
-        $post_app_id= $request->post('app_id');
-        $post_secret_id= $request->post('secret_id');
-        $post_secret_key= $request->post('secret_key');
-        $post_url= $request->post('url');
-        $post_folder= $request->post('folder');
-        if($post_id==''){
-            $this->error('腾讯云存储id不能为空');
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
+            $this->error('名称不能为空');
         }
-        $user = QcloudCosModel::get($post_id);
-        $user['name'] = $post_name;
-        $user['bucket_name'] = $post_bucket_name;
-        $user['app_id'] = $post_app_id;
-        $user['secret_id'] = $post_secret_id;
-        $user['secret_key'] = $post_secret_key;
-        $user['url'] = $post_url;
-        $user['folder'] = $post_folder;
-        $user['status'] = $post_status;
-        if ($user->save()) {
-            $this->success('保存腾讯云存储信息成功', '/admin/qcloudcos/index');
+
+        $data = QcloudCosModel::get($post_data['id']);
+        $data_array = array('site_id','title','app_id','secret_id','secret_key','url','bucket_name','region','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('新增腾讯云存储信息成功', '/admin/qcloud_cos/index');
         } else {
             $this->error('操作失败');
         }
@@ -134,7 +113,7 @@ class QcloudCos extends AdminBase
         $user = QcloudCosModel::get($id);
         if ($user) {
             $user->delete();
-            $this->success('删除腾讯云存储信息成功', '/admin/qcloudcos/index');
+            $this->success('删除腾讯云存储信息成功', '/admin/qcloud_cos/index');
         } else {
             $this->error('您要删除的套餐不存在');
         }

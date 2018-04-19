@@ -20,11 +20,7 @@
     <tr align="center">
         <td width="50">{$data.id}</td>
         <td width="180">{$data.title}</td>
-        <td width="50">{eq name="data.status" value="1" }
-            启用
-            {else}
-            禁用
-            {/eq}</td>
+        <td width="50">{eq name="data.status" value="1" } 启用 {else} 禁用 {/eq}</td>
         <td width="150">{$data.update_time}</td>
         <td>
             <a class="btn btn-sm btn-primary" href="/admin/baidu_mip/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>

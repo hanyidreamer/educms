@@ -1,45 +1,34 @@
-{include file="$public_header" title="编辑模板"}
+{include file="$public_header" title="编辑模板文件"}
 
-<form action="/admin/template/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+<form action="/admin/template_file/update" enctype="multipart/form-data" method="post" class="definewidth m20">
     <input type="hidden" name="id" value="{$data.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
-            <td width="10%" class="tableleft">排序</td>
-            <td><input type="text" name="sort" value="{$data.sort}"/></td>
+            <td width="15%" class="tableleft">模块</td>
+            <td>
+                <select name="category_id">
+                    <option value="{$my_template_category.id}">{$my_template_category.title}({$my_template_category.module})</option>
+                    {volist name="category" id="list" }
+                    <option value="{$list.id}">{$list.title}({$list.module})</option>
+                    {/volist}
+                </select>
+            </td>
         </tr>
         <tr>
             <td width="10%" class="tableleft">名称</td>
             <td><input type="text" name="title" value="{$data.title}"/></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">预览图</td>
-            <td>
-                <img src="{$data.thumb}" width="100" />
-                <input type="file" name="thumb" value=""/></td>
+            <td width="10%" class="tableleft">控制器名称</td>
+            <td><input type="text" name="controller_name" value="{$data.controller_name}"/></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">PC模板</td>
-            <td>
-                <input type="radio" name="pc" value="1"/> 启用
-                <input type="radio" name="pc" value="0" checked /> 禁用
-            </td>
+            <td width="10%" class="tableleft">模板文件名称</td>
+            <td><input type="text" name="template_file_name" value="{$data.template_file_name}" /></td>
         </tr>
         <tr>
-            <td width="10%" class="tableleft">mobile模板</td>
-            <td>
-                <input type="radio" name="mobile" value="1"/> 启用
-                <input type="radio" name="mobile" value="0" checked /> 禁用
-            </td>
-        </tr>
-        <tr>
-            <td width="10%" class="tableleft">微信模板</td>
-            <td><input type="radio" name="wechat" value="1"/> 启用
-                <input type="radio" name="wechat" value="0" checked /> 禁用
-            </td>
-        </tr>
-        <tr>
-            <td width="10%" class="tableleft">标识</td>
-            <td><input type="text" name="unique_code" value="{$data.unique_code}"/></td>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value="{$data.sort}"/></td>
         </tr>
         <tr>
             <td class="tableleft">状态</td>

@@ -6,6 +6,7 @@ use app\common\model\Member;
 use app\common\model\MemberWeixin;
 use app\base\controller\BrowserCheck;
 use app\base\controller\Weixin;
+use app\common\model\SiteLink;
 use app\common\model\SlideCategory;
 use app\common\model\Slide;
 use app\common\model\Teacher;
@@ -96,6 +97,9 @@ class Index extends Base
         // 底部链接
 
         // 友情链接
+        $site_link_data = new SiteLink();
+        $site_link = $site_link_data->where(['site_id' => $this->site_id])->select();
+        $this->assign('site_link',$site_link);
 
         // 底部版权
 

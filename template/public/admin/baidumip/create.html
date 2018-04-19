@@ -1,7 +1,6 @@
 {include file="$public_header"}
 
 <form action="/admin/baidu_mip/save" enctype="multipart/form-data" method="post" class="definewidth m20">
-    <input type="hidden" name="site_id" value="{$site_id}" />
     <table class="table table-bordered table-hover ">
         <tr>
             <td width="10%" class="tableleft">标题</td>
@@ -17,8 +16,8 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>
-                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
             </td>
         </tr>
     </table>

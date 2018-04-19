@@ -3,6 +3,7 @@
 <head>
     <title>后台管理首页 - {$site.title}</title>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{$site.icon}">
     {load file="/manage//assets/css/dpl-min.css,/manage//assets/css/bui-min.css,/manage//assets/css/main-min.css" /}
 </head>
 <body>
@@ -10,7 +11,7 @@
 <div class="header">
 
     <div class="dl-title">
-        <img src="/static/images/topsize_min.png">
+        <img src="{$site.logo}" height="30" width="120">
     </div>
 
     <div class="dl-log">欢迎您，<span class="dl-log-user">{$Request.session.admin_username}</span><a href="/admin/logout/index" title="退出系统" class="dl-log-quit">[退出]</a>
@@ -50,7 +51,7 @@
                             {id:'1002',text:'链接类型',href:'/admin/site_link_category/index'},
                             {id:'15',text:'友情链接',href:'/admin/site_link/index'},
                             {id:'16',text:'模板分类',href:'/admin/template_category/index'},
-                                {id:'17',text:'网站模板管理',href:'/admin/site_template/index'},
+                                {id:'17',text:'网站模板管理',href:'/admin/template_file/index'},
                                 {id:'18',text:'模板管理',href:'/admin/template/index'}
                             ]
                         },
@@ -58,7 +59,7 @@
                         {id:'20',text:'短信接口',href:'/admin/sms/index'},
                         {id:'21',text:'腾讯云存储',href:'/admin/qcloud_cos/index'},
                         {id:'27',text:'阿里云OSS',href:'/admin/aliyun_oss/index'},
-                        {id:'22',text:'QQ登陆',href:'/admin/member_qq/index'},
+                        {id:'22',text:'QQ授权',href:'/admin/oauth_qq/index'},
                         {id:'23',text:'微信公众号',href:'/admin/wechat_official_accounts/index'},
                         {id:'24',text:'微信小程序',href:'/admin/wechat_applet/index'},
                         {id:'24',text:'百度MIP',href:'/admin/baidu_mip/index'},
@@ -95,11 +96,13 @@
             },
             {id:'3',homePage : '80',menu:[
                 {text:'会员管理',items:[
-                    {id:'80',text:'会员列表',href:'/admin/member/index'}
+                    {id:'80',text:'会员列表',href:'/admin/member/index'},
+                        {id:'81',text:'QQ会员',href:'/admin/member_qq/index'},
+                        {id:'81',text:'微信会员',href:'/admin/member_weixin/index'}
                 ]
                 },
                 {text:'分销管理',items:[
-                    {id:'80',text:'会员下线',href:'/admin/member/index'}
+                    {id:'90',text:'会员下线',href:'/admin/member/index'}
                 ]
                 }
             ]
