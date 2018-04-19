@@ -36,6 +36,7 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'PhpOffice\\PhpSpreadsheet\\' => array($vendorDir . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet'),
+    'Payment\\' => array($vendorDir . '/riverslei/payment/src'),
     'Overtrue\\Socialite\\' => array($vendorDir . '/overtrue/socialite/src'),
     'Overtrue\\Pinyin\\' => array($vendorDir . '/overtrue/pinyin/src'),
     'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),

@@ -73,6 +73,7 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
+            'Payment\\' => 8,
         ),
         'O' => 
         array (
@@ -226,6 +227,10 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'Payment\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/riverslei/payment/src',
         ),
         'Overtrue\\Socialite\\' => 
         array (

@@ -1,12 +1,19 @@
-{include file="$public_header"}
+{include file="$public_header" title="编辑网站链接分类"}
 
 <form action="/admin/site_link_category/update" enctype="multipart/form-data" method="post" class="definewidth m20">
-    <input type="hidden" name="site_id" value="{$site_id}" />
     <input type="hidden" name="id" value="{$data.id}" />
     <table class="table table-bordered table-hover ">
         <tr>
             <td class="tableleft">名称</td>
             <td ><input type="text" name="title" value="{$data.title}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">说明</td>
+            <td ><input type="text" name="description" value="{$data.description}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">标识码</td>
+            <td ><input type="text" name="unique_code" value="{$data.unique_code}"/></td>
         </tr>
         <tr>
             <td class="tableleft">等级</td>
@@ -22,7 +29,7 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="submit" class="btn btn-primary">保存</button>
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>

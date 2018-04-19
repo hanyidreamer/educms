@@ -59,7 +59,9 @@ class Site extends AdminBase
     {
         // 网站管理员信息
         $data = new Admin();
-        $admin = $data->where('status','=',1)->select();
+        $admin = $data->where('status','=',1)
+            ->where('site_id',$this->site_id)
+            ->select();
         $this->assign('admin',$admin);
 
         return $this->fetch($this->template_path);
@@ -161,7 +163,9 @@ class Site extends AdminBase
     {
         // 网站管理员信息
         $data = new Admin();
-        $admin = $data->where('status','=',1)->select();
+        $admin = $data->where('status','=',1)
+            ->where('site_id',$this->site_id)
+            ->select();
         $this->assign('admin',$admin);
 
         // 获取网站信息
@@ -169,7 +173,7 @@ class Site extends AdminBase
         $this->assign('site_info',$site_info);
 
         // 当前管理员信息
-        $site_admin = Admin::get(['username'=>session('username')]);
+        $site_admin = Admin::get(['username'=>session('admin_username')]);
         $this->assign('site_admin',$site_admin);
 
         return $this->fetch($this->template_path);

@@ -13,6 +13,7 @@ use app\common\model\SiteLinkCategory as SiteLinkCategoryModel;
 class SiteLinkCategory extends AdminBase
 {
     /**
+     * 列表
      * @param Request $request
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
@@ -21,14 +22,15 @@ class SiteLinkCategory extends AdminBase
      */
     public function index(Request $request)
     {
-        $site_id = $this->site_id;
         // 找出列表数据
         $post_title = $request->param('title');
         $data = new SiteLinkCategoryModel;
         if(!empty($post_title)){
-            $data_list = $data->where(['status' => 1, 'title' => ['like','%'.$post_title.'%']])->select();
+            $data_list = $data->where(['status' => 1,'site_id'=>$this->site_id])
+                ->where('title','like','%'.$post_title.'%')
+                ->select();
         }else{
-            $data_list = $data->where(['site_id'=>$site_id,'status'=>1])->select();
+            $data_list = $data->where(['site_id'=>$this->site_id,'status'=>1])->select();
         }
         $data_count = count($data_list);
         $this->assign('data_count',$data_count);
@@ -39,6 +41,7 @@ class SiteLinkCategory extends AdminBase
     }
 
     /**
+     * 新增
      * @return mixed
      */
     public function create()
@@ -47,23 +50,20 @@ class SiteLinkCategory extends AdminBase
     }
 
     /**
-     * @param Request $request
+     * 保存
      */
-    public function save(Request $request)
+    public function save()
     {
-        $post_site_id = $request->param('site_id');
-        $post_title = $request->param('title');
-        $post_level = $request->param('level');
-        $post_status = $request->param('status');
-        if($post_title==''){
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
             $this->error('分类名称不能为空');
         }
+
         $data = new SiteLinkCategoryModel;
-        $data['site_id'] = $post_site_id;
-        $data['title'] = $post_title;
-        $data['level'] = $post_level;
-        $data['status'] = $post_status;
-        if ($data->save()) {
+        $data_sql = array('site_id','title','description','level','unique_code','status');
+        $data_save = $data->allowField($data_sql)->save($post_data);
+        if ($data_save) {
             $this->success('保存成功','/admin/site_link_category/index');
         } else {
             $this->error('操作失败');
@@ -72,6 +72,7 @@ class SiteLinkCategory extends AdminBase
     }
 
     /**
+     * 编辑
      * @param $id
      * @return mixed
      * @throws \think\exception\DbException
@@ -86,26 +87,23 @@ class SiteLinkCategory extends AdminBase
     }
 
     /**
+     * 更新
      * @param Request $request
      * @throws \think\exception\DbException
      */
-    public function update(Request $request)
+    public function update()
     {
-        $post_id = $request->post('id');
-        $post_site_id = $request->post('site_id');
-        $post_title = $request->post('title');
-        $post_level = $request->post('level');
-        $post_status= $request->post('status');
-        if(empty($post_title)){
+        $post_data = $this->request->param();
+        $post_data['site_id'] = $this->site_id;
+        if(empty($post_data['title'])){
             $this->error('分类名称不能为空');
         }
 
-        $user = SiteLinkCategoryModel::get($post_id);
-        $user['site_id'] = $post_site_id;
-        $user['title'] = $post_title;
-        $user['level'] = $post_level;
-        $user['status'] = $post_status;
-        if ($user->save()) {
+        $data = SiteLinkCategoryModel::get($post_data['id']);
+        $data_sql = array('site_id','title','description','level','unique_code','status');
+        $data_save = $data->allowField($data_sql)->save($post_data);
+
+        if ($data_save) {
             $this->success('保存成功', '/admin/site_link_category/index');
         } else {
             $this->error('操作失败');
@@ -113,6 +111,7 @@ class SiteLinkCategory extends AdminBase
     }
 
     /**
+     * 删除
      * @param $id
      * @throws \think\exception\DbException
      */
@@ -121,9 +120,9 @@ class SiteLinkCategory extends AdminBase
         $data = SiteLinkCategoryModel::get($id);
         if ($data) {
             $data->delete();
-            $this->success('删除广告分类成功', '/admin/site_link_category/index');
+            $this->success('删除成功', '/admin/site_link_category/index');
         } else {
-            $this->error('您要删除的广告分类不存在');
+            $this->error('删除失败');
         }
     }
 

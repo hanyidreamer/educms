@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="网站链接分类"}
 
 <form class="form-inline definewidth m20" action="/admin/site_link_category/index" method="post">
     标题：
@@ -22,7 +22,7 @@
     <tr align="center">
         <td width="50">{$data.id}</td>
         <td width="150">{$data.title}</td>
-        <td width="150">{$data.desc}</td>
+        <td width="150">{$data.description}</td>
         <td width="150">{$data.unique_code}</td>
         <td width="50">{eq name="data.status" value="1" }
             启用
