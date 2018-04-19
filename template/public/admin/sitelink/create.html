@@ -1,8 +1,7 @@
-{include file="$public_header" /}
+{include file="$public_header" title="新增网站链接" /}
 
-<form action="/admin/site_link/insert" enctype="multipart/form-data" method="post">
+<form action="/admin/site_link/save" enctype="multipart/form-data" method="post">
 <table class="table table-bordered table-hover definewidth m10">
-    <input type="hidden" name="site_id" value="{$site_id}" />
     <input type="hidden" name="category_id" value="{$category_id}" />
     <tr>
         <td width="10%" class="tableleft">链接文字</td>

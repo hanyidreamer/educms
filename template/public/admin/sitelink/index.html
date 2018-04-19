@@ -1,7 +1,7 @@
-{include file="$public_header" /}
+{include file="$public_header" title="网站链接" /}
 <br />
 
-&nbsp &nbsp <a href="/admin/site_link/add"><button type="button" class="btn btn-success" id="addnew">新增</button></a>&nbsp &nbsp
+&nbsp &nbsp <a href="/admin/site_link/create"><button type="button" class="btn btn-success" id="addnew">新增</button></a>&nbsp &nbsp
 
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
@@ -19,11 +19,7 @@
              <td>{$user.sort}</td>
             <td>{$user.title}</td>
              <td>{$user.url}</td>
-             <td>{eq name="user.status" value="1" }
-                 启用
-                 {else}
-                 禁用
-                 {/eq}</td>
+             <td>{eq name="user.status" value="1" } 启用 {else} 禁用 {/eq}</td>
              <td>{$user.update_time}</td>
             <td>
                 <a class="btn btn-sm btn-primary" href="/admin/site_link/edit/id/{$user.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
