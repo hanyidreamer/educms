@@ -35,13 +35,7 @@
              <td><img src="{$data.thumb}" width="80" height="50"> </td>
              <td>{$data.click}</td>
              <td>{$data.sort}</td>
-             <td>
-                 {eq name="data.status" value="1" }
-                 已发布
-                 {else}
-                 待审核
-                 {/eq}
-             </td>
+             <td>{eq name="data.status" value="1" } 已发布 {else} 待审核 {/eq}</td>
              <td>{$data.author}</td>
              <td>{$data.update_time}</td>
             <td width="230">

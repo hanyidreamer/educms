@@ -96,7 +96,7 @@ class Article extends AdminBase
             $post_unique_code= 'a'.time().rand(1000,9999);
         }
         $post_keywords= $request->post('keywords');
-        $post_desc = $request->post('desc');
+        $post_description = $request->post('description');
 
         $post_click= $request->post('click');
         $post_sort = $request->post('sort');
@@ -118,7 +118,7 @@ class Article extends AdminBase
         $data['short_title'] = $post_short_title;
         $data['unique_code'] = $post_unique_code;
         $data['keywords'] = $post_keywords;
-        $data['desc'] = $post_desc;
+        $data['description'] = $post_description;
         if(!empty($post_thumb)){
             $data['thumb'] = $post_thumb;
         }else{
@@ -200,7 +200,7 @@ class Article extends AdminBase
             $post_unique_code= 'a'.time().rand(1000,9999);
         }
         $post_keywords= $request->post('keywords');
-        $post_desc = $request->post('desc');
+        $post_description = $request->post('description');
 
         $post_click= $request->post('click');
         $post_sort = $request->post('sort');
@@ -221,7 +221,7 @@ class Article extends AdminBase
         $data['short_title'] = $post_short_title;
         $data['unique_code'] = $post_unique_code;
         $data['keywords'] = $post_keywords;
-        $data['desc'] = $post_desc;
+        $data['description'] = $post_description;
 
         if(!empty($post_thumb)){
             $data['thumb'] = $post_thumb;

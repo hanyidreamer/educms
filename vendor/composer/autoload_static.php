@@ -142,11 +142,11 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         ),
         'Ueditor\\Test\\' => 
         array (
-            0 => __DIR__ . '/..' . '/masterton/ueditor-upload-php-sdk/tests',
+            0 => __DIR__ . '/..' . '/tanzhenxing/ueditor-thinkphp/tests',
         ),
         'Ueditor\\' => 
         array (
-            0 => __DIR__ . '/..' . '/masterton/ueditor-upload-php-sdk/src',
+            0 => __DIR__ . '/..' . '/tanzhenxing/ueditor-thinkphp/src',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (

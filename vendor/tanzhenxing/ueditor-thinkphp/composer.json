@@ -1,14 +1,14 @@
 {
-    "name": "masterton/ueditor-upload-php-sdk",
-    "description": "Ueditor upload file SDK for PHP",
-    "keywords": [ "ueditor", "upload", "sdk" ],
+    "name": "tanzhenxing/ueditor-thinkphp",
+    "description": "Ueditor upload file SDK for ThinkPHP",
+    "keywords": [ "ueditor", "upload", "ThinkPHP" ],
     "type": "library",
     "license": "MIT",
     "homepage": "http://ueditor.baidu.com/website/",
     "authors": [
         {
-            "name": "Masterton",
-            "homepage": "http://slim.zhengss.com"
+            "name": "tanzhenxing",
+            "homepage": "https://github.com/tanzhenxing"
         }
     ],
     "require": {

@@ -33,8 +33,8 @@
         "qcloud/cos-sdk-v4": "^4.3",
         "aliyuncs/oss-sdk-php": "^2.3",
         "tencentyun/cos-php-sdk": "^3.3",
-        "masterton/ueditor-upload-php-sdk": "^1.0",
-        "riverslei/payment": "^4.1"
+        "riverslei/payment": "^4.1",
+        "tanzhenxing/ueditor-thinkphp": "^1.01"
     },
     "autoload": {
         "psr-4": {

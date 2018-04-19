@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b529d0f91fe014d8adf7c2c318383411",
+    "content-hash": "cfb315c9412b72c84770c4e34ebc0ed0",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -622,52 +622,6 @@
                 "zxing"
             ],
             "time": "2017-01-13T09:11:46+00:00"
-        },
-        {
-            "name": "masterton/ueditor-upload-php-sdk",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Masterton/ueditor-upload-php-sdk.git",
-                "reference": "3ffe20ad2d42d97558a887b37e138a49d1e1c5a0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/Masterton/ueditor-upload-php-sdk/3ffe20ad2d42d97558a887b37e138a49d1e1c5a0.zip",
-                "reference": "3ffe20ad2d42d97558a887b37e138a49d1e1c5a0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Ueditor\\": "src/",
-                    "Ueditor\\Test\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Masterton",
-                    "homepage": "http://slim.zhengss.com"
-                }
-            ],
-            "description": "Ueditor upload file SDK for PHP",
-            "homepage": "http://ueditor.baidu.com/website/",
-            "keywords": [
-                "sdk",
-                "ueditor",
-                "upload"
-            ],
-            "time": "2017-09-29T09:58:56+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3096,6 +3050,52 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2018-04-03T05:14:20+00:00"
+        },
+        {
+            "name": "tanzhenxing/ueditor-thinkphp",
+            "version": "1.01",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tanzhenxing/ueditor-thinkphp.git",
+                "reference": "92797cc353d91726de5fc151a3a084f9f17ef616"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/tanzhenxing/ueditor-thinkphp/92797cc353d91726de5fc151a3a084f9f17ef616.zip",
+                "reference": "92797cc353d91726de5fc151a3a084f9f17ef616",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ueditor\\": "src/",
+                    "Ueditor\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "tanzhenxing",
+                    "homepage": "https://github.com/tanzhenxing"
+                }
+            ],
+            "description": "Ueditor upload file SDK for ThinkPHP",
+            "homepage": "http://ueditor.baidu.com/website/",
+            "keywords": [
+                "thinkphp",
+                "ueditor",
+                "upload"
+            ],
+            "time": "2018-04-18T02:43:46+00:00"
         },
         {
             "name": "tencentyun-api/qcloudapi-sdk-php",
