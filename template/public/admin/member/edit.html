@@ -1,0 +1,79 @@
+{include file="$public_header"}
+
+<form action="/admin/member/update" method="post" enctype="multipart/form-data" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data_list.id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td class="tableleft">头像</td>
+            <td>
+                <img src="{$data_list.icon}" width="100" /> <br />
+                <input type="file" name="icon"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">用户名</td>
+            <td >{$data_list.username}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">密码</td>
+            <td ><input type="password" name="password" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">昵称</td>
+            <td ><input type="text" name="nickname" value="{$data_list.nickname}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">性别</td>
+            <td>
+                {eq name="data_list.sex" value="1" }
+                <input type="radio" name="sex" value="1" checked/>男
+                <input type="radio" name="sex" value="2" />女
+                <input type="radio" name="sex" value="0" />未知
+                {/eq}
+                {eq name="data_list.sex" value="2" }
+                <input type="radio" name="sex" value="1"/>男
+                <input type="radio" name="sex" value="2" checked/>女
+                <input type="radio" name="sex" value="0" />未知
+                {/eq}
+                {eq name="data_list.sex" value="0" }
+                <input type="radio" name="sex" value="1"/>男
+                <input type="radio" name="sex" value="2"/>女
+                <input type="radio" name="sex" value="0" checked/>未知
+                {/eq}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">手机</td>
+            <td ><input type="text" name="tel" value="{$data_list.tel}"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">微信号</td>
+            <td ><input type="text" name="weixinhao" value="{$data_list.weixinhao}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">QQ号码</td>
+            <td ><input type="text" name="qq" value="{$data_list.qq}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">Email</td>
+            <td ><input type="text" name="email" value="{$data_list.email}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

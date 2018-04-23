@@ -1,0 +1,28 @@
+{include file="$public_header" title="新增广告分类"}
+<form action="/admin/ad_category/save" enctype="multipart/form-data"  method="post">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td class="tableleft">分类名称</td>
+            <td><input type="text" name="title"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">分类标识码</td>
+            <td><input type="text" name="unique_code"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td>
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0"/> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" >保存</button>
+                <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{include file="$public_footer"}

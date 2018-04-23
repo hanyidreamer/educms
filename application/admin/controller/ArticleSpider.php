@@ -1,0 +1,17 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: tanzhenxing
+ * Date: 2017/4/11
+ * Time: 16:16
+ */
+namespace app\admin\controller;
+
+
+class ArticleSpider extends AdminBase
+{
+    public function index()
+    {
+        return $this->fetch();
+    }
+}

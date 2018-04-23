@@ -1,0 +1,38 @@
+{include file="public/header" /}
+
+<form class="form-inline definewidth m20" action="/admin/trade_account_show/index" method="post">
+    交易账户：
+    <input type="text" name="account" id="account" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增演示账户</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>交易账户</th>
+        <th>状态</th>
+        <th>最后登录时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    {volist name="data_list" id="data" }
+    <tr>
+            <td>{$data.id}</td>
+            <td>{$data.account}</td>
+             <td>
+                 {eq name="data.status" value="0" }不可登陆{/eq}
+                 {eq name="data.status" value="1" }可登陆{/eq}
+             </td>
+             <td>{$data.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/trade_account_show/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>&nbsp;
+                <a class="btn btn-danger btn-sm" href="/admin/trade_account_show/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+    </tr>
+    {/volist}
+
+</table>
+
+{include file="public/footer" /}

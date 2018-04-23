@@ -1,0 +1,95 @@
+{include file="$public_header"}
+
+<div class="am-g am-margin-top">
+    <div class="am-u-sm-centered">
+        <form method="post" class="am-form am-form-horizontal am-cf am-padding-horizontal-0" action="/member/register/add" onsubmit="return checkmobile()">
+            <input type="text" class="am-text-middle ht46  bded am-radius" name="mobile" id="mobile" placeholder="请输入手机号码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+            <div class="am-margin-top-xs">
+                <input type="password" class="am-form-field ht46 am-radius am-margin-top-xs bded" name="password" id="password" placeholder="请输入密码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div id="reg2" class="am-cf am-form-group am-margin-top-xs am-margin-bottom-0 " style="position: relative;">
+                <input name="sms_code" class=" am-block am-text-sm am-radius bded ht46 " type="text" id="sms_code" placeholder="验证码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <div class=" am-text-middle am-text-center am-padding-0 am-cf getsmscodeWrap" id="divgetsmscode">
+                    <input name="send" type="button" class="am-link-muted am-fr getmscode-btn" id="send" value="获取验证码" onclick="sendTrial()" />
+                </div>
+            </div>
+            <input type="hidden" name="mid" value="{$mid}">
+            <input type="hidden" name="site_id" value="{$site_id}">
+            <input type="submit" value="注册"  class="am-btn  am-margin-top-xs ht46 am-btn-block login-btn">
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" id="jss"></script>
+<script type="text/javascript">
+    function spass()
+    {
+        var spasskey='b20ea25f2de08130688027cc34a95cc0';
+        return spasskey;
+    }
+    function Trim(str){
+        str=str.replace(/^ {1,}/g,"");
+        str=str.replace(/ {1,}$/g,"");
+        return str;
+    }
+    function checkmobile()
+    {
+        o('mobile').value = Trim(o('mobile').value);
+        if(/^[0-9]+$/.test(o('mobile').value)==false)
+        {
+            alert("手机号码格式不对，请填写数字格式的手机号码");
+            o('mobile').focus();
+            return false;
+        }
+        o('code').value = Trim(o('code').value);
+        if(o('code').value=="")
+        {
+            alert("您需要点击“发送验证码”获取手机验证码，请将手机收到的验证码填入输入框！");
+            o('code').focus();
+            return false;
+        }
+        return true;
+    }
+
+    function sendTrial(mobile)
+    {
+        if(  ! /1[0-9]{10,11}/.test(o('mobile').value) ){
+            alert('手机号码不正确!');o('mobile').focus();return false;
+        }
+        setSendResp("已经发送到您手机")
+    }
+    var timer;
+    var nums = 60;
+    var num = nums;
+    function setSendResp(resp){
+
+        var mobile = document.getElementById("mobile").value;
+
+        o('jss').src='http://www.qq.com/member/register/index?tel='+mobile+'&m='+spass()+'&'+Math.random();
+        var btn = o("send");
+        if(resp.indexOf("已经发送到您手机")<0){
+            btn.value = " 发送验证码";
+            btn.disabled = false;
+        }else{
+            btn.value = "验证码发送，"+nums;
+            btn.disabled = true;
+            num = nums;
+            timer = setInterval("countTime()", 1000);
+        }
+    }
+    function countTime()
+    {
+        num--;
+        if(num<0) {
+            clearInterval(timer);
+            o("send").value = "发送验证码";
+            o("send").disabled = false;
+        }else{
+            o("send").value = "验证码发送，"+num;
+        }
+    }
+
+</script>
+
+{include file="$public_footer"}

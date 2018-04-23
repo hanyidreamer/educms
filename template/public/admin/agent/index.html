@@ -1,0 +1,66 @@
+{include file="$public_header"}
+
+<form class="form-inline definewidth m20" action="/admin/agent/index" method="post">
+    代理名称：
+    <input type="text" name="username" id="username" class="abc input-default" placeholder="" value="">
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>类型</th>
+        <th>用户名</th>
+        <th>昵称</th>
+        <th>Logo</th>
+        <th>二维码</th>
+        <th>联系人</th>
+        <th>电话</th>
+        <th>IM</th>
+        <th>公司</th>
+        <th>网站</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    {volist name="data_list" id="data" }
+    <tr>
+        <td>{$data.id}</td>
+        <td>{$data.category_title}</td>
+        <td>{$data.username}</td>
+        <td>
+            {$data.nickname}<br />
+            <img src="{$data.icon}" width="100" />
+        </td>
+        <td width="150"><img src="{$data.logo}" width="100" /> </td>
+        <td width="150"><img src="{$data.qrcode}" width="100" /> </td>
+        <td>{$data.contact_person}</td>
+        <td>
+            手机：{$data.tel}<br />
+            固话：{$data.phone}
+        </td>
+        <td>
+            微信号：{$data.weixinhao}<br />
+            QQ: {$data.qq}
+        </td>
+        <td>名称：{$data.company_name}<br />
+           城市： {$data.city}<br />
+            地址：{$data.address}
+        </td>
+        <td>
+            {$data.site_name}<br />
+            {$data.url}
+        </td>
+        <td>{eq name="data.status" value="1" }启用{/eq}</td>
+        <td>
+                <a class="btn btn-sm btn-primary" href="/admin/agent/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/agent/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+        </td>
+    </tr>
+    {/volist}
+
+</table>
+
+{include file="$public_footer"}

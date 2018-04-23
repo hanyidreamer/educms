@@ -1,0 +1,65 @@
+{include file="$public_header" title="新增幻灯片"}
+
+<form action="/admin/slide/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="15%" class="tableleft">幻灯片类型</td>
+            <td>
+                <select name="category_id">
+                {volist name="category" id="data" }
+                <option value="{$data.id}">{$data.title}</option>
+                {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">标题</td>
+            <td><input type="text" name="title" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">描述</td>
+            <td ><input type="text" name="desc" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">链接文字</td>
+            <td>
+                <input type="text" name="button" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">链接网址</td>
+            <td ><input type="text" name="url" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">图标</td>
+            <td>
+                <input type="file" name="icon" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">幻灯片图片<br /> 宽：1920px,高：600px</td>
+            <td>
+                <input type="file" name="thumb" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 显示
+                <input type="radio" name="status" value="0" /> 隐藏
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

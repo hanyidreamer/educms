@@ -1,0 +1,67 @@
+{include file="$public_header" title="$article.title" separator=" - " keywords="$article.keywords" description="$article.description"}
+<div class="Nfanhui clearfix width"><img src="https://wximg-10001398.cossh.myqcloud.com/uploads/20180420/1524153654491555.png">当前位置在：<a href="/">首页</a> &gt; <a href="{$in_category.link}">{$in_category.title}</a></div>
+
+<div class="main nei_main width">
+    <div class="nav_left5">
+        <h2 class="nav5_tit">
+            <strong>{$in_category.title}</strong><span>{$in_category.short_title}</span>
+        </h2>
+        <ul class="nav5_list">
+            {volist name="sub_category" id="sub_category_list"}
+            <li><a href="{$sub_category_list.link}">{$sub_category_list.title}</a></li>
+            {/volist}
+        </ul>
+        <div class="tel5">
+            <p>
+                <span style="line-height:1.5;"> </span>
+            </p>
+            <p style="white-space:normal;">
+                <span style="font-size:10px;font-family:微软雅黑;line-height:1.5;">电话：{$site.tel}</span>
+            </p>
+            <section data-role="outer" label="Powered by 135editor.com" style="font-family:微软雅黑;font-size:16px;">
+                <p>
+                    <span style="font-size:10px;">传真：{$site.phone}</span>
+                </p>
+                <p>
+                    <span style="font-size:10px;">地址：{$site.address}</span>
+                </p>
+            </section>
+            <p>
+                <br>
+            </p>
+            <p>
+                <br>
+            </p>
+        </div>
+    </div>
+
+    <div class="fleft nei_right">
+        <div style="text-align:center;font-size:32px;"><span>{$article.title}</span></div>
+        <div style="text-align:center;margin-top:10px;"><span>来源：{$article.source}</span>&nbsp;|&nbsp;<span>作者：{$article.author}</span>&nbsp;|&nbsp;<span>时间：{$article.update_time}</span></div>
+
+        <div class="ab_font ab_img new_width">
+            <section data-role="outer" style="font-size:16px;">
+                <p style="max-width:100%;min-height:1em;font-family:&quot;font-size:medium;white-space:normal;word-break:normal !important;">
+                    <br>
+                </p>
+                <section class="mpa-template" data-mpa-template-id="698356" data-mpa-color="null" data-mpa-category="fav" style="max-width:100%;font-family:&quot;font-size:medium;white-space:normal;word-break:normal !important;"><section class="" data-tools="135编辑器" data-id="88266" data-color="#D8A557" data-custom="#D8A557" style="max-width:100%;border-width:0px;border-style:none;border-color:initial;word-break:normal !important;box-sizing:border-box;"><section style="max-width:100%;word-break:normal !important;">
+                    <p style="margin-top:10px;padding:10px;max-width:100%;min-height:1em;color:#060606;border-width:1px;border-style:dashed;border-color:#D8A557;border-radius:14px;text-align:justify;line-height:1.75em;letter-spacing:0.5px;word-break:normal !important;">
+                        <span style="max-width:100%;font-size:14px;font-family:Optima-Regular, PingFangTC-light;word-break:normal !important;">
+                            {$article.description}
+                        </span>
+                    </p>
+                    <section data-width="0px" style="margin-right:auto;margin-left:auto;max-width:100%;width:0px;height:0px;border-width:15px;border-style:solid;border-color:#D8A557 transparent transparent;word-break:normal !important;box-sizing:border-box;"><br style="max-width:100%;word-break:normal !important;">
+                    </section></section></section></section>
+<div class="article_text">
+    {$article.body|raw}
+</div>
+            </section>
+        </div>
+
+    </div>
+</div>
+
+{include file="$public_footer"}
+
+</body>
+</html>

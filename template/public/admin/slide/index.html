@@ -1,0 +1,51 @@
+{include file="$public_header"}
+
+<form class="form-inline definewidth m20" action="/admin/slide/index" method="post">
+    标题：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a class="btn btn-success" href="/admin/slide/create">新增</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>分类</th>
+        <th>幻灯片</th>
+        <th>标题</th>
+        <th>描述</th>
+        <th>排序</th>
+        <th>链接文字</th>
+        <th>链接</th>
+        <th>状态</th>
+        <th>最后更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+    <tr align="center">
+        <td width="50">{$data.id}</td>
+        <td width="180">{$data.category_title}</td>
+        <td width="150"><img src="{$data.thumb}" width="100" /> </td>
+        <td width="150">{$data.title}</td>
+        <td width="350">{$data.desc}</td>
+        <td width="50">{$data.sort}</td>
+        <td width="50">{$data.button}</td>
+        <td width="50"><a href="{$data.url}" target="_blank">{$data.url}</a></td>
+        <td width="50">{eq name="data.status" value="1" }
+            启用
+            {else}
+            禁用
+            {/eq}</td>
+        <td width="150">{$data.update_time}</td>
+        <td>
+            <a class="btn btn-sm btn-primary" href="/admin/slide/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+            <a class="btn btn-danger btn-sm" href="/admin/slide/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+        </td>
+    </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+    共{$data_count} 条记录
+</div>
+{include file="$public_footer"}

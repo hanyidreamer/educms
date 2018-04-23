@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>会员套餐管理</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/manage/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/manage/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/manage/css/style.css" />
+    <script type="text/javascript" src="/manage/js/jquery.js"></script>
+    <script type="text/javascript" src="/manage/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/manage/js/ckform.js"></script>
+    <script type="text/javascript" src="/manage/js/common.js"></script>
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20" action="/admin/member_package/index" method="post">
+    套餐名称：
+    <input type="text" name="name" id="name" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增套餐</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>名称</th>
+        <th>英文名</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+	     <tr>
+            <td>{$data.id}</td>
+            <td>{$data.name}</td>
+             <td>{$data.en_name}</td>
+             <td>{eq name="data.status" value="1" }
+                 启用
+                 {else}
+                 禁用
+                 {/eq}</td>
+             <td>{$data.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/member_package/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/member_package/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+		$('#addnew').click(function(){
+				window.location.href="add.html";
+		 });
+    });
+
+	function del(id)
+	{
+		if(confirm("确定要删除吗？"))
+		{
+			var url = "del.html";
+			window.location.href=url;
+		}
+	}
+</script>

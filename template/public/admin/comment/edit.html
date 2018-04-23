@@ -1,0 +1,63 @@
+{include file="public/header" /}
+
+<form action="/admin/comment/save" method="post" enctype="multipart/form-data" class="definewidth m20">
+<input type="hidden" name="id" value="{$data_list.id}" />
+<table class="table table-bordered table-hover ">
+    <input type="hidden" name="site_id" value="{$site_id}" />
+    <tr>
+        <td class="tableleft">选择点评用户</td>
+        <td>
+            <select name="mid">
+                {volist name="member_info" id="user" }
+                {eq name="user.id" value="$mid" }
+                <option value="{$user.id}" selected="selected">{$user.username}</option>
+                {else/}
+                <option value="{$user.id}">{$user.username}</option>
+                {/eq}
+                {/volist}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" class="tableleft">留言内容</td>
+        <td>
+            <textarea type="text" name="comment" rows="10" cols="50">{$data_list.comment}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">是否推荐到首页</td>
+        <td>
+            {eq name="$data_list.type" value="1" }
+            <input type="radio" name="type" value="1" checked/> 推荐
+            <input type="radio" name="type" value="0"/> 不推荐
+            {else /}
+            <input type="radio" name="type" value="1"/> 推荐
+            <input type="radio" name="type" value="0" checked="checked"/> 不推荐
+            {/eq}
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            {eq name="$data_list.status" value="1" }
+            <input type="radio" name="status" value="1" checked/> 显示
+            <input type="radio" name="status" value="0"/> 不显示
+            {else /}
+            <input type="radio" name="status" value="1"/> 显示
+            <input type="radio" name="status" value="0" checked/> 不显示
+            {/eq}
+
+
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+
+{include file="public/footer" /}

@@ -1,0 +1,98 @@
+{include file="$public_header"}
+
+<form action="/admin/teacher/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="site_id" value="{$site_id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="15%" class="tableleft">分类</td>
+            <td>
+                <select name="category_id">
+                {volist name="category" id="data" }
+                <option value="{$data.id}">{$data.title}</option>
+                {/volist}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">真实姓名</td>
+            <td><input type="text" name="real_name" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">昵称</td>
+            <td><input type="text" name="nickname" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">头衔</td>
+            <td><input type="text" name="title" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">简介</td>
+            <td ><input type="text" name="desc" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">关键词</td>
+            <td ><input type="text" name="keywords" value=""/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">主页</td>
+            <td ><input type="text" name="url" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">相片</td>
+            <td>
+                <input type="file" name="icon" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">二维码</td>
+            <td>
+                <input type="file" name="qrcode" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">手机</td>
+            <td>
+                <input type="text" name="tel" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">微信号</td>
+            <td>
+                <input type="text" name="weixinhao" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">QQ</td>
+            <td>
+                <input type="text" name="qq" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">唯一标识码</td>
+            <td>
+                <input type="text" name="unique_code" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 显示
+                <input type="radio" name="status" value="0" /> 隐藏
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

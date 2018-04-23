@@ -1,0 +1,46 @@
+{include file="$public_header"}
+
+    <div id="content-container" class="container">
+
+        <div class="es-tabs article-list-header">
+            <div class="tab-header">
+                <ul class="clearfix">
+                    <li  role="presentation" class="active" ><a href="/article">教育资讯</a></li>
+                    <li class=""><a href="/article/category/news">行业资讯</a></li>
+                    <li class=""><a href="/article/category/default">默认分类</a></li>
+                </ul>    </div>
+        </div>
+
+        <!-- 资讯头部 -->
+
+        <div class="article-list-body row">
+
+            <!-- list主内容-->
+            <div class="col-md-8 article-list-main">
+                <section class="es-section">
+                    <div class="article-list">
+                        {volist name="article" id="list" }
+                        <li><a href="/article/{$list.unique_code}">{$list.title}</a></li>
+                        {/volist}
+                    </div>
+                </section>
+            </div>
+
+            <aside class="col-md-4 article-sidebar">
+                <!-- 热门资讯 -->
+                <div class="panel panel-default hot-article">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="es-icon es-icon-whatshot"></i>热门资讯</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="empty">暂无热门资讯</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+
+    </div>
+
+
+{include file="$public_footer"}

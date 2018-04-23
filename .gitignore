@@ -1,0 +1,9 @@
+/.idea
+/.vscode
+*.log
+.env
+runtime
+tests
+test
+database.php
+machong

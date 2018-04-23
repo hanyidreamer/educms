@@ -1,0 +1,113 @@
+{include file="$public_header"}
+
+<!-- 固定图片 -->
+<!-- 可编辑图片，section要留着控制图片样式 -->
+<section class="advert-img-wrap">
+    <div class="user-num-box">
+        <div class="vg-text-white text-center vg-padding-top">累计付费学员</div>
+        <div class="vg-main-font-color text-center vg-margin-top-xs vg-center num-wrap">9201
+        </div>
+    </div>
+    <p>
+        <img src="/static/images/20170308142433_32598.jpg" alt="" />
+    </p>
+    <p>
+        <img src="/static/images/20170307151122_57555.jpg" alt="" /><img src="/static/images/20170316141312_18529.jpg" alt="" /><img src="/static/images/20170307151349_42721.jpg" alt="" /><img src="/static/images/20170308112040_67056.jpg" alt="" /><img src="/static/images/20170308135044_61170.jpg" alt="" />
+    </p>
+</section>
+
+<section class="vg-bg-white vg-padding-bottom-xl vg-margin-bottom-xl">
+
+    <!--未登入非会员  -->
+    <div class="regist-box vg-padding-vertical vg-padding-horizontal ">
+        <form method="post" class="vg-padding-horizontal-0" action="/member/register/save"  onsubmit="return checkmobile()">
+            <input type="hidden" name="mid" value="{$mid}">
+            <input type="text" class=" vg-text-default vg-border-0 vg-margin-bottom-sm vg-padding-sm vg-radius" id="mobile" placeholder="请输入手机号码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="mobile" value="">
+            <div id="reg2" class=" row vg-bg-white vg-radius vg-margin-bottom-sm " style="position: relative;">
+                <div class="small-7  vg-padding-left-0 columns vg-padding-sm">
+                    <div class="vg-bdr-default ">
+                        <input name="sms_code" class=" vg-margin-bottom-0 vg-padding-left-sm vg-block vg-radius  vg-text-sm  vg-text-sm vg-border-0" type="text" id="sms_code" placeholder="验证码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
+                    </div>
+                </div>
+
+                <div class="small-5 columns vg-padding-left-0 vg-padding-right-xs text-right vg-padding-vertical-sm vg-text-center" id="divgetsmscode">
+                        <em id="num" class="vg-padding-right-xs vg-text-sm"></em><input name="send" id="send" type="button" class="vg-text-sm" value="获取验证码" onclick="sendTrial()">
+                </div>
+            </div>
+            <div class=" vg-margin-bottom-sm ">
+                <input type="password" class=" vg-radius vg-text-default vg-margin-bottom-0 vg-padding-sm vg-border-0" id="password" placeholder="请输入密码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="password" value="">
+            </div>
+            <input id="reg" type="submit" value="验证手机" class="vg-text-sm vg-padding-sm vg-main-button vg-border-0 vg-radius vg-text-white vg-wfull vg-margin-top-xs">
+        </form>
+    </div>
+</section>
+<!-- 非会员 -->
+
+<aside class="row vg-padding-sm vg-bg-white vg-bl-fixed vg-bdt-default">
+    <div class="small-7 columns vg-text-sm vg-main-font-color vg-padding-top-xxs">原价1280元 优惠价：<span class="vg-text-lg">￥398.00</span></div>
+    <div class="small-5 columns  vg-margin-bottom-0 vg-padding-right-0 "><a class="vg-block vg-radius text-center vg-padding-vertical-xs vg-text-white vg-main-button vg-text-sm " href="/member/pay_vip/buy">立即升级</a></div>
+</aside>
+<!-- 会员-->
+
+<script type="text/javascript" id="jss"></script>
+<script type="text/javascript">
+    function Trim(str){
+        str=str.replace(/^ {1,}/g,"");
+        str=str.replace(/ {1,}$/g,"");
+        return str;
+    }
+    function checkmobile()
+    {
+        o('mobile').value = Trim(o('mobile').value);
+        if(/^[0-9]+$/.test(o('mobile').value)==false)
+        {
+            alert("手机号码格式不对，请填写数字格式的手机号码");
+            o('mobile').focus();
+            return false;
+        }
+        o('code').value = Trim(o('code').value);
+        if(o('code').value=="")
+        {
+            alert("您需要点击“发送验证码”获取手机验证码，请将手机收到的验证码填入输入框！");
+            o('code').focus();
+            return false;
+        }
+        return true;
+    }
+
+    function sendTrial(mobile)
+    {
+        if(  ! /1[0-9]{10,11}/.test(o('mobile').value) ){
+            alert('手机号码不正确!');o('mobile').focus();return false;
+        }
+        setSendResp("已经发送到您手机")
+    }
+    var timer;
+    var nums = 60;
+    var num = nums;
+    function setSendResp(resp){
+        var mobile = document.getElementById("mobile").value;
+        o('jss').src='/index/sms/send/mobile/'+mobile;
+        var btn = o("send");
+        if(resp.indexOf("已经发送到您手机")<0){
+            btn.value = " 发送验证码";
+            btn.disabled = false;
+        }else{
+            btn.value = "发送中，"+nums;
+            btn.disabled = true;
+            num = nums;
+            timer = setInterval("countTime()", 1000);
+        }
+    }
+    function countTime()
+    {
+        num--;
+        if(num<0) {
+            clearInterval(timer);
+            o("send").value = "发送验证码";
+            o("send").disabled = false;
+        }else{
+            o("send").value = "已发送，"+num;
+        }
+    }
+</script>

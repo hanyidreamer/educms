@@ -1,0 +1,146 @@
+{include file="$public_header"}
+
+<link rel="stylesheet" href="/layui/css/layui.css" media="all">
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#slide'
+            ,width: '460px'
+            ,height: '160px'
+        });
+    });
+</script>
+<div class="layui-carousel" id="slide">
+    <div carousel-item="">
+        {volist name="slide" id="list" }
+        <div><a href="{$list.url}"><img src="{$list.thumb}" /></a></div>
+        {/volist}
+    </div>
+</div>
+
+<!-- 用户信息开始 -->
+<section class="vg-bg-default vg-padding-bottom-sm">
+    <div class="row vg-bg-white user-baseinfo text-center">
+        <div class="small-6 columns vg-hfull vg-padding-vertical-sm vg-bdr-default">
+            <a href="/member/info/index">
+                <!-- 普通VIP &#xe66d; 合伙人&#xe66f; -->
+                <span class="vg-text-xs vg-text-orange vg-block">非会员</span>
+                <span class="vg-text-xs vg-text-gray vg-block">{$member_data.name}</span>
+            </a>
+        </div>
+        <div class="small-6 columns vg-hfull vg-padding-vertical-sm  ">
+            <a href="/member/pay_vip/index"><span class="vg-text-sm vg-text-white vg-main-button vg-padding-xs vg-radius vg-margin-top-xs vg-block ">升级会员</span></a>
+        </div>
+    </div>
+</section>
+<!-- 用户信息结束 -->
+<!-- 菜单开始 -->
+<section class="vg-bg-default vg-padding-bottom-sm">
+    <div class="vg-bg-white text-center vg-padding-vertical">
+        <div class="row">
+            <a class="small-4 columns" href="/member/my_order/index">
+                <i class="icon iconfont vg-text-pink vg-text-icon">&#xe609;</i>
+                <div class="vg-text-xs vg-text-black">我的订单</div>
+            </a>
+            <a class="small-4 columns" href="/member/classmates/index">
+                <i class="icon iconfont vg-text-smblue vg-text-icon">&#xe608;</i>
+                <div class="vg-text-xs vg-text-black">我的同学</div>
+            </a>
+            <a class="small-4 columns" href="/member/credit/index">
+                <i class="icon iconfont  vg-text-lgblue  vg-text-icon">&#xe60d;</i>
+                <div class="vg-text-xs vg-text-black">我的积分</div>
+            </a>
+        </div>
+        <div class="row">
+            <a class="small-4 columns" href="/member/income/index">
+                <i class="icon iconfont vg-text-icon">&#xe693;</i>
+                <div class="vg-text-xs vg-text-black">奖学金</div>
+            </a>
+            <a id="gzh" class="small-4 columns show-code" href="http://images.qianbailang.com/upload/2017-06-27/1498522786qrcode.jpg">
+                <i class="icon iconfont vg-text-icon vg-text-purple">&#xe60b;</i>
+                <div class="vg-text-xs vg-text-black">关注公众号</div>
+            </a>
+
+            <div class="body-shadow" id="guanzhugongzhao">
+                <div class="weixin-code-box">
+                    <div class="weixin-code-wrap vg-padding-lg">
+                        <img class="wfull"
+                             src="http://mobile5.51ckjr.com/uploads/image/20170809/20170809171301_71949.jpg">
+                        <span class="shadow-close"> <i
+                                class="icon iconfont vg-text-xl vg-text-gray">&#xe61c;</i></span>
+                    </div>
+                </div>
+            </div>
+            <a id="bzr" class="small-4 columns show-code" href="/static/images/bzr.jpg">
+                <i class="icon iconfont vg-text-icon vg-text-orange">&#xe60a;</i>
+                <div class="vg-text-xs vg-text-black">添加班主任</div>
+            </a>
+            <div class="body-shadow">
+                <div class="weixin-code-box">
+                    <div class="weixin-code-wrap vg-padding-lg">
+                        <div class="vg-text-sm text-center vg-text-black vg-padding-vertical">
+                            登入升级VIP才可以添加班主任微信哦！
+                        </div>
+                        <span class="shadow-close"> <i
+                                class="icon iconfont vg-text-xl  vg-text-gray">&#xe61c;</i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 菜单结束 -->
+<!-- 直播预告开始  修改（2016/9/3）：增加直播预告-->
+
+<!-- 直播预告结束 -->
+<!-- 我的课程开始  修改（2016/9/3）：增加播放次数-->
+<section class="vg-bg-default vg-padding-bottom-sm">
+    <div class="vg-bg-white lessons vg-padding-horizontal-xs vg-bdb-default">
+        <span class="vg-tit-bdb-2 vg-text-default vg-text-black vg-text-bold tit">我们的课程</span>
+    </div>
+    <div class="vg-bg-white lessons-box vg-padding-horizontal-xs">
+        <ul class="list">
+            {volist name="course" id="list" }
+            <li>
+                <a class="row vg-block" href="/course/{$list.unique_code}">
+                    <div class="small-5 columns vg-padding-horizontal-0">
+                        <div class="list-img-wrap">
+                            <span class="vg-bg-green vg-text-white authority vg-text-xs">VIP免费</span>
+                            <img src="{$list.thumb}">
+                        </div>
+                    </div>
+                    <div class="small-7 columns vg-padding-right-0 info">
+                        <h4 class="vg-text-sm vg-text-black">{$list.title}</h4>
+                        <span class="vg-text-xs vg-text-smgray teacher">{$list.teacher_id}</span><span class="vg-text-xs vg-text-smgray teacher vg-w50 vg-fr text-right">{$list.update_time}</span>
+                        <span class="vg-text-xs vg-text-gray code">播放: <span>{$list.click}</span>次</span>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</section>
+<!-- 我的课程结束 -->
+<!-- 友情链接开始 -->
+<section class="vg-bg-default">
+    <div class="vg-bg-white friends vg-padding-horizontal-xs vg-bdb-default">
+        <span class="vg-tit-bdb-2 vg-text-default vg-text-black vg-text-bold tit">友情链接</span>
+    </div>
+</section>
+<footer class="vg-bg-widte  vg-text-xs text-center ">
+    <div class="vg-bdb-default vg-padding-vertical  row">
+        <div class="small-6 columns vg-bdr-default">
+            <a class="vg-text-black "  href="/article/jianjie.html">关于我们</a>
+        </div>
+        <div class="small-6 columns">
+            <a class="vg-text-black " href="/article/lianxiwomen.html">联系我们 </a>
+        </div>
+    </div>
+    <div class="vg-padding-vertical-sm">
+        {$site.copyright}
+    </div>
+</footer>
+{include file="$public_footer"}

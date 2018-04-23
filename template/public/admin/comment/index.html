@@ -1,0 +1,46 @@
+{include file="public/header" /}
+<br />
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<a href="/admin/comment/add"  class="btn btn-success">添加留言</a>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>用户名</th>
+        <th>留言内容</th>
+        <th>是否推荐</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="user" }
+	     <tr>
+            <td>{$user.id}</td>
+             <td>{$user.username}</td>
+             <td>{$user.comment}</td>
+             <td>
+                 {eq name="user.type" value="1" }
+                 推荐到首页
+                 {else}
+                 不推荐
+                 {/eq}
+             </td>
+             <td>
+                 {eq name="user.status" value="1" }
+                 启用
+                 {else}
+                 禁用
+                 {/eq}
+             </td>
+             <td>{$user.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/comment/edit/id/{$user.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/comment/delete/id/{$user.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+{include file="public/footer" /}

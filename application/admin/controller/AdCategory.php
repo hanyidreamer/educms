@@ -1,0 +1,123 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: tanzhenxing
+ * Date: 2017/6/26
+ * Time: 15:16
+ */
+namespace app\admin\controller;
+
+use app\common\model\AdCategory as AdCategoryModel;
+
+class AdCategory extends AdminBase
+{
+    /**
+     * 广告分类
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function index()
+    {
+        // 找出广告列表数据
+        $post_title = $this->request->param('title');
+        $data = new AdCategoryModel;
+        if(!empty($post_title)){
+            $data_list = $data->where(['status' => 1])
+                ->where('title','like','%'.$post_title.'%')
+                ->select();
+        }else{
+            $data_list = $data->where(['status'=>1])->select();
+        }
+        $data_count = count($data_list);
+        $this->assign('data_count',$data_count);
+
+        $this->assign('data_list',$data_list);
+
+        return $this->fetch($this->template_path);
+    }
+
+    /**
+     * 新增分类
+     * @return mixed
+     */
+    public function create()
+    {
+        return $this->fetch($this->template_path);
+    }
+
+    /**
+     * 保存分类
+     * @throws \think\exception\DbException
+     */
+    public function save()
+    {
+        $post_data = $this->request->param();
+        if(empty($post_data['title'])){
+            $this->error('分类名称不能为空');
+        }
+        $data = new AdCategoryModel;
+        $data_array = array('title','unique_code','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('保存成功','/admin/ad_category/index');
+        } else {
+            $this->error('操作失败');
+        }
+
+    }
+
+    /**
+     *  编辑分类
+     * @param $id
+     * @return mixed
+     * @throws \think\Exception
+     * @throws \think\exception\DbException
+     */
+    public function edit($id)
+    {
+        // 获取网站信息
+        $data_list = AdCategoryModel::get($id);
+        $this->assign('data',$data_list);
+
+        return $this->fetch($this->template_path);
+    }
+
+    /**
+     * 更新分类
+     * @throws \think\exception\DbException
+     */
+    public function update()
+    {
+        $post_data = $this->request->param();
+        if(empty($post_data['title'])){
+            $this->error('分类名称不能为空');
+        }
+
+        $data = AdCategoryModel::get($post_data['id']);
+        $data_array = array('title','unique_code','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
+            $this->success('保存成功','/admin/ad_category/index');
+        } else {
+            $this->error('操作失败');
+        }
+    }
+
+    /**
+     * 删除广告分类
+     * @param $id
+     * @throws \think\exception\DbException
+     */
+    public function delete($id)
+    {
+        $data = AdCategoryModel::get($id);
+        if ($data) {
+            $data->delete();
+            $this->success('删除广告分类成功', '/admin/ad_category/index');
+        } else {
+            $this->error('您要删除的广告分类不存在');
+        }
+    }
+}

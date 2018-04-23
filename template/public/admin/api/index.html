@@ -1,0 +1,51 @@
+{include file="$public_header" title="API接口列表"}
+<form class="form-inline definewidth m20" action="/admin/api/index" method="post">
+    名称：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>分类</th>
+        <th>接口名称</th>
+        <th>接口网址</th>
+        <th>接口说明</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+	     <tr>
+            <td>{$data.id}</td>
+             <td>
+                 {$data.category_title}
+             </td>
+            <td>
+                {$data.title}
+            </td>
+             <td>{$data.url}</td>
+
+             <td>
+                 {$data.desc}
+             </td>
+             <td>{eq name="data.status" value="1" }
+                 启用
+                 {else}
+                 禁用
+                 {/eq}</td>
+             <td>{$data.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/api/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/api/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+{include file="$public_footer"}
