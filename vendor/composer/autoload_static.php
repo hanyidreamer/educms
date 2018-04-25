@@ -42,7 +42,6 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         ),
         'U' => 
         array (
-            'Ueditor\\Test\\' => 13,
             'Ueditor\\' => 8,
         ),
         'S' => 
@@ -139,10 +138,6 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
-        ),
-        'Ueditor\\Test\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/tanzhenxing/ueditor-thinkphp/tests',
         ),
         'Ueditor\\' => 
         array (

@@ -25,7 +25,6 @@ class Ad extends AdminBase
      */
     public function index()
     {
-        // 找出广告列表数据
         $post_title = $this->request->param('title');
         $data = new AdModel;
         if(!empty($post_title)){

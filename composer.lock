@@ -3053,16 +3053,16 @@
         },
         {
             "name": "tanzhenxing/ueditor-thinkphp",
-            "version": "1.01",
+            "version": "1.02",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tanzhenxing/ueditor-thinkphp.git",
-                "reference": "92797cc353d91726de5fc151a3a084f9f17ef616"
+                "reference": "55b2f77c11784b1546763ff2a61b0e5f38a680a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/tanzhenxing/ueditor-thinkphp/92797cc353d91726de5fc151a3a084f9f17ef616.zip",
-                "reference": "92797cc353d91726de5fc151a3a084f9f17ef616",
+                "url": "https://files.phpcomposer.com/files/tanzhenxing/ueditor-thinkphp/55b2f77c11784b1546763ff2a61b0e5f38a680a2.zip",
+                "reference": "55b2f77c11784b1546763ff2a61b0e5f38a680a2",
                 "shasum": ""
             },
             "require": {
@@ -3074,8 +3074,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Ueditor\\": "src/",
-                    "Ueditor\\Test\\": "tests/"
+                    "Ueditor\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3095,7 +3094,7 @@
                 "ueditor",
                 "upload"
             ],
-            "time": "2018-04-18T02:43:46+00:00"
+            "time": "2018-04-18T07:58:19+00:00"
         },
         {
             "name": "tencentyun-api/qcloudapi-sdk-php",

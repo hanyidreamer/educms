@@ -1,0 +1,139 @@
+<div class="logo_btm"><img src="{$resource_path}images/foot_bg.jpg" alt="外汇智能交易"></div>
+<div class="footer">
+    <hr>
+    <div class="foot_nav">
+        <div class="part fl">
+            <p class="part_title">站内地图</p>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="data.html">盈收数据</a></li>
+            <li><a href="hezuo.php">机构合作</a></li>
+            <li><a href="probation.html">领取使用</a></li>
+            <li><a href="about_us.html">关于我们</a></li>
+        </div>
+        <div class="part fl">
+            <p class="part_title">合作伙伴</p>
+            <li><a href="https://www.gomarkets.cn/" rel="nofollow" target="_blank">高汇</a></li>
+            <li><a href="https://www.vantagefx.cn/" rel="nofollow" target="_blank">VantageFX万致</a></li>
+            <li><a href="http://originecn.com/" rel="nofollow" target="_blank">Origin</a></li>
+            <li><a href="https://infinox.cn/" rel="nofollow" target="_blank">INFINOX英诺</a></li>
+            <li><a href="https://www.usgfx.com/" rel="nofollow" target="_blank">USGFX</a></li>
+        </div>
+        <div class="part fl">
+            <p class="part_title">友情链接</p>
+            <li><a href="https://www.jin10.com/" rel="nofollow" target="_blank">金十数据</a></li>
+            <li><a href="http://www.hexun.com/" rel="nofollow" target="_blank">和讯网</a></li>
+            <li><a href="http://www.jrwyjiaoyi.com/" rel="nofollow" target="_blank">外汇社区</a></li>
+            <li><a href="http://www.jrwyjiaoyi.com/" rel="nofollow" target="_blank">新投资交易</a></li>
+            <li><a href="http://www.fx110.com/" rel="nofollow" target="_blank">外汇110</a></li>
+        </div>
+        <div class="part fl">
+            <p class="part_title">关注我们</p>
+            <p><img src="{$site.qrcode}" style="width:115px;height:115px;" alt="{$site.title}"></p>
+            <p style="color:#fff;font-size:15px;">欢迎加入我们，欢迎合作</p>
+        </div>
+    </div>
+    <div class="foot_sm">
+        <li>免责声明：本公司仅提供软件技术支持，用户在使用软件进行交易前，请务必了解清楚外汇交易所存在的风险和软件的正确使用方法，本公司不对用户交易的盈亏负责任。</li>
+        <li>风险声明：外汇和CFD衍生品交易均伴有巨大的风险，因此您应该只使用可以承受范围内的资金进行投资。外汇和CFD交易并不适合所有投资者，因此您必须在充分了解其风险后才开始投资，并且在必要时候请咨询您的理财顾问。</li>
+    </div>
+</div>
+<div class="black">
+    <div class="code"><img src="{$site.qrcode}" alt="{$site.title}"/></div>
+    <div class="close"></div>
+</div>
+<div class="cndns-right">
+    <div class="cndns-right-meau meau-sev">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon">&#xe901;</span>
+            <p>
+                在线<br />
+                客服
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <span class="demo-icon">&#xe901;</span>
+                    <p>在线客服<i>服务时间：9:00-24:00</i></p>
+                    <div class="clear"></div>
+                </div>
+                <div class="sev-b">
+                    <h4>选择下列服务马上在线沟通：</h4>
+                    <ul id="zixunUl">
+                        <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=136670&site=qq&menu=yes">在线客服</a></li>
+                        <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=136670&site=qq&menu=yes">定制开发</a></li>
+                        <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=136670&site=qq&menu=yes">机构合作</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon">&#xe903;</span>
+            <p>
+                关注<br />
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="{$site.qrcode}" alt="{$site.title}"/>
+                    <i id="sev-t-text">关注官方微信</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-top" id="top-back">
+        <a href="javascript:" class="cndns-right-btn" onclick="topBack()">
+            <span class="demo-icon">&#xe904;</span>
+            <i>顶部</i>
+        </a>
+    </div>
+</div>
+<script type="text/javascript">
+    //置顶事件
+    function topBack(){
+        $('body,html').animate({scrollTop:0},300);
+    }
+    function AddFavorite(title, url) {
+        try {
+            window.external.addFavorite(url, title);
+        }
+        catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, "");
+            }
+            catch (e) {
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+    $('#top-back').hide()
+    $(window).scroll(function(){
+        if($(this).scrollTop() > 350){
+            $("#top-back").fadeIn();
+        }else{
+            $("#top-back").fadeOut();
+        }
+    })
+
+    $(function(){
+        $("#guanzhu").click(function(){
+            $(".black").fadeIn(500);
+            $(".code").fadeIn(500);
+            $(".close").fadeIn(500);
+        });
+        $(".close").click(function(){
+            $(".code").fadeOut(500);
+            $(".close").fadeOut(500);
+            $(".black").fadeOut(500);
+
+        });
+    });
+</script>
+</body>
+</html>
