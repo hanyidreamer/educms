@@ -5,10 +5,9 @@
  * Date: 2017/9/21
  * Time: 23:28
  */
-namespace app\index\controller;
+namespace app\agent\controller;
 
 use app\base\controller\Base;
-use think\Request;
 use app\common\model\AgentApply as AgentApplyModel;
 
 class ApplyAgent extends Base
@@ -24,21 +23,18 @@ class ApplyAgent extends Base
 
     /**
      * 保存代理申请信息
-     * @param Request $request
      */
-    public function save(Request $request)
+    public function save()
     {
-        // $post_site_id = $request->param('site_id');
-        $post_contact_person = $request->param('contact_person');
-        $post_tel = $request->param('tel');
-        // $post_province = $request->param('province');
-        $post_city = $request->param('city');
+        $post_data = $this->request->param();
+        if(empty($post_data['contact_person'])){
+            $this->error('姓名不能为空');
+        }
 
         $data = new AgentApplyModel;
-        $data['contact_person'] = $post_contact_person;
-        $data['tel'] = $post_tel;
-        $data['city'] = $post_city;
-        if ($data->save()) {
+        $data_array = array('contact_person','tel','city');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
             echo '<h1>成功提交申请，请等待管理员审核！</h1>';
         } else {
             $this->error('提交申请失败');

@@ -15,4 +15,9 @@ class Teacher extends Controller
     {
         return $this->fetch();
     }
+
+    public function view()
+    {
+
+    }
 }

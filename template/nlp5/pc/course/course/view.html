@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="$course.title" separator=" - "}
 
 
 
@@ -7,7 +7,7 @@
 
             <ol class="breadcrumb breadcrumb-o">
                 <li><a href="/">首页</a></li>
-                <li><a href="/index/course/category/id/{$course_category.unique_code}">{$course_category.title}</a></li>
+                <li><a href="/course/{$course_category.unique_code}">{$course_category.title}</a></li>
                 <li class="active">{$course.title}</li>
             </ol>
 
@@ -181,16 +181,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
 
 
             </div>

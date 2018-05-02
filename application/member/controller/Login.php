@@ -31,7 +31,6 @@ class Login extends Base
      */
     public function check(Request $request)
     {
-        $post_site_id = $request->param('site_id');
         // 验证用户名和密码是否正确
         $post_username = $request->param('username');
         $post_password = $request->param('password');
@@ -49,7 +48,7 @@ class Login extends Base
 
         // 验证用户名是否为手机号
         if (is_numeric($post_username) and strlen($post_username)==11) {
-            $member_data = Member::get(['tel'=>$post_username,'site_id'=>$post_site_id]);
+            $member_data = Member::get(['tel'=>$post_username,'site_id'=>$this->site_id]);
         }else{
             $member_data = Member::get(['username'=>$post_username]);
         }
@@ -58,7 +57,7 @@ class Login extends Base
         {
             // username 存在 ,判断密码是否正确
             if (is_numeric($post_username) and strlen($post_username)==11) {
-                $member_password = Member::get(['tel'=>$post_username,'site_id'=>$post_site_id,'password'=>$post_password]);
+                $member_password = Member::get(['tel'=>$post_username,'site_id'=>$this->site_id,'password'=>$post_password]);
                 $username = $member_password['username'];
                 $password = $member_password['password'];
             }else{
