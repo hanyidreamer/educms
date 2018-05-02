@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>平台总盈利 接口文档</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、平台总盈利 网页测试表单
+    <br /><br />
+
+    <form method="post" action="/api/v1/trade/platform_profit">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/v1/trade/platform_profit
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前用户的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        Sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"query success","total all":28.59,"total year":23.41,"total month":0,"total week":0,"total today":0}
+        <br /><br />
+
+        total all 总盈利百分比 <br />
+        total year 年盈利百分比<br />
+        total month 月盈利百分比<br />
+        total week 周盈利百分比<br />
+        total today 今天盈利百分比<br />
+    </p>
+</div>
+
+</body>
+</html>

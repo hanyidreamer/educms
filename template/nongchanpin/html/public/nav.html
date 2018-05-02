@@ -1,0 +1,14 @@
+<div class="header">
+    <div class="header-box center-box">
+        <a href="/" class="logo"><img src="{$site.logo}" style="width:100%"></a>
+        <div class="menu">
+            <ul>
+                <li><a href="/">首页</a></li>
+                {volist name="category" id="list" }
+                <li><a href="/category/{$list.indentification}">{$list.title}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

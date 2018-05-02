@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>会员的交易服务 （挂机） 接口文档</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、会员的交易服务 （挂机） 网页测试表单
+    <br /><br />
+
+    <form method="post" action="/api/member/service">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        account： <input type="text" name="account" value="710105">  （由用户填写）
+        <br /><br />
+        password：<input type="text" name="password" value="123">  （由用户填写）
+        <br /><br />
+        trade_server：<input type="text" name="trade_server" value="ICMarkets-Demo07">  （由用户选择）
+        <br /><br />
+        messages：<input type="text" name="messages" value="online">  （默认为 online）
+        <br /><br />
+        member_server：<input type="text" name="member_server" value="h02">  （由用户选择）
+        <br /><br />
+        lots：<input type="text" name="lots" value="0.01">  （由用户填写）
+        <br /><br />
+        work：<input type="text" name="work" value="gj">  （默认为 gj）
+        <br /><br />
+        work_status：<input type="text" name="work_status" value="0"> （默认为0）
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/member/service
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前用户的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        第三方交易平台的帐号account：account （必须提交）
+        <br />
+        第三方交易平台的密码password：password （必须提交）
+        <br />
+        第三方交易平台的服务器英文名称trade_server：trade_server （必须提交）
+        <br />
+        消息messages：messages （必须提交，默认为online，隐藏提交，用户不可见）
+        <br />
+        会员的交易服务器 英文名称member_server：member_server （必须提交,默认为h02）
+        <br />
+        交易手数（跟单倍数）：lots （必须提交,默认为0.01）
+        <br />
+        工作类型：work （必须提交,默认为gj，隐藏提交，用户不可见）
+        <br />
+        工作状态（0.未启动 1.运行中 2.重启中 3.重启失败） ：work_status （必须提交,默认为0，隐藏提交，用户不可见）
+        <br />
+        Sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+    </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+{include file="../../../web/templet/nongchanpin/html/public/header" /}
+
+<!--Required libraries-->
+<script src="/templet/nongchanpin/js/min/jquery-v1.10.2.min.js" type="text/javascript"></script>
+<script src="/templet/nongchanpin/js/min/modernizr-custom-v2.7.1.min.js" type="text/javascript"></script>
+<script src="/templet/nongchanpin/js/min/jquery-finger-v0.1.0.min.js" type="text/javascript"></script>
+<!--Include flickerplate-->
+<link href="/templet/nongchanpin/css/flickerplate.css"  type="text/css" rel="stylesheet">
+<script src="/templet/nongchanpin/js/min/flickerplate.min.js" type="text/javascript"></script>
+<!--Execute flickerplate-->
+<script>
+    $(document).ready(function(){
+
+        $('.flicker-example').flicker();
+    });
+</script>
+
+<div class="flicker-example" data-block-text="false">
+    <ul>
+        {volist name="home_site_slide_info" id="data" }
+        <li data-background="{$data.thumb}">
+            <div class="flick-title"></div>
+            <div class="flick-sub-text"></div>
+        </li>
+        {/volist}
+    </ul>
+</div>
+
+<div class="content" id="messageTabSwitch">
+    <div class="cards three">
+        <div class="card" id="companyNew">
+            <div class="image">
+                <a id="companyNewSub"><img src="/templet/nongchanpin/images/news.jpg" alt="新闻中心"></a>
+            </div>
+            <div>
+                {volist name="category_news1" id="data" }
+                <li><a href="/article/{$data.indentification}.html"><span class="news-txt">{$data.title}</span></a></li>
+                {/volist}
+            </div>
+        </div>
+        <div class="celled-dashed"></div>
+        <div class="card" id="printMedia">
+            <div class="image">
+                <a id="printMediaSub"><img src="/templet/nongchanpin/images/media.jpg" alt="媒体报道"></a>
+            </div>
+            <div>
+                {volist name="category_news2" id="data" }
+                <li><a href="/article/{$data.indentification}.html"><span class="news-txt">{$data.title}</span></a></li>
+                {/volist}
+            </div>
+        </div>
+        <div class="celled-dashed"></div>
+        <div class="card" id="hotFocus">
+            <div class="image">
+                <a id="hotFocusContent"><img src="/templet/nongchanpin/images/notice.jpg" alt="网站公告"></a>
+            </div>
+            <div>
+                {volist name="notice_data_list" id="data" }
+                <li><a href="/article/{$data.indentification}.html"><span class="news-txt">{$data.title}</span></a></li>
+                {/volist}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="large header">
+        友情链接
+        <div class="subheader">Links</div>
+    </div>
+    <ul class="piclist">
+        {volist name="friend_link_list" id="data" }
+        <li><a href="{$data.url}" target="_blank"><img src="{$data.icon}" height="30" width="80" title="{$data.title}" /></a></li>
+        {/volist}
+    </ul>
+</div>
+
+{include file="../../../web/templet/nongchanpin/html/public/footer" /}

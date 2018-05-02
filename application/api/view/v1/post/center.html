@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>会员中心 接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    <h2>一、会员中心 网页测试表单</h2>
+    <br /><br />
+
+    <form method="post" action="/api/v1/member/center">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+
+    <p>
+        <br /><br />
+    <h2>二、提交网址和提交方式</h2>
+        <br />
+        提交网址：https://www.firdc.com/api/v1/member/center
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+    <h2></h2> 三、参数说明：
+        <br />
+        当前用户的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        Sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+
+    <p>
+    <h2>四、返回值：</h2>
+        1. 成功时的 返回值示例<br /><br />
+    {"code":"1","status":"query success","member_profit_rate":{"total_all":41.49,"total_year":34.1,"total_month":0,"total_week":0,"total_today":0},"account_info":[{"account":710105,"deposit":3000,"take_profit":0,"profit_amount":109.66,"profit_amount_rate":3.66,"total_amount":3109.66,"server_name":"\u5b87\u5b99\u5957\u5229\u4e00\u53f7","work_status":0},{"account":1064971,"deposit":30000,"take_profit":0,"profit_amount":4054.33,"profit_amount_rate":13.51,"total_amount":34054.33,"server_name":"\u5b87\u5b99\u5957\u5229\u4e8c\u53f7","work_status":0},{"account":1061386,"deposit":3000,"take_profit":0,"profit_amount":4749.49,"profit_amount_rate":158.32,"total_amount":7749.49,"server_name":"\u5b87\u5b99\u5957\u5229\u4e8c\u53f7","work_status":0}]}<br /><br />
+        <h3>数据说明：</h3>
+        member_profit_rate 会员总盈利率数据<br />
+        total_all 总盈利百分比 <br />
+        total_year 年盈利百分比<br />
+        total_month 月盈利百分比<br />
+        total_week 周盈利百分比<br />
+        total_today 今天盈利百分比<br />
+        <br /><br />
+        account_info  帐户信息<br />
+    account 账户号<br />
+    deposit 入金<br />
+    take_profit 出金<br />
+    profit_amount  盈利金额（盈利）<br />
+    profit_amount_rate 盈利增长率（盈利率）<br />
+    total_amount 总金额<br />
+    server_name 会员交易服务的服务器名称<br />
+    work_status 状态：0.未启动 1.运行中 2.重启中 3.重启失败 4.取消挂机<br />
+    <br /><br /><br /><br />
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>会员的交易服务器列表 接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、会员的交易服务器列表 网页测试表单
+    <br /><br />
+
+    <form method="post" action="/api/member/server">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/member/server
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前会员的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        Sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"query success","server info":[{"id":1,"tsid":1,"name":"\u5b87\u5b99\u5957\u5229\u4e00\u53f7","en_name":"h01","type":1,"ip":"","user_num":0,"area":"","create_time":0,"update_time":0},{"id":2,"tsid":1,"name":"\u5b87\u5b99\u5957\u5229\u4e8c\u53f7","en_name":"h02","type":1,"ip":"","user_num":0,"area":"","create_time":0,"update_time":0},{"id":3,"tsid":1,"name":"\u5b87\u5b99\u5957\u5229\u4e09\u53f7","en_name":"h03","type":1,"ip":"","user_num":0,"area":"","create_time":0,"update_time":0}]}<br /><br />
+        server info 中的 name 为服务器的中文名称，中文字符编码格式为UNICODE<br/>
+        en_name为英文名称
+
+    </p>
+</div>
+
+</body>
+</html>

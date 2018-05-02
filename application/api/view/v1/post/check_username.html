@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>检查用户名是否存在 接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、检查用户名是否存在 网页测试表单
+    <br /><br />
+    <form method="post" action="/api/v1/index/check_username">
+        用户名：<input type="text" name="username" value="cofan">
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="检测">
+    </form>
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/v1/index/check_username
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        用户名：username （必须提交）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"username can use"}
+        <br /> 当前用户名未注册，可以使用
+        <br /><br />
+
+        2. 失败时的 返回值示例<br /><br />
+        {"code":"0","status":"username unuseble"}<br />
+        当前用户名已经存在，不可以重复注册。
+
+    </p>
+</div>
+
+</body>
+</html>

@@ -33,7 +33,22 @@
         "tencentyun/cos-php-sdk": "^3.3",
         "riverslei/payment": "^4.1",
         "tanzhenxing/ueditor-thinkphp": "^1.01",
-        "qcloud/cos-sdk-v5": "1.1.4"
+        "qcloud/cos-sdk-v5": "1.1.4",
+        "hisune/echarts-php": "^1.0",
+        "workerman/workerman": "^3.5",
+        "anerg2046/sns_auth": "^1.1",
+        "anerg2046/payment": "^1.0",
+        "anerg2046/alidayu": "^1.1",
+        "barrett/captcha": "^2.2",
+        "fig/link-util": "^1.0",
+        "flc/alidayu": "^2.0",
+        "myclabs/deep-copy": "^1.7",
+        "paragonie/random_compat": "^2.0",
+        "phar-io/manifest": "^1.0",
+        "swiftmailer/swiftmailer": "^6.0",
+        "theseer/tokenizer": "^1.1",
+        "twig/twig": "^2.4",
+        "yunwuxin/think-twig": "^1.0"
     },
     "autoload": {
         "psr-4": {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>添加 交易平台的服务器信息</title>
+</head>
+<body>
+<div class="container">
+
+    <br /><br />
+    <form method="post" action="/api/trade/insert_server">
+
+        平台名称：<input type="text" name="platform" value=""> (如：ICMarkets)
+        <br /><br />
+        服务器名称：<input type="text" name="server_name" value=""> (如：ICMarkets-Demo01)
+        <br /><br />
+        服务器简写：<input type="text" name="short_name" value=""> (只能由字母、数字、下划线构成，以字母开头，小写 ， 如：ic_demo_01)
+        <br /><br />
+        服务器ip地址：<input type="text" name="ip" value="">
+        <br /><br />
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+<br /><br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-bordered">
+                <tr class="info">
+                    <th>num</th>
+                    <th>platform</th>
+                    <th>server_name</th>
+                    <th>short_name</th>
+                    <th>ip</th>
+                </tr>
+
+            </table>
+</div>
+
+</body>
+</html>

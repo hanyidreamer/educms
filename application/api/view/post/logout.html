@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>会员退出登陆  接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、会员退出登陆 网页测试表单
+    <br /><br />
+
+    <form method="post" action="/api/member/logout">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="退出">
+    </form>
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/member/logout
+        <br /> 请使用 <font style="color: red">https</font> , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前会员的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        当前会员的sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"2","status":"logout success"}
+        code 为 2 时，当前会员为 退出登陆状态
+
+    </p>
+    2. 失败时 返回值示例
+    <br /><br />
+    {"code":"2","status":"Member already exit!"}<br />
+    会员已经退出，不要重复提交
+    <br /><br />
+    {"code":"0","status":"sign error."}<br />
+    sign 出错
+    <br /><br />
+    {"code":"0","status":"member's id non-existent"}<br />
+    会员mid 不存在
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>添加 第三方交易平台订单记录  接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、添加 第三方交易平台订单记录  网页测试表单
+    <br /><br />
+
+    <form method="post" action="/api/order/insert">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        account：<input type="text" name="account" value="710105">
+        <br /><br />
+        order_id：<input type="text" name="order_id" value="164145449"> order_id 唯一值，不能重复
+        <br /><br />
+        order_type：<input type="text" name="order_type" value="0"> 订单类型：0.sell，1.buy，6.入金
+        <br /><br />
+        trade_symbol：<input type="text" name="trade_symbol" value="EURUSD">
+        <br /><br />
+        trade_lots：<input type="text" name="trade_lots" value="0.01">
+        <br /><br />
+        order_time：<input type="text" name="order_time" value="2016-07-27 14:17:04">
+        <br /><br />
+        order_price：<input type="text" name="order_price" value="1.09951">
+        <br /><br />
+        close_time：<input type="text" name="close_time" value="2016-07-28 16:33:27">
+        <br /><br />
+        close_price：<input type="text" name="close_price" value="1.11018">
+        <br /><br />
+        stop_loss：<input type="text" name="stop_loss" value="0">
+        <br /><br />
+        take_profit：<input type="text" name="take_profit" value="0">
+        <br /><br />
+        commission：<input type="text" name="commission" value="1.31571">
+        <br /><br />
+        taxes：<input type="text" name="taxes" value="-0.13">
+        <br /><br />
+        swap：<input type="text" name="swap" value="0.07">
+        <br /><br />
+        profit：<input type="text" name="profit" value="10.83">
+        <br /><br />
+        comment：<input type="text" name="comment" value="0.21051">
+        <br /><br />
+        status：<input type="text" name="status" value="1"> 订单状态：0. 交易中，1. 交易完成
+        <br /><br />
+
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/order/insert
+        <br /> 请使用 <font style="color: red">https</font> , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前会员的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        当前会员的sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"order insert success"}
+
+    </p>
+    2. 失败时 返回值示例
+    <br /><br />
+    {"code":"0","status":"order_id is null"}
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load  href="/static/dist/css/bootstrap.min.css"}
+    {load  href="/static/agent/css/agent.css"}
+    <title>用户登陆</title>
+</head>
+<body>
+<div class="body_top"></div>
+<div class="body_space"></div>
+<div class="container" style="background-color: #ffffff">
+    <div class="body_text">
+        <div class="register_info">
+            <div class="register_button"><a href="/agent/index/register">注册</a></div>
+            <div class="register_button"><a href="/agent/index/forget_password">忘记密码</a></div>
+        </div>
+        <div class="login_title">用户登陆</div>
+
+        <div class="login_info">
+            <form action="/agent/index/login" method="post">
+                <div class="username">
+                    <input type="text" name="username"  value="" placeholder="用户名" autofocus required />
+                </div>
+                <div class="password">
+                    <input type="password" name="password"  value=""  placeholder="密码" required />
+                </div>
+
+                <div class="login_button">
+                    <button type="submit">登 陆</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
