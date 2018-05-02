@@ -1,5 +1,0 @@
-<phpunit>
-    <testsuite name="cos">
-      <directory>src/qcloud/cos</directory>
-    </testsuite>
-</phpunit>

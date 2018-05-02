@@ -45,10 +45,10 @@
             <ul class="nav navbar-nav clearfix hidden-xs " id="nav">
                 {volist name="nav" id="list" }
                 <li class="nav-hover">
-                    <a href="/index/course/category/id/{$list.unique_code}">{$list.title}<b class="caret"></b></a>
+                    <a href="/course_category/{$list.unique_code}">{$list.title}<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         {volist name="list.sub_list" id="sub" }
-                        <li><a href="/index/course/category/id/{$sub.unique_code}">{$sub.title}</a></li>
+                        <li><a href="/course_category/{$sub.unique_code}">{$sub.title}</a></li>
                         {/volist}
                     </ul>
                 </li>

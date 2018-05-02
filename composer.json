@@ -25,16 +25,15 @@
         "endroid/qr-code": "^3.2",
         "qcloudsms/qcloudsms_php": "^0.1.2",
         "tencentyun-api/qcloudapi-sdk-php": "^2.0",
-        "qcloud/cos-sdk-v5": "^1.1",
         "phpoffice/phpspreadsheet": "^1.2",
         "overtrue/pinyin": "^3.0",
         "overtrue/wechat": "^4.0",
         "qcloud/weapp-sdk": "^2.1",
-        "qcloud/cos-sdk-v4": "^4.3",
         "aliyuncs/oss-sdk-php": "^2.3",
         "tencentyun/cos-php-sdk": "^3.3",
         "riverslei/payment": "^4.1",
-        "tanzhenxing/ueditor-thinkphp": "^1.01"
+        "tanzhenxing/ueditor-thinkphp": "^1.01",
+        "qcloud/cos-sdk-v5": "1.1.4"
     },
     "autoload": {
         "psr-4": {

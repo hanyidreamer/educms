@@ -62,7 +62,6 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
             'Qcloud_cos\\' => 11,
             'Qcloud\\Sms\\' => 11,
             'QCloud_WeApp_SDK\\' => 17,
-            'QCloud\\Cos\\' => 11,
         ),
         'P' => 
         array (
@@ -194,10 +193,6 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'QCloud_WeApp_SDK\\' => 
         array (
             0 => __DIR__ . '/..' . '/qcloud/weapp-sdk/lib',
-        ),
-        'QCloud\\Cos\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/qcloud/cos-sdk-v4/src/qcloud/cos',
         ),
         'Psr\\SimpleCache\\' => 
         array (

@@ -28,7 +28,6 @@ return array(
     'Qcloud_cos\\' => array($vendorDir . '/tencentyun/cos-php-sdk/Qcloud_cos'),
     'Qcloud\\Sms\\' => array($vendorDir . '/qcloudsms/qcloudsms_php/src'),
     'QCloud_WeApp_SDK\\' => array($vendorDir . '/qcloud/weapp-sdk/lib'),
-    'QCloud\\Cos\\' => array($vendorDir . '/qcloud/cos-sdk-v4/src/qcloud/cos'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),

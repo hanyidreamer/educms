@@ -1,0 +1,104 @@
+{include file="$public_header"}
+
+    <div class="es-banner">
+        <div class="container">
+            <div class="title">
+                <i class="es-icon es-icon-viewcomfy"></i>
+                课程列表
+            </div>
+
+            <a class="btn btn-primary btn-lg more" href="/classroom/explore">
+                查看班级
+            </a>
+        </div>
+    </div>
+
+    <div id="content-container" class="container">
+        <div class="es-tabs">
+
+            <div class="tab-header">
+                <ul class="clearfix">
+                    <li class=""><a href="/course/explore?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">全部</a></li>
+                    <li class=""><a href="/course/explore/intro?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">产品介绍</a></li>
+                    <li class="active"><a href="/course/explore/fuction?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">使用教程</a></li>
+                    <li class=""><a href="/course/explore/default?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">默认分类</a></li>
+                </ul>
+            </div>
+
+
+            <div class="tab-body">
+                <ul class="clearfix">
+                    <li class="all"><a href="/course/explore/fuction?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">全部</a></li>
+                    <li class=""><a href="/course/explore/administrator?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">管理员</a></li>
+                    <li class=""><a href="/course/explore/teacher?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">教师</a></li>
+                    <li class=""><a href="/course/explore/student?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest">学员</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="es-filter">
+            <ul class="nav nav-sort clearfix">
+                <li><a href="/course/explore/fuction?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest" class="active">最新</a></li><li><a href="/course/explore/fuction?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=studentNum" class="">最热</a></li><li><a href="/course/explore/fuction?filter%5Btype%5D=all&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=recommendedSeq" class="">推荐</a></li>
+            </ul>
+            <div class="filter hidden-xs">
+                <label class="checkbox-inline">
+                    <input type="checkbox"  id="live" value="
+                  /course/explore/fuction?filter%5Btype%5D=live&amp;filter%5Bprice%5D=all&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest
+        "> 直播课程
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox"  id="free" value="
+                  /course/explore/fuction?filter%5Btype%5D=all&amp;filter%5Bprice%5D=free&amp;filter%5BcurrentLevelId%5D=all&amp;orderBy=latest
+                "> 免费课程
+                </label>
+            </div>
+        </div>
+
+        <div class="course-list">
+            <div class="row">
+
+                {volist name="course" id="list" }
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="course-item">
+                        <div class="course-img">
+                            <a href="/course/{$list.unique_code}" target="_blank">
+                                <img src="/assets/img/default/lazyload_course.png?7.0.2" alt="{$list.title}" class="img-responsive" data-echo="{$list.thumb}" />
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <div class="title">
+                                <a class="link-dark" href="/course/{$list.unique_code}" target="_blank">
+                                    {$list.title}
+                                </a>
+                            </div>
+                            <div class="metas clearfix">
+                                <span class="num"><i class="es-icon es-icon-people"></i>2</span>
+                                <span class="comment"><i class="es-icon es-icon-textsms"></i>1</span>
+
+
+                                <span class="course-price-widget">
+
+
+          <span class="price">
+                  0.10元
+              </span>
+
+
+  </span>    </div>
+                        </div>
+                    </div>          </div>
+                {/volist}
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <nav class="text-center">
+
+        </nav>
+    </div>
+
+{include file="$public_footer"}

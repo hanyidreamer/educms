@@ -24,7 +24,7 @@
                 <ul class="nav nav-pills hidden-xs" role="tablist">
                     <li role="presentation" class="active  js-course-filter" ><a href="/index/course/all">全部课程</a></li>
                     {volist name="nav" id="list" }
-                    <li role="presentation" class=" js-course-filter" ><a href="/index/course/category/id/{$list.unique_code}">{$list.title}</a></li>
+                    <li role="presentation" class=" js-course-filter" ><a href="/course_category/{$list.unique_code}">{$list.title}</a></li>
                     {/volist}
                 </ul>
 

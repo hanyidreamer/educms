@@ -15,6 +15,8 @@ Route::get('article/:id', 'article/Article/view');
 Route::get('search/:name', 'article/Search/index');
 Route::get('wx_img/:name', 'base/ImgUrl/wei_xin'); // 微信图片
 Route::get('qq_img/:name', 'base/ImgUrl/qq_news'); // QQ新闻图片
+Route::get('course_category/:id', 'course/Course/category');
+Route::get('course/:id', 'course/Course/view');
 
 return [
 
