@@ -16,11 +16,10 @@ class Template extends Controller
 {
     /**
      * 当前模板路径
-     * @param string $template_file_id
      * @return string
      * @throws \think\exception\DbException
      */
-    public function path($template_file_id = '')
+    public function path()
     {
         // 当前操作位置
         $module_name = $this->request->module();  // 模块名称
@@ -35,15 +34,25 @@ class Template extends Controller
         $resource_path = '/resource/' . $site_template['unique_code'] . '/';
         $this->assign('resource_path',$resource_path);
 
-        // 判断是否为指定模板
-        if(is_numeric($template_file_id) and !empty($template_file_id)){
-            $template_file_data = TemplateFile::get($template_file_id);
+        // 判断当前模块的模板文件是否在数据库中指定
+        $my_template_category = TemplateCategory::get(['module'=>$module_name]);
+        $my_template = TemplateFile::get(['template_id'=>$site_data['template_id'],'category_id'=>$my_template_category['id'] ,'controller_name'=>$controller_name,'action_name'=>$action_name]);
+        if(!empty($my_template['id'])){
             // 模板标识
-            $template_name_data = TemplateModel::get(['id'=>$template_file_data['template_id']]);
+            $template_name_data = TemplateModel::get(['id'=>$my_template['template_id']]);
             $template_name = $template_name_data['unique_code'];
-            $template_category = TemplateCategory::get(['id' => $template_file_data['category_id']]);
+            $template_category = TemplateCategory::get(['id' => $my_template['category_id']]);
             $template_category_module = $template_category['module'];
-            $template_path = '/' . $template_name . '/' . $template_category_module . '/' . $template_file_data['controller_name'] . '/' . $template_file_data['template_file_name'];
+            $template_path = '/' . $template_name . '/' . $template_category_module . '/' . $my_template['controller_name'] . '/' . $my_template['template_file_name'];
+            if($module_name == 'admin'){
+                $site_template_name = 'public';
+                $template_path = '/' .$site_template_name .'/' .$module_name .'/' .$controller_name.'/'.$my_template['template_file_name'];
+                $template_path = strtolower($template_path);
+                $template_public_header = '/' .$site_template_name .'/' . $module_name .'/public/header';
+                $template_public_footer = '/' .$site_template_name .'/' . $module_name .'/public/footer';
+                $this->assign('public_header',$template_public_header);
+                $this->assign('public_footer',$template_public_footer);
+            }
         }else{
             $template_name_data = TemplateModel::get(['id'=>$site_data['template_id']]);
             $template_name = $template_name_data['unique_code'];
@@ -78,15 +87,14 @@ class Template extends Controller
             }else{
                 // 当前操作默认模板
                 $template_path = '/' . $template_name .'/' . $client_path . $module_name . '/' . $controller_name . '/' . $action_name;
-
                 $template_public_header = '/' .$template_name .'/' . $client_path . '/public/header';
                 $template_public_footer = '/' .$template_name .'/' . $client_path . '/public/footer';
                 $this->assign('public_header',$template_public_header);
                 $this->assign('public_footer',$template_public_footer);
             }
         }
-
         $template_path = strtolower($template_path);
+
         return $template_path;
     }
 

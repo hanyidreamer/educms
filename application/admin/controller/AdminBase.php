@@ -39,6 +39,7 @@ class AdminBase extends Controller
         // 获取site_id
         $site_id = $site_info['id'];
         $this->site_id = $site_id;
+        $this->assign('site_id',$site_id);
 
         // 判断是否有管理网站的权限
         $admin_username = session('admin_username');

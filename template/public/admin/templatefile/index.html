@@ -15,19 +15,17 @@
         <th>模块</th>
         <th>控制器</th>
         <th>状态</th>
-        <th>最后更新时间</th>
         <th>操作</th>
     </tr>
     </thead>
     {volist name="data_list" id="data" }
     <tr align="center">
         <td width="50">{$data.id}</td>
-        <td width="50">{$data.title}</td>
+        <td width="150">{$data.title}</td>
         <td width="100">{$data.template_name}</td>
         <td width="100">{$data.module_name}</td>
         <td width="150">{$data.controller_name}</td>
         <td width="50">{eq name="data.status" value="1" } 启用 {else} 禁用 {/eq}</td>
-        <td width="150">{$data.update_time}</td>
         <td>
             <a class="btn btn-sm btn-primary" href="/admin/template_file/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
             <a class="btn btn-danger btn-sm" href="/admin/template_file/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
