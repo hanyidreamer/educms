@@ -7,7 +7,6 @@
  */
 namespace app\admin\controller;
 
-use think\Request;
 use app\common\model\Admin as AdminModel;
 use app\common\model\AdminCategory;
 use app\base\controller\Upload;
@@ -82,59 +81,37 @@ class Admin extends AdminBase
 
     /**
      * 保存管理员数据
-     * @param Request $request
      * @throws \think\exception\DbException
      */
-    public function save(Request $request)
+    public function save()
     {
+        $post_data = $this->request->param();
         $upload = new Upload();
         // 获取 略缩图 icon文件
-        $post_icon = $upload->qcloud_file('icon');
-
-        $post_category_id = $request->param('category_id');
-        $post_username = $request->param('username');
-        $post_password = $request->param('password');
-        $post_password = md5($post_password);
-        $post_nickname = $request->param('nickname');
-        $post_tel = $request->param('tel');
-        $post_qq = $request->param('qq');
-        $post_weixinhao = $request->param('weixinhao');
-        $post_email = $request->param('email');
-        $post_ip = $request->ip();
-        $post_status = $request->param('status');
-
-        if(empty($post_username)){
+        $post_data['icon'] = $upload->qcloud_file('icon');
+        if(!empty($post_data['password'])){
+            $post_data['password'] = md5($post_data['password']);
+        }
+        if(empty($post_data['username'])){
             $this->error('用户名不能为空');
         }
-
-        $admin_username = AdminModel::get(['username'=>$post_username]);
+        $admin_username = AdminModel::get(['username'=>$post_data['username']]);
         if(!empty($admin_username)){
             $this->error('您填写的用户名已经被注册，请更换');
         }
-        if(empty($post_tel)){
+        if(empty($post_data['tel'])){
             $this->error('手机号码不能为空');
         }
-        $admin_tel = AdminModel::get(['tel'=>$post_tel]);
+        $admin_tel = AdminModel::get(['tel'=>$post_data['tel']]);
         if(!empty($admin_tel)){
             $this->error('您填写的手机号码已经被注册，请更换');
         }
 
 
         $data = new AdminModel;
-        $data['icon'] = $post_icon;
-        $data['site_id'] = $this->site_id;
-        $data['category_id'] = $post_category_id;
-        $data['username'] = $post_username;
-        $data['password'] = $post_password;
-        $data['nickname'] = $post_nickname;
-        $data['tel'] = $post_tel;
-        $data['qq'] = $post_qq;
-        $data['weixinhao'] = $post_weixinhao;
-        $data['email'] = $post_email;
-        $data['ip'] = $post_ip;
-
-        $data['status'] = $post_status;
-        if ($data->save()) {
+        $data_array = array('site_id','category_id','username','password','nickname','tel','qq','weixinhao','email','icon','ip','status');
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
             $this->success('保存成功','/admin/admin/index');
         } else {
             $this->error('操作失败');
@@ -177,51 +154,27 @@ class Admin extends AdminBase
 
     /**
      * 更新管理员
-     * @param Request $request
      * @throws \think\exception\DbException
      */
-    public function update(Request $request)
+    public function update()
     {
+        $post_data = $this->request->param();
+        $data_array = array('site_id','category_id','password','nickname','tel','qq','weixinhao','email','icon','ip','status');
         $upload = new Upload();
         // 获取 略缩图 icon文件
-        $post_icon = $upload->qcloud_file('icon');
-
-        $post_id = $request->post('id');
-        $post_category_id = $request->post('category_id');
-        $post_username = $request->post('username');
-        $post_password = $request->post('password');
-        $post_password = md5($post_password);
-        $post_nickname = $request->param('nickname');
-        $post_tel = $request->param('tel');
-        $post_qq = $request->param('qq');
-        $post_weixinhao = $request->param('weixinhao');
-        $post_email = $request->param('email');
-        $post_ip = $request->ip();
-        $post_status = $request->param('status');
-        if(empty($post_username)){
-            $this->error('用户名不能为空');
+        $post_data['icon'] = $upload->qcloud_file('icon');
+        if(empty($post_data['icon'])){
+            unset($data_array[8]);
+        }
+        if(empty($post_data['password'])){
+           unset($data_array[2]);
         }
 
-        $user = AdminModel::get($post_id);
-        if(!empty($post_icon)){
-            $user['icon'] = $post_icon;
-        }
-        $user['site_id'] = $this->site_id;
-        $user['category_id'] = $post_category_id;
-        if(!empty($post_username)){
-            $user['username'] = $post_username;
-        }
-        $user['password'] = $post_password;
-        $user['nickname'] = $post_nickname;
-        $user['tel'] = $post_tel;
-        $user['qq'] = $post_qq;
-        $user['nickname'] = $post_nickname;
-        $user['weixinhao'] = $post_weixinhao;
-        $user['email'] = $post_email;
-        $user['ip'] = $post_ip;
-        $user['status'] = $post_status;
 
-        if ($user->save()) {
+        $data = AdminModel::get($post_data['id']);
+
+        $data_save = $data->allowField($data_array)->save($post_data);
+        if ($data_save) {
             $this->success('更新成功', '/admin/admin/index');
         } else {
             $this->error('操作失败');
