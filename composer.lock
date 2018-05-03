@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b4e620c4955ab7cadb18b5154bbc339",
+    "content-hash": "9fcb97f65e7a5bc9bf8e640f775325f3",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -125,16 +125,16 @@
         },
         {
             "name": "anerg2046/payment",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anerg2046/payment.git",
-                "reference": "42c33b0385d7802c7a8f85382d2a7755faf39c37"
+                "reference": "9621eda7d4d758c435e7d8639f9f15b360c8522b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/anerg2046/payment/42c33b0385d7802c7a8f85382d2a7755faf39c37.zip",
-                "reference": "42c33b0385d7802c7a8f85382d2a7755faf39c37",
+                "url": "https://files.phpcomposer.com/files/anerg2046/payment/9621eda7d4d758c435e7d8639f9f15b360c8522b.zip",
+                "reference": "9621eda7d4d758c435e7d8639f9f15b360c8522b",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +158,7 @@
                 }
             ],
             "description": "payment alipay weixinpay vnetone",
-            "time": "2018-04-16T10:48:37+00:00"
+            "time": "2018-05-02T09:45:07+00:00"
         },
         {
             "name": "anerg2046/sns_auth",
@@ -2543,21 +2543,21 @@
         },
         {
             "name": "qcloud/cos-sdk-v5",
-            "version": "v1.1.4",
+            "version": "v1.2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tencentyun/cos-php-sdk-v5.git",
-                "reference": "f2fefc7f6ad249695b4a131b7d1efafc7c72707d"
+                "reference": "15a3bc2858d180332f947f7140c76e8c07d56650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/tencentyun/cos-php-sdk-v5/f2fefc7f6ad249695b4a131b7d1efafc7c72707d.zip",
-                "reference": "f2fefc7f6ad249695b4a131b7d1efafc7c72707d",
+                "url": "https://files.phpcomposer.com/files/tencentyun/cos-php-sdk-v5/15a3bc2858d180332f947f7140c76e8c07d56650.zip",
+                "reference": "15a3bc2858d180332f947f7140c76e8c07d56650",
                 "shasum": ""
             },
             "require": {
                 "guzzle/guzzle": "~3.7",
-                "php": ">=5.3.3"
+                "php": ">=5.3.0"
             },
             "type": "library",
             "autoload": {
@@ -2566,13 +2566,26 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
-                    "name": "lewzylu"
+                    "name": "yaozongyou",
+                    "email": "yaozongyou@vip.qq.com"
+                },
+                {
+                    "name": "lewzylu",
+                    "email": "327874225@qq.com"
                 }
             ],
-            "description": "COS SDK for PHP",
-            "time": "2018-02-02T07:04:58+00:00"
+            "description": "PHP SDK for QCloud COS",
+            "keywords": [
+                "cos",
+                "php",
+                "qcloud"
+            ],
+            "time": "2018-05-02T13:07:04+00:00"
         },
         {
             "name": "qcloud/weapp-sdk",
@@ -3776,6 +3789,41 @@
                 "upload"
             ],
             "time": "2018-04-18T07:58:19+00:00"
+        },
+        {
+            "name": "tencent/tls-sig-api",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tencentyun/tls-sig-api-php.git",
+                "reference": "e145b68c9aaf2a650e9bfb20d7889c95c5c7e064"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/tencentyun/tls-sig-api-php/e145b68c9aaf2a650e9bfb20d7889c95c5c7e064.zip",
+                "reference": "e145b68c9aaf2a650e9bfb20d7889c95c5c7e064",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tencent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "okhowang(王沛文)",
+                    "email": "okhowang@tencent.com"
+                }
+            ],
+            "time": "2018-04-10T08:57:14+00:00"
         },
         {
             "name": "tencentyun-api/qcloudapi-sdk-php",

@@ -60,6 +60,7 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'T' => 
         array (
             'Twig\\' => 5,
+            'Tencent\\' => 8,
         ),
         'S' => 
         array (
@@ -198,6 +199,10 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Tencent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tencent/tls-sig-api/src',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (

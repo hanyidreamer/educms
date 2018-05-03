@@ -22,6 +22,7 @@ return array(
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Ueditor\\' => array($vendorDir . '/tanzhenxing/ueditor-thinkphp/src'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Tencent\\' => array($vendorDir . '/tencent/tls-sig-api/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\PropertyAccess\\' => array($vendorDir . '/symfony/property-access'),
