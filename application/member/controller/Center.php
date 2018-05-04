@@ -25,7 +25,7 @@ class Center extends Base
         // 判断是否为微信浏览器
         $user_browser = new BrowserCheck();
         $user_browser_info = $user_browser->info();
-        if($user_browser_info=='wechat_browser'){
+        if($user_browser_info=='wechat'){
             $weixin_user_info = new Weixin();
             $openid = $weixin_user_info->info($this->site_id,session('mid'));
             $this->assign('openid',$openid);
@@ -37,10 +37,10 @@ class Center extends Base
             if(!empty($member_info)){
                 $member_info['name'] = $member_info['real_name'];
 
-                $this->assign('member_data',$member_info);
+                $this->assign('member',$member_info);
             }else{
                 $member_weixin_info['name'] = $member_weixin_info['nickname'];
-                $this->assign('member_data',$member_weixin_info);
+                $this->assign('member',$member_weixin_info);
             }
         }
         return $this->fetch($this->template_path);

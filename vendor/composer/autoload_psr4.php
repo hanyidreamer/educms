@@ -19,6 +19,7 @@ return array(
     'anerg\\OAuth2\\' => array($vendorDir . '/anerg2046/sns_auth/src'),
     'anerg\\Alidayu\\' => array($vendorDir . '/anerg2046/alidayu/src'),
     'Workerman\\' => array($vendorDir . '/workerman/workerman'),
+    'Wechat\\' => array($vendorDir . '/zoujingli/wechat-php-sdk/Wechat'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Ueditor\\' => array($vendorDir . '/tanzhenxing/ueditor-thinkphp/src'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),

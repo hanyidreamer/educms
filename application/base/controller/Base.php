@@ -47,7 +47,7 @@ class Base extends Controller
         // 一级分类
         $article_category = new ArticleCategory();
         $article_nav = $article_category->where(['site_id'=>$site_info['id'],'parent_id'=>0,'status'=>1])
-            ->order('sort','asc')->limit(7)->select();
+            ->order('sort','asc')->limit(10)->select();
         // 二级分类
         foreach ($article_nav as $article_data){
             $article_category_id = $article_data['id'];

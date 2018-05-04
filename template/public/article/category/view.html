@@ -1,13 +1,15 @@
-{include file="$public_header" title="$search_keyword" separator=" - " }
+{include file="$public_header" title="$in_category.title" separator=" - " keywords="$in_category.keywords" description="$in_category.description"}
 
-<div class="Nfanhui clearfix width"><img src="https://wximg-10001398.cossh.myqcloud.com/uploads/20180420/1524153654491555.png">当前位置在：<a href="/">首页</a> &gt; 搜索</div>
+<div class="Nfanhui clearfix width"><img src="https://wximg-10001398.cossh.myqcloud.com/uploads/20180420/1524153654491555.png">当前位置在：<a href="/">首页</a> &gt; <a href="{$in_category.link}">{$in_category.title}</a></div>
 <div class="main nei_main width">
     <div class="nav_left5">
         <h2 class="nav5_tit">
-            <span><strong>搜索结果</strong></span>
+            <strong>{$in_category.title}</strong><span>{$in_category.short_title}</span>
         </h2>
         <ul class="nav5_list">
-
+            {volist name="sub_category" id="sub_category_list"}
+            <li><a href="{$sub_category_list.link}">{$sub_category_list.title}</a></li>
+            {/volist}
         </ul>
         <div class="tel5">
             <p>
@@ -33,9 +35,9 @@
         </div>
     </div>
     <div class="fleft nei_right">
-        <div class="NR_tit"><span>关键词：{$search_keyword}</span></div>
+        <div class="NR_tit"><span>{$in_category.title}&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
         <ul class="news clearfix">
-            {volist name="search_article" id="data_list" }
+            {volist name="in_category_article" id="data_list" }
             <li>
                 <a href="{$data_list.link}"><img src="{$data_list.thumb}" class="fleft"></a>
                 <div class="news_font fleft">

@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="会员升级"}
 
 <!-- 固定图片 -->
 <!-- 可编辑图片，section要留着控制图片样式 -->
@@ -21,7 +21,6 @@
     <!--未登入非会员  -->
     <div class="regist-box vg-padding-vertical vg-padding-horizontal ">
         <form method="post" class="vg-padding-horizontal-0" action="/member/register/save"  onsubmit="return checkmobile()">
-            <input type="hidden" name="mid" value="{$mid}">
             <input type="text" class=" vg-text-default vg-border-0 vg-margin-bottom-sm vg-padding-sm vg-radius" id="mobile" placeholder="请输入手机号码" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="mobile" value="">
             <div id="reg2" class=" row vg-bg-white vg-radius vg-margin-bottom-sm " style="position: relative;">
                 <div class="small-7  vg-padding-left-0 columns vg-padding-sm">

@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="$course.title"}
 <header class="header vg-bg-white row vg-bdb-default">
     <div class="small-4 columns vg-padding-right-0 vg-padding-left-xs text-left"><a
             class="vg-block vg-wfull vg-hfull vg-text-black" href="/"><i class="icon iconfont  vg-text-default">
@@ -28,7 +28,7 @@
     <section
             class="vg-padding-vertical artical-wrap vg-margin-bottom vg-padding-right-sm vg-bg-white  vg-padding-left-sm">
         <h3 class="vg-text-default">课程内容</h3>
-        {$course.body}
+        {$course.body|raw}
     </section>
 </article>
 

@@ -11,5 +11,9 @@ use think\Model;
 
 class Article extends Model
 {
-
+    public function getUpdateTimeAttr($value)
+    {
+        $update_time = date('Y-m-d',$value);
+        return $update_time;
+    }
 }

@@ -51,6 +51,7 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'W' => 
         array (
             'Workerman\\' => 10,
+            'Wechat\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
         'U' => 
@@ -187,6 +188,10 @@ class ComposerStaticInitddce900c5b4789d3b10de8d7c6a55ea0
         'Workerman\\' => 
         array (
             0 => __DIR__ . '/..' . '/workerman/workerman',
+        ),
+        'Wechat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zoujingli/wechat-php-sdk/Wechat',
         ),
         'Webmozart\\Assert\\' => 
         array (

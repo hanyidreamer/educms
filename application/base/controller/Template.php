@@ -23,8 +23,11 @@ class Template extends Controller
     {
         // 当前操作位置
         $module_name = $this->request->module();  // 模块名称
+        $this->assign('module_name',$module_name);
         $controller_name = $this->request->controller(); // 控制器名称
+        $this->assign('controller_name',$controller_name);
         $action_name = $this->request->action(); // 操作方法名称
+        $this->assign('action_name',$action_name);
 
         // 网站信息
         $site = new Site();

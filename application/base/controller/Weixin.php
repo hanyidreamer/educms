@@ -22,7 +22,7 @@ class Weixin extends Controller
      * @throws \think\Exception
      * @throws \think\exception\DbException
      */
-    public function info($site_id,$mid)
+    public function info($site_id,$mid = '0')
     {
         // 微信公众号配置信息
         $official_accounts_info = WechatOfficialAccounts::get(['site_id'=>$site_id]);
@@ -69,6 +69,7 @@ class Weixin extends Controller
         $token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$app_id."&secret=".$app_secret."&code=".$code."&grant_type=authorization_code";
         $weixin_user_data = new Curl();
         $access_token_data = $weixin_user_data->get_info($token_url,$timeout,$user_agent);
+
         $access_token_info = json_decode($access_token_data);
         $access_token = $access_token_info->access_token;
         // $expires_in = $access_token_info->expires_in;
@@ -110,9 +111,7 @@ class Weixin extends Controller
 
         $member_weixin_data = new MemberWeixin();
         $member_weixin_data['site_id'] = $site_id;
-        if(empty($mid)){
-            $mid = 0;
-        }
+
         $member_weixin_data['mid'] = $mid;
         $member_weixin_data['openid'] = $openid;
         $member_weixin_data['nickname'] = $nickname;
@@ -123,6 +122,7 @@ class Weixin extends Controller
         $member_weixin_data['headimgurl'] = $headimgurl;
         $member_weixin_data['status'] = 1;
         $member_weixin_data->save();
+
         return $openid;
     }
 }

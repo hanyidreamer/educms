@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fcb97f65e7a5bc9bf8e640f775325f3",
+    "content-hash": "fb1e416c9a1102dbfb77c7ff87f23d47",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -4386,6 +4386,40 @@
             ],
             "description": "Twig Template For ThinkPHP5",
             "time": "2016-11-24T12:24:40+00:00"
+        },
+        {
+            "name": "zoujingli/wechat-php-sdk",
+            "version": "v1.3.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zoujingli/wechat-php-sdk.git",
+                "reference": "4e8563507213f030cb6612fafceb96380ce7cfb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/zoujingli/wechat-php-sdk/4e8563507213f030cb6612fafceb96380ce7cfb7.zip",
+                "reference": "4e8563507213f030cb6612fafceb96380ce7cfb7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Wechat\\": "./Wechat"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WeChat development of SDK",
+            "homepage": "http://www.kancloud.cn/zoujingli/wechat-php-sdk",
+            "keywords": [
+                "wechat-php-sdk"
+            ],
+            "time": "2018-02-05T02:44:49+00:00"
         }
     ],
     "packages-dev": [],

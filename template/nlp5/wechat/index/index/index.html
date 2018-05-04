@@ -1,4 +1,4 @@
-{include file="$public_header"}
+{include file="$public_header" title="$site.title"}
 
 <link rel="stylesheet" href="/layui/css/layui.css" media="all">
 <script src="/layui/layui.js"></script>
@@ -28,7 +28,7 @@
             <a href="/member/info/index">
                 <!-- 普通VIP &#xe66d; 合伙人&#xe66f; -->
                 <span class="vg-text-xs vg-text-orange vg-block">非会员</span>
-                <span class="vg-text-xs vg-text-gray vg-block">{$member_data.name}</span>
+                <span class="vg-text-xs vg-text-gray vg-block">{$member.name}</span>
             </a>
         </div>
         <div class="small-6 columns vg-hfull vg-padding-vertical-sm  ">
@@ -143,4 +143,5 @@
         {$site.copyright}
     </div>
 </footer>
+
 {include file="$public_footer"}
