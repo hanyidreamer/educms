@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>指定帐户的盈利百分比 接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、指定帐户的盈利百分比 网页测试表单
+    <br /><br />
+
+    <form method="post" action="/api/trade/account_profit_rate">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        account：<input type="text" name="account" value="710105">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/trade/account_profit_rate
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前用户的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        当前用户的account：account （必须提交，隐藏提交，用户不可见）
+        <br />
+        Sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"query success","total_all":456.39,"total_year":375.05,"total_month":0,"total_week":0,"total_today":0}
+        <br /><br />
+        total all 总盈利百分比 <br />
+        total year 年盈利百分比<br />
+        total month 月盈利百分比<br />
+        total week 周盈利百分比<br />
+        total today 今天盈利百分比<br />
+</div>
+
+</body>
+</html>

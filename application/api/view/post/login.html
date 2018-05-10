@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>会员登陆 接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、会员登陆 网页测试表单
+    <br /><br />
+    <form method="post" action="/api/member/login">
+        用户名：<input type="text" name="username" value="cofan">
+        <br /><br />
+        密码： <input type="text" name="password" value="123">
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="登陆">
+    </form>
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/member/login
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        用户名：username （必须提交）
+        <br />
+        密码：password （必须提交）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"login success","mid":"4","username":"cofan","sign":"018c8d3e2aa6e5e3234287092de00264"}
+        <br /> 返回值参数说明：
+        <br /> 请求返回状态码 code，为1时请求成功，为0时 失败
+        <br /> 请求返回状态 status ，login success，登陆成功； login fail 登陆失败
+        <br /> mid 当前用户的mid
+        <br /> username 当前用户的 用户名
+        <br /> sign 当前用户的签名字符串，很重要，请求其他接口都需要带上会员的sign
+        <br /><br />
+        2. 失败时的 返回值示例<br /><br />
+        {"code":"0","status":"token error or expired."}<br />
+        token 错误或过期。
+        <br /><br />
+        {"code":"0","status":"username non-existent"}<br />
+        用户名不存在<br /><br />
+        {"code":"0","status":"login fail,password is error!"}<br />
+        密码错误
+        <br /><br />
+
+    </p>
+</div>
+
+</body>
+</html>

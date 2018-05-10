@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    {load href="/static/dist/js/jquery.min.js" /}
+    {load href="/static/dist/js/bootstrap.min.js" /}
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap.min.css">
+    <title>第三方交易平台服务器 接口说明</title>
+</head>
+<body>
+<div class="container">
+    <br /><br />
+    一、第三方交易平台服务器 网页测试表单
+    <br /><br />
+    <form method="post" action="/api/trade/server">
+        mid：<input type="text" name="mid" value="4">
+        <br /><br />
+        Sign: <input type="text" name="sign" value="018c8d3e2aa6e5e3234287092de00264" >
+        <br /><br />
+        Token: <input type="text" name="token" value="ypkm+sgeqafoih%wdbrnafoih%wd" >
+        <br /><br />
+        <input type="submit" value="提交">
+    </form>
+    <p>
+        <br /><br />
+        二、提交网址和提交方式
+        <br />
+        提交网址：https://www.firdc.com/api/trade/server
+        <br /> 请使用 <font style="color: red">https</font>  , 以后不再支持http
+        <br />
+        提交方式：post
+    </p>
+    <p>
+        <br /><br />
+        三、参数说明：
+        <br />
+        当前用户的mid：mid （必须提交，隐藏提交，用户不可见）
+        <br />
+        Sign：sign （必须提交，隐藏提交，用户不可见）
+        <br />
+        Token : token （必须提交，隐藏提交，用户不可见）
+    </p>
+    <p>
+        四、返回值：<br /> <br />
+        1. 成功时的 返回值示例<br /><br />
+        {"code":"1","status":"query success","server list":[{"id":1,"platform":"IC","server_name":"ICMarkets-Demo01","ip":"","create_time":0,"update_time":0},{"id":2,"platform":"IC","server_name":"ICMarkets-Demo02","ip":"","create_time":0,"update_time":0},{"id":3,"platform":"IC","server_name":"ICMarkets-Demo03","ip":"","create_time":0,"update_time":0},{"id":4,"platform":"IC","server_name":"ICMarkets-Demo04","ip":"","create_time":0,"update_time":0},{"id":5,"platform":"IC","server_name":"ICMarkets-Demo05","ip":"","create_time":0,"update_time":0},{"id":6,"platform":"IC","server_name":"ICMarkets-Demo06","ip":"","create_time":0,"update_time":0},{"id":7,"platform":"IC","server_name":"ICMarkets-Demo07","ip":"","create_time":0,"update_time":0}]}
+        <br /><br />
+        server list 里的 server_name 是 第三方交易平台服务器 的名称
+
+    </p>
+</div>
+
+</body>
+</html>
