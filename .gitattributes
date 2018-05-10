@@ -1,0 +1,5 @@
+*.css linguist-language=php
+*.less linguist-language=php
+*.js linguist-language=php
+*.html linguist-language=php
+*.zip filter=lfs diff=lfs merge=lfs -text
