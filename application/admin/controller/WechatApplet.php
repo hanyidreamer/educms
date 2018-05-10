@@ -7,23 +7,21 @@
  */
 namespace app\admin\controller;
 
-use think\Request;
 use app\common\model\WechatApplet as WechatAppletModel;
 
 class WechatApplet extends AdminBase
 {
     /**
      * 微信小程序列表
-     * @param Request $request
      * @return mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function index()
     {
         // 找出列表数据
-        $post_title = $request->param('title');
+        $post_title = $this->request->param('title');
         $data = new WechatAppletModel;
         if(!empty($post_title)){
             $data_list = $data->where(['status' => 1,'site_id'=>$this->site_id])
@@ -49,12 +47,12 @@ class WechatApplet extends AdminBase
     }
 
     /**
-     * @param Request $request
+     *
      */
-    public function save(Request $request)
+    public function save()
     {
-        $post_title = $request->post('title');
-        $post_status= $request->post('status');
+        $post_title = $this->request->post('title');
+        $post_status= $this->request->post('status');
 
         if($post_title==''){
             $this->error('标题不能为空');
@@ -88,14 +86,13 @@ class WechatApplet extends AdminBase
     }
 
     /**
-     * @param Request $request
      * @throws \think\exception\DbException
      */
-    public function update(Request $request)
+    public function update()
     {
-        $post_id = $request->post('id');
-        $post_title = $request->post('title');
-        $post_status= $request->post('status');
+        $post_id = $this->request->post('id');
+        $post_title = $this->request->post('title');
+        $post_status= $this->request->post('status');
 
         if($post_title=='' or $post_id==''){
             $this->error('幻灯片名称不能为空');
