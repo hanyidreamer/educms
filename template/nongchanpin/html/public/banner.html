@@ -1,0 +1,14 @@
+<!--banner-->
+<div class="banner" style="background:url({$home_site_slide_info.thumb}) center;height:500px;">
+    <div class="banner-list">
+        <div class="banner-box center-box">
+            {volist name="home_site_slide_info" id="data" }
+            <img src="{$data.small_thumb}" style="width:500px;">
+            <p>
+            <a href="{$data.url}" target="_blank">{$data.button_text}</a>
+                <a href="{$data.url2}" target="_blank">{$data.button_text2}</a>
+            </p>
+            {/volist}
+        </div>
+    </div>
+</div>

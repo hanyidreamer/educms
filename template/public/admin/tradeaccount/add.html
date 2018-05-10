@@ -1,0 +1,81 @@
+{include file="public/header" /}
+
+<form action="/admin/trade_account/insert" method="post" class="definewidth m20">
+<table class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td width="10%" class="tableleft">会员用户名</td>
+        <td><input type="text" name="username"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">会员服务器</td>
+        <td>
+            <select name="member_server_name">
+                {volist name="member_list" id="server" }
+                {eq name="server.id" value="1" }<option value="{$server.en_name}" selected="selected">{$server.name}</option>
+                {else}
+                <option value="{$server.en_name}">{$server.name}</option>
+                {/eq}
+                {/volist}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">交易平台</td>
+        <td>
+            <select name="trade_platform">
+                {volist name="trade_list" id="trade" }
+                {eq name="trade.id" value="1" }<option value="{$trade.platform}" selected="selected">{$trade.platform}</option>
+                {else}
+                <option value="{$trade.platform}">{$trade.platform}</option>
+                {/eq}
+                {/volist}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">交易服务器</td>
+        <td>
+            <select name="trade_server_name">
+            {volist name="trade_list" id="trade" }
+            {eq name="trade.id" value="1" }<option value="{$trade.server_name}" selected="selected">{$trade.server_name}</option>
+            {else}
+            <option value="{$trade.server_name}">{$trade.server_name}</option>
+            {/eq}
+            {/volist}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">交易账户号</td>
+        <td><input type="text" name="account"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">交易密码</td>
+        <td><input type="text" name="password"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 启用
+           <input type="radio" name="status" value="0"/> 禁用
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">类型</td>
+        <td>
+            <input type="radio" name="account_type" value="1"/> demo演示帐户
+            <input type="radio" name="account_type" value="2" checked/> live实盘帐户
+            <input type="radio" name="account_type" value="0"/> 未知类型
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+
+{include file="public/footer" /}

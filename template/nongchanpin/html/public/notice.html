@@ -1,0 +1,16 @@
+<div class="notice">
+    <div class="notice-box center-box">
+        <span class="notice-box-title">最新公告</span>
+        <div class="notice-box-news">
+            <div class="scrollNews" >
+                <ul>
+                    {volist name="notice_data_list" id="data" }
+                    <li><a href="/article/{$data.indentification}.html"><span class="news-txt">{$data.title}</span><span class="news-time">{$data.update_time}</span></a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <a href="/category/notice" class="notice-box-more">>>更多内容</a>
+        <div class="clear"></div>
+    </div>
+</div>

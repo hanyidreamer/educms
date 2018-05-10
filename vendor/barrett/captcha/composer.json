@@ -1,0 +1,17 @@
+{
+    "name": "barrett/captcha",
+    "description": "captcha package",
+    "authors": [
+        {
+            "name": "Barrett-M82A1",
+            "email": "i@yoyoyo.me"
+        }
+    ],
+    "license": "Apache-2.0",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "barrett\\": "src/"
+        }
+    }
+}

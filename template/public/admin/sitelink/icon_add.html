@@ -1,0 +1,46 @@
+{include file="public/header" /}
+
+<form action="/admin/site_link/insert" enctype="multipart/form-data" method="post">
+<table class="table table-bordered table-hover definewidth m10">
+    <input type="hidden" name="site_id" value="{$site_id}" />
+    <input type="hidden" name="category_id" value="{$category_id}" />
+    <input type="hidden" name="type" value="{$type}" />
+    <tr>
+        <td width="10%" class="tableleft">链接文字</td>
+        <td><input type="text" name="title"/></td>
+    </tr>
+    <tr>
+        <td width="10%" class="tableleft">链接说明</td>
+        <td><input type="text" name="description"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">链接地址</td>
+        <td><input type="text" name="url"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">网站icon</td>
+        <td>
+            <input type="file" name="icon" />
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 显示
+            <input type="radio" name="status" value="0"/> 不显示
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">排序</td>
+        <td><input type="text" name="sort"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>
+            <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+{include file="public/footer" /}

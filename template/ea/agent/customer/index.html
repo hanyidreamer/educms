@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>代理商登录</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="alternate icon" type="image/png" href="http://s.amazeui.org/assets/react/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="http://s.amazeui.org/assets/react/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="AMUI Touch">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <link href="/amazeui-touch/dist/amazeui.touch.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="sk-root" style="height:100%;width:100%;overflow:hidden">
+    <div data-reactroot="" class="container container-fill container-column" id="sk-container">
+        <div class="views">
+            <div id="sk-detail" class="view">
+                {include file="$public_header" title="我的客户" back_url="/agent/customer"}
+
+                <div class="container sk-demos container-fill container-scrollable">
+
+                    <div class="group group-no-padded">
+                        <div class="group-body">
+                            <ul class="list">
+                                {volist name="customer" id="data" }
+                                <li target="_blank" class="item item-linked item-content">
+                                    <a href="/agent/customer/edit/id/{$data.id}" target="_blank">
+                                        <div class="item-main">
+                                            <div class="item-title-row">
+                                                <h3 class="item-title">{$data.nickname}</h3>
+                                                <div class="item-after">运行中</div>
+                                                <span class="icon icon-right-nav item-icon"></span>
+                                            </div>
+                                            <div class="item-subtitle">登录名：{$data.account}</div>
+                                            <div class="item-desc">
+                                                密码： {$data.password}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                {/volist}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {include file="$public_footer"}
+
+    </div>
+</div>
+
+</body>
+</html>

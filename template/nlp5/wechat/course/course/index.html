@@ -1,0 +1,42 @@
+{include file="$public_header"}
+<header class="header vg-bg-white row vg-bdb-default">
+    <div class="small-1 columns vg-padding-right-0 vg-padding-left-xs"> <a class="vg-block vg-wfull vg-hfull vg-text-black" href="/"><i class="icon iconfont  vg-text-default">&#xe600;</i></a></div>
+    <div class="small-10 columns text-center vg-text-sm">培训课程</div>
+    <div class="small-1 columns"></div>
+</header>
+<section class="vg-bg-white">
+    <section>
+        <ul class="list vg-padding-top-sm vg-padding-horizontal-xs" >
+            {volist name="course" id="vo" }
+            <li class="vg-padding-horizontal-xs vg-padding-vertical-sm vg-bdb-default">
+                <a class="row vg-block" href="/course/{$vo.unique_code}">
+                    <div class="small-3 columns vg-padding-horizontal-0">
+                        <div class="list-img-wrap vg-parent-box">
+                            <img src="{$vo.thumb}">
+                            <span class="vg-text-xxs vg-top-right1 vg-text-smgray teacher vg-padding-horizontal-xs vg-main-button text-right">VIP免费</span>
+                            <div class="protype-icon"><i class="icon iconfont  vg-text-xs vg-text-white">&#xe728;</i></div>
+                        </div>
+                    </div>
+                    <div class="small-9 columns vg-padding-right-0 info">
+                        <h4 class="vg-text-xs vg-text-black  vg-margin-bottom-0">{$vo.title}</h4>
+                        <div class="vg-clearfloat">
+                            <div class="vg-fl vg-w50 vg-text-xs vg-text-smblack teacher">{$vo.update_time}</div>
+                            <div class="vg-fr vg-w50 vg-text-xxs text-right  vg-text-smblack code">讲师: <span>{$vo.teacher_id}</span></div>
+                        </div>
+                        <div class="vg-clearfloat">
+                            <div class="vg-fl vg-w50 vg-text-xxs vg-text-smblack teacher">播放次数：<span>{$vo.click}</span></div>
+                            <div class="vg-fr vg-w50 vg-text-xxs text-right vg-main-font-color teacher">￥<span>{$vo.price}</span></div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+
+        </ul>
+    </section>
+    <div class="pagelist">
+        {$course->render()}
+    </div>
+</section>
+
+{include file="$public_footer"}

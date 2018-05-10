@@ -1,0 +1,61 @@
+{include file="$public_header" title="编辑模板"}
+
+<form action="/admin/template/update" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data.id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="10%" class="tableleft">排序</td>
+            <td><input type="text" name="sort" value="{$data.sort}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">名称</td>
+            <td><input type="text" name="title" value="{$data.title}"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">预览图</td>
+            <td>
+                <img src="{$data.thumb}" width="100" />
+                <input type="file" name="thumb" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">PC模板</td>
+            <td>
+                <input type="radio" name="pc" value="1"/> 启用
+                <input type="radio" name="pc" value="0" checked /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">mobile模板</td>
+            <td>
+                <input type="radio" name="mobile" value="1"/> 启用
+                <input type="radio" name="mobile" value="0" checked /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">微信模板</td>
+            <td><input type="radio" name="wechat" value="1"/> 启用
+                <input type="radio" name="wechat" value="0" checked /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">标识</td>
+            <td><input type="text" name="unique_code" value="{$data.unique_code}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0" /> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

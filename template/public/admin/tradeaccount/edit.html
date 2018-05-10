@@ -1,0 +1,56 @@
+{include file="public/header" /}
+
+<form action="/admin/trade_account/save" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$data_list.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">会员用户名</td>
+            <td><input type="text" name="username" value="{$data_list.username}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">会员服务器</td>
+            <td><input type="text" name="member_server_name" value="{$data_list.member_server_name}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">交易平台</td>
+            <td><input type="text" name="trade_platform" value="{$data_list.trade_platform}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">交易服务器</td>
+            <td><input type="text" name="trade_server_name" value="{$data_list.trade_server_name}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">交易账户号</td>
+            <td><input type="text" name="account" value="{$data_list.account}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">交易密码</td>
+            <td><input type="text" name="password" value="{$data_list.password}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">类型</td>
+            <td>
+                <input type="radio" name="account_type" value="1" checked />demo演示帐户
+                <input type="radio" name="account_type" value="2" />live实盘帐户
+                <input type="radio" name="account_type" value="0" />未知类型
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td>
+                <input type="radio" name="status" value="1" /> 可登陆
+                <input type="radio" name="status" value="2" checked /> 未登陆
+                <input type="radio" name="status" value="0" /> 不可登陆
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="public/footer" /}

@@ -1,0 +1,88 @@
+{include file="public/header" /}
+
+<form action="/admin/site_info/site_insert" enctype="multipart/form-data"  method="post">
+    <input type="hidden" name="admin_id" value="{$admin_id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">网站域名</td>
+            <td><input type="text" name="domain"/>
+                (需要先把域名绑定服务器IP，A记录指向119.29.84.106)
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站名称</td>
+            <td><input type="text" name="title"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站口号</td>
+            <td><input type="text" name="home_title"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站描述</td>
+            <td>
+                <textarea type="text" name="desc" rows="3" cols="40"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站关键词</td>
+            <td>
+                <textarea type="text" name="keywords" rows="3" cols="40"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">logo网站icon</td>
+            <td>
+                <input type="file" name="icon" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站logo</td>
+            <td>
+                <input type="file" name="logo" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站Banner</td>
+            <td>
+                <input type="file" name="banner" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站备案号</td>
+            <td>
+                <input type="text" name="icp" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站底部版权信息</td>
+            <td>
+                <textarea type="text" name="copyright" rows="3" cols="40"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">网站模板</td>
+            <td><input type="text" name="templet_id" value="1"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">网站流量统计代码</td>
+            <td>
+                <textarea type="text" name="statistics" rows="3" cols="40"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td>
+                <input type="radio" name="status" value="1" checked/> 启用
+                <input type="radio" name="status" value="0"/> 禁用
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="button" class="btn btn-success" name="back" id="back">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{include file="public/footer" /}

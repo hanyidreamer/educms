@@ -1,0 +1,47 @@
+{include file="public/header" /}
+
+<form class="form-inline definewidth m20" action="/admin/site_slide/index"  method="post">
+    幻灯片标题：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增幻灯片</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>图片</th>
+        <th>标题</th>
+        <th>按钮文字1</th>
+        <th>链接网址1</th>
+        <th>按钮文字2</th>
+        <th>链接网址2</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="site_info" id="user" }
+	     <tr>
+             <td><img src="{$user.thumb}" width="250" height="50"></td>
+            <td>{$user.title}</td>
+             <td>{$user.button_text}</td>
+             <td>{$user.url}</td>
+             <td>{$user.button_text2}</td>
+             <td>{$user.url2}</td>
+             <td>{eq name="user.status" value="1" }
+                 启用
+                 {else}
+                 禁用
+                 {/eq}</td>
+             <td>{$user.update_time}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/site_slide/edit/id/{$user.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/site_slide/delete/id/{$user.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$site_count} 条记录
+</div>
+{include file="public/footer" /}

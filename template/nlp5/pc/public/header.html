@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>[title][separator]{$site.title}</title>
+    <meta name="keywords" content="{$site.keywords}" />
+    <meta name="description" content="{$site.description}" />
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$site.icon}">
+    <link href="/assets/v2/bootstrap/css/bootstrap.css?7.0.2" rel="stylesheet" />
+    <link rel="stylesheet" media="screen" href="/assets/css/common.css?7.0.2" />
+    <link rel="stylesheet" media="screen" href="/assets/css/font-awesome.min.css?7.0.2" />
+    <link rel="stylesheet" media="screen" href="/assets/v2/css/es-icon.css?7.0.2" />
+    <link href="/assets/v2/css/main.css?7.0.2" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="/assets/libs/html5shiv.js?7.0.2"></script>
+    <script src="/assets/libs/respond.min.js?7.0.2"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="es-wrap">
+    <header class="es-header navbar">
+        <div class="navbar-header">
+            <div class="visible-xs  navbar-mobile">
+                <a href="javascript:" class="navbar-more js-navbar-more">
+                    <i class="es-icon es-icon-menu"></i>
+                </a>
+                <div class="html-mask"></div>
+
+            </div>
+            <a href="/" class="navbar-brand">
+                <img src="{$site.logo}">
+            </a>
+        </div>
+        <nav class="collapse navbar-collapse">
+            <ul class="nav navbar-nav clearfix hidden-xs " id="nav">
+                {volist name="nav" id="list" }
+                <li class="nav-hover">
+                    <a href="/course_category/{$list.unique_code}">{$list.title}<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        {volist name="list.sub_list" id="sub" }
+                        <li><a href="/course_category/{$sub.unique_code}">{$sub.title}</a></li>
+                        {/volist}
+                    </ul>
+                </li>
+                {/volist}
+
+                <li class="">
+                    <a href="/article/lianxiwomen" >联系我们 </a>
+                </li>      </ul>
+            <div class="navbar-user  left ">
+                {if condition="($Request.session.username =='')"}
+                <ul class="nav user-nav">
+                    <li><a href="/member/login/index">登录</a></li>
+                    <li><a href="/member/register/index">注册</a></li>
+                </ul>
+                {else /}
+                <ul class="nav user-nav">
+                    <li class="user-avatar-li nav-hover">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <img class="avatar-xs" src="/assets/img/default/avatar.png?7.0.2">
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation" class="dropdown-header">{$Request.session.username}</li>
+                            <li><a href="/settings/"><i class="es-icon es-icon-setting"></i>个人中心</a></li>
+                            <li><a href="/notification"><span class="pull-right num"></span><i class="es-icon es-icon-notificationson"></i>我的同学</a></li>
+                            <li><a href="/message/"><span class="pull-right num"></span><i class="es-icon es-icon-mail"></i>我的佣金</a></li>
+                            <li><a href="/member/index/logout"><i class="es-icon es-icon-power"></i>退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {/if}
+
+
+
+                <form class="navbar-form navbar-right hidden-xs hidden-sm" action="/index/search/index" method="post">
+                    <div class="form-group">
+                        <input class="form-control js-search" name="title" placeholder="搜索">
+                        <button class="button es-icon es-icon-search"></button>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>

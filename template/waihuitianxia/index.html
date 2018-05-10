@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$site_info.title} - 首页</title>
+    <meta name="description" content="{$site_info.description}" />
+    <meta name="keywords" content="{$site_info.keywords}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {load href="/static/dist/js/jquery.min.js" /}
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    {load href="/static/dist/css/bootstrap.css" /}
+    {load href="/static/dist/js/bootstrap.js" /}
+    {load href="/static/dist/css/default.css" /}
+    <!--[if IE]>
+    {load href="/static/dist/js/html5shiv.min.js" /}
+    <![endif]-->
+    <link href="{$site_info.icon}" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+<div class="page-header">
+    <div class="container">
+        <div class="logo">
+            <img src="{$site_info.logo}" width="630px" height="80px" alt="{$site_info.title}logo">
+        </div>
+    </div>
+</div>
+</body>
+</html>

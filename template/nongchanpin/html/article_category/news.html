@@ -1,0 +1,24 @@
+{include file="../../../web/templet/nongchanpin/html/public/header" /}
+<div class="topinfo"></div>
+<div class="content">
+    <div class="items">
+    {volist name="category_article_list" id="data" }
+    <div class="item">
+        <div class="image">
+            <a href="/article/{$data.indentification}.html" target="_blank"><img src="{$data.thumb}" alt="{$data.title}"></a>
+        </div>
+        <div class="container">
+            <a href="/article/{$data.indentification}.html" class="small header atricleHeader">{$data.title}</a>
+            <div class="description"><p>{$data.description}</p></div>
+            <div class="extra">发布时间：{$data.update_time}</div>
+        </div>
+    </div>
+    {/volist}
+    </div>
+    <div class="definewidth m10">
+    <nav>
+        {$category_article_list->render()}
+    </nav>
+    </div>
+</div>
+{include file="../../../web/templet/nongchanpin/html/public/footer" /}

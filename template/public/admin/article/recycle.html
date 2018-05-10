@@ -1,0 +1,80 @@
+{include file="$public_header" title="文章回收站" /}
+
+<form class="form-inline definewidth m20" action="/admin/article/index" method="post">
+    文章标题：
+    <input type="text" name="title" id="title" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增文章</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>分类</th>
+        <th>标题</th>
+        <th>短标题</th>
+        <th>文章标识</th>
+        <th>关键词</th>
+        <th>封面图</th>
+        <th>阅读量</th>
+        <th>排序</th>
+        <th>状态</th>
+        <th>作者</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+    <tr>
+        <td>{$data.id}</td>
+        <td>{$data.category}</td>
+        <td>{$data.title}</td>
+        <td>{$data.short_title}</td>
+        <td>{$data.unique_code}</td>
+        <td>{$data.keywords}</td>
+        <td><img src="{$data.thumb}" width="100"> </td>
+        <td>{$data.click}</td>
+        <td>{$data.sort}</td>
+        <td>
+            {eq name="data.status" value="1" }
+            已发布
+            {else}
+            待审核
+            {/eq}
+        </td>
+        <td>{$data.author}</td>
+        <td>{$data.update_time}</td>
+        <td width="250">
+            <a class="btn btn-sm btn-primary" href="/index/article/view/id/{$data.id}" target="_blank"><i class="glyphicon glyphicon-pencil"></i>预览</a>
+            <a class="btn btn-sm btn-primary" href="/admin/article/recovery/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>恢复</a>
+            <a class="btn btn-danger btn-sm" href="/admin/article/del/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>永久删除</a>
+        </td>
+    </tr>
+    {/volist}
+</table>
+<div class="definewidth m10">
+    <nav>
+        {$data_list->render()}
+    </nav>
+</div>
+<div class="inline pull-right page">
+    共{$data_count} 条记录
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $('#addnew').click(function(){
+            window.location.href="create.html";
+        });
+    });
+
+    function del(id)
+    {
+        if(confirm("确定要删除吗？"))
+        {
+            var url = "del.html";
+            window.location.href=url;
+        }
+    }
+</script>

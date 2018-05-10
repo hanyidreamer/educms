@@ -1,0 +1,52 @@
+{include file="$public_header" title="$course.title"}
+<header class="header vg-bg-white row vg-bdb-default">
+    <div class="small-4 columns vg-padding-right-0 vg-padding-left-xs text-left"><a
+            class="vg-block vg-wfull vg-hfull vg-text-black" href="/"><i class="icon iconfont  vg-text-default">
+        &#xe600;</i></a></div>
+    <div class="small-4 columns text-center vg-text-sm">课程详情</div>
+    <div class="small-4 columns vg-padding-horizontal-sm vg-padding-top-xs"></div>
+
+</header>
+<section id="videoBox" class="videobox" style="width:100%;height:8.8rem;">
+    <img src="{$course.thumb}" alt="">
+</section>
+<section id="videoShadow" class="video-shadow vg-padding-vertical-0">
+    <div class="shadow-info">
+        <div class="info-box">
+            <h3 class="vg-wfull vg-text-default vg-padding-top-sm text-overflow-fag  text-center vg-text-white">{$course.title}</h3>
+            <span class="vg-wfull vg-block vg-padding-vertical-sm text-center vg-text-xs vg-text-white">售价：￥{$course.price}</span>
+            <a id="playBtn" href="javascript:void(0);"
+               class="vg-block text-center vg-main-button vg-text-sm vg-w50 vg-center vg-padding-vertical-xs vg-radius vg-text-white">
+                立即观看
+            </a>
+        </div>
+    </div>
+
+</section>
+<!--  -->
+<article class="vg-margin-bottom-sm  vg-padding-bottom-xl vg-bg-default">
+    <section
+            class="vg-padding-vertical artical-wrap vg-margin-bottom vg-padding-right-sm vg-bg-white  vg-padding-left-sm">
+        <h3 class="vg-text-default">课程内容</h3>
+        {$course.body|raw}
+    </section>
+</article>
+
+<aside class="row vg-padding-vertical-xs vg-bg-white  vg-bl-fixed clearfix">
+    <div class="body-shadow" id="share_box">
+        <div class="share-tip">
+            <div class="tip-box">
+                <div class="guide"><img src="/static/images/ico-guide.png"></div>
+                <p class="vg-text-xs  vg-margin-vertical-xs">温馨提示</p>
+                <p class="vg-text-xs   vg-margin-vertical-xs">1、点击右上角的的<img src="/static/images/weixin-share1.png" class="imgbox">或者<img src="/static/images/weixin-share2.png" class="imgbox">分享</p>
+            </div>
+        </div>
+    </div>
+    <div class="small-8 columns vg-padding-top-xs  vg-padding-left-sm vg-text-orange vg-text-sm">分享给好友一起学习哦！</div>
+    <div class="small-4 columns vg-padding-left-0 vg-padding-right-0">
+        <a id="shareCtr" class="vg-block vg-text-sm text-center vg-block vg-wfull vg-text-white vg-main-button vg-padding-xs vg-radius" href="javascript:;">立即分享</a>
+    </div>
+
+</aside>
+
+    {include file="$public_footer"}

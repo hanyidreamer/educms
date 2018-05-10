@@ -1,0 +1,20 @@
+<nav class="tabbar tabbar-primary">
+    {if ($Request.controller == 'Index')}<span icon="home" title="首页" class="tabbar-item active">{else /}<span icon="home" title="首页" class="tabbar-item">{/if}
+        <a href="/agent/index">
+        <span class="icon icon-home"> </span>
+        <span class="tabbar-label">首页</span>
+        </a>
+    </span>
+    {if ( $Request.controller == "Customer")}<span icon="info" title="客户" class="tabbar-item active">{else /}<span icon="info" title="客户" class="tabbar-item">{/if}
+        <a href="/agent/customer/">
+            <span class="icon icon-person"> </span>
+            <span class="tabbar-label">客户</span>
+        </a>
+    </span>
+   {if ( $Request.controller == "My")}<span icon="info" title="我的" class="tabbar-item active">{else /}<span icon="info" title="我的" class="tabbar-item">{/if}
+        <a href="/agent/my">
+        <span class="icon icon-gear"> </span>
+        <span class="tabbar-label">我的</span>
+        </a>
+    </span>
+</nav>

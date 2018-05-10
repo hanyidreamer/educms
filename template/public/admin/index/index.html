@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>后台管理首页 - {$site.title}</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{$site.icon}">
+    {load file="/manage//assets/css/dpl-min.css,/manage//assets/css/bui-min.css,/manage//assets/css/main-min.css" /}
+</head>
+<body>
+
+<div class="header">
+
+    <div class="dl-title">
+        <img src="{$site.logo}" height="30" width="120">
+    </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{$Request.session.admin_username}</span><a href="/admin/logout/index" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+</div>
+<div class="content">
+    <div class="dl-main-nav">
+        <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+        <ul id="J_Nav"  class="nav-list ks-clear">
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统设置</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-member">文章管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">会员中心</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">代理平台</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">课程平台</div></li>
+        </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+
+    </ul>
+</div>
+{load file="/manage/assets/js/jquery-1.8.1.min.js,/manage/assets/js/bui-min.js,/manage/assets/js/common/main-min.js,/manage/assets/js/config-min.js" /}
+<script>
+    BUI.use('common/main',function(){
+        var config = [
+                {id:'1',homePage : '10',menu:[
+                        {text:'系统管理',items:[
+                            {id:'10',text:'网站管理',href:'/admin/site/index'},
+                            {id:'11',text:'基本信息',href:'/admin/site_info/info'},
+                            {id:'12',text:'联系方式',href:'/admin/site_info/contact'},
+                            {id:'13',text:'幻灯片类型',href:'/admin/slide_category/index'},
+                            {id:'13',text:'幻灯片管理',href:'/admin/slide/index'},
+                            {id:'17',text:'广告分类管理',href:'/admin/ad_category/index'},
+                            {id:'18',text:'广告管理',href:'/admin/ad/index'},
+                            {id:'19',text:'管理员分类',href:'/admin/admin_category/index'},
+                            {id:'14',text:'系统管理员',href:'/admin/admin/index'},
+                            {id:'1001',text:'管理员日志',href:'/admin/admin_log/index'},
+                            {id:'1002',text:'链接类型',href:'/admin/site_link_category/index'},
+                            {id:'15',text:'友情链接',href:'/admin/site_link/index'},
+                            {id:'16',text:'模板分类',href:'/admin/template_category/index'},
+                                {id:'17',text:'网站模板管理',href:'/admin/template_file/index'},
+                                {id:'18',text:'模板管理',href:'/admin/template/index'}
+                            ]
+                        },
+                    {text:'第三方授权接口',items:[
+                        {id:'20',text:'短信接口',href:'/admin/sms/index'},
+                        {id:'21',text:'腾讯云存储',href:'/admin/qcloud_cos/index'},
+                        {id:'27',text:'阿里云OSS',href:'/admin/aliyun_oss/index'},
+                        {id:'22',text:'QQ授权',href:'/admin/oauth_qq/index'},
+                        {id:'23',text:'微信公众号',href:'/admin/wechat_official_accounts/index'},
+                        {id:'24',text:'微信小程序',href:'/admin/wechat_applet/index'},
+                        {id:'24',text:'百度MIP',href:'/admin/baidu_mip/index'},
+                        {id:'25',text:'微信支付',href:'/admin/payment_wxpay/index'},
+                        {id:'26',text:'支付宝支付',href:'/admin/payment_alipay/index'}
+                    ]
+                    },
+                    {text:'APP管理',items:[
+                        {id:'30',text:'APP版本管理',href:'/admin/app_version/index'},
+                        {id:'31',text:'api接口分类',href:'/admin/api_category/index'},
+                        {id:'32',text:'api接口管理',href:'/admin/api/index'}
+                    ]
+                    },
+                    {text:'地区管理',items:[
+                        {id:'34',text:'世界七大洲',href:'/admin/area/index'},
+                        {id:'35',text:'国家&地区',href:'/admin/area_state/index'},
+                        {id:'36',text:'国内地理大区',href:'/admin/area_unit/index'},
+                        {id:'37',text:'省份',href:'/admin/area_province/index'},
+                        {id:'38',text:'城市',href:'/admin/area_city/index'},
+                        {id:'38',text:'区县',href:'/admin/area_county/index'},
+                        {id:'39',text:'乡镇',href:'/admin/area_town/index'}
+                    ]
+                    }
+                        ]
+                },
+            {id:'2',homePage : '40',menu:[
+                {text:'文章管理',items:[
+                    {id:'40',text:'分类管理',href:'/admin/article_category/index'},
+                    {id:'41',text:'文章列表',href:'/admin/article/index'},
+                    {id:'42',text:'文章回收站',href:'/admin/article/recycle'}
+                ]
+                }
+            ]
+            },
+            {id:'3',homePage : '80',menu:[
+                {text:'会员管理',items:[
+                    {id:'80',text:'会员列表',href:'/admin/member/index'},
+                        {id:'81',text:'QQ会员',href:'/admin/member_qq/index'},
+                        {id:'81',text:'微信会员',href:'/admin/member_weixin/index'}
+                ]
+                },
+                {text:'分销管理',items:[
+                    {id:'90',text:'会员下线',href:'/admin/member/index'}
+                ]
+                }
+            ]
+            },
+            {id:'4',homePage : '101',menu:[
+                    {text:'代理商管理',items:[
+                        {id:'101',text:'代理类型',href:'/admin/agent_category/index'},
+                        {id:'102',text:'代理列表',href:'/admin/agent/index'},
+                        {id:'105',text:'代理申请信息',href:'/admin/agent_apply/index'}
+                    ]
+                    }
+
+                    ]
+            },
+            {id:'5',homePage : '111',menu:[
+                {text:'课程管理',items:[
+                    {id:'111',text:'课程分类',href:'/admin/course_category/index'},
+                    {id:'112',text:'课程列表',href:'/admin/course/index'}
+                ]
+                },
+                {text:'老师管理',items:[
+                    {id:'113',text:'老师分类',href:'/admin/teacher_category/index'},
+                    {id:'114',text:'老师列表',href:'/admin/teacher/index'}
+                ]
+                },
+                {text:'学员管理',items:[
+                    {id:'120',text:'学员分类',href:'/admin/student_category/index'},
+                    {id:'121',text:'学员列表',href:'/admin/student/index'}
+                ]
+                }
+            ]
+            }
+            ];
+
+        new PageUtil.MainPage({
+            modulesConfig : config
+        });
+    });
+</script>
+
+</body>
+</html>

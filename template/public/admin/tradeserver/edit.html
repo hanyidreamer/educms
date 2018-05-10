@@ -1,0 +1,39 @@
+{include file="public/header" /}
+
+<form action="/admin/trade_server/save" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$data_list.id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td class="tableleft">交易平台</td>
+            <td ><input type="text" name="platform" value="{$data_list.platform}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">交易服务器</td>
+            <td ><input type="text" name="server_name" value="{$data_list.server_name}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">服务器简称</td>
+            <td ><input type="text" name="short_name" value="{$data_list.short_name}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">IP</td>
+            <td><input type="text" name="ip" value="{$data_list.ip}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">状态</td>
+            <td >
+                <input type="radio" name="status" value="1" checked/> 显示
+                <input type="radio" name="status" value="0" /> 不显示
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="public/footer" /}

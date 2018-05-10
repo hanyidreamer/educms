@@ -1,0 +1,29 @@
+{include file="$public_header"}
+<!-- 开始Header -->
+<header class="am-header " >
+    <div class="am-g">
+        <div class="am-u-sm-2 am-padding-horizontal-0 "><a href="/"><img id="ckjr_back_img" alt="" src="/static/images/back.png"></a></div>
+        <div class="am-u-sm-8 am-text-center">在线课程</div>
+        <div class="am-u-sm-2 am-padding-horizontal-0">
+        </div>
+    </div>
+</header>
+<!-- 结束Header -->
+
+<div  id="HDT-main" class ="am-cf category-list am-u-sm-12 am-padding-horizontal-0 am-margin-0">
+    {volist name="course" id="list" }
+    <a href="/course/{$list.unique_code}">
+        <div class="am-g am-listcontent ckjr_toonlinedetail">
+            <img data-i="185"  class="am-img-responsive am-list-img"  src="{$list.thumb}"/>
+            <dl><dt data-i="185" class="">{$list.title}</dt><dd class="am-mt5">&nbsp;&nbsp;</dd><dd class="am-mt10"><span class="am-money">{$list.price}</span><span class="am-ml"></span></dd></dl>
+        </div>
+    </a>
+    {/volist}
+
+</div>
+
+<div style="height: 50px; clear: both;">
+
+</div>
+
+{include file="$public_footer"}

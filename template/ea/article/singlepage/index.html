@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>复制交易_跟单交易，人人都可以操作</title>
+    <meta name="keywords" content="跟单交易，跟单平台，智能跟单">
+    <meta name="description" content="通过选择并复制专业操盘手的交易仓位,进行跟单,利用他们的经验帮助您建立一个投资组合。在平台上查看高手排名和投资情况,选择心仪的高手进行复制和跟单.">
+    <link rel="icon" href="{$resource_path}single_page/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{$resource_path}single_page/css/style-ed2c8dbb.css">
+    <script src="{$resource_path}single_page/js/jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="banner_box js_meto_box">
+        <div class="main">
+            <div class="reg_wrap_box">
+                <div class="reg_contbox">
+                    <div class="reg_box reg_form_box">
+                        <h1 class="title_txt">马上注册跟单</h1>
+                        <p class="title_txt2">领取<span>10000美金</span>模拟资金</p>
+                        <form id="mobileAccountForm" method="post" novalidate="novalidate">
+                            <div class="reg_form_box">
+                                <div class="form_ele_box">
+                                    <div class="set-flex">
+                                        <input id="AccountMobile" class="flex-item" name="account" maxlength="11" type="tel" placeholder="手机号码" autocomplete="off">
+                                    </div>
+                                    <p class="errtips"></p>
+                                </div>
+                                <div class="form_ele_box captcha_box">
+                                    <div class="set-flex">
+                                        <input id="captchaValidCode" class="flex-item" name="captcha" maxlength="6" type="text" placeholder="验证码" autocomplete="off">
+                                        <a href="javascript:;" class="get_captcha_btn" tabindex="-1" id="btnValidCaptcha">
+                                            <img src="" id="captcha_img" alt="">
+                                        </a>
+                                    </div>
+                                    <p class="errtips captcha_box"></p>
+                                </div>
+                                <div class="form_ele_box">
+                                    <div class="set-flex">
+                                        <input id="MessageValidCode" style="width:23%" class="validecode_box smscode_box" name="smscode" maxlength="6" type="tel" placeholder="手机验证码" autocomplete="off">
+                                        <div class="get_msg_group">
+                                            <a href="javascript:;" class="get_msg_btn js_msg_btn" tabindex="-1" id="btnValidCode">短信验证码</a>
+                                            <a href="javascript:;" class="get_msg_btn js_msg_btn" tabindex="-2" id="btnVoicecode">语音验证码</a>
+                                        </div>
+                                    </div>
+                                    <p class="errtips"></p>
+                                </div>
+                                <div class="form_ele_box">
+                                    <div class="set-flex">
+                                        <input id="txtMPassword" class="flex-item" name="password" maxlength="16" type="password" placeholder="密码（6-16位字母、数字或特殊字符）" autocomplete="off">
+                                    </div>
+                                    <p class="errtips"></p>
+                                </div>
+                                <div class="xieyi_box">
+                                    <label id="lblXieYi" class="js_xieyi_label checked"><i class="checked_icon"></i>我已阅读并接受<a href="//m.followme.com/about/reg_agreement.html" target="_blank" class="js_showxieyi">《Followme协议》</a></label>
+                                </div>
+                                <p class="errtips"></p>
+                                <div class="buttonbox">
+                                    <a href="javascript:;" class="reg_btn" value="接受邀请" id="btnMobileSubmit">立即注册</a>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="regbtmintro">
+                            <div>无需下载</div>
+                            <div>精准跟单</div>
+                            <div>免费信号</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="stepbox">
+        <div class="main">
+            <h2 class="title"><strong>跟单就4步</strong> 坐享专业交易员操盘</h2>
+            <div class="stepboxcont">
+                <div class="bgbox"></div>
+                <div class="txtbox">
+                    <p class="txt1">选择交易员</p>
+                    <p class="txt2">选择适合你的高手交易员</p>
+                </div>
+                <div class="txtbox">
+                    <p class="txt1">设置跟随策略</p>
+                    <p class="txt2">跟单者自主设置跟随策略</p>
+                </div>
+                <div class="txtbox">
+                    <p class="txt1">交易员下单交易</p>
+                    <p class="txt2">同步交易员信号 精准自动跟随</p>
+                </div>
+                <div class="txtbox">
+                    <p class="txt1">坐享跟随收益</p>
+                    <p class="txt2">交易员盈利 跟单者跟随交易员盈利</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newintrobox">
+        <div class="main">
+            <h2 class="title">在这里，你将体验到<strong>智能金融新科技</strong></h2>
+            <ul class="newslist">
+                <li>
+                    <i class="newicon newicon1"></i>
+                    <p class="txt1">同步信号自动下单</p>
+                    <p class="txt2">无需实时在线，设置好跟随策略，CopyTrade毫秒级响应，智能精准跟随，同步下单</p>
+                </li>
+                <li>
+                    <i class="newicon newicon2"></i>
+                    <p class="txt1">智能推荐优秀交易信号</p>
+                    <p class="txt2">智能推荐系统自动匹配推荐适合你的、你感兴趣的交易信号（交易员）</p>
+                </li>
+                <li>
+                    <i class="newicon newicon3"></i>
+                    <p class="txt1">智能风控系统实时监控</p>
+                    <p class="txt2">智能风控系统提供八大自主跟随设置与自动化保护模式，全方位全天候实时监测，让用户安心跟随</p>
+                </li>
+                <li>
+                    <i class="newicon newicon4"></i>
+                    <p class="txt1">网页登录便捷在线交易</p>
+                    <p class="txt2">无需下载安装经济商平台网页一键登录，实现在线多账户多平台交易</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="prdintrobox">
+        <div class="main">
+            <h2 class="title">在这里，你将体验到<strong>一站式跟单服务</strong></h2>
+            <ul class="introlist">
+                <li>
+                    <div class="topimgbox topimgbox1"></div>
+                    <p class="txt1">零距离接触大咖</p>
+                    <p class="txt2">社区汇聚行业顶尖的优秀交易
+                        <br>员、分析师、及行业大咖，随时随地
+                        <br>与高手交流切磋</p>
+                </li>
+                <li>
+                    <div class="topimgbox topimgbox2"></div>
+                    <p class="txt1">交易数据透明</p>
+                    <p class="txt2">平台交易数据公开透明
+                        <br>交易员交易能力和交易行为清晰可见</p>
+                </li>
+                <li>
+                    <div class="topimgbox topimgbox3"></div>
+                    <p class="txt1">免费体验跟单</p>
+                    <p class="txt2">一分钟注册，提供10000美金
+                        <br>体验金，体验跟单交易</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+<div class="acfooter">
+    <div class="page-width">
+        <div class="ftcpr">版权所有@2015-2016珠海横琴华地晟元稀贵商品经营有限公司 粤ICP备16046394号</div>
+        <div class="risk_tips">风险提示：投资有风险，选择需谨慎，预期或测算收益不等于实际收益</div>
+    </div>
+</div>
+<!-- 底部 END -->
+<!-- 底部浮动栏 -->
+<div class="float_regbar_wrap">
+    <div class="float_regbar">
+        <div class="ctbox">
+            <a href="javascript:;" class="reg_btn btn js_scroll_btn">领1万美元体验金</a>
+            <div class="titletxt">Followme 精明投资者选择的跟单交易平台</div>
+        </div>
+    </div>
+</div>
+<script>
+    var bottomFloatBar = {
+        getsecoll: function() {
+            var oRegbar = document.querySelector('.float_regbar_wrap');
+            var nScrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+            if (nScrollTop > 120) {
+                oRegbar.classList.add('active');
+            } else {
+                oRegbar.classList.remove('active');
+            }
+        }
+    };
+    bottomFloatBar.getsecoll();
+    window.onscroll = function() {
+        bottomFloatBar.getsecoll();
+    }
+</script>
+<!-- 底部浮动栏 END -->
+<script src="{$resource_path}single_page/js/staticvcode.js"></script>
+<script src="{$resource_path}single_page/js/register.js"></script>
+<script>
+    var setTop = $('.js_meto_box').offset().top;
+    $('.js_scroll_btn').bind('click', function() {
+        $('html, body').animate({ scrollTop: setTop - 20 + 'px' }, 800);
+    })
+</script>
+</body>
+
+</html>

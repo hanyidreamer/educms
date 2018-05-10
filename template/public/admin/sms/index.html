@@ -1,0 +1,47 @@
+{include file="$public_header" title="短信接口"}
+
+<form class="form-inline definewidth m20" action="/admin/sms/index" method="post">
+    平台名称：
+    <input type="text" name="name" id="name" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    <button type="button" class="btn btn-success" id="addnew">新增短信接口</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>平台名称</th>
+        <th>英文名称</th>
+        <th>唯一识别码</th>
+        <th>App ID</th>
+        <th>App Key</th>
+        <th>Secret Key</th>
+        <th>短信签名</th>
+        <th>平台网址</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {volist name="data_list" id="data" }
+	     <tr>
+            <td>{$data.id}</td>
+            <td>{$data.title}</td>
+             <td>{$data.platform}</td>
+             <td>{$data.sign}</td>
+             <td>{$data.app_id}</td>
+             <td>{$data.app_key}</td>
+             <td>{$data.secret_key}</td>
+             <td>{$data.sign_name}</td>
+             <td>{$data.url}</td>
+             <td>{eq name="data.status" value="1" }启用{else}禁用{/eq}</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/admin/sms/edit/id/{$data.id}"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+                <a class="btn btn-danger btn-sm" href="/admin/sms/delete/id/{$data.id}"><i class="glyphicon glyphicon-trash"></i>删除</a>
+            </td>
+        </tr>
+    {/volist}
+</table>
+<div class="inline pull-right page">
+共{$data_count} 条记录
+</div>
+{include file="$public_footer"}

@@ -1,0 +1,27 @@
+{include file="$public_header" title="保存网站链接" /}
+
+<form action="/admin/site_link/update" method="post" enctype="multipart/form-data" class="definewidth m20">
+<input type="hidden" name="id" value="{$data.id}" />
+<table class="table table-bordered table-hover ">
+    <tr>
+        <td class="tableleft">链接标题</td>
+        <td ><input type="text" name="title" value="{$data.title}"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">链接网址</td>
+        <td ><input type="text" name="url" value="{$data.url}"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">排序</td>
+        <td ><input type="text" name="sort" value="{$data.sort}"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary">保存</button>
+        </td>
+    </tr>
+</table>
+</form>
+
+{include file="$public_footer" /}

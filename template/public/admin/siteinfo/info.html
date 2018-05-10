@@ -1,0 +1,90 @@
+{include file="$public_header"}
+
+<form action="/admin/site_info/save" enctype="multipart/form-data" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value="{$site_info.id}" />
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td width="15%" class="tableleft">网站域名</td>
+            <td><input type="text" name="domain" value="{$site_info.domain}" readonly="readonly" style="background: #ffffff;width:200px;height:30px;border-style:none;padding: 10px;" /> 网站管理员：{$site_info.admin_username}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站名称</td>
+            <td ><input type="text" name="title" value="{$site_info.title}" style="width:400px;height:30px;padding: 10px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">首页标题</td>
+            <td ><input type="text" name="home_title" value="{$site_info.home_title}" style="width:400px;height:30px;padding: 10px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站描述</td>
+            <td>
+                <textarea type="text" name="description" rows="3" cols="40" style="width:400px;padding: 10px;">{$site_info.description}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站关键词</td>
+            <td>
+                <textarea type="text" name="keywords" rows="3" cols="40" style="width:400px;padding: 10px;">{$site_info.keywords}</textarea>
+                <br /><i>提示：关键词与关键词之间，必须使用英文输入法的逗号,</i>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站icon</td>
+            <td><img src="{$site_info.icon}" /> <br />
+                <input type="file" name="icon" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站logo</td>
+            <td>
+                <img src="{$site_info.logo}" />
+                <br />
+                <input type="file" name="logo" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站略缩图</td>
+            <td>
+                <img src="{$site_info.thumb}" width="300"/>
+                <br />
+                <input type="file" name="thumb" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站二维码</td>
+            <td>
+                <img src="{$site_info.qrcode}" width="300"/>
+                <br />
+                <input type="file" name="qrcode" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">底部版权信息</td>
+            <td>
+                <textarea type="text" name="copyright" rows="3" cols="40" style="width:400px;padding: 10px;">{$site_info.copyright}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">网站备案号</td>
+            <td ><input type="text" name="icp" value="{$site_info.icp}" style="width:400px;padding: 10px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">流量统计代码</td>
+            <td>
+                <textarea type="text" name="stats" rows="3" cols="40" style="width:400px;padding: 10px;">{$site_info.stats}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{include file="$public_footer"}

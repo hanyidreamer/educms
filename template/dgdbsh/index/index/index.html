@@ -1,0 +1,308 @@
+{include file="$public_header" title="" separator="" keywords="$site.keywords" description="$site.description"}
+
+<div style="margin: auto; clear: both; width: 1003px;">
+    <div style="height: 15px; clear: both;"></div>
+    <div style="width: 665px; float: left;">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <div id="myCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                {volist name="slide" id="data"}
+                {if $i == 1}
+                <li data-target="#myCarousel" data-slide-to="{$i}" class="active"></li>
+                {else /}
+                <li data-target="#myCarousel" data-slide-to="{$i}"></li>
+                {/if}
+                {/volist}
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                {volist name="slide" id="data"}
+                {if $i == 1}
+                <div class="item active">
+                    <a href="{$data.url}" target="_blank"><img src="{$data.thumb}" alt="{$data.title}" style="height: 440px;width: 100%;" /></a>
+                    <div class="carousel-caption">{$data.title}</div>
+                </div>
+                {else /}
+                <div class="item">
+                    <a href="{$data.url}" target="_blank"><img src="{$data.thumb}" alt="{$data.title}" style="height: 440px;width: 100%;" /></a>
+                    <div class="carousel-caption">{$data.title}</div>
+                </div>
+                {/if}
+                {/volist}
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">上一个</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">下一个</span>
+            </a>
+        </div>
+    </div>
+    <div style="width: 330px; float: right;">
+        <div class="my_news">
+            <ul><li class="titlebg">商会动态</li><li class="floatr"><a href="/article_category/dongtai">更多</a></li></ul>
+            {volist name=":model('Article')->where(['category_id'=>4])->limit(8)->select()" id="vo"}
+            {if $i == 1}
+            <table width="94%" border="0" align="center" cellpadding="0" cellspacing="0" class="martop">
+                <tr>
+                    <td width="120"><img src="{$vo.thumb}" width="120" height="75" /></td>
+                    <td width="150" valign="top"><div style="text-overflow: -o-ellipsis-lastline;  overflow: hidden;  text-overflow: ellipsis;  display: -webkit-box;  -webkit-line-clamp: 4;  -webkit-box-orient: vertical;">{$vo.description}</div></td>
+                </tr>
+            </table>
+            <dl>
+            {else /}
+                <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt><span style="float: right;width: 70px;font-size: 12px; line-height: 25px;">{$vo.update_time}</span>
+                {/if}
+                {/volist}
+            </dl>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="main" style="clear: both;">
+    <div class="maincon">
+        <div class="maincontent">
+            <div class="mainleft">
+                <div class="left1">
+                    {volist name=":model('ArticleCategory')->where(['id'=>6])->limit(1)->select()" id="vo"}
+                    <ul><li class="titlebg">{$vo.title}</li><li class="floatr"><a href="/article_category/{$vo.unique_code}">更多</a></li></ul>
+                    <p class="pcenter"><img src="{$vo.icon}" /></p>
+                    {/volist}
+                    <dl>
+                        {volist name=":model('ArticleCategory')->where(['parent_id'=>6])->limit(6)->select()" id="vo"}
+                        <dt class="widdt"><a href="/article_category/{$vo.unique_code}" style="font-weight:normal;">{$vo.title}</a></dt><dt>|</dt>
+                        {/volist}
+                    </dl>
+                    <p class="pcenter"><a href="/article/ruhui"><img src="{$resource_path}images/jrsh.jpg" border="0" /></a></p>
+                </div>
+            </div>
+            <div class="maincenter">
+                <div class="my_news" style="width: 360px; height: 275px;">
+                    <ul>
+                        <li class="titlebg">商会风采</li>
+                        <li class="floatr"><a href="/article_category/c2342819461523542002">更多</a></li></ul>
+                    <dl>
+                        {volist name=":model('Article')->where(['category_id'=>30])->limit(8)->select()" id="vo"}
+                        <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="font-weight:normal;">{$vo.title}</a></dt><span style="float: right;width: 70px;font-size: 12px; line-height: 25px;">{$vo.update_time}</span>
+                        {/volist}
+                    </dl>
+                </div>
+            </div>
+            <div class="mainright">
+                <div class="my_news" style="width: 330px; height: 275px;">
+                    <ul><li class="titlebg">商会文化</li><li class="floatr"><a href="/article_category/dongtai">更多</a></li></ul>
+                    <dl>
+                        {volist name=":model('Article')->where(['category_id'=>9])->limit(8)->select()" id="vo"}
+                        <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt><span style="float: right;width: 70px;font-size: 12px; line-height: 25px;">{$vo.update_time}</span>
+                        {/volist}
+                    </dl>
+                    <div style="margin: auto 0;padding-left: 5px;"><a href="/"><img src="{$resource_path}images/img1.jpg" width="98%"/></a></div>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="gg">
+            {volist name=":model('Ad')->where(['category_id'=>2,'site_id'=>9])->limit(1)->select()" id="vo"}
+            <img src="{$vo.thumb}" width="100%" />
+            {/volist}
+        </div>
+
+        <div class="indexnews">
+            <div class="my_news" style="width: 310px; height: 275px;float: left;margin-right: 10px;">
+                <ul><li class="titlebg">平安建设</li><li class="floatr"><a href="/article_category/c14019166111525442954">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>45])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+            </div>
+            <div class="my_news" style="width: 360px; height: 275px;float: left;margin-right: 10px;">
+                <ul><li class="titlebg">党支部活动</li><li class="floatr"><a href="/article_category/c10419375541525443145">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>46])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+            </div>
+            <div class="my_news" style="width: 310px; height: 275px;float: right;">
+                <ul><li class="titlebg">妇女风采</li><li class="floatr"><a href="/article_category/c8369108421525443243">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>47])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+                <div style="margin: auto 0;padding-left: 5px;"><a href="/"><img src="https://wximg-10001398.cossh.myqcloud.com/uploads/20180507/15256630889429.jpg" width="98%"/></a></div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div style="clear: both;">
+            <img src="https://wximg-10001398.cossh.myqcloud.com/uploads/20180507/15256638334575.jpg" width="100%" />
+        </div>
+        <div class="indexnews">
+            <div class="my_news" style="width: 310px; height: 275px;float: left;margin-right: 10px;">
+                    <EMBED align=middle src="https://player.youku.com/player.php/sid/XNjQzNzEwOTIw/v.swf" width=310 height=273 type=application/x-shockwave-flash allowFullScreen="true" quality="high" allowScriptAccess="always"></EMBED>
+            </div>
+            <div class="my_news" style="width: 360px; height: 275px;float: left;margin-right: 10px;">
+                <ul><li class="titlebg">规章制度</li><li class="floatr"><a href="/article_category/c10419375541525443145">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>48])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+            </div>
+            <div class="my_news" style="width: 310px; height: 275px;float: right;">
+                <ul><li class="titlebg">学习培训</li><li class="floatr"><a href="/article_category/c8369108421525443243">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>49])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+                <div style="margin: auto 0;padding-left: 5px;"><a href="/"><img src="{$resource_path}images/zp.jpg" width="98%"/></a></div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="indexnews">
+            <div class="my_news" style="width: 310px; height: 275px;float: left;margin-right: 10px;">
+                <ul><li class="titlebg">会员服务</li><li class="floatr"><a href="/article_category/c14019166111525442954">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>11])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+            </div>
+            <div class="my_news" style="width: 360px; height: 275px;float: left;margin-right: 10px;">
+                <ul><li class="titlebg">慈善扶贫</li><li class="floatr"><a href="/article_category/c10419375541525443145">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>50])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+            </div>
+            <div class="my_news" style="width: 310px; height: 275px;float: right;">
+                <ul><li class="titlebg">电白风韵</li><li class="floatr"><a href="/article_category/c8369108421525443243">更多</a></li></ul>
+                <dl>
+                    {volist name=":model('Article')->where(['category_id'=>51])->limit(8)->select()" id="vo"}
+                    <dt>&gt; <a href="/article/{$vo.unique_code}" title="{$vo.title}" style="width: 230px;">{$vo.title}</a></dt>
+                    {/volist}
+                </dl>
+                <div style="margin: auto 0;padding-left: 5px;"><a href="/"><img src="{$resource_path}images/img1.jpg" width="98%"/></a></div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div style="clear: both;">
+            <img src="https://wximg-10001398.cossh.myqcloud.com/uploads/20180507/1525664105937682.jpg" width="100%" />
+        </div>
+
+        <div class="fengcai_bg">
+            <h3 class="mn_tit"><span>理事会成员</span><a href="/article_category/chengyuan">更多</a></h3>
+            <div class="fengcai">
+                <script type="text/javascript">
+                    //js无缝滚动代码
+                    function marquee(i, direction){
+                        var obj = document.getElementById("marquee" + i);
+                        var obj1 = document.getElementById("marquee" + i + "_1");
+                        var obj2 = document.getElementById("marquee" + i + "_2");
+                        if (direction == "up"){
+                            if (obj2.offsetTop - obj.scrollTop <= 0){
+                                obj.scrollTop -= (obj1.offsetHeight + 20);
+                            }else{
+                                var tmp = obj.scrollTop;
+                                obj.scrollTop++;
+                                if (obj.scrollTop == tmp){
+                                    obj.scrollTop = 1;
+                                }
+                            }
+                        }else{
+                            if (obj2.offsetWidth - obj.scrollLeft <= 0){
+                                obj.scrollLeft -= obj1.offsetWidth;
+                            }else{
+                                obj.scrollLeft++;
+                            }
+                        }
+                    }
+
+                    function marqueeStart(i, direction){
+                        var obj = document.getElementById("marquee" + i);
+                        var obj1 = document.getElementById("marquee" + i + "_1");
+                        var obj2 = document.getElementById("marquee" + i + "_2");
+
+                        obj2.innerHTML = obj1.innerHTML;
+                        var marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+                        obj.onmouseover = function(){
+                            window.clearInterval(marqueeVar);
+                        }
+                        obj.onmouseout = function(){
+                            marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+                        }
+                    }
+                </script>
+                <div id="marquee1" class="marqueeleft fleft" style="width:960px;">
+                    <div style="width:8000px;">
+                        <ul id="marquee1_1">
+                            {volist name=":model('Article')->where(['category_id'=>16])->order('sort','asc')->limit(10)->select()" id="vo"}
+                            <li>
+                                <a class="pic" href="/article/{$vo.unique_code}"><img src="{$vo.thumb}"></a>
+                                <a href="/article/{$vo.unique_code}"><div class="hz_font hz_font2">
+                                    <span>{$vo.title}</span>
+                                    <p>{$vo.description|raw}</p>
+                                </div></a>
+                            </li>
+                            {/volist}
+                        </ul>
+                        <ul id="marquee1_2"></ul>
+                    </div>
+                </div>
+                <script type="text/javascript">marqueeStart(1, "left");</script>
+            </div>
+        </div>
+<div style="clear: both;height: 15px;"></div>
+        <div class="Ipro_list">
+            <h3 class="mn_tit"><span>会员风采</span><a href="/article_category/huiyuanfengcai">更多</a></h3>
+            <div class="width col_top clearfix Iprocuct">
+                <div class="mr_frbox">
+                    <img class="mr_frBtnL prev" src="{$resource_path}images/hnew_prev.png">
+                    <div class="mr_frUl">
+                        <ul class="Inew_img clearfix">
+                            {volist name=":model('Article')->where(['category_id'=>8])->order('sort','desc')->limit(8)->select()" id="vo"}
+                            <li>
+                                <a href="/article/{$vo.unique_code}"><img src="{$vo.thumb}" width="285"><span class="intro"><h5>{$vo.title}</h5></span></a>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                    <img class="mr_frBtnR next" src="{$resource_path}images/hnew_next.png">
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;height: 15px;"></div>
+        <div class="link" style="clear: both;">
+            <div class="linkleft"><img src="{$resource_path}images/link.jpg" /></div>
+            <div class="linkright">
+                {volist name="site_link" id="site_link_data"}
+                <a href="{$site_link_data.url}" target="_blank" style="color:#333333;">{$site_link_data.title}</a>
+                {/volist}
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{$resource_path}js/jquery.SuperSlide2.js"></script>
+<script type="text/javascript">
+    $(".mr_frbox").slide({
+        titCell:"",
+        mainCell:".mr_frUl ul",
+        autoPage:true,
+        effect:"leftLoop",
+        autoPlay:true,
+        vis:5
+    });
+</script>
+
+{include file="$public_footer"}

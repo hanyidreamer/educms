@@ -1,0 +1,26 @@
+<div class="f_foot">
+    <div class="fMain width">
+        <div class="f_nav">
+            <a href="/" title="首页">首页</a>
+            {volist name="article_nav" id="category" }
+            | <a href="{$category.link}" title="">{$category.title}</a>
+            {/volist}
+        </div>
+        <div class="f_Info clearfix">
+            <div class="fleft">
+                <a href="/" class="fl f_logo"> <img src="{$site.logo}" width="230" /></a>
+            </div>
+            <div class="f_Txt fleft">
+                {$site.title} {$site.copyright} <a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">{$site.icp}</a><br />
+                Email：{$site.email}<br />
+                Tel：{$site.phone} Fax：{$site.tel}<br />
+                地址：{$site.address} <br />
+            </div>
+            <div class="f_code fleft">
+                <img src="{$site.qrcode}" alt="二维码" title="二维码" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
