@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div id="sk-root" style="height:100%;width:100%;overflow:hidden">
+<div id="sk-root" style="height:100%;width:100%;overflow:hidden;max-width: 640px;margin: 0 auto;">
     <div data-reactroot="" class="container container-fill container-column" id="sk-container">
         <div class="views">
             <div id="sk-detail" class="view">
@@ -30,7 +30,7 @@
                             <ul class="list">
                                 {volist name="customer" id="data" }
                                 <li target="_blank" class="item item-linked item-content">
-                                    <a href="/agent/customer/edit/id/{$data.id}" target="_blank">
+                                    <a href="/agent/customer/edit/id/{$data.id}">
                                         <div class="item-main">
                                             <div class="item-title-row">
                                                 <h3 class="item-title">{$data.nickname}</h3>

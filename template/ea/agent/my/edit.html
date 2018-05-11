@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>增加客户</title>
+    <title>编辑资料</title>
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <link rel="alternate icon" type="image/png" href="http://s.amazeui.org/assets/react/i/favicon.png">
@@ -21,43 +21,30 @@
     <div data-reactroot="" class="container container-fill container-column" id="sk-container">
         <div class="views">
             <div id="sk-detail" class="view">
-                {include file="$public_header" title="增加客户" back_url="/agent/customer"}
+                {include file="$public_header" title="编辑资料" back_url="/agent/my"}
 
                 <div class="container sk-demos container-fill container-scrollable">
 
                     <div class="group group-no-padded" style="background: #ffffff;">
                         <div style="clear: both;height: 20px;"></div>
                         <div class="group-body" style="width: 90%; margin: 0 auto;">
-                            <form action="/agent/customer/save" enctype="multipart/form-data" method="post" >
-                            <label class="field-container my-label">
-                                <span class="field-label">客户姓名</span>
-                                <input type="text" placeholder="" class="field" name="nickname">
-                            </label>
-                            <label class="field-container">
-                                <span class="field-label">交易商:</span>
-                                <select type="select" class="field" name="forex_dealer">
-                                    <option>IC Markets</option>
-                                </select>
-                            </label>
-
-                                <label class="field-container">
-                                    <span class="field-label">服务器:</span>
-                                    <select type="select" class="field" name="tsid">
-                                        {volist name="trade_server" id="vo"}
-                                        <option value="{$vo.id}">{$vo.server_name}</option>
-                                        {/volist}
-                                    </select>
-                                </label>
-                                <label class="field-container">
-                                    <span class="field-label">交易账户:</span>
-                                    <input type="number" name="account" placeholder="" class="field">
-                                </label>
-                                <label class="field-container">
-                                    <span class="field-label">交易密码:</span>
-                                    <input type="text" placeholder="" class="field" name="password">
+                            <form action="/agent/my/update" enctype="multipart/form-data" method="post" >
+                                <input type="hidden" name="id" value="{$agent.id}">
+                                <label class="field-container my-label">
+                                    <span class="field-label">姓名：</span>
+                                    <input type="text" placeholder="" class="field" name="nickname" value="{$agent.nickname}">
                                 </label>
 
-                            <input type="submit" class="btn btn-secondary btn-block" value="提交">
+                                <label class="field-container">
+                                    <span class="field-label">手机号：</span>
+                                    <input type="number" name="tel" placeholder="" class="field" value="{$agent.tel}">
+                                </label>
+                                <label class="field-container">
+                                    <span class="field-label">微信号:</span>
+                                    <input type="text" placeholder="" class="field" name="weixinhao" value="{$agent.weixinhao}">
+                                </label>
+
+                                <input type="submit" class="btn btn-secondary btn-block" value="更新">
                             </form>
                             <div style="clear: both;height: 20px;"></div>
                         </div>

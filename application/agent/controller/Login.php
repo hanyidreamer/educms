@@ -21,6 +21,10 @@ class Login extends Controller
      */
     public function index()
     {
+        // 顶部菜单
+        $right_menu = array('status'=>false,'menu_title'=>'','menu_url'=>'');
+        $this->assign('right_menu',$right_menu);
+
         // 后台模板路径
         $public_array = array('public_header'=>'/public/agent_header','public_footer'=>'/public/agent_footer');
         $template = new Template();
@@ -31,7 +35,6 @@ class Login extends Controller
 
     /**
      * 登陆后台权限判断
-     * @param Request $request
      * @throws \think\exception\DbException
      */
     public function check()

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>用户登陆</title>
+    <title>我的设置</title>
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <link rel="alternate icon" type="image/png" href="http://s.amazeui.org/assets/react/i/favicon.png">
@@ -14,29 +14,33 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link href="/amazeui-touch/dist/amazeui.touch.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-
 </head>
 <body>
 <div id="sk-root" style="height:100%;width:100%;overflow:hidden;max-width: 640px;margin: 0 auto;">
     <div data-reactroot="" class="container container-fill container-column" id="sk-container">
         <div class="views">
             <div id="sk-detail" class="view">
-                {include file="$public_header" title="用户登陆" back_url="/agent/index"}
+                {include file="$public_header" title="我的设置" back_url="/agent/my/index"}
 
                 <div class="container sk-demos container-fill container-scrollable">
                     <div class="group">
                         <div class="group-body">
-                            <form class="form-horizontal"  action="/agent/login/check" method="post">
-                            <label class="field-container my-label">
-                                <span class="field-label">用户名</span>
-                                <input type="text" placeholder="" name="username" class="field">
-                            </label>
-                            <label class="field-container">
-                                <span class="field-label">密码</span>
-                                <input type="password" placeholder="" name="password" class="field">
-                            </label>
-                            <input type="submit" class="btn btn-secondary btn-block" value="登录">
-                            </form>
+                            <ul class="list">
+                                <li class="item item-linked">
+                                    <a href="/agent/my/set_password"><h3 class="item-title">修改密码</h3><span class="icon icon-right-nav item-icon"></span></a>
+                                </li>
+                                <li class="item item-linked">
+                                    <a href="/agent/my/edit"><h3 class="item-title">资料修改</h3><span class="icon icon-right-nav item-icon"></span></a>
+                                </li>
+                                <li class="item item-linked">
+                                    <a href="#"><h3 class="item-title">绑定手机</h3><span class="icon icon-right-nav item-icon"></span></a>
+                                </li>
+                                <li class="item item-linked">
+                                    <a href="#"><h3 class="item-title">绑定微信</h3><span class="icon icon-right-nav item-icon"></span></a>
+                                </li>
+                            </ul>
+                            <div style="clear: both;height: 50px;"></div>
+                            <a class="btn btn-secondary btn-alert" style="width: 100%;" href="/agent/logout/index">退出</a>
                         </div>
                     </div>
                 </div>
