@@ -23,14 +23,15 @@ class Customer extends AgentBase
         $right_menu = array('status'=>true,'menu_title'=>'添加客户','menu_url'=>'/agent/customer/create');
         $this->assign('right_menu',$right_menu);
 
-        // 当前代理的账户
+        // 用户名
         $agent_username = session('agent_username');
-        $customer = '';
-        if(!empty($agent_username)){
-            $agent_data = Agent::get(['username'=>$agent_username]);
-            $data = new TradeAccount();
-            $customer = $data->where(['agent_id'=>$agent_data['id']])->select();
-        }
+        $agent_data = Agent::get(['username'=>$agent_username]);
+        $this->assign('agent',$agent_data);
+
+        // 当前用户所属的交易账户
+        $data = new TradeAccount();
+        $customer = $data->where(['agent_id'=>$agent_data['id']])->select();
+
         $this->assign('customer',$customer);
 
         return $this->fetch($this->template_path);

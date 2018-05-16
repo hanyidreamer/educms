@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>代理商登录</title>
+    <title>我的客户</title>
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <link rel="alternate icon" type="image/png" href="http://s.amazeui.org/assets/react/i/favicon.png">
@@ -14,6 +14,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <link href="/amazeui-touch/dist/amazeui.touch.min.css" rel="stylesheet">
+    <link href="{$resource_path}css/table.css" rel="stylesheet">
 </head>
 <body>
 
@@ -27,26 +28,30 @@
 
                     <div class="group group-no-padded">
                         <div class="group-body">
-                            <ul class="list">
-                                {volist name="customer" id="data" }
-                                <li target="_blank" class="item item-linked item-content">
-                                    <a href="/agent/customer/edit/id/{$data.id}">
-                                        <div class="item-main">
-                                            <div class="item-title-row">
-                                                <h3 class="item-title">{$data.nickname}</h3>
-                                                <div class="item-after">运行中</div>
-                                                <span class="icon icon-right-nav item-icon"></span>
-                                            </div>
-                                            <div class="item-subtitle">登录名：{$data.account}</div>
-                                            <div class="item-desc">
-                                                密码： {$data.password}
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                {/volist}
+                            <div style="clear: both;height: 1px;"></div>
+                            <h3 style="text-align: center;">我的直接客户</h3>
+                                    <table class="am-table am-table-bordered am-table-radius am-table-striped" style="width: 98%;margin: 0 auto;">
+                                        <thead>
+                                        <tr style="font-size: 14px;">
+                                            <th>客户名称</th>
+                                            <th>交易账户</th>
+                                            <th>交易密码</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        {volist name="customer" id="data" }
+                                        <tr align="center" style="font-size: 14px;">
+                                            <td width="100">{$data.nickname}</td>
+                                            <td width="80">{$data.account}</td>
+                                            <td width="80">{$data.password}</td>
+                                            <td width="80">
+                                                <a href="/agent/customer/edit/id/{$data.id}"><span class="icon icon-compose"></span></a>
 
-                            </ul>
+                                            </td>
+                                        </tr>
+                                        {/volist}
+                                    </table>
+                            <div style="clear: both;height: 20px;"></div>
                         </div>
                     </div>
                 </div>
