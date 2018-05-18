@@ -31,17 +31,24 @@
                         <div class="group-body" style="width: 90%; margin: 0 auto;">
                             <form action="/agent/my/update_tel" method="post"  onsubmit="return checkmobile()">
                                 <input type="hidden" name="id" value="{$agent.id}">
+
                                 <label class="field-container">
+                                    {if $agent.tel == ''}
                                     <input class="field" id="mobile" name="mobile" placeholder="手机号码" type="text" required lay-verify="phone" autocomplete="off" value="">
+                                    {else /}
+                                    <input class="field" id="mobile" name="mobile" placeholder="手机号码" type="text" required lay-verify="phone" autocomplete="off" value="{$agent.tel}" disabled="disabled">
+                                    {/if}
+
                                 </label>
 
                                 <label class="field-container">
-                                        <input style="width:120px;display:inline-block;" id="sms_code" name="sms_code" placeholder="短信验证码" type="text" required lay-verify="required" value="">
-                                        <input name="send" id="send" type="button" value="获取验证码" onclick="sendTrial()" style="display:inline-block;width: 100px;height: 45px;">
+                                    <input style="width:120px;display:inline-block;" id="sms_code" name="sms_code" placeholder="短信验证码" type="text" required lay-verify="required" value="">
+                                    <input name="send" id="send" type="button" value="获取验证码" onclick="sendTrial()" style="display:inline-block;width: 100px;height: 45px;">
                                 </label>
 
                                 <input type="submit" class="btn btn-secondary btn-block" value="修改">
                             </form>
+
                             <div style="clear: both;height: 20px;"></div>
                         </div>
                     </div>

@@ -118,6 +118,8 @@ class My extends AgentBase
 
         if(!empty($post_data['mobile']) and !empty($post_data['sms_code']) and $post_data['mobile']==session('mobile') and $post_data['sms_code']==session('sms_code')){
             $data = Agent::get(['username'=>session('agent_username')]);
+            $post_data['tel'] = $post_data['mobile'];
+
             $data_save = $data->allowField($post_array)->save($post_data);
             if($data_save){
                 $this->success('绑定手机成功','/agent/my/');

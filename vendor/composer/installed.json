@@ -171,24 +171,24 @@
     },
     {
         "name": "anerg2046/payment",
-        "version": "v1.0.3",
-        "version_normalized": "1.0.3.0",
+        "version": "v1.0.4",
+        "version_normalized": "1.0.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/anerg2046/payment.git",
-            "reference": "9621eda7d4d758c435e7d8639f9f15b360c8522b"
+            "reference": "4366596a5df388f64f84d676a41fac88fec9ac02"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/anerg2046/payment/9621eda7d4d758c435e7d8639f9f15b360c8522b.zip",
-            "reference": "9621eda7d4d758c435e7d8639f9f15b360c8522b",
+            "url": "https://files.phpcomposer.com/files/anerg2046/payment/4366596a5df388f64f84d676a41fac88fec9ac02.zip",
+            "reference": "4366596a5df388f64f84d676a41fac88fec9ac02",
             "shasum": ""
         },
         "require": {
             "guzzlehttp/guzzle": "^6.3",
             "php": ">=5.6.0"
         },
-        "time": "2018-05-02T09:45:07+00:00",
+        "time": "2018-05-15T04:04:33+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1406,17 +1406,17 @@
     },
     {
         "name": "overtrue/wechat",
-        "version": "4.0.23",
-        "version_normalized": "4.0.23.0",
+        "version": "4.0.24",
+        "version_normalized": "4.0.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/overtrue/wechat.git",
-            "reference": "777be0b512bcb4d3ae6827ce3dea8f5e16e1ba70"
+            "reference": "7ff3cbb7913d7e25c9eeb2b87e7346c07e610c4f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/overtrue/wechat/777be0b512bcb4d3ae6827ce3dea8f5e16e1ba70.zip",
-            "reference": "777be0b512bcb4d3ae6827ce3dea8f5e16e1ba70",
+            "url": "https://files.phpcomposer.com/files/overtrue/wechat/7ff3cbb7913d7e25c9eeb2b87e7346c07e610c4f.zip",
+            "reference": "7ff3cbb7913d7e25c9eeb2b87e7346c07e610c4f",
             "shasum": ""
         },
         "require": {
@@ -1439,7 +1439,7 @@
             "overtrue/phplint": "dev-master",
             "phpunit/phpunit": "~6.0"
         },
-        "time": "2018-04-16T12:08:52+00:00",
+        "time": "2018-05-15T09:27:47+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
